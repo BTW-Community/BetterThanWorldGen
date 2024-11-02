@@ -1,6 +1,6 @@
 package btwg.mixin;
 
-import btwg.api.world.layer.BaseLayer;
+import btwg.api.biome.layer.BaseLayer;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.GenLayer;
 import net.minecraft.src.WorldChunkManager;

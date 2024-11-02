@@ -1,4 +1,4 @@
-package btwg.api.world.layer;
+package btwg.api.biome.layer;
 
 import btwg.api.configuration.WorldData;
 import btwg.mod.BiomeConfiguration;

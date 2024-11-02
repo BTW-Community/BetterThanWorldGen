@@ -1,5 +1,6 @@
 package btwg.mod;
 
+import btwg.api.biome.BiomeData;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.HeightData;
 import net.minecraft.src.BiomeGenBase;
@@ -17,10 +18,12 @@ public abstract class BiomeConfiguration {
     
     public static final int MOUNTAIN_FOREST_ID = 100;
     
-    public static final BiomeGenBase MOUNTAIN_FOREST = (BiomeGenBase) ((BiomeInterface) new BiomeGenForest(MOUNTAIN_FOREST_ID)).setHeightData(mountainData());
+    public static final BiomeGenBase MOUNTAIN_FOREST = (BiomeGenBase) ((BiomeInterface) new BiomeGenForest(MOUNTAIN_FOREST_ID))
+            .setHeightData(mountainData())
+            .setSubBiomeData(new BiomeData<>(BiomeGenBase.desert));
     
     public static HeightData mountainData() {
-        return new HeightData(2.0F, 1.5F);
+        return new HeightData(1.0F, 2.0F);
     }
     
     public static HeightData plainsData() {

@@ -2,13 +2,18 @@ package btwg.api.biome;
 
 import net.minecraft.src.BiomeGenBase;
 
+import java.util.Optional;
+
 public interface BiomeInterface {
     HeightData getHeightData();
-    BiomeGenBase setHeightData(HeightData heightData);
+    BiomeInterface setHeightData(HeightData heightData);
     
     float getWeight();
-    BiomeGenBase setWeight(float weight);
+    BiomeInterface setWeight(float weight);
     
     boolean isVanilla();
-    BiomeGenBase setVanilla();
+    BiomeInterface setVanilla();
+    
+    Optional<BiomeData<BiomeGenBase>> getSubBiomeData();
+    BiomeInterface setSubBiomeData(BiomeData<BiomeGenBase> subBiomeData);
 }
