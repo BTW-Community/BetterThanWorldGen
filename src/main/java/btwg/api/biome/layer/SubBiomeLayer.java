@@ -1,15 +1,15 @@
 package btwg.api.biome.layer;
 
 import btwg.api.biome.BiomeInterface;
+import btwg.api.configuration.WorldData;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.GenLayer;
 import net.minecraft.src.IntCache;
 
-public class SubBiomeLayer extends GenLayer {
-    public SubBiomeLayer(long l, GenLayer genLayer) {
-        super(l);
-        this.parent = genLayer;
+public class SubBiomeLayer extends BTWGBaseLayer {
+    public SubBiomeLayer(long seed, GenLayer parent, WorldData generatorOptions) {
+        super(seed, parent, generatorOptions);
     }
     
     public int[] getInts(int x, int z, int sizeX, int sizeZ) {

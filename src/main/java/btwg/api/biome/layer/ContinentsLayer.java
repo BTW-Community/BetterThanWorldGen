@@ -5,12 +5,12 @@
 
 package btwg.api.biome.layer;
 
-import net.minecraft.src.GenLayer;
+import btwg.api.configuration.WorldData;
 import net.minecraft.src.IntCache;
 
-public class ContinentsLayer extends GenLayer {
-    public ContinentsLayer(long l) {
-        super(l);
+public class ContinentsLayer extends BTWGBaseLayer {
+    public ContinentsLayer(long seed, WorldData generatorOptions) {
+        super(seed, generatorOptions);
     }
     
     public int[] getInts(int x, int z, int sizeX, int sizeZ) {

@@ -7,13 +7,12 @@ import net.minecraft.src.GenLayer;
 import net.minecraft.src.IntCache;
 import net.minecraft.src.WorldType;
 
-public class BiomeLayer extends GenLayer {
+public class BiomeLayer extends BTWGBaseLayer {
     private BiomeGenBase[] allowedBiomes;
     
     public BiomeLayer(long seed, GenLayer parent, WorldType worldType, WorldData generatorOptions) {
-        super(seed);
+        super(seed, parent, generatorOptions);
         this.allowedBiomes = BiomeConfiguration.biomeList.toArray(new BiomeGenBase[0]);
-        this.parent = parent;
     }
     
     public int[] getInts(int x, int z, int sizeX, int sizeZ) {

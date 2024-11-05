@@ -249,13 +249,13 @@ public class ChunkProvider implements IChunkProvider {
                 for(int var21 = -var19; var21 <= var19; ++var21) {
                     for(int var22 = -var19; var22 <= var19; ++var22) {
                         BiomeGenBase var23 = this.biomesForGeneration[var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
-                        float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (((BiomeInterface) var23).getHeightData().getHeightValues(BetterThanWorldGen.V1_0_0).height() + 2.0F);
-                        if (((BiomeInterface) var23).getHeightData().getHeightValues(BetterThanWorldGen.V1_0_0).height() > ((BiomeInterface) var20).getHeightData().getHeightValues(BetterThanWorldGen.V1_0_0).height()) {
+                        float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (((BiomeInterface) var23).getHeightData().get(BetterThanWorldGen.V1_0_0).height() + 2.0F);
+                        if (((BiomeInterface) var23).getHeightData().get(BetterThanWorldGen.V1_0_0).height() > ((BiomeInterface) var20).getHeightData().get(BetterThanWorldGen.V1_0_0).height()) {
                             var24 /= 2.0F;
                         }
                         
-                        var16 += ((BiomeInterface) var23).getHeightData().getHeightValues(BetterThanWorldGen.V1_0_0).variance() * var24;
-                        var17 += ((BiomeInterface) var23).getHeightData().getHeightValues(BetterThanWorldGen.V1_0_0).height() * var24;
+                        var16 += ((BiomeInterface) var23).getHeightData().get(BetterThanWorldGen.V1_0_0).variance() * var24;
+                        var17 += ((BiomeInterface) var23).getHeightData().get(BetterThanWorldGen.V1_0_0).height() * var24;
                         var18 += var24;
                     }
                 }

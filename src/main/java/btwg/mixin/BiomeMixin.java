@@ -1,8 +1,8 @@
 package btwg.mixin;
 
-import btwg.api.biome.BiomeData;
+import btwg.api.biome.data.BiomeData;
 import btwg.api.biome.BiomeInterface;
-import btwg.api.biome.HeightData;
+import btwg.api.biome.data.BiomeData.HeightData;
 import net.minecraft.src.BiomeGenBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,10 +16,13 @@ public class BiomeMixin implements BiomeInterface {
 	
 	private HeightData heightData;
 	private BiomeData<BiomeGenBase> subBiomeData;
+	private BiomeData<BiomeGenBase> riverShoreBiomeData;
+	private BiomeData.ConditionalBiomeData edgeBiomeData;
 	
 	private float weight;
 	
 	private boolean isVanilla = false;
+	private boolean isRiver = false;
 	
 	@Override
 	public HeightData getHeightData() {
@@ -58,6 +61,17 @@ public class BiomeMixin implements BiomeInterface {
 	}
 	
 	@Override
+	public boolean isRiver() {
+		return this.isRiver;
+	}
+	
+	@Override
+	public BiomeInterface setRiver() {
+		this.isRiver = true;
+		return this;
+	}
+	
+	@Override
 	public Optional<BiomeData<BiomeGenBase>> getSubBiomeData() {
 		return Optional.ofNullable(this.subBiomeData);
 	}
@@ -65,6 +79,28 @@ public class BiomeMixin implements BiomeInterface {
 	@Override
 	public BiomeInterface setSubBiomeData(BiomeData<BiomeGenBase> subBiomeData) {
 		this.subBiomeData = subBiomeData;
+		return this;
+	}
+	
+	@Override
+	public Optional<BiomeData<BiomeGenBase>> getRiverShoreBiomeData() {
+		return Optional.ofNullable(this.riverShoreBiomeData);
+	}
+	
+	@Override
+	public BiomeInterface setRiverShoreBiomeData(BiomeData<BiomeGenBase> riverShoreBiomeData) {
+		this.riverShoreBiomeData = riverShoreBiomeData;
+		return this;
+	}
+	
+	@Override
+	public Optional<BiomeData.ConditionalBiomeData> getEdgeData() {
+		return Optional.ofNullable(edgeBiomeData);
+	}
+	
+	@Override
+	public BiomeInterface setEdgeData(BiomeData.ConditionalBiomeData edgeBiomeData) {
+		this.edgeBiomeData = edgeBiomeData;
 		return this;
 	}
 }

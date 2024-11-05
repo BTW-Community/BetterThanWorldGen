@@ -14,6 +14,8 @@ public class BetterThanWorldGen extends BTWAddon {
     
     public static final Version V1_0_0 = new Version(MODID, 1, 0, 0);
     
+    private static Version currentVersion;
+    
     public static final WorldType BTWG_WORLD_TYPE = (WorldType) ((WorldTypeInterface) WorldTypeUtils.createWorldType(8, "btwg"))
             .setChunkProviderOverworld(ChunkProvider::new);
     
@@ -29,10 +31,18 @@ public class BetterThanWorldGen extends BTWAddon {
     @Override
     public void initialize() {
         AddonHandler.logMessage(this.getName() + " Version " + this.getVersionString() + " Initializing...");
-        // Validate current version
-        Version.fromString(this.getModID(), this.getVersionString());
+        
+        if (!this.getModID().equals(MODID)) {
+            throw new IllegalStateException("Mod id does not match records!");
+        }
+        
+        currentVersion = Version.fromString(this.getModID(), this.getVersionString()).orElseThrow();
         
         BiomeConfiguration.initBiomes();
+    }
+    
+    public static Version getCurrentVersion() {
+        return currentVersion;
     }
     
     public static BetterThanWorldGen getInstance() {
