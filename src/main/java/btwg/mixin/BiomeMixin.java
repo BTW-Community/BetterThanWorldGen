@@ -23,6 +23,7 @@ public class BiomeMixin implements BiomeInterface {
 	
 	private boolean isVanilla = false;
 	private boolean isRiver = false;
+	private boolean hasEdges = true;
 	
 	@Override
 	public HeightData getHeightData() {
@@ -70,7 +71,18 @@ public class BiomeMixin implements BiomeInterface {
 		this.isRiver = true;
 		return this;
 	}
-	
+
+	@Override
+	public boolean hasEdges() {
+		return this.hasEdges;
+	}
+
+	@Override
+	public BiomeInterface setNoEdges() {
+		this.hasEdges = false;
+		return this;
+	}
+
 	@Override
 	public Optional<BiomeData<BiomeGenBase>> getSubBiomeData() {
 		return Optional.ofNullable(this.subBiomeData);

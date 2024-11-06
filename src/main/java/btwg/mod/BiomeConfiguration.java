@@ -6,12 +6,14 @@ import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData.HeightData;
-import btwg.api.world.feature.BTWGTreeGrowers;
+import btwg.mod.world.feature.BTWGTreeGrowers;
 import btwg.api.world.feature.TreeDistributor;
+import btwg.mod.world.feature.TreeDistributors;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.World;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 
 public abstract class BiomeConfiguration {
@@ -27,50 +29,33 @@ public abstract class BiomeConfiguration {
     
     public static final int RAINFOREST_VALLEY_ID = 200;
     public static final int PLAINS_RIVER_SHORE_ID = 201;
-    
+
     //------ Sub Biomes ------//
     
     public static final BTWGBiome RAINFOREST_VALLEY = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RAINFOREST_VALLEY_ID))
             .setHeightData(plainsHeight()))
-            .setTemperatureAndRainfall(1, 1)
-            .setTreeDistributor(new TreeDistributor(10) {
-                @Override
-                public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
-                    int t = rand.nextInt(10);
-    
-                    if (t <= 1) {
-                        return BTWGTreeGrowers.OAK_BUSH;
-                    }
-                    else if (t <= 4) {
-                        return TreeGrowers.BIG_OAK_TREE;
-                    }
-                    else if (t <= 6) {
-                        return TreeGrowers.JUNGLE_TREE;
-                    }
-                    else {
-                        return BTWGTreeGrowers.TALL_OAK_TREE;
-                    }
-                }
-            });
+            .setTemperatureAndRainfall(1F, 1F)
+            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES);
     
     public static final BTWGBiome PLAINS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_RIVER_SHORE_ID))
             .setHeightData(new HeightData(0.0F, 0.0F)))
-            .setTemperatureAndRainfall(0.5F, 0.3F)
+            .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(5) {});
     
     //------ Primary Biomes ------//
     
     public static final BTWGBiome RAINFOREST = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RAINFOREST_ID))
             .setHeightData(mountainHeight())
+            .setEdgeData(standardEdge(RAINFOREST_VALLEY))
             .setRiverShoreBiomeData(new BiomeData<>(RAINFOREST_VALLEY))
             .setSubBiomeData(new BiomeData<>(RAINFOREST_VALLEY)))
-            .setTemperatureAndRainfall(1, 1)
-            .setTreeDistributor(RAINFOREST_VALLEY.getTreeDistributor());
+            .setTemperatureAndRainfall(1F, 1F)
+            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES);
     
     public static final BTWGBiome PLAINS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_ID))
             .setHeightData(plainsHeight())
             .setRiverShoreBiomeData(new BiomeData<>(PLAINS_RIVER_SHORE)))
-            .setTemperatureAndRainfall(0.5F, 0.3F)
+            .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(0) {});
     
     public static HeightData mountainHeight() {
@@ -79,6 +64,10 @@ public abstract class BiomeConfiguration {
     
     public static HeightData plainsHeight() {
         return new HeightData(0.1F, 0.3F);
+    }
+
+    public static BiomeData.ConditionalBiomeData standardEdge(BiomeGenBase biome) {
+        return new BiomeData.ConditionalBiomeData(b -> b.hasEdges() ? Optional.of(biome) : Optional.empty());
     }
     
     public static void initBiomes() {

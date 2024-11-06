@@ -17,6 +17,9 @@ public interface BiomeInterface {
     
     boolean isRiver();
     BiomeInterface setRiver();
+
+    boolean hasEdges();
+    BiomeInterface setNoEdges();
     
     Optional<BiomeData<BiomeGenBase>> getSubBiomeData();
     BiomeInterface setSubBiomeData(BiomeData<BiomeGenBase> subBiomeData);
