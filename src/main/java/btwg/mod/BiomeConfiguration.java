@@ -46,15 +46,15 @@ public abstract class BiomeConfiguration {
     
     public static final BTWGBiome RAINFOREST = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RAINFOREST_ID))
             .setHeightData(mountainHeight())
-            .setEdgeData(standardEdge(RAINFOREST_VALLEY))
-            .setRiverShoreBiomeData(new BiomeData<>(RAINFOREST_VALLEY))
-            .setSubBiomeData(new BiomeData<>(RAINFOREST_VALLEY)))
+            .setEdgeData(PLAINS_RIVER_SHORE)
+            .setRiverShoreBiomeData(RAINFOREST_VALLEY)
+            .setSubBiomeData(RAINFOREST_VALLEY))
             .setTemperatureAndRainfall(1F, 1F)
             .setTreeDistributor(TreeDistributors.RAINFOREST_TREES);
     
     public static final BTWGBiome PLAINS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_ID))
             .setHeightData(plainsHeight())
-            .setRiverShoreBiomeData(new BiomeData<>(PLAINS_RIVER_SHORE)))
+            .setRiverShoreBiomeData(PLAINS_RIVER_SHORE))
             .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(0) {});
     
@@ -65,14 +65,11 @@ public abstract class BiomeConfiguration {
     public static HeightData plainsHeight() {
         return new HeightData(0.1F, 0.3F);
     }
-
-    public static BiomeData.ConditionalBiomeData standardEdge(BiomeGenBase biome) {
-        return new BiomeData.ConditionalBiomeData(b -> b.hasEdges() ? Optional.of(biome) : Optional.empty());
-    }
     
     public static void initBiomes() {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         
         biomeList.add(RAINFOREST);
+        biomeList.add(PLAINS);
     }
 }
