@@ -6,11 +6,12 @@ import btwg.api.configuration.Version;
 import btwg.api.world.generate.ChunkProvider;
 import btwg.api.world.WorldTypeInterface;
 import btwg.api.world.WorldTypeUtils;
+import btwg.mod.block.BTWGBlocks;
 import net.minecraft.src.WorldType;
 
 public class BetterThanWorldGen extends BTWAddon {
     private static BetterThanWorldGen instance;
-    private static final String MODID = "btwg";
+    public static final String MODID = "btwg";
     
     public static final Version V1_0_0 = new Version(MODID, 1, 0, 0);
     
@@ -38,6 +39,7 @@ public class BetterThanWorldGen extends BTWAddon {
         
         currentVersion = Version.fromString(this.getModID(), this.getVersionString()).orElseThrow();
         
+        BTWGBlocks.initBlocks();
         BiomeConfiguration.initBiomes();
     }
     

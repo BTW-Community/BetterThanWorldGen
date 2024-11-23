@@ -17,6 +17,7 @@ public class BiomeMixin implements BiomeInterface {
 	private HeightData heightData;
 	private BiomeData<BiomeGenBase> subBiomeData;
 	private BiomeData<BiomeGenBase> riverShoreBiomeData;
+	private BiomeData<BiomeGenBase> riverBiomeData;
 	private BiomeData.ConditionalBiomeData edgeBiomeData;
 	private BiomeData<BiomeGenBase> beachBiomeData;
 	
@@ -26,6 +27,7 @@ public class BiomeMixin implements BiomeInterface {
 	private boolean isRiver = false;
 	private boolean hasEdges = true;
 	private boolean makesBeaches = false;
+	private boolean usesDefaultBeach = true;
 	
 	@Override
 	public HeightData getHeightData() {
@@ -63,27 +65,7 @@ public class BiomeMixin implements BiomeInterface {
 		return null;
 	}
 	
-	@Override
-	public boolean isRiver() {
-		return this.isRiver;
-	}
-	
-	@Override
-	public BiomeInterface setRiver() {
-		this.isRiver = true;
-		return this;
-	}
-
-	@Override
-	public boolean hasEdges() {
-		return this.hasEdges;
-	}
-
-	@Override
-	public BiomeInterface setNoEdges() {
-		this.hasEdges = false;
-		return this;
-	}
+	//------ Sub-biome Data ------//
 
 	@Override
 	public Optional<BiomeData<BiomeGenBase>> getSubBiomeData() {
@@ -99,6 +81,20 @@ public class BiomeMixin implements BiomeInterface {
 	@Override
 	public BiomeInterface setSubBiomeData(BiomeGenBase biome) {
 		return this.setSubBiomeData(new BiomeData<>(biome));
+	}
+	
+	//------ River Data ------//
+	
+	@Override
+	public boolean isRiver() {
+		return this.isRiver;
+	}
+	
+	@Override
+	public BiomeInterface setRiver() {
+		this.isRiver = true;
+		this.setRiverBiomeData((BiomeGenBase) (Object) this);
+		return this;
 	}
 
 	@Override
@@ -116,7 +112,36 @@ public class BiomeMixin implements BiomeInterface {
 	public BiomeInterface setRiverShoreBiomeData(BiomeGenBase biome) {
 		return this.setRiverShoreBiomeData(new BiomeData<>(biome));
 	}
-
+	
+	@Override
+	public Optional<BiomeData<BiomeGenBase>> getRiverBiomeData() {
+		return Optional.ofNullable(this.riverBiomeData);
+	}
+	
+	@Override
+	public BiomeInterface setRiverBiomeData(BiomeData<BiomeGenBase> riverBiomeData) {
+		this.riverBiomeData = riverBiomeData;
+		return this;
+	}
+	
+	@Override
+	public BiomeInterface setRiverBiomeData(BiomeGenBase biome) {
+		return this.setRiverBiomeData(new BiomeData<>(biome));
+	}
+	
+	//------ Biome Edge Data ------//
+	
+	@Override
+	public boolean hasEdges() {
+		return this.hasEdges;
+	}
+	
+	@Override
+	public BiomeInterface setNoEdges() {
+		this.hasEdges = false;
+		return this;
+	}
+	
 	@Override
 	public Optional<BiomeData.ConditionalBiomeData> getEdgeData() {
 		return Optional.ofNullable(edgeBiomeData);
@@ -132,6 +157,8 @@ public class BiomeMixin implements BiomeInterface {
 	public BiomeInterface setEdgeData(BiomeGenBase biome) {
 		return setEdgeData(new BiomeData.ConditionalBiomeData(b -> b.hasEdges() ? Optional.of(biome) : Optional.empty()));
 	}
+	
+	//------ Beach Data ------//
 
 	@Override
 	public boolean makesBeaches() {
@@ -146,12 +173,17 @@ public class BiomeMixin implements BiomeInterface {
 
 	@Override
 	public Optional<BiomeData<BiomeGenBase>> getBeachData() {
+		if (this.usesDefaultBeach && this.beachBiomeData == null) {
+			this.beachBiomeData = new BiomeData<>(BiomeGenBase.beach);
+		}
+		
 		return Optional.ofNullable(this.beachBiomeData);
 	}
 
 	@Override
 	public BiomeInterface setBeachBiomeData(BiomeData<BiomeGenBase> beachBiomeData) {
 		this.beachBiomeData = beachBiomeData;
+		this.usesDefaultBeach = false;
 		return this;
 	}
 

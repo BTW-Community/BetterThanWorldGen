@@ -15,16 +15,18 @@ public interface BiomeInterface {
     boolean isVanilla();
     BiomeInterface setVanilla();
     
-    boolean isRiver();
-    BiomeInterface setRiver();
-    
     Optional<BiomeData<BiomeGenBase>> getSubBiomeData();
     BiomeInterface setSubBiomeData(BiomeData<BiomeGenBase> subBiomeData);
     BiomeInterface setSubBiomeData(BiomeGenBase biome);
     
+    boolean isRiver();
+    BiomeInterface setRiver();
     Optional<BiomeData<BiomeGenBase>> getRiverShoreBiomeData();
     BiomeInterface setRiverShoreBiomeData(BiomeData<BiomeGenBase> riverShoreBiomeData);
     BiomeInterface setRiverShoreBiomeData(BiomeGenBase biome);
+    Optional<BiomeData<BiomeGenBase>> getRiverBiomeData();
+    BiomeInterface setRiverBiomeData(BiomeData<BiomeGenBase> riverBiomeData);
+    BiomeInterface setRiverBiomeData(BiomeGenBase biome);
 
     boolean hasEdges();
     BiomeInterface setNoEdges();

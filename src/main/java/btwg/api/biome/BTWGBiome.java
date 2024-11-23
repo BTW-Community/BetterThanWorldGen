@@ -2,13 +2,15 @@ package btwg.api.biome;
 
 import btwg.api.world.feature.TreeDistributor;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.ResourceLocation;
 
 public class BTWGBiome extends BiomeGenBase {
     private TreeDistributor treeDistributor = new TreeDistributor() {};
     
-    public BTWGBiome(int par1) {
+    public BTWGBiome(int par1, ResourceLocation resourceLocation) {
         super(par1);
         this.theBiomeDecorator = new BTWGBiomeDecorator(this);
+        this.biomeName = resourceLocation.toString();
     }
     
     public BTWGBiome setTemperatureAndRainfall(float temp, float rainfall) {

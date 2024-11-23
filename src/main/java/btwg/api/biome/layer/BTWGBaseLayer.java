@@ -48,16 +48,21 @@ public abstract class BTWGBaseLayer extends GenLayer {
             
             if (pass == 0) {
                 extrasLayer = new GenLayerAddIsland(3L, extrasLayer);
+                
+                extrasLayer = new EdgeLayer(1000L, extrasLayer, generatorOptions);
             }
             
             if (pass == 1) {
                 extrasLayer = new RiverShoreLayer(1000L, extrasLayer, smoothRiverLayer, generatorOptions);
-                extrasLayer = new EdgeLayer(1000L, extrasLayer, generatorOptions);
+            }
+            
+            if (pass == 2) {
+                extrasLayer = new BeachLayer(1000L, extrasLayer, generatorOptions);
             }
         }
         
         GenLayerSmooth biomeSmoothLayer = new GenLayerSmooth(1000L, extrasLayer);
-        GenLayerRiverMix finalBiomeLayer = new GenLayerRiverMix(100L, biomeSmoothLayer, riverLayer);
+        RiverMixLayer finalBiomeLayer = new RiverMixLayer(100L, biomeSmoothLayer, riverLayer, generatorOptions);
         GenLayerVoronoiZoom voronoiLayer = new GenLayerVoronoiZoom(10L, finalBiomeLayer);
         
         finalBiomeLayer.initWorldGenSeed(seed);

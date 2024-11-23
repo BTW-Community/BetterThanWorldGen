@@ -34,12 +34,26 @@ public class EdgeLayer extends BTWGBaseLayer {
                 newBiomes[i + k * sizeX] = currentBiomeID;
     
                 if (edgeData.isPresent()
-                        && ((neighborBiomeNegX > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegX]).isPresent())
-                        || (neighborBiomeNegZ > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegZ]).isPresent())
-                        || (neighborBiomePosX > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosX]).isPresent())
-                        || (neighborBiomePosZ > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosZ]).isPresent())))
+                        && (neighborBiomeNegX != currentBiomeID
+                                || neighborBiomeNegZ != currentBiomeID
+                                || neighborBiomePosX != currentBiomeID
+                                || neighborBiomePosZ != currentBiomeID))
                 {
-                    newBiomes[i + k * sizeX] = edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegX]).get().biomeID;
+                    if (neighborBiomeNegX > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegX]).isPresent()) {
+                        newBiomes[i + k * sizeX] = edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegX]).get().biomeID;
+                    }
+                    else if (neighborBiomeNegZ > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegZ]).isPresent()) {
+                        newBiomes[i + k * sizeX] = edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomeNegZ]).get().biomeID;
+                    }
+                    else if (neighborBiomePosX > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosX]).isPresent()) {
+                        newBiomes[i + k * sizeX] = edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosX]).get().biomeID;
+                    }
+                    else if (neighborBiomePosZ > 0 && edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosZ]).isPresent()) {
+                        newBiomes[i + k * sizeX] = edgeData.get().get(version).apply((BiomeInterface) BiomeGenBase.biomeList[neighborBiomePosZ]).get().biomeID;
+                    }
+                    else {
+                        newBiomes[i + k * sizeX] = currentBiomeID;
+                    }
                 }
                 else {
                     newBiomes[i + k * sizeX] = currentBiomeID;
