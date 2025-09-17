@@ -109,14 +109,6 @@ loom {
 	accessWidenerPath = file("src/main/resources/btwg.accesswidener")
 }
 
-runClient {
-	dependsOn(jar)
-}
-
-runServer {
-	dependsOn(jar)
-}
-
 class BTWJarReplacer implements MinecraftJarProcessor<Spec> {
 	String name
 	String path

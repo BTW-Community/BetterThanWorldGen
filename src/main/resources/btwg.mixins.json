@@ -6,8 +6,7 @@
   "mixins": [
     "BiomeMixin",
     "WorldChunkManagerMixin",
-    "WorldProviderMixin",
-    "WorldTypeMixin"
+    "WorldProviderMixin"
   ],
   "client": [
   ],

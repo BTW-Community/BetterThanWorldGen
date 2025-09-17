@@ -25,3 +25,6 @@ run/
 
 # macos
 *.DS_Store
+
+# misc
+BTWCE*

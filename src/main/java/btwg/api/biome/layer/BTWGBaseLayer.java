@@ -16,8 +16,8 @@ public abstract class BTWGBaseLayer extends GenLayer {
         this.parent = parent;
     }
     
-    public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldType worldType, WorldData generatorOptions) {
-        ContinentsLayer continentsLayer = new ContinentsLayer(1L, generatorOptions);
+    public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldType worldType, WorldData worldData) {
+        ContinentsLayer continentsLayer = new ContinentsLayer(1L, worldData);
         GenLayerFuzzyZoom continentZoomLayer = new GenLayerFuzzyZoom(2000L, continentsLayer);
         GenLayerAddIsland addIslandLayer = new GenLayerAddIsland(1L, continentZoomLayer);
         GenLayerZoom islandZoomLayer = new GenLayerZoom(2001L, addIslandLayer);
@@ -38,10 +38,10 @@ public abstract class BTWGBaseLayer extends GenLayer {
         riverLayer = GenLayerZoom.magnify(1000L, smoothRiverLayer, 2);
         
         GenLayer var6 = GenLayerZoom.magnify(1000L, landShapeLayer, 0);
-        BiomeLayer biomeLayer = new BiomeLayer(200L, var6, worldType, generatorOptions);
+        BiomeLayer biomeLayer = new BiomeLayer(200L, var6, worldType, worldData);
         var6 = GenLayerZoom.magnify(1000L, biomeLayer, 2);
         
-        GenLayer extrasLayer = new SubBiomeLayer(1000L, var6, generatorOptions);
+        GenLayer extrasLayer = new SubBiomeLayer(1000L, var6, worldData);
         
         for(int pass = 0; pass < scale; pass++) {
             extrasLayer = new GenLayerZoom(1000 + pass, extrasLayer);
@@ -49,20 +49,20 @@ public abstract class BTWGBaseLayer extends GenLayer {
             if (pass == 0) {
                 extrasLayer = new GenLayerAddIsland(3L, extrasLayer);
                 
-                extrasLayer = new EdgeLayer(1000L, extrasLayer, generatorOptions);
+                extrasLayer = new EdgeLayer(1000L, extrasLayer, worldData);
             }
             
             if (pass == 1) {
-                extrasLayer = new RiverShoreLayer(1000L, extrasLayer, smoothRiverLayer, generatorOptions);
+                extrasLayer = new RiverShoreLayer(1000L, extrasLayer, smoothRiverLayer, worldData);
             }
             
             if (pass == 2) {
-                extrasLayer = new BeachLayer(1000L, extrasLayer, generatorOptions);
+                extrasLayer = new BeachLayer(1000L, extrasLayer, worldData);
             }
         }
         
         GenLayerSmooth biomeSmoothLayer = new GenLayerSmooth(1000L, extrasLayer);
-        RiverMixLayer finalBiomeLayer = new RiverMixLayer(100L, biomeSmoothLayer, riverLayer, generatorOptions);
+        RiverMixLayer finalBiomeLayer = new RiverMixLayer(100L, biomeSmoothLayer, riverLayer, worldData);
         GenLayerVoronoiZoom voronoiLayer = new GenLayerVoronoiZoom(10L, finalBiomeLayer);
         
         finalBiomeLayer.initWorldGenSeed(seed);

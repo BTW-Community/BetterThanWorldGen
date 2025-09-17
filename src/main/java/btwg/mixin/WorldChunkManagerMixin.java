@@ -1,8 +1,10 @@
 package btwg.mixin;
 
 import btwg.api.biome.layer.BTWGBaseLayer;
+import btwg.api.configuration.WorldData;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.GenLayer;
+import net.minecraft.src.World;
 import net.minecraft.src.WorldChunkManager;
 import net.minecraft.src.WorldType;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,10 +20,11 @@ public abstract class WorldChunkManagerMixin {
     @Shadow
     private GenLayer biomeIndexLayer;
     
-    @Inject(method = "<init>(JLnet/minecraft/src/WorldType;)V", at = @At("TAIL"))
-    public void setBTWGBiomes(long seed, WorldType worldType, CallbackInfo ci) {
-        if (worldType == BetterThanWorldGen.BTWG_WORLD_TYPE) {
-            GenLayer[] var4 = BTWGBaseLayer.initializeAllBiomeGenerators(seed, worldType, null);
+    @Inject(method = "<init>(Lnet/minecraft/src/World;)V", at = @At("TAIL"))
+    public void setBTWGBiomes(World world, CallbackInfo ci) {
+        WorldData worldData = world.getData(WorldData.WORLD_GEN_DATA);
+        if (worldData.isBTWG()) {
+            GenLayer[] var4 = BTWGBaseLayer.initializeAllBiomeGenerators(world.getSeed(), world.worldInfo.getTerrainType(), worldData);
             this.genBiomes = var4[0];
             this.biomeIndexLayer = var4[1];
         }

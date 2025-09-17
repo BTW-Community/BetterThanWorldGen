@@ -1,7 +1,6 @@
 package btwg.mixin;
 
-import btwg.api.world.WorldProviderInterface;
-import btwg.api.world.WorldTypeInterface;
+import btwg.api.configuration.WorldData;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldProvider;
@@ -13,23 +12,17 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WorldProvider.class)
-public class WorldProviderMixin implements WorldProviderInterface {
+public class WorldProviderMixin {
     @Shadow
     public World worldObj;
     @Shadow
     public WorldType terrainType;
-    @Shadow
-    public String field_82913_c; // generator options
     
     @Inject(method = "createChunkGenerator", at = @At("RETURN"), cancellable = true)
     public void createChunkGenerator(CallbackInfoReturnable<IChunkProvider> cir) {
         if (this.worldObj.getWorldInfo().getTerrainType() != WorldType.FLAT) {
-            cir.setReturnValue(((WorldTypeInterface) this.terrainType).getChunkProviderOverworld(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.getGeneratorOptions()));
+            WorldData worldData = this.worldObj.getData(WorldData.WORLD_GEN_DATA);
+            cir.setReturnValue(worldData.getOverworldChunkProvider(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled()));
         }
-    }
-    
-    @Override
-    public String getGeneratorOptions() {
-        return this.field_82913_c;
     }
 }

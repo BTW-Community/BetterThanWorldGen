@@ -3,11 +3,8 @@ package btwg.mod;
 import btw.AddonHandler;
 import btw.BTWAddon;
 import btwg.api.configuration.Version;
-import btwg.api.world.generate.ChunkProvider;
-import btwg.api.world.WorldTypeInterface;
-import btwg.api.world.WorldTypeUtils;
+import btwg.api.configuration.WorldData;
 import btwg.mod.block.BTWGBlocks;
-import net.minecraft.src.WorldType;
 
 public class BetterThanWorldGen extends BTWAddon {
     private static BetterThanWorldGen instance;
@@ -16,9 +13,6 @@ public class BetterThanWorldGen extends BTWAddon {
     public static final Version V1_0_0 = new Version(MODID, 1, 0, 0);
     
     private static Version currentVersion;
-    
-    public static final WorldType BTWG_WORLD_TYPE = (WorldType) ((WorldTypeInterface) WorldTypeUtils.createWorldType(8, "btwg"))
-            .setChunkProviderOverworld(ChunkProvider::new);
     
     public BetterThanWorldGen() {
         super();
@@ -38,7 +32,8 @@ public class BetterThanWorldGen extends BTWAddon {
         }
         
         currentVersion = Version.fromString(this.getModID(), this.getVersionString()).orElseThrow();
-        
+
+        WorldData.initData();
         BTWGBlocks.initBlocks();
         BiomeConfiguration.initBiomes();
     }
