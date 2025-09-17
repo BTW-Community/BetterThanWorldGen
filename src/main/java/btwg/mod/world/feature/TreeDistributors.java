@@ -27,4 +27,19 @@ public abstract class TreeDistributors {
             }
         }
     };
+
+    public static final TreeDistributor CACTUS = new TreeDistributor(1) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            if (rand.nextInt(250) == 0) {
+                return BTWGTreeGrowers.HUGE_DEAD_TREE;
+            }
+
+            if (rand.nextInt(100) == 0) {
+                return BTWGTreeGrowers.DEAD_TREE;
+            }
+
+            return BTWGTreeGrowers.CACTUS;
+        }
+    };
 }

@@ -5,6 +5,7 @@ import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData.HeightData;
 import btwg.api.world.feature.TreeDistributor;
 import btwg.api.world.surface.SandySurfacer;
+import btwg.mod.world.feature.GrassDistributors;
 import btwg.mod.world.feature.TreeDistributors;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -22,13 +23,13 @@ public abstract class BiomeConfiguration {
     
     public static final int RAINFOREST_ID = 100;
     public static final int PLAINS_ID = 101;
-    public static final int DESERT_ID = 102;
+    public static final int SCRUBLAND_ID = 102;
     
     public static final int RAINFOREST_VALLEY_ID = 200;
     public static final int PLAINS_RIVER_SHORE_ID = 201;
     public static final int TROPICAL_RIVER_ID = 202;
-    public static final int DESERT_RIVER_SHORE_ID = 203;
-    public static final int DESERT_RIVER_ID = 204;
+    public static final int SCRUBLAND_RIVER_SHORE_ID = 203;
+    public static final int SCRUBLAND_RIVER_ID = 204;
     
     public static final HeightData MOUNTAIN_HEIGHT = new HeightData(1.0F, 2.0F);
     public static final HeightData PLAINS_HEIGHT = new HeightData(0.1F, 0.3F);
@@ -42,11 +43,15 @@ public abstract class BiomeConfiguration {
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F);
 
-    public static final BTWGBiome DESERT_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DESERT_RIVER_ID, loc("desert_river")))
+    public static final BTWGBiome SCRUBLAND_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_RIVER_ID, loc("scrubland_river")))
             .setHeightData(RIVER_HEIGHT)
             .setRiver())
             .setTemperatureAndRainfall(1F, 0F)
-            .setNoRain();
+            .setNoRain()
+            .setTreeDistributor(TreeDistributors.CACTUS)
+            .setNoAnimals()
+            .setTopBlock(Block.sand.blockID)
+            .setFillerBlock(Block.sand.blockID);
     
     //------ Beaches ------//
 
@@ -57,18 +62,23 @@ public abstract class BiomeConfiguration {
             .setRiverBiomeData(TROPICAL_RIVER)
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F)
-            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES);
+            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
     
     public static final BTWGBiome PLAINS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_RIVER_SHORE_ID, loc("plains_river_shore")))
             .setHeightData(new HeightData(0.0F, 0.0F)))
             .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(5) {});
 
-    public static final BTWGBiome DESERT_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DESERT_RIVER_SHORE_ID, loc("desert_river_shore")))
+    public static final BTWGBiome SCRUBLAND_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_RIVER_SHORE_ID, loc("scrubland_river_shore")))
             .setHeightData(new HeightData(0.0F, 0.0F)))
-            .setTemperatureAndRainfall(0.8F, 0.4F)
+            .setTemperatureAndRainfall(1F, 0.0F)
             .setNoRain()
-            .setTreeDistributor(new TreeDistributor(5) {});
+            .setTreeDistributor(TreeDistributors.CACTUS)
+            .setGrassDistributor(GrassDistributors.DRY_GRASS)
+            .setNoAnimals()
+            .setTopBlock(Block.sand.blockID)
+            .setFillerBlock(Block.sand.blockID);
     
     //------ Primary Biomes ------//
     
@@ -80,7 +90,8 @@ public abstract class BiomeConfiguration {
             .setSubBiomeData(RAINFOREST_VALLEY)
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F)
-            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES);
+            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
     
     public static final BTWGBiome PLAINS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_ID, loc("plains")))
             .setHeightData(PLAINS_HEIGHT)
@@ -88,12 +99,15 @@ public abstract class BiomeConfiguration {
             .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(0) {});
 
-    public static final BTWGBiome DESERT = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DESERT_ID, loc("desert")))
+    public static final BTWGBiome SCRUBLAND = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_ID, loc("desert")))
             .setHeightData(PLAINS_HEIGHT)
-            .setRiverShoreBiomeData(DESERT_RIVER_SHORE))
+            .setRiverBiomeData(SCRUBLAND_RIVER)
+            .setRiverShoreBiomeData(SCRUBLAND_RIVER_SHORE))
             .setTemperatureAndRainfall(1.0F, 0.0F)
             .setNoRain()
-            .setTreeDistributor(new TreeDistributor(0) {})
+            .setTreeDistributor(TreeDistributors.CACTUS)
+            .setGrassDistributor(GrassDistributors.DRY_GRASS)
+            .setNoAnimals()
             .setTopBlock(Block.sand.blockID)
             .setFillerBlock(Block.sand.blockID);
     
@@ -101,8 +115,9 @@ public abstract class BiomeConfiguration {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         ((BiomeInterface) BiomeGenBase.ocean).setMakesBeaches();
         
-        biomeList.add(RAINFOREST);
+        //biomeList.add(RAINFOREST);
         //biomeList.add(PLAINS);
+        biomeList.add(SCRUBLAND);
     }
     
     public static ResourceLocation loc(String name) {

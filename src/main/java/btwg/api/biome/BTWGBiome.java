@@ -1,11 +1,13 @@
 package btwg.api.biome;
 
+import btw.entity.mob.JungleSpiderEntity;
+import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ResourceLocation;
+import net.minecraft.src.*;
 
 public class BTWGBiome extends BiomeGenBase {
     private TreeDistributor treeDistributor = new TreeDistributor() {};
+    private PlantDistributor grassDistributor = new PlantDistributor() {};
     
     public BTWGBiome(int par1, ResourceLocation resourceLocation) {
         super(par1);
@@ -23,10 +25,19 @@ public class BTWGBiome extends BiomeGenBase {
         }
     }
     
+    public PlantDistributor getGrassDistributor() {
+        return this.grassDistributor;
+    }
+    
+    public BTWGBiome setGrassDistributor(PlantDistributor grassDistributor) {
+        this.grassDistributor = grassDistributor;
+        return this;
+    }
+
     public TreeDistributor getTreeDistributor() {
         return this.treeDistributor;
     }
-    
+
     public BTWGBiome setTreeDistributor(TreeDistributor treeDistributor) {
         this.treeDistributor = treeDistributor;
         return this;
@@ -59,6 +70,48 @@ public class BTWGBiome extends BiomeGenBase {
 
     public BTWGBiome setNoRain() {
         this.setDisableRain();
+        return this;
+    }
+
+    public BTWGBiome setNoAnimals() {
+        this.spawnableCreatureList.clear();
+        return this;
+    }
+
+    public BTWGBiome setNoLargeAnimals() {
+        this.spawnableCreatureList.clear();
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
+        return this;
+    }
+
+    public BTWGBiome setHasHorses() {
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
+        return this;
+    }
+
+    public BTWGBiome setHasWolves() {
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
+        return this;
+    }
+
+    public BTWGBiome setHasJungleSpiders() {
+        this.spawnableMonsterList.add(new SpawnListEntry(JungleSpiderEntity.class, 2, 1, 1));
+        return this;
+    }
+
+    public BTWGBiome setHasOcelots() {
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
+        return this;
+    }
+
+    public BTWGBiome setHasWitches() {
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityWitch.class, 1, 1, 1));
+        return this;
+    }
+
+    public BTWGBiome setHasSlimes() {
+        this.spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
         return this;
     }
 }
