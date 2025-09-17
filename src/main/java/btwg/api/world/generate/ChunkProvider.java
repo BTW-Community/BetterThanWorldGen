@@ -8,7 +8,7 @@ package btwg.api.world.generate;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.configuration.WorldData;
-import btwg.api.world.surface.DefaultSurfacer;
+import btwg.api.world.surface.Surfacer;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.*;
 
@@ -128,36 +128,43 @@ public class ChunkProvider implements IChunkProvider {
         double var6 = 0.03125F;
         this.soilDepthNoise = this.noiseGen4.generateNoiseOctaves(this.soilDepthNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, var6 * (double)2.0F, var6 * (double)2.0F, var6 * (double)2.0F);
 
-        for(int i = 0; i < 16; ++i) {
-            for(int k = 0; k < 16; ++k) {
-                BiomeGenBase biome = biomes[k + i * 16];
+        var defaultSurfacer = new BiomeData<>(Surfacer.DEFAULT);
+
+        for(int k = 0; k < 16; ++k) {
+            for(int i = 0; i < 16; ++i) {
+                BiomeGenBase biome = biomes[i + k * 16];
 
                 if (!((BiomeInterface) biome).isVanilla()) {
                     int depth = -1;
+                    int lastSurface = -1;
 
                     for (int j = 127; j >= 0; --j) {
-                        int index = (k * 16 + i) * 128 + j;
+                        int index = (i * 16 + k) * 128 + j;
                         if (j <= 0 + this.rand.nextInt(5)) {
                             blockIDs[index] = (short) Block.bedrock.blockID;
                         }
 
                         int blockID = blockIDs[index];
 
+                        if (depth == 0) {
+                            lastSurface = j;
+                        }
+
                         if (blockID == 0 || blockID == Block.waterStill.blockID || blockID == Block.waterMoving.blockID || blockID == Block.ice.blockID) {
                             depth = -1;
                         }
 
-                        var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(new BiomeData<>(DefaultSurfacer.INSTANCE));
+                        var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(defaultSurfacer);
 
                         // TODO: Update with real version handling
-                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.worldObj, k, j, i, depth, biome, blockIDs, metadata);
+                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.worldObj, chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
 
                         depth++;
                     }
                 }
                 else {
                     float temperature = biome.getFloatTemperature();
-                    int soilDepth = (int) (this.soilDepthNoise[i + k * 16] / (double) 3.0F + (double) 3.0F + this.rand.nextDouble() * (double) 0.25F);
+                    int soilDepth = (int) (this.soilDepthNoise[k + i * 16] / (double) 3.0F + (double) 3.0F + this.rand.nextDouble() * (double) 0.25F);
                     int var13 = -1;
                     short topBlock = biome.topBlock;
                     byte topBlockMetadata = biome.topBlockMetadata;
@@ -165,7 +172,7 @@ public class ChunkProvider implements IChunkProvider {
                     byte fillerBlockMetadata = biome.fillerBlockMetadata;
 
                     for (int j = 127; j >= 0; --j) {
-                        int index = (k * 16 + i) * 128 + j;
+                        int index = (i * 16 + k) * 128 + j;
                         if (j <= 0 + this.rand.nextInt(5)) {
                             blockIDs[index] = (short) Block.bedrock.blockID;
                         } else {
