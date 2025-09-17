@@ -1,6 +1,7 @@
 package btwg.api.biome;
 
 import btwg.api.biome.data.BiomeData;
+import btwg.api.world.surface.Surfacer;
 import net.minecraft.src.BiomeGenBase;
 
 import java.util.Optional;
@@ -14,6 +15,10 @@ public interface BiomeInterface {
     
     boolean isVanilla();
     BiomeInterface setVanilla();
+
+    Optional<BiomeData<Surfacer>> getSurfacer();
+    BiomeInterface setSurfacer(BiomeData<Surfacer> surfacer);
+    BiomeInterface setSurfacer(Surfacer surfacer);
     
     Optional<BiomeData<BiomeGenBase>> getSubBiomeData();
     BiomeInterface setSubBiomeData(BiomeData<BiomeGenBase> subBiomeData);

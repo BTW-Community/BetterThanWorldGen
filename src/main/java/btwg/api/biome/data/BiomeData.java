@@ -12,8 +12,8 @@ import java.util.function.Function;
 public class BiomeData<T> {
     private VersionedDataset<T> data;
     
-    public BiomeData(T entrydefaultEntry) {
-        this.data = new VersionedDataset<>(entrydefaultEntry);
+    public BiomeData(T defaultEntry) {
+        this.data = new VersionedDataset<>(defaultEntry);
     }
     
     public BiomeData<T> addRule(VersionRule rule, T entry) {

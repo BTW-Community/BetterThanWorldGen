@@ -3,6 +3,7 @@ package btwg.mixin;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData.HeightData;
+import btwg.api.world.surface.Surfacer;
 import net.minecraft.src.BiomeGenBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +16,7 @@ public class BiomeMixin implements BiomeInterface {
 	@Shadow public float maxHeight;
 	
 	private HeightData heightData;
+    private BiomeData<Surfacer> surfacerData;
 	private BiomeData<BiomeGenBase> subBiomeData;
 	private BiomeData<BiomeGenBase> riverShoreBiomeData;
 	private BiomeData<BiomeGenBase> riverBiomeData;
@@ -64,6 +66,24 @@ public class BiomeMixin implements BiomeInterface {
 	public BiomeInterface setVanilla() {
 		return null;
 	}
+
+    //------ Surfacer Data ------//
+
+    @Override
+    public Optional<BiomeData<Surfacer>> getSurfacer() {
+        return Optional.ofNullable (this.surfacerData);
+    }
+
+    @Override
+    public BiomeInterface setSurfacer(BiomeData<Surfacer> surfacer) {
+        this.surfacerData = surfacer;
+        return this;
+    }
+
+    @Override
+    public BiomeInterface setSurfacer(Surfacer surfacer) {
+        return this.setSurfacer(new BiomeData<>(surfacer));
+    }
 	
 	//------ Sub-biome Data ------//
 

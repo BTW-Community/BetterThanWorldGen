@@ -72,11 +72,11 @@ public abstract class BiomeConfiguration {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         ((BiomeInterface) BiomeGenBase.ocean).setMakesBeaches();
         
-        biomeList.add(RAINFOREST);
-        //biomeList.add(PLAINS);
+        //biomeList.add(RAINFOREST);
+        biomeList.add(PLAINS);
     }
     
     public static ResourceLocation loc(String name) {
-        return new ResourceLocation(BetterThanWorldGen.getInstance().getModID(), name);
+        return new ResourceLocation(BetterThanWorldGen.MODID, name);
     }
 }
