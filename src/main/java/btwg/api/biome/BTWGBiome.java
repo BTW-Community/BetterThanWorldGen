@@ -31,4 +31,34 @@ public class BTWGBiome extends BiomeGenBase {
         this.treeDistributor = treeDistributor;
         return this;
     }
+
+    public BTWGBiome setTopBlock(int blockID) {
+        return this.setTopBlock(blockID, (byte) 0);
+    }
+
+    public BTWGBiome setTopBlock(int blockID, int meta) {
+        this.topBlock = (short) blockID;
+        this.topBlockMetadata = (byte) meta;
+        return this;
+    }
+
+    public BTWGBiome setFillerBlock(int blockID) {
+        return this.setFillerBlock(blockID, (byte) 0);
+    }
+
+    public BTWGBiome setFillerBlock(int blockID, int meta) {
+        this.fillerBlock = (short) blockID;
+        this.fillerBlockMetadata = (byte) meta;
+        return this;
+    }
+
+    public BTWGBiome setSnow() {
+        this.setEnableSnow();
+        return this;
+    }
+
+    public BTWGBiome setNoRain() {
+        this.setDisableRain();
+        return this;
+    }
 }

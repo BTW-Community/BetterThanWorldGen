@@ -150,9 +150,7 @@ public class ChunkProvider implements IChunkProvider {
                         var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(new BiomeData<>(DefaultSurfacer.INSTANCE));
 
                         // TODO: Update with real version handling
-                        var blockState = surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.worldObj, k, j, i, depth, biome, blockIDs, metadata);
-                        blockIDs[index] = blockState.blockID();
-                        metadata[index] = blockState.meta();
+                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.worldObj, k, j, i, depth, biome, blockIDs, metadata);
 
                         depth++;
                     }
@@ -282,18 +280,26 @@ public class ChunkProvider implements IChunkProvider {
                 float var17 = 0.0F;
                 float var18 = 0.0F;
                 byte var19 = 2;
-                BiomeGenBase var20 = this.biomesForGeneration[var14 + 2 + (var15 + 2) * (par5 + 5)];
+
+                BiomeGenBase currentBiome = this.biomesForGeneration[var14 + 2 + (var15 + 2) * (par5 + 5)];
+                // TODO: Update with real version handling
+                var currentHeightData = ((BiomeInterface) currentBiome).getHeightData().get(BetterThanWorldGen.V1_0_0);
 
                 for(int var21 = -var19; var21 <= var19; ++var21) {
                     for(int var22 = -var19; var22 <= var19; ++var22) {
-                        BiomeGenBase var23 = this.biomesForGeneration[var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
-                        float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (var23.minHeight + 2.0F);
-                        if (var23.minHeight > var20.minHeight) {
+                        BiomeGenBase neighborBiome = this.biomesForGeneration[var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
+
+                        // TODO: Update with real version handling
+                        var neighborHeightData = ((BiomeInterface) neighborBiome).getHeightData().get(BetterThanWorldGen.V1_0_0);
+
+                        float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (neighborHeightData.height() + 2.0F);
+
+                        if (neighborHeightData.height() > currentHeightData.height()) {
                             var24 /= 2.0F;
                         }
 
-                        var16 += var23.maxHeight * var24;
-                        var17 += var23.minHeight * var24;
+                        var16 += neighborHeightData.variance() * var24;
+                        var17 += neighborHeightData.height() * var24;
                         var18 += var24;
                     }
                 }
