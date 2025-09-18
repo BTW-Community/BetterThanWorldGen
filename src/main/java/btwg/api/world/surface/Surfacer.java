@@ -15,6 +15,10 @@ public class Surfacer {
     public static final Surfacer DEFAULT = new Surfacer();
 
     public final void replaceBlockForLocation(World world, int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+        if (depth == -1) {
+            return;
+        }
+
         if (!this.hasInitNoise || world != this.lastWorld) {
             this.initNoiseDefault(world.getSeed() + 500L);
             this.initNoise(world.getSeed() + 1000L);
@@ -25,7 +29,7 @@ public class Surfacer {
         this.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
     }
 
-    public final void replaceBlockDefault(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
         short blockID = blockIDs[index(i, j, k)];
         byte meta = metadata[index(i, j, k)];
 
@@ -55,10 +59,6 @@ public class Surfacer {
             blockIDs[index(i, j, k)] = blockID;
             metadata[index(i, j, k)] = meta;
         }
-    }
-
-    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
-        this.replaceBlockDefault(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
     }
 
     private void initNoiseDefault(long seed) {

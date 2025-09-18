@@ -73,6 +73,11 @@ public class BTWGBiome extends BiomeGenBase {
         return this;
     }
 
+    public BTWGBiome setNoLakes() {
+        this.theBiomeDecorator.generateLakes = false;
+        return this;
+    }
+
     public BTWGBiome setNoAnimals() {
         this.spawnableCreatureList.clear();
         return this;

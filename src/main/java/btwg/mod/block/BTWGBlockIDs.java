@@ -7,9 +7,10 @@ public class BTWGBlockIDs {
     public static final int SANDY_DIRT_ID = 1603;
     public static final int LOOSE_SANDY_DIRT_ID = 1604;
 
-    public static final int TALL_DRY_GRASS_ID = 1650;
+    public static final int DRY_GRASS_ID = 1650;
     public static final int SHORT_DRY_GRASS_ID = 1651;
-    public static final int BUSH_ID = 1652;
+    public static final int TALL_DRY_GRASS_ID = 1652;
+    public static final int BUSH_ID = 1653;
 
     public static final int LIMESTONE_ID = 1700;
     public static final int LIMESTONE_COBBLESTONE_ID = 1701;

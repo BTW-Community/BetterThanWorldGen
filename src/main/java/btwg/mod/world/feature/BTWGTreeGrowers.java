@@ -7,6 +7,13 @@ import net.minecraft.src.World;
 import java.util.Random;
 
 public abstract class BTWGTreeGrowers {
+    public static final AbstractTreeGrower EMPTY = new AbstractTreeGrower("btwg:empty", 0, 0, null) {
+        @Override
+        public boolean growTree(World world, Random rand, int x, int y, int z, boolean notify) {
+            return true;
+        }
+    };
+
     public static final AbstractTreeGrower OAK_BUSH = new BushGrower("btw:jungle_bush", TreeGrowers.OAK_WOOD_TYPE);
     public static final AbstractTreeGrower TALL_OAK_TREE = new StandardTreeGrower("btw:oak", 5, 8, TreeGrowers.OAK_WOOD_TYPE);
 

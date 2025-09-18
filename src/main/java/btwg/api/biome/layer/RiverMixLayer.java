@@ -13,8 +13,8 @@ import net.minecraft.src.GenLayer;
 import net.minecraft.src.IntCache;
 
 public class RiverMixLayer extends BTWGBaseLayer {
-    private GenLayer biomePatternGeneratorChain;
-    private GenLayer riverPatternGeneratorChain;
+    private final GenLayer biomePatternGeneratorChain;
+    private final GenLayer riverPatternGeneratorChain;
     
     public RiverMixLayer(long seed, GenLayer biomeLayer, GenLayer riverLayer, WorldData generatorOptions) {
         super(seed, generatorOptions);

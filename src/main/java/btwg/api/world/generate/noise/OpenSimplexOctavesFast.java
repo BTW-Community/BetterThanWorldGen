@@ -8,6 +8,10 @@ import opensimplex2.OpenSimplex2S;
 
 public class OpenSimplexOctavesFast {
 	private final OpenSimplex2F[] generators;
+
+    private double lastX;
+    private double lastZ;
+    private double lastNoise2;
 	
 	public OpenSimplexOctavesFast(long seed, int numOctaves) {
 		Random rand = new Random();
@@ -21,18 +25,14 @@ public class OpenSimplexOctavesFast {
 	}
 	
 	public double noise2(double x, double y) {
-		float octaveScale = 1;
-		double noise = 0;
-
-        for (OpenSimplex2F generator : generators) {
-            noise += generator.noise2(x / octaveScale, y / octaveScale) * octaveScale;
-            octaveScale /= 2;
-        }
-		
-		return noise;
+		return this.noise2(x, y, 1);
 	}
 	
 	public double noise2(double x, double y, double noiseScale) {
+        if (x == this.lastX && y == this.lastZ) {
+            return this.lastNoise2;
+        }
+
 		float octaveScale = 1;
 		double noise = 0;
 
@@ -40,7 +40,8 @@ public class OpenSimplexOctavesFast {
             noise += generator.noise2(x * noiseScale / octaveScale, y * noiseScale / octaveScale) * octaveScale;
             octaveScale /= 2;
         }
-		
+
+        this.lastNoise2 = noise;
 		return noise;
 	}
 	

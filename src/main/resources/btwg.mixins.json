@@ -9,7 +9,8 @@
     "WorldProviderMixin"
   ],
   "client": [
-    "GuiInGameMixin"
+    "GuiInGameMixin",
+    "BlockFluidMixin"
   ],
   "injectors": {
     "defaultRequire": 1

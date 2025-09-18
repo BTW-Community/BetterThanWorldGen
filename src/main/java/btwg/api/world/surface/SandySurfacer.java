@@ -33,7 +33,7 @@ public class SandySurfacer extends Surfacer {
             metadata[index(i, j, k)] = 0;
         }
         else {
-            this.replaceBlockDefault(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
+            super.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
         }
     }
 

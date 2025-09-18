@@ -11,8 +11,9 @@ public abstract class BTWGBlocks {
     public static Block sandyDirt;
     public static Block looseSandyDirt;
 
-    public static Block tallDryGrass;
+    public static Block dryGrass;
     public static Block shortDryGrass;
+    public static Block tallDryGrass;
     public static Block bush;
 
     public static void initBlocks() {
@@ -36,12 +37,12 @@ public abstract class BTWGBlocks {
 
     private static void initPlants() {
 
-        tallDryGrass = new ShrubBlock(BTWGBlockIDs.TALL_DRY_GRASS_ID)
+        dryGrass = new ShrubBlock(BTWGBlockIDs.DRY_GRASS_ID)
                 .setCanStayOnSand()
                 .setReplaceable()
-                .setTextureName("btwg:tall_dry_grass")
-                .setUnlocalizedName("btwg.tall_dry_grass");
-        register(tallDryGrass);
+                .setTextureName("btwg:dry_grass")
+                .setUnlocalizedName("btwg.dry_grass");
+        register(dryGrass);
 
         shortDryGrass = new ShrubBlock(BTWGBlockIDs.SHORT_DRY_GRASS_ID)
                 .setCanStayOnSand()
@@ -50,6 +51,12 @@ public abstract class BTWGBlocks {
                 .setUnlocalizedName("btwg.short_dry_grass");
         shortDryGrass.initBlockBounds(0.2, 0.0, 0.2, 0.8, 0.6, 0.8);
         register(shortDryGrass);
+
+        tallDryGrass = new TallPlantBlock(BTWGBlockIDs.TALL_DRY_GRASS_ID, "btwg:tall_dry_grass", new String[] { "btwg.tall_dry_grass" })
+                .setCanStayOnSand()
+                .setReplaceable()
+                .setNeedsShears();
+        register(tallDryGrass);
 
         bush = new ColorizedShrubBlock(BTWGBlockIDs.BUSH_ID)
                 .setReplaceable()

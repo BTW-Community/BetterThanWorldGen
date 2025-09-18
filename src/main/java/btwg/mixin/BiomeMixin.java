@@ -7,6 +7,9 @@ import btwg.api.world.surface.Surfacer;
 import net.minecraft.src.BiomeGenBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
@@ -14,8 +17,10 @@ import java.util.Optional;
 public class BiomeMixin implements BiomeInterface {
 	@Shadow public float minHeight;
 	@Shadow public float maxHeight;
-	
-	private HeightData heightData;
+
+    @Shadow
+    public int waterColorMultiplier;
+    private HeightData heightData;
     private BiomeData<Surfacer> surfacerData;
 	private BiomeData<BiomeGenBase> subBiomeData;
 	private BiomeData<BiomeGenBase> riverShoreBiomeData;
@@ -30,6 +35,11 @@ public class BiomeMixin implements BiomeInterface {
 	private boolean hasEdges = true;
 	private boolean makesBeaches = false;
 	private boolean usesDefaultBeach = true;
+
+    @Inject(method = "<init>", at = @At("RETURN"))
+    public void setWaterColor(CallbackInfo ci) {
+        this.waterColorMultiplier = 0x3F76E4;
+    }
 	
 	@Override
 	public HeightData getHeightData() {
