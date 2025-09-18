@@ -18,13 +18,13 @@ public abstract class BTWGBaseLayer extends GenLayer {
     }
     
     public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldType worldType, WorldData worldData) {
-        var continentsLayer = addContinents(worldType, worldData);
+        var continentsLayer = addContinents(worldData);
         var climateLayer = new ClimateLayer(2L, continentsLayer, worldType, worldData);
-        continentsLayer = addIslands(continentsLayer, worldType, worldData);
+        continentsLayer = addIslands(continentsLayer, worldData);
 
         var landShapeLayer = new GenLayerAddMushroomIsland(5L, continentsLayer);
 
-        var finalBiomeLayer = addSubBiomes(worldType, worldData, landShapeLayer, climateLayer);
+        var finalBiomeLayer = addSubBiomes(worldData, landShapeLayer, climateLayer);
         var voronoiLayer = new GenLayerVoronoiZoom(10L, finalBiomeLayer);
         
         finalBiomeLayer.initWorldGenSeed(seed);
@@ -33,7 +33,7 @@ public abstract class BTWGBaseLayer extends GenLayer {
         return new GenLayer[] {finalBiomeLayer, voronoiLayer, finalBiomeLayer};
     }
 
-    private static @NotNull GenLayerAddIsland addContinents(WorldType worldType, WorldData worldData) {
+    private static @NotNull GenLayerAddIsland addContinents(WorldData worldData) {
         var continentsLayer = new ContinentsLayer(1L, worldData);
         var continentZoomLayer = new GenLayerFuzzyZoom(2000L, continentsLayer);
         var addIslandLayer = new GenLayerAddIsland(1L, continentZoomLayer);
@@ -42,7 +42,7 @@ public abstract class BTWGBaseLayer extends GenLayer {
         return addIslandLayer;
     }
 
-    private static @NotNull GenLayerAddIsland addIslands(GenLayerAddIsland addIslandLayer, WorldType worldType, WorldData worldData) {
+    private static @NotNull GenLayerAddIsland addIslands(GenLayerAddIsland addIslandLayer, WorldData worldData) {
         var islandZoomLayer = new GenLayerZoom(2002L, addIslandLayer);
         addIslandLayer = new GenLayerAddIsland(3L, islandZoomLayer);
         islandZoomLayer = new GenLayerZoom(2003L, addIslandLayer);
@@ -50,7 +50,7 @@ public abstract class BTWGBaseLayer extends GenLayer {
         return addIslandLayer;
     }
 
-    private static @NotNull RiverMixLayer addSubBiomes(WorldType worldType, WorldData worldData, GenLayer landShapeLayer, GenLayer climateLayer) {
+    private static @NotNull RiverMixLayer addSubBiomes(WorldData worldData, GenLayer landShapeLayer, GenLayer climateLayer) {
         byte scale = 4;
 
         var riverBaseLayer = GenLayerZoom.magnify(1000L, landShapeLayer, 0);
@@ -63,7 +63,7 @@ public abstract class BTWGBaseLayer extends GenLayer {
         climateLayer = GenLayerZoom.magnify(1000L, climateLayer, 2);
 
         var biomeLayer = GenLayerZoom.magnify(1000L, landShapeLayer, 0);
-        biomeLayer = new BiomeLayer(200L, biomeLayer, worldType, worldData);
+        biomeLayer = new BiomeLayer(200L, biomeLayer, climateLayer, worldData);
         biomeLayer = GenLayerZoom.magnify(1000L, biomeLayer, 2);
 
         GenLayer extrasLayer = new SubBiomeLayer(1000L, biomeLayer, worldData);

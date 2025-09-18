@@ -16,12 +16,10 @@ import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.ResourceLocation;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public abstract class BiomeConfiguration {
-    public static final ArrayList<BiomeGenBase> biomeList = new ArrayList<>();
+    public static final Set<BiomeGenBase> biomeList = new HashSet<>();
 
     public static final Climate SNOWY = new Climate(1, true);
     public static final Climate COLD = new Climate(2, true);
@@ -30,8 +28,7 @@ public abstract class BiomeConfiguration {
     public static final Climate TROPICAL = new Climate(5, true);
 
     public static final Climate NETHER = new Climate(10, false);
-    
-    public static final float COMMON_WEIGHT = 1F;
+
     public static final float UNCOMMON_WEIGHT = 0.5F;
     public static final float RARE_WEIGHT = 0.2F;
     public static final float VERY_RARE_WEIGHT = 0.1F;
