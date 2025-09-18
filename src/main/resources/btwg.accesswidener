@@ -2,3 +2,4 @@ accessWidener v2 named
 
 accessible method net/minecraft/src/BiomeGenBase setDisableRain ()Lnet/minecraft/src/BiomeGenBase;
 accessible method net/minecraft/src/Block initBlockBounds (DDDDDD)V
+accessible method net/minecraft/src/Block setLightOpacity (I)Lnet/minecraft/src/Block;

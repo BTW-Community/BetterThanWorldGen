@@ -107,10 +107,10 @@ public class TallPlantBlock extends FlowerBlock {
 
     @Override
     public boolean canGrowOnBlock(World world, int x, int y, int z) {
-        int metadata = world.getBlockMetadata(x, y, z);
 
-        if (isTopBlock(metadata)) {
-            return world.getBlockId(x, y - 1, z) == this.blockID;
+        if (world.getBlockId(x, y, z) == this.blockID) {
+            int metadata = world.getBlockMetadata(x, y, z);
+            return !isTopBlock(metadata);
         }
         else {
             Block blockOn = Block.blocksList[world.getBlockId(x, y, z)];

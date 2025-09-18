@@ -15,10 +15,15 @@ public abstract class BTWGBlocks {
     public static Block shortDryGrass;
     public static Block tallDryGrass;
     public static Block bush;
+    public static Block tallGrass;
+    public static Block tallFern;
 
     public static void initBlocks() {
         initSoils();
         initPlants();
+
+        Block.waterMoving.setLightOpacity(2);
+        Block.waterStill.setLightOpacity(2);
     }
 
     private static void initSoils() {
@@ -63,6 +68,16 @@ public abstract class BTWGBlocks {
                 .setTextureName("btwg:bush")
                 .setUnlocalizedName("btwg.bush");
         register(new ItemColored(bush.blockID - 256, true));
+
+        tallGrass = new ColorizedTallPlantBlock(BTWGBlockIDs.TALL_GRASS_ID, "btwg:tall_grass", new String[] { "btwg.tall_grass" })
+                .setReplaceable()
+                .setNeedsShears();
+        register(tallGrass);
+
+        tallFern = new ColorizedTallPlantBlock(BTWGBlockIDs.LARGE_FERN_ID, "btwg:tall_fern", new String[] { "btwg.tall_fern" })
+                .setReplaceable()
+                .setNeedsShears();
+        register(tallFern);
     }
 
     private static void register(Block block, String[]names) {

@@ -1,5 +1,7 @@
 package btwg.api.world.feature;
 
+import btwg.mod.block.BTWGBlocks;
+import btwg.mod.block.blocks.TallPlantBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
@@ -28,8 +30,28 @@ public class PlantDistributor {
     }
 
     public void setPlant(World world, Random rand, int x, int y, int z) {
-        if (world.isAirBlock(x, y, z) && Block.tallGrass.canBlockStay(world, x, y, z)) {
-            world.setBlockAndMetadata(x, y, z, Block.tallGrass.blockID, 0);
+        if (rand.nextInt(10) == 0) {
+            this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 0);
+        }
+        else {
+            this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 1);
+        }
+    }
+
+    protected void placeSinglePlant(World world, Random rand, int x, int y, int z, int blockID, int metadata) {
+        if (world.isAirBlock(x, y, z) && Block.blocksList[blockID].canBlockStay(world, x, y, z)) {
+            world.setBlockAndMetadata(x, y, z, blockID, metadata);
+        }
+    }
+
+    protected void placeDoublePlant(World world, Random rand, int x, int y, int z, int blockID, int metadata) {
+        if (Block.blocksList[blockID] instanceof TallPlantBlock tallPlantBlock) {
+            if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z)
+                    && tallPlantBlock.canGrowOnBlock(world, x, y - 1, z))
+            {
+                world.setBlockAndMetadata(x, y, z, blockID, metadata);
+                world.setBlockAndMetadata(x, y + 1, z, blockID, tallPlantBlock.setTopBlock(metadata, true));
+            }
         }
     }
 

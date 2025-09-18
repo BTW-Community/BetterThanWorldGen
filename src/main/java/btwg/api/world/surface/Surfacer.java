@@ -40,8 +40,14 @@ public class Surfacer {
         int maxSandstoneDepth = this.getSandstoneDepth(x, z);
 
         if (depth == 0) {
-            blockID = biome.topBlock;
-            meta = biome.topBlockMetadata;
+            if (blockIDs[index(i, j + 1, k)] == 0) {
+                blockID = biome.topBlock;
+                meta = biome.topBlockMetadata;
+            }
+            else {
+                blockID = biome.fillerBlock;
+                meta = biome.fillerBlockMetadata;
+            }
 
             blockIDs[index(i, j, k)] = blockID;
             metadata[index(i, j, k)] = meta;
