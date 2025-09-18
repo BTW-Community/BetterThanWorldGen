@@ -5,6 +5,8 @@ import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
 import net.minecraft.src.*;
 
+import java.util.ArrayList;
+
 public class BTWGBiome extends BiomeGenBase {
     private TreeDistributor treeDistributor = new TreeDistributor() {};
     private PlantDistributor grassDistributor = new PlantDistributor() {};
@@ -14,11 +16,26 @@ public class BTWGBiome extends BiomeGenBase {
         this.theBiomeDecorator = new BTWGBiomeDecorator(this);
         this.biomeName = resourceLocation.toString();
     }
+
+    public BTWGBiome addClimate(Climate climate) {
+        Climate.climateBiomeMap
+                .computeIfAbsent(climate, k -> new ArrayList<>())
+                .add(new Climate.ClimateEntry(this, 1.0F));
+        return this;
+    }
+
+    public BTWGBiome addClimate(Climate climate, float weight) {
+        Climate.climateBiomeMap
+                .computeIfAbsent(climate, k -> new ArrayList<>())
+                .add(new Climate.ClimateEntry(this, weight));
+        return this;
+    }
     
     public BTWGBiome setTemperatureAndRainfall(float temp, float rainfall) {
         if (temp > 0.1F && temp < 0.2F) {
             throw new IllegalArgumentException("Please avoid temperatures in the range 0.1 - 0.2 because of snow");
-        } else {
+        }
+        else {
             this.temperature = temp;
             this.rainfall = rainfall;
             return this;

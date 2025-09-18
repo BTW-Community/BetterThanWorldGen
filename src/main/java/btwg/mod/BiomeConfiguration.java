@@ -2,6 +2,7 @@ package btwg.mod;
 
 import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.BiomeInterface;
+import btwg.api.biome.Climate;
 import btwg.api.biome.data.BiomeData.HeightData;
 import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
@@ -16,9 +17,19 @@ import net.minecraft.src.Block;
 import net.minecraft.src.ResourceLocation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BiomeConfiguration {
     public static final ArrayList<BiomeGenBase> biomeList = new ArrayList<>();
+
+    public static final Climate SNOWY = new Climate(1, true);
+    public static final Climate COLD = new Climate(2, true);
+    public static final Climate TEMPERATE = new Climate(3, true);
+    public static final Climate ARID = new Climate(4, true);
+    public static final Climate TROPICAL = new Climate(5, true);
+
+    public static final Climate NETHER = new Climate(10, false);
     
     public static final float COMMON_WEIGHT = 1F;
     public static final float UNCOMMON_WEIGHT = 0.5F;
@@ -142,6 +153,7 @@ public abstract class BiomeConfiguration {
             .setSubBiomeData(RAINFOREST_VALLEY)
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F)
+            .addClimate(TROPICAL)
             .setTreeDistributor(TreeDistributors.RAINFOREST_TREES)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
     
@@ -149,6 +161,8 @@ public abstract class BiomeConfiguration {
             .setHeightData(PLAINS_HEIGHT)
             .setRiverShoreBiomeData(PLAINS_RIVER_SHORE))
             .setTemperatureAndRainfall(0.8F, 0.4F)
+            .addClimate(TEMPERATE)
+            .addClimate(ARID, UNCOMMON_WEIGHT)
             .setTreeDistributor(new TreeDistributor(0) {})
             .setGrassDistributor(new PlantDistributor(10))
             .setHasHorses();
@@ -159,6 +173,7 @@ public abstract class BiomeConfiguration {
             .setRiverShoreBiomeData(SCRUBLAND_RIVER_SHORE)
             .setSurfacer(new ScrublandSurfacer()))
             .setTemperatureAndRainfall(1.0F, 0.0F)
+            .addClimate(ARID)
             .setNoRain()
             .setTreeDistributor(TreeDistributors.SCRUBLAND)
             .setGrassDistributor(GrassDistributors.SCRUBLAND_GRASS)
@@ -172,6 +187,7 @@ public abstract class BiomeConfiguration {
             .setHeightData(PLAINS_HEIGHT)
             .setSubBiomeData(SAVANNA_PLATEAU))
             .setTemperatureAndRainfall(1.0F, 0.0F)
+            .addClimate(ARID)
             .setNoRain()
             .setHasHorses()
             .setGrassDistributor(new PlantDistributor(10));
@@ -181,6 +197,7 @@ public abstract class BiomeConfiguration {
             .setRiverBiomeData(DESERT_RIVER)
             .setRiverShoreBiomeData(DESERT_RIVER_SHORE))
             .setTemperatureAndRainfall(1.0F, 0.0F)
+            .addClimate(ARID, UNCOMMON_WEIGHT)
             .setNoRain()
             .setGrassDistributor(GrassDistributors.DESERT_GRASS)
             .setNoLakes()

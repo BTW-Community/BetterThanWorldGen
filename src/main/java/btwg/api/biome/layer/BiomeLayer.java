@@ -16,34 +16,26 @@ public class BiomeLayer extends BTWGBaseLayer {
     }
     
     public int[] getInts(int x, int z, int sizeX, int sizeZ) {
-        int[] var5 = this.parent.getInts(x, z, sizeX, sizeZ);
-        int[] var6 = IntCache.getIntCache(sizeX * sizeZ);
+        int[] baseLand = this.parent.getInts(x, z, sizeX, sizeZ);
+        int[] biomes = IntCache.getIntCache(sizeX * sizeZ);
         
         for(int k = 0; k < sizeZ; ++k) {
             for(int i = 0; i < sizeX; ++i) {
                 this.initChunkSeed(i + x, k + z);
-                int var9 = var5[i + k * sizeX];
+                int currentID = baseLand[i + k * sizeX];
                 
-                if (var9 == 0) {
-                    var6[i + k * sizeX] = 0;
+                if (currentID == 0) {
+                    biomes[i + k * sizeX] = 0;
                 }
-                else if (var9 == BiomeGenBase.mushroomIsland.biomeID) {
-                    var6[i + k * sizeX] = var9;
-                }
-                else if (var9 == 1) {
-                    var6[i + k * sizeX] = this.allowedBiomes[this.nextInt(this.allowedBiomes.length)].biomeID;
+                else if (currentID == BiomeGenBase.mushroomIsland.biomeID) {
+                    biomes[i + k * sizeX] = currentID;
                 }
                 else {
-                    int var10 = this.allowedBiomes[this.nextInt(this.allowedBiomes.length)].biomeID;
-                    if (var10 == BiomeGenBase.taiga.biomeID) {
-                        var6[i + k * sizeX] = var10;
-                    } else {
-                        var6[i + k * sizeX] = BiomeGenBase.icePlains.biomeID;
-                    }
+                    biomes[i + k * sizeX] = this.allowedBiomes[this.nextInt(this.allowedBiomes.length)].biomeID;
                 }
             }
         }
         
-        return var6;
+        return biomes;
     }
 }
