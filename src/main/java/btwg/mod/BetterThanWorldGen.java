@@ -5,6 +5,7 @@ import btw.BTWAddon;
 import btwg.api.configuration.Version;
 import btwg.api.configuration.WorldData;
 import btwg.mod.block.BTWGBlocks;
+import btwg.mod.crafting.Recipes;
 
 public class BetterThanWorldGen extends BTWAddon {
     private static BetterThanWorldGen instance;
@@ -36,6 +37,8 @@ public class BetterThanWorldGen extends BTWAddon {
         WorldData.initData();
         BTWGBlocks.initBlocks();
         BiomeConfiguration.initBiomes();
+
+        Recipes.initRecipes();
     }
     
     public static Version getCurrentVersion() {

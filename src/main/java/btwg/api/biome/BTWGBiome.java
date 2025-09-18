@@ -119,4 +119,9 @@ public class BTWGBiome extends BiomeGenBase {
         this.spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 1, 1, 1));
         return this;
     }
+
+    public BTWGBiome setWaterColor(int color) {
+        this.waterColorMultiplier = color;
+        return this;
+    }
 }

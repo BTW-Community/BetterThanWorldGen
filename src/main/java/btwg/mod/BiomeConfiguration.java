@@ -37,6 +37,8 @@ public abstract class BiomeConfiguration {
     public static final HeightData MOUNTAIN_HEIGHT = new HeightData(1.0F, 2.0F);
     public static final HeightData PLAINS_HEIGHT = new HeightData(0.1F, 0.3F);
     public static final HeightData RIVER_HEIGHT = new HeightData(-0.5F, 0.0F);
+
+    public static final int SCRUBLAND_WATER_COLOR = 0x43D5EE;
     
     //------ Rivers ------//
     
@@ -55,7 +57,8 @@ public abstract class BiomeConfiguration {
             .setNoLakes()
             .setNoAnimals()
             .setTopBlock(BTWGBlocks.earthenClay.blockID)
-            .setFillerBlock(BTWGBlocks.earthenClay.blockID);
+            .setFillerBlock(BTWGBlocks.earthenClay.blockID)
+            .setWaterColor(SCRUBLAND_WATER_COLOR);
     
     //------ Beaches ------//
 
@@ -85,7 +88,8 @@ public abstract class BiomeConfiguration {
             .setNoLakes()
             .setNoAnimals()
             .setTopBlock(Block.sand.blockID)
-            .setFillerBlock(Block.sand.blockID);
+            .setFillerBlock(Block.sand.blockID)
+            .setWaterColor(SCRUBLAND_WATER_COLOR);
     
     //------ Primary Biomes ------//
     
@@ -118,13 +122,12 @@ public abstract class BiomeConfiguration {
             .setNoLakes()
             .setNoAnimals()
             .setTopBlock(Block.sand.blockID)
-            .setFillerBlock(Block.sand.blockID);
+            .setFillerBlock(Block.sand.blockID)
+            .setWaterColor(SCRUBLAND_WATER_COLOR);
     
     public static void initBiomes() {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         ((BiomeInterface) BiomeGenBase.ocean).setMakesBeaches();
-
-        SCRUBLAND_RIVER.waterColorMultiplier = 0x76889D;
         
         //biomeList.add(RAINFOREST);
         //biomeList.add(PLAINS);
