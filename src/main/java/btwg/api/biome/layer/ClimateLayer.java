@@ -15,13 +15,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ClimateLayer extends BTWGBaseLayer {
-    private List<Climate> allowedClimates;
+    private final List<Climate> allowedClimates;
 
-    public ClimateLayer(long seed, GenLayer parent, WorldType worldType, WorldData generatorOptions) {
-        super(seed, parent, generatorOptions);
+    public ClimateLayer(long seed, GenLayer parent, WorldData worldData) {
+        super(seed, parent, worldData);
 
         this.allowedClimates = Climate.climateBiomeMap.entrySet().stream()
                 .filter(entry -> !entry.getValue().isEmpty())
+                .filter(entry ->
+                        entry.getValue().stream()
+                                .map(Climate.ClimateEntry::biome)
+                                // TODO: make this generic using WorldData
+                                .anyMatch(BiomeConfiguration.biomeList::contains))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }

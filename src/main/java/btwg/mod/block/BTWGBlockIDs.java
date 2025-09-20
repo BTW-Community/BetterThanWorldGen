@@ -1,6 +1,13 @@
 package btwg.mod.block;
 
 public class BTWGBlockIDs {
+    public static final int PLANKS_ID = 1550;
+    public static final int STUMP_ID = 1551;
+    public static final int ACACIA_LOG_ID = 1552;
+    public static final int CHEWED_ACACIA_LOG_ID = 1553;
+    public static final int ACACIA_LOG_SPIKE_ID = 1554;
+    public static final int WORK_STUMP_ID = 1555;
+
     public static final int EARTHEN_CLAY_ID = 1600;
     public static final int GRASSY_EARTHEN_CLAY_ID = 1601;
     public static final int LOOSE_EARTHEN_CLAY_ID = 1602;

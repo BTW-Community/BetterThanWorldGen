@@ -1,9 +1,18 @@
 package btwg.mod.block;
 
+import btw.block.blocks.ChewedLogBlock;
+import btw.block.blocks.LogSpikeBlock;
 import btwg.mod.block.blocks.*;
 import net.minecraft.src.*;
 
 public abstract class BTWGBlocks {
+    public static Block planks;
+    public static Block stump;
+    public static Block workStump;
+    public static Block acaciaLog;
+    public static Block acaciaChewedLog;
+    public static Block acaciaLogSpike;
+
     public static Block earthenClay;
     public static Block grassyEarthenClay;
     public static Block looseEarthenClay;
@@ -21,6 +30,7 @@ public abstract class BTWGBlocks {
     public static void initBlocks() {
         initSoils();
         initPlants();
+        initWood();
 
         Block.waterMoving.setLightOpacity(2);
         Block.waterStill.setLightOpacity(2);
@@ -74,10 +84,46 @@ public abstract class BTWGBlocks {
                 .setNeedsShears();
         register(tallGrass);
 
-        tallFern = new ColorizedTallPlantBlock(BTWGBlockIDs.LARGE_FERN_ID, "btwg:tall_fern", new String[] { "btwg.tall_fern" })
+        tallFern = new ColorizedTallPlantBlock(BTWGBlockIDs.LARGE_FERN_ID, "btwg:large_fern", new String[] { "btwg.large_fern" })
                 .setReplaceable()
                 .setNeedsShears();
         register(tallFern);
+    }
+
+    private static void initWood() {
+        planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID, new WoodType[] {
+                WoodType.ACACIA
+        });
+        register(planks, new String[] {
+                "acacia"
+        });
+
+        stump = new StumpBlock(BTWGBlockIDs.STUMP_ID, new WoodType[] {
+                WoodType.ACACIA
+        });
+        register(stump, new String[] {
+                "acacia_stump"
+        });
+
+        workStump = new WorkStumpBlock(BTWGBlockIDs.WORK_STUMP_ID, new WoodType[] {
+                WoodType.ACACIA
+        });
+        register(workStump, new String[] {
+                "acacia_work_stump"
+        });
+
+        acaciaLog = new BTWGLogBlock(BTWGBlockIDs.ACACIA_LOG_ID, WoodType.ACACIA);
+        register(acaciaLog);
+
+        acaciaLogSpike = new LogSpikeBlock(BTWGBlockIDs.ACACIA_LOG_SPIKE_ID,
+                "btwg:chewed_" + WoodType.ACACIA.name() + "_log_top",
+                "btwg:chewed_" + WoodType.ACACIA.name() + "_log_side");
+
+        acaciaChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_ACACIA_LOG_ID,
+                "btwg:chewed_" + WoodType.ACACIA.name() + "_log_top",
+                "btwg:chewed_" + WoodType.ACACIA.name() + "_log_side",
+                "btwg:" + WoodType.ACACIA.name() + "_stump_top",
+                acaciaLogSpike);
     }
 
     private static void register(Block block, String[]names) {

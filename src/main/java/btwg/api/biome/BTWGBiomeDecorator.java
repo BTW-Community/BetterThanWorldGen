@@ -43,15 +43,8 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         int var3;
         
         this.biome.getTreeDistributor().generateTreesForChunk(this.currentWorld, this.randomGenerator, this.chunk_X, this.chunk_Z);
-        
+
         int var4;
-        for(var2 = 0; var2 < this.biome.getTreeDistributor().getTreeCountPerChunk(this.currentWorld, this.randomGenerator, this.chunk_X, this.chunk_Z); ++var2) {
-            var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            WorldGenerator var5 = this.biome.getRandomWorldGenForTrees(this.randomGenerator);
-            var5.setScale(1.0, 1.0, 1.0);
-            var5.generate(this.currentWorld, this.randomGenerator, var3, this.currentWorld.getHeightValue(var3, var4), var4);
-        }
         
         for(var2 = 0; var2 < this.bigMushroomsPerChunk; ++var2) {
             var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;

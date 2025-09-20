@@ -1,5 +1,25 @@
 package btwg.mod.item;
 
+import btw.crafting.util.FurnaceBurnTime;
+import btwg.mod.item.items.MultiItem;
+import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.Item;
+
+import static net.minecraft.src.Item.FILTERABLE_SMALL;
+import static net.minecraft.src.Item.FILTERABLE_THIN;
+
 public class BTWGItems {
-    public static final int PHYLLITE_GRAVEL_PILE_ID = 17000;
+    public static Item bark;
+
+    public static void initItems() {
+        bark = new MultiItem(BTWGItemIDs.BARK_ID, "bark",
+                new String[] {
+                        "acacia",
+                })
+                .setBuoyant()
+                .setBellowsBlowDistance(2)
+                .setfurnaceburntime(FurnaceBurnTime.KINDLING)
+                .setFilterableProperties(FILTERABLE_SMALL | FILTERABLE_THIN)
+                .setCreativeTab(CreativeTabs.tabMaterials);
+    }
 }

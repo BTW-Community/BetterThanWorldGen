@@ -16,14 +16,14 @@ public class Recipes {
         RecipeManager.addPistonPackingRecipe(BTWGBlocks.earthenClay, new ItemStack(BTWGBlocks.looseEarthenClay));
         RecipeManager.addPistonPackingRecipe(BTWGBlocks.earthenClay, new TagOrStack[] {
                 new ItemStack(BTWItems.dirtPile, 8),
-                new TagInstance(Tags.CLAY, 1),
+                new TagInstance(Tags.CLAY_BALLS, 1),
         });
         RecipeManager.addShapelessRecipe(new ItemStack(BTWGBlocks.looseEarthenClay), new Object[] {
                 new ItemStack(BTWItems.dirtPile),
                 new ItemStack(BTWItems.dirtPile),
                 new ItemStack(BTWItems.dirtPile),
                 new ItemStack(BTWItems.dirtPile),
-                Tags.CLAY,
+                Tags.CLAY_BALLS,
                 new ItemStack(BTWItems.dirtPile),
                 new ItemStack(BTWItems.dirtPile),
                 new ItemStack(BTWItems.dirtPile),

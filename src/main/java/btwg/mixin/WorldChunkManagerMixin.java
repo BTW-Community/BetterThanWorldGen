@@ -24,7 +24,7 @@ public abstract class WorldChunkManagerMixin {
     public void setBTWGBiomes(World world, CallbackInfo ci) {
         WorldData worldData = world.getData(WorldData.WORLD_GEN_DATA);
         if (worldData.isBTWG()) {
-            GenLayer[] var4 = BTWGBaseLayer.initializeAllBiomeGenerators(world.getSeed(), world.worldInfo.getTerrainType(), worldData);
+            GenLayer[] var4 = BTWGBaseLayer.initializeAllBiomeGenerators(world.getSeed(), worldData);
             this.genBiomes = var4[0];
             this.biomeIndexLayer = var4[1];
         }

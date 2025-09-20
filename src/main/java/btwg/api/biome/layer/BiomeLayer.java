@@ -27,11 +27,17 @@ public class BiomeLayer extends BTWGBaseLayer {
 
         this.climateBiomeMap = Climate.climateBiomeMap.entrySet()
                 .stream()
-                .filter(
-                entry -> entry.getKey().isOverworld()
-                        && BiomeConfiguration.biomeList.contains(entry.getValue().get(0).biome())
-                )
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .filter(entry ->
+                        entry.getValue().stream()
+                                .map(Climate.ClimateEntry::biome)
+                                // TODO: make this generic using WorldData
+                                .anyMatch(BiomeConfiguration.biomeList::contains))
+                .collect(Collectors.toMap(Map.Entry::getKey, entry ->
+                        entry.getValue()
+                                .stream()
+                                // TODO: make this generic using WorldData
+                                .filter(e -> BiomeConfiguration.biomeList.contains(e.biome()))
+                                .collect(Collectors.toCollection(ArrayList::new))));
 
         this.layerRandom = new LayerRandom(this);
     }

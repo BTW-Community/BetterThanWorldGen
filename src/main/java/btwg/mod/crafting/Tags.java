@@ -1,10 +1,17 @@
 package btwg.mod.crafting;
 
 import btw.item.BTWItems;
+import btw.item.tag.BTWTags;
 import btw.item.tag.Tag;
+import btwg.mod.item.BTWGItems;
+import btwg.mod.item.items.MultiItem;
 import net.minecraft.src.Item;
 import net.minecraft.src.ResourceLocation;
 
 public abstract class Tags {
-    public static final Tag CLAY = Tag.of(new ResourceLocation("btwg:clay_balls"), Item.clay, BTWItems.netherSludge);
+    public static final Tag CLAY_BALLS = Tag.of(new ResourceLocation("btwg:clay_balls"), Item.clay, BTWItems.netherSludge);
+
+    public static void modifyTags() {
+        BTWTags.barks.addUntilDamage(((MultiItem) BTWGItems.bark).getNumTypes(), BTWGItems.bark);
+    }
 }

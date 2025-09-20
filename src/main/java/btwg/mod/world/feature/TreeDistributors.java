@@ -9,7 +9,7 @@ import net.minecraft.src.World;
 import java.util.Random;
 
 public abstract class TreeDistributors {
-    public static final TreeDistributor RAINFOREST_TREES = new TreeDistributor(10) {
+    public static final TreeDistributor RAINFOREST = new TreeDistributor(10) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
             int t = rand.nextInt(10);
@@ -49,6 +49,26 @@ public abstract class TreeDistributors {
             }
             else {
                 return BTWGTreeGrowers.EMPTY;
+            }
+        }
+    };
+
+    public static final TreeDistributor HIGHLANDS = new TreeDistributor(10) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return TreeGrowers.BIG_OAK_TREE;
+            }
+            else if (t <= 2) {
+                return TreeGrowers.OAK_TREE;
+            }
+            else if (t <= 4) {
+                return BTWGTreeGrowers.SPRUCE_BUSH;
+            }
+            else {
+                return BTWGTreeGrowers.OAK_BUSH;
             }
         }
     };

@@ -14,8 +14,9 @@ public abstract class BTWGTreeGrowers {
         }
     };
 
-    public static final AbstractTreeGrower OAK_BUSH = new BushGrower("btw:jungle_bush", TreeGrowers.OAK_WOOD_TYPE);
-    public static final AbstractTreeGrower TALL_OAK_TREE = new StandardTreeGrower("btw:oak", 5, 8, TreeGrowers.OAK_WOOD_TYPE);
+    public static final AbstractTreeGrower OAK_BUSH = new BushGrower("btwg:oak_bush", TreeGrowers.OAK_WOOD_TYPE);
+    public static final AbstractTreeGrower SPRUCE_BUSH = new BushGrower("btwg:spruce_bush", TreeGrowers.SPRUCE_WOOD_TYPE);
+    public static final AbstractTreeGrower TALL_OAK_TREE = new StandardTreeGrower("btwg:tall_oak", 5, 8, TreeGrowers.OAK_WOOD_TYPE);
 
     public static final TreeGrowers.TreeWoodType CACTUS_WOOD_TYPE = new TreeGrowers.TreeWoodType(Block.cactus.blockID, 0, Block.cactus.blockID, 0, 0, 0);
     public static final AbstractTreeGrower CACTUS = new AbstractTreeGrower("btwg:cactus", 1, 3, CACTUS_WOOD_TYPE) {

@@ -38,7 +38,8 @@ public abstract class BiomeConfiguration {
     public static final int SCRUBLAND_ID = 102;
     public static final int SAVANNA_ID = 103;
     public static final int DUNES_ID = 104;
-    
+    public static final int HIGHLANDS_ID = 105;
+
     public static final int RAINFOREST_VALLEY_ID = 200;
     public static final int PLAINS_RIVER_SHORE_ID = 201;
     public static final int TROPICAL_RIVER_ID = 202;
@@ -47,11 +48,15 @@ public abstract class BiomeConfiguration {
     public static final int SAVANNA_PLATEAU_ID = 205;
     public static final int DESERT_RIVER_ID = 206;
     public static final int DESERT_RIVER_SHORE_ID = 207;
+    public static final int HIGHLAND_PEAKS_ID = 208;
+    public static final int HIGHLAND_RIVER_SHORE_ID = 209;
     
     public static final HeightData MOUNTAIN_HEIGHT = new HeightData(1.0F, 2.0F);
     public static final HeightData PLAINS_HEIGHT = new HeightData(0.1F, 0.3F);
     public static final HeightData RIVER_HEIGHT = new HeightData(-0.75F, 0.0F);
     public static final HeightData PLATEAU_HEIGHT = new HeightData(1.5F, 0.0F);
+    public static final HeightData HIGHLANDS_HEIGHT = new HeightData(1.0F, 0.1F);
+    public static final HeightData HIGHLAND_PEAKS_HEIGHT = new HeightData(2.5F, 0.2F);
     public static final HeightData ROLLING_HILLS_HEIGHT = new HeightData(0.75F, 0.75F);
     public static final HeightData FLAT_HEIGHT = new HeightData(0.0F, 0.0F);
 
@@ -90,29 +95,13 @@ public abstract class BiomeConfiguration {
     
     //------ Beaches ------//
 
-    //------ Sub Biomes ------//
-    
-    public static final BTWGBiome RAINFOREST_VALLEY = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RAINFOREST_VALLEY_ID, loc("rainforest_valley")))
-            .setHeightData(PLAINS_HEIGHT)
-            .setRiverBiomeData(TROPICAL_RIVER)
-            .setSurfacer(new SandySurfacer()))
-            .setTemperatureAndRainfall(1F, 1F)
-            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES)
-            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
-
-    public static final BTWGBiome SAVANNA_PLATEAU = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_PLATEAU_ID, loc("savanna_plateau")))
-            .setHeightData(PLATEAU_HEIGHT))
-            .setTemperatureAndRainfall(1F, 0F)
-            .setNoRain()
-            .setGrassDistributor(new PlantDistributor(10))
-            .setHasHorses();
-
     //------ River Shores ------//
-    
+
     public static final BTWGBiome PLAINS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_RIVER_SHORE_ID, loc("plains_river_shore")))
             .setHeightData(FLAT_HEIGHT))
             .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(5) {})
+            .setGrassDistributor(new PlantDistributor(10))
             .setHasHorses();
 
     public static final BTWGBiome SCRUBLAND_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_RIVER_SHORE_ID, loc("scrubland_river_shore")))
@@ -139,6 +128,36 @@ public abstract class BiomeConfiguration {
             .setTopBlock(Block.sand.blockID)
             .setFillerBlock(Block.sand.blockID)
             .setWaterColor(DESERT_WATER_COLOR);
+
+    public static final BTWGBiome HIGHLANDS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(HIGHLAND_RIVER_SHORE_ID, loc("highlands_river_shore")))
+            .setHeightData(FLAT_HEIGHT))
+            .setTemperatureAndRainfall(0.4F, 0.5F)
+            .setGrassDistributor(new PlantDistributor(10))
+            .setTreeDistributor(TreeDistributors.HIGHLANDS);
+
+    //------ Sub Biomes ------//
+    
+    public static final BTWGBiome RAINFOREST_VALLEY = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RAINFOREST_VALLEY_ID, loc("rainforest_valley")))
+            .setHeightData(PLAINS_HEIGHT)
+            .setRiverBiomeData(TROPICAL_RIVER)
+            .setSurfacer(new SandySurfacer()))
+            .setTemperatureAndRainfall(1F, 1F)
+            .setTreeDistributor(TreeDistributors.RAINFOREST)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
+
+    public static final BTWGBiome SAVANNA_PLATEAU = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_PLATEAU_ID, loc("savanna_plateau")))
+            .setHeightData(PLATEAU_HEIGHT))
+            .setTemperatureAndRainfall(1F, 0F)
+            .setNoRain()
+            .setGrassDistributor(new PlantDistributor(10))
+            .setHasHorses();
+
+    public static final BTWGBiome HIGHLAND_PEAKS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(HIGHLAND_PEAKS_ID, loc("highland_peaks")))
+            .setHeightData(HIGHLAND_PEAKS_HEIGHT)
+            .setRiverShoreBiomeData(HIGHLANDS_RIVER_SHORE))
+            .setTemperatureAndRainfall(0.4F, 0.5F)
+            .setGrassDistributor(new PlantDistributor(10))
+            .setTreeDistributor(TreeDistributors.HIGHLANDS);
     
     //------ Primary Biomes ------//
     
@@ -151,7 +170,7 @@ public abstract class BiomeConfiguration {
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F)
             .addClimate(TROPICAL)
-            .setTreeDistributor(TreeDistributors.RAINFOREST_TREES)
+            .setTreeDistributor(TreeDistributors.RAINFOREST)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
     
     public static final BTWGBiome PLAINS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_ID, loc("plains")))
@@ -188,11 +207,13 @@ public abstract class BiomeConfiguration {
             .setNoRain()
             .setHasHorses()
             .setGrassDistributor(new PlantDistributor(10));
+    static { ((BiomeInterface) SAVANNA_PLATEAU).setRiverShoreBiomeData(SAVANNA); }
 
     public static final BTWGBiome DUNES = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DUNES_ID, loc("dunes")))
             .setHeightData(ROLLING_HILLS_HEIGHT)
             .setRiverBiomeData(DESERT_RIVER)
-            .setRiverShoreBiomeData(DESERT_RIVER_SHORE))
+            .setRiverShoreBiomeData(DESERT_RIVER_SHORE)
+            .setEdgeData(DESERT_RIVER_SHORE))
             .setTemperatureAndRainfall(1.0F, 0.0F)
             .addClimate(ARID, UNCOMMON_WEIGHT)
             .setNoRain()
@@ -203,17 +224,30 @@ public abstract class BiomeConfiguration {
             .setFillerBlock(Block.sand.blockID)
             .setWaterColor(DESERT_WATER_COLOR);
 
-    static { ((BiomeInterface) SAVANNA_PLATEAU).setRiverShoreBiomeData(SAVANNA); }
+    public static final BTWGBiome HIGHLANDS = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(HIGHLANDS_ID, loc("highlands")))
+            .setHeightData(HIGHLANDS_HEIGHT)
+            .setSubBiomeData(HIGHLAND_PEAKS)
+            .setRiverShoreBiomeData(HIGHLANDS_RIVER_SHORE))
+            .setTemperatureAndRainfall(0.4F, 0.5F)
+            .addClimate(TEMPERATE)
+            .setGrassDistributor(new PlantDistributor(10))
+            .setTreeDistributor(TreeDistributors.HIGHLANDS);
     
     public static void initBiomes() {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         ((BiomeInterface) BiomeGenBase.ocean).setMakesBeaches();
-        
+
+        //addBiomes();
+        biomeList.add(HIGHLANDS);
+    }
+
+    private static void addBiomes() {
         biomeList.add(RAINFOREST);
         biomeList.add(PLAINS);
         biomeList.add(SAVANNA);
         biomeList.add(SCRUBLAND);
         biomeList.add(DUNES);
+        biomeList.add(HIGHLANDS);
     }
     
     public static ResourceLocation loc(String name) {

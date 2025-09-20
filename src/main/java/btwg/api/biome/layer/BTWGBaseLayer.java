@@ -17,9 +17,9 @@ public abstract class BTWGBaseLayer extends GenLayer {
         this.parent = parent;
     }
     
-    public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldType worldType, WorldData worldData) {
+    public static GenLayer[] initializeAllBiomeGenerators(long seed, WorldData worldData) {
         var continentsLayer = addContinents(worldData);
-        var climateLayer = new ClimateLayer(2L, continentsLayer, worldType, worldData);
+        var climateLayer = new ClimateLayer(2L, continentsLayer, worldData);
         continentsLayer = addIslands(continentsLayer, worldData);
 
         var landShapeLayer = new GenLayerAddMushroomIsland(5L, continentsLayer);
