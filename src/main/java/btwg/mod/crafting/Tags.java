@@ -18,8 +18,8 @@ public abstract class Tags {
         BTWTags.barks.addUntilDamage(((MultiItem) BTWGItems.bark).getNumTypes(), BTWGItems.bark);
         BTWTags.planks.addUntilDamage(((MultiTextureBlock) BTWGBlocks.planks).getNumTypes(), BTWGBlocks.planks);
 
-        BTWTags.woodCorners.add(new ItemStack(BTWGBlocks.acaciaSiding, 1, 1));
+        BTWTags.woodCorners.add(new ItemStack(BTWGBlocks.acaciaSidingAndCorner, 1, 1));
         BTWTags.woodMouldings.add(new ItemStack(BTWGBlocks.acaciaMoulding, 1, 0));
-        BTWTags.woodSidings.add(new ItemStack(BTWGBlocks.acaciaSiding, 1, 0));
+        BTWTags.woodSidings.add(new ItemStack(BTWGBlocks.acaciaSidingAndCorner, 1, 0));
     }
 }

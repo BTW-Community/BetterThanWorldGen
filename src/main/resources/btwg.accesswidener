@@ -4,3 +4,6 @@ accessible method net/minecraft/src/BiomeGenBase setDisableRain ()Lnet/minecraft
 accessible method net/minecraft/src/Block initBlockBounds (DDDDDD)V
 accessible method net/minecraft/src/Block setLightOpacity (I)Lnet/minecraft/src/Block;
 accessible method net/minecraft/src/GenLayer nextInt (I)I
+
+mutable field net/minecraft/src/BlockLeaves iconType I
+mutable field net/minecraft/src/BlockLeaves iconArray [[Lnet/minecraft/src/Icon;

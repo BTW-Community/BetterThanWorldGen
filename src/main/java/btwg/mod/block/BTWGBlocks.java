@@ -2,6 +2,7 @@ package btwg.mod.block;
 
 import btw.block.blocks.*;
 import btw.item.blockitems.MouldingAndDecorativeBlockItem;
+import btw.item.blockitems.SaplingBlockItem;
 import btw.item.blockitems.SidingAndCornerBlockItem;
 import btwg.mod.block.blocks.*;
 import btwg.mod.block.blocks.WorkStumpBlock;
@@ -13,6 +14,7 @@ public abstract class BTWGBlocks {
     public static Block woodSlab;
     public static Block stump;
     public static Block workStump;
+    public static Block leaves;
 
     public static Block spruceDoor;
     public static Block spruceTrapdoor;
@@ -20,6 +22,8 @@ public abstract class BTWGBlocks {
     public static Block birchTrapdoor;
     public static Block jungleDoor;
     public static Block jungleTrapdoor;
+    public static Block bloodWoodDoor;
+    public static Block bloodWoodTrapdoor;
 
     public static Block acaciaLog;
     public static Block acaciaChewedLog;
@@ -27,8 +31,9 @@ public abstract class BTWGBlocks {
     public static Block acaciaStairs;
     public static Block acaciaDoor;
     public static Block acaciaTrapdoor;
-    public static Block acaciaSiding;
+    public static Block acaciaSidingAndCorner;
     public static Block acaciaMoulding;
+    public static Block acaciaSapling;
 
     public static Block earthenClay;
     public static Block grassyEarthenClay;
@@ -107,6 +112,9 @@ public abstract class BTWGBlocks {
     }
 
     private static void initWood() {
+
+        //------ Additional Vanilla Wood Blocks ------//
+
         spruceDoor = new BTWGDoorBlock(BTWGBlockIDs.SPRUCE_DOOR_ID, WoodType.SPRUCE);
         spruceTrapdoor = new BlockTrapDoor(BTWGBlockIDs.SPRUCE_TRAPDOOR_ID)
                 .setUnlocalizedName("btwg.spruce_trapdoor")
@@ -127,6 +135,8 @@ public abstract class BTWGBlocks {
                 .setTextureName("btwg:jungle_trapdoor")
                 .setHopperFilter();
         register(jungleTrapdoor);
+
+        //------ General ------//
 
         planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID,
                 new WoodType[] {
@@ -162,6 +172,17 @@ public abstract class BTWGBlocks {
                 "acacia_work_stump"
         });
 
+        leaves = new BTWGLeafBlock(BTWGBlockIDs.LEAVES_ID,
+                new WoodType[] {
+                        WoodType.ACACIA
+                })
+                .setUnlocalizedName("btwg.leaves");
+        register(leaves, new String[] {
+                "acacia"
+        });
+
+        //------ Acacia ------//
+
         acaciaLog = new BTWGLogBlock(BTWGBlockIDs.ACACIA_LOG_ID, WoodType.ACACIA);
         register(acaciaLog);
 
@@ -191,7 +212,7 @@ public abstract class BTWGBlocks {
                 .setHopperFilter();
         register(acaciaTrapdoor);
 
-        acaciaSiding = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.ACACIA_SIDING_ID,
+        acaciaSidingAndCorner = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.ACACIA_SIDING_ID,
                 "btwg:acacia_planks", "btwg.acacia_siding");
         register(new SidingAndCornerBlockItem(BTWGBlockIDs.ACACIA_SIDING_ID - 256));
 
@@ -200,6 +221,9 @@ public abstract class BTWGBlocks {
                 BTWGBlockIDs.ACACIA_SIDING_ID,
                 "btwg.acacia_moulding");
         register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.ACACIA_MOULDING_ID - 256));
+
+        acaciaSapling = new SaplingBlock(BTWGBlockIDs.ACACIA_SAPLING_ID, "btwg.acacia_sapling", "btwg:acacia_sapling");
+        register(new SaplingBlockItem(BTWGBlockIDs.ACACIA_SAPLING_ID - 256, acaciaSapling));
     }
 
     private static void register(Block block, String[] names) {

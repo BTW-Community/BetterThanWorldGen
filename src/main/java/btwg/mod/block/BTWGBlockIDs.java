@@ -13,12 +13,16 @@ public class BTWGBlockIDs {
     public static final int ACACIA_TRAPDOOR_ID = 3659;
     public static final int ACACIA_SIDING_ID = 3660;
     public static final int ACACIA_MOULDING_ID = 3661;
-    public static final int SPRUCE_DOOR_ID = 3662;
-    public static final int SPRUCE_TRAPDOOR_ID = 3663;
-    public static final int BIRCH_DOOR_ID = 3664;
-    public static final int BIRCH_TRAPDOOR_ID = 3665;
-    public static final int JUNGLE_DOOR_ID = 3666;
-    public static final int JUNGLE_TRAPDOOR_ID = 3667;
+    public static final int ACACIA_SAPLING_ID = 3662;
+    public static final int SPRUCE_DOOR_ID = 3663;
+    public static final int SPRUCE_TRAPDOOR_ID = 3664;
+    public static final int BIRCH_DOOR_ID = 3665;
+    public static final int BIRCH_TRAPDOOR_ID = 3666;
+    public static final int JUNGLE_DOOR_ID = 3667;
+    public static final int JUNGLE_TRAPDOOR_ID = 3668;
+    public static final int BLOOD_WOOD_DOOR_ID = 3669;
+    public static final int BLOOD_WOOD_TRAPDOOR_ID = 3670;
+    public static final int LEAVES_ID = 3671;
 
     public static final int EARTHEN_CLAY_ID = 3700;
     public static final int GRASSY_EARTHEN_CLAY_ID = 3701;
