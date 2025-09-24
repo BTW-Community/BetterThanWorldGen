@@ -23,6 +23,15 @@ public class BTWGBlockIDs {
     public static final int BLOOD_WOOD_DOOR_ID = 3669;
     public static final int BLOOD_WOOD_TRAPDOOR_ID = 3670;
     public static final int LEAVES_ID = 3671;
+    public static final int DARK_OAK_LOG_ID = 3672;
+    public static final int CHEWED_DARK_OAK_LOG_ID = 3673;
+    public static final int DARK_OAK_LOG_SPIKE_ID = 3674;
+    public static final int DARK_OAK_STAIRS_ID = 3675;
+    public static final int DARK_OAK_DOOR_ID = 3676;
+    public static final int DARK_OAK_TRAPDOOR_ID = 3677;
+    public static final int DARK_OAK_SIDING_ID = 3678;
+    public static final int DARK_OAK_MOULDING_ID = 3679;
+    public static final int DARK_OAK_SAPLING_ID = 3680;
 
     public static final int EARTHEN_CLAY_ID = 3700;
     public static final int GRASSY_EARTHEN_CLAY_ID = 3701;

@@ -36,6 +36,16 @@ public abstract class BTWGBlocks {
     public static Block acaciaMoulding;
     public static Block acaciaSapling;
 
+    public static Block darkOakLog;
+    public static Block darkOakChewedLog;
+    public static Block darkOakLogSpike;
+    public static Block darkOakStairs;
+    public static Block darkOakDoor;
+    public static Block darkOakTrapdoor;
+    public static Block darkOakSidingAndCorner;
+    public static Block darkOakMoulding;
+    public static Block darkOakSapling;
+
     public static Block earthenClay;
     public static Block grassyEarthenClay;
     public static Block looseEarthenClay;
@@ -137,49 +147,66 @@ public abstract class BTWGBlocks {
                 .setHopperFilter();
         register(jungleTrapdoor);
 
+        bloodWoodDoor = new BTWGDoorBlock(BTWGBlockIDs.BLOOD_WOOD_DOOR_ID, WoodType.BLOOD_WOOD);
+        bloodWoodTrapdoor = new BlockTrapDoor(BTWGBlockIDs.BLOOD_WOOD_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.blood_wood_trapdoor")
+                .setTextureName("btwg:blood_wood_trapdoor")
+                .setHopperFilter();
+        register(bloodWoodTrapdoor);
+
         //------ General ------//
 
         planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID,
                 new WoodType[] {
-                        WoodType.ACACIA
+                        WoodType.ACACIA,
+                        WoodType.DARK_OAK
                 });
         register(planks, new String[] {
-                "acacia"
+                "acacia",
+                "dark_oak"
         });
 
         woodSlab = new BTWGWoodSlabBlock(BTWGBlockIDs.WOOD_SLAB_ID,
                 new WoodType[] {
-                        WoodType.ACACIA
+                        WoodType.ACACIA,
+                        WoodType.DARK_OAK
                 });
         register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, new String[] {
-                "acacia"
+                "acacia",
+                "dark_oak"
         }));
 
         stump = new StumpBlock(BTWGBlockIDs.STUMP_ID,
                 new WoodType[] {
-                        WoodType.ACACIA
+                        WoodType.ACACIA,
+                        WoodType.DARK_OAK
                 })
                 .setUnlocalizedName("btwg.stump");
         register(stump, new String[] {
-                "acacia_stump"
+                "acacia_stump",
+                "dark_oak_stump"
         });
 
         workStump = new WorkStumpBlock(BTWGBlockIDs.WORK_STUMP_ID,
                 new WoodType[] {
-                        WoodType.ACACIA
+                        WoodType.ACACIA,
+                        WoodType.DARK_OAK
                 })
                 .setUnlocalizedName("btwg.work_stump");
         register(workStump, new String[] {
-                "acacia_work_stump"
+                "acacia",
+                "dark_oak"
         });
 
         leaves = new BTWGLeafBlock(BTWGBlockIDs.LEAVES_ID,
                 new WoodType[] {
-                        WoodType.ACACIA
+                        WoodType.ACACIA,
+                        WoodType.DARK_OAK
                 })
                 .setUnlocalizedName("btwg.leaves");
         register(leaves, new String[] {
-                "acacia"
+                "acacia",
+                "dark_oak"
         });
 
         //------ Acacia ------//
@@ -227,6 +254,52 @@ public abstract class BTWGBlocks {
                 .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
                 .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
         register(new SaplingBlockItem(BTWGBlockIDs.ACACIA_SAPLING_ID - 256, acaciaSapling));
+
+        //------ Dark Oak ------//
+
+        darkOakLog = new BTWGLogBlock(BTWGBlockIDs.DARK_OAK_LOG_ID, WoodType.DARK_OAK);
+        register(darkOakLog);
+
+        darkOakLogSpike = new LogSpikeBlock(BTWGBlockIDs.DARK_OAK_LOG_SPIKE_ID,
+                "btwg:chewed_" + WoodType.DARK_OAK.name() + "_log_top",
+                "btwg:chewed_" + WoodType.DARK_OAK.name() + "_log_side");
+        register(darkOakLogSpike);
+
+        darkOakChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_DARK_OAK_LOG_ID,
+                "btwg:chewed_" + WoodType.DARK_OAK.name() + "_log_top",
+                "btwg:chewed_" + WoodType.DARK_OAK.name() + "_log_side",
+                "btwg:" + WoodType.DARK_OAK.name() + "_stump_top",
+                darkOakLogSpike);
+        register(darkOakChewedLog);
+
+        darkOakStairs = new WoodStairsBlock(BTWGBlockIDs.DARK_OAK_STAIRS_ID,
+                Block.blocksList[WoodType.DARK_OAK.plankID()],
+                WoodType.DARK_OAK.plankMetadata())
+                .setUnlocalizedName("btwg.dark_oak_stairs");
+        register(darkOakStairs);
+
+        darkOakDoor = new BTWGDoorBlock(BTWGBlockIDs.DARK_OAK_DOOR_ID, WoodType.DARK_OAK);
+
+        darkOakTrapdoor = new BlockTrapDoor(BTWGBlockIDs.DARK_OAK_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.dark_oak_trapdoor")
+                .setTextureName("btwg:dark_oak_trapdoor")
+                .setHopperFilter();
+        register(darkOakTrapdoor);
+
+        darkOakSidingAndCorner = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.DARK_OAK_SIDING_ID,
+                "btwg:dark_oak_planks", "btwg.dark_oak_siding");
+        register(new SidingAndCornerBlockItem(BTWGBlockIDs.DARK_OAK_SIDING_ID - 256));
+
+        darkOakMoulding = new BTWGWoodMouldingBlock(BTWGBlockIDs.DARK_OAK_MOULDING_ID,
+                "btwg:dark_oak_planks", "btwg:dark_oak_column",
+                BTWGBlockIDs.DARK_OAK_SIDING_ID,
+                "btwg.dark_oak_moulding");
+        register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.DARK_OAK_MOULDING_ID - 256));
+
+        darkOakSapling = new SaplingBlock(BTWGBlockIDs.DARK_OAK_SAPLING_ID, "btwg.dark_oak_sapling", "btwg:dark_oak_sapling")
+                .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
+                .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
+        register(new SaplingBlockItem(BTWGBlockIDs.DARK_OAK_SAPLING_ID - 256, darkOakSapling));
     }
 
     private static void register(Block block, String[] names) {

@@ -32,43 +32,51 @@ public record WoodType(
 
         int burnTime
 ) {
+    private static final int WOOD_ID = 17;
+    private static final int PLANKS_ID = 5;
+    private static final int LEAVES_ID = 18;
+    private static final int WOODEN_DOOR_ID = 64;
+    private static final int TRAPDOOR_ID = 96;
+    private static final int WOOD_SLAB_ID = 126;
+    private static final int WOODEN_DOOR_ITEM_ID = 324;
+
     public static final WoodType OAK = new WoodType(
             "oak",
-            Block.wood.blockID, 0,
-            BTWBlocks.oakChewedLog.blockID,
-            BTWBlocks.oakLogSpike.blockID,
-            Block.wood.blockID, 12,
-            BTWBlocks.workStump.blockID, 0,
+            WOOD_ID, 0,
+            0,
+            0,
+            WOOD_ID, 12,
+            0, 0,
 
-            Block.leaves.blockID, 0,
-            BTWBlocks.oakSapling.blockID,
+            LEAVES_ID, 0,
+            0,
 
-            Block.planks.blockID, 0,
+            PLANKS_ID, 0,
             Block.stairsWoodOak.blockID,
-            Block.woodSingleSlab.blockID, 0,
-            BTWBlocks.oakWoodSidingAndCorner.blockID,
-            BTWBlocks.oakWoodMouldingAndDecorative.blockID,
-            Block.doorWood.blockID,
-            Block.trapdoor.blockID,
+            WOOD_SLAB_ID, 0,
+            0,
+            0,
+            WOODEN_DOOR_ID,
+            TRAPDOOR_ID,
 
-            Item.doorWood.itemID + 256, 0,
-            BTWItems.bark.itemID + 256, 0,
+            WOODEN_DOOR_ITEM_ID, 0,
+            0, 0,
 
             FurnaceBurnTime.PLANKS_OAK.burnTime
     );
 
     public static final WoodType SPRUCE = new WoodType(
             "spruce",
-            Block.wood.blockID, 1,
-            BTWBlocks.spruceChewedLog.blockID,
-            BTWBlocks.spruceLogSpike.blockID,
-            Block.wood.blockID, 13,
-            BTWBlocks.workStump.blockID, 1,
+            WOOD_ID, 1,
+            0,
+            0,
+            WOOD_ID, 13,
+            0, 0,
 
-            Block.leaves.blockID, 1,
+            LEAVES_ID, 1,
             BTWBlocks.spruceSapling.blockID,
 
-            Block.planks.blockID, 1,
+            PLANKS_ID, 1,
             Block.stairsWoodSpruce.blockID,
             Block.woodSingleSlab.blockID, 1,
             BTWBlocks.spruceWoodSidingAndCorner.blockID,
@@ -77,23 +85,23 @@ public record WoodType(
             BTWGBlockIDs.SPRUCE_TRAPDOOR_ID,
 
             BTWGItemIDs.DOOR_ID + 256, 0,
-            BTWItems.bark.itemID + 256, 1,
+            0, 1,
 
             FurnaceBurnTime.PLANKS_SPRUCE.burnTime
     );
 
     public static final WoodType BIRCH = new WoodType(
             "birch",
-            Block.wood.blockID, 2,
-            BTWBlocks.birchChewedLog.blockID,
-            BTWBlocks.birchLogSpike.blockID,
-            Block.wood.blockID, 14,
-            BTWBlocks.workStump.blockID, 2,
+            WOOD_ID, 2,
+            0,
+            0,
+            WOOD_ID, 14,
+            0, 0,
 
-            Block.leaves.blockID, 2,
+            LEAVES_ID, 2,
             BTWBlocks.birchSapling.blockID,
 
-            Block.planks.blockID, 2,
+            PLANKS_ID, 2,
             Block.stairsWoodBirch.blockID,
             Block.woodSingleSlab.blockID, 2,
             BTWBlocks.birchWoodSidingAndCorner.blockID,
@@ -102,23 +110,23 @@ public record WoodType(
             BTWGBlockIDs.BIRCH_TRAPDOOR_ID,
 
             BTWGItemIDs.DOOR_ID + 256, 1,
-            BTWItems.bark.itemID + 256, 2,
+            0, 2,
 
             FurnaceBurnTime.PLANKS_BIRCH.burnTime
     );
 
     public static final WoodType JUNGLE = new WoodType(
             "jungle",
-            Block.wood.blockID, 3,
-            BTWBlocks.jungleChewedLog.blockID,
-            BTWBlocks.jungleLogSpike.blockID,
-            Block.wood.blockID, 15,
-            BTWBlocks.workStump.blockID, 3,
+            WOOD_ID, 3,
+            0,
+            0,
+            WOOD_ID, 15,
+            0, 0,
 
-            Block.leaves.blockID, 0,
-            BTWBlocks.jungleSapling.blockID,
+            LEAVES_ID, 0,
+            0,
 
-            Block.planks.blockID, 3,
+            PLANKS_ID, 3,
             Block.stairsWoodJungle.blockID,
             Block.woodSingleSlab.blockID, 3,
             BTWBlocks.jungleWoodSidingAndCorner.blockID,
@@ -127,32 +135,32 @@ public record WoodType(
             BTWGBlockIDs.JUNGLE_TRAPDOOR_ID,
 
             BTWGItemIDs.DOOR_ID + 256, 2,
-            BTWItems.bark.itemID + 256, 3,
+            0, 3,
 
             FurnaceBurnTime.PLANKS_JUNGLE.burnTime
     );
 
     public static final WoodType BLOOD_WOOD = new WoodType(
             "blood_wood",
-            Block.wood.blockID, 4,
+            WOOD_ID, 4,
             0,
             0,
             0, 0,
             0, 0,
 
-            BTWBlocks.bloodWoodLeaves.blockID, 0,
-            BTWBlocks.aestheticVegetation.blockID,
+            0, 0,
+            0,
 
-            Block.planks.blockID, 3,
-            Block.stairsWoodJungle.blockID,
+            PLANKS_ID, 3,
+            0,
             Block.woodSingleSlab.blockID, 3,
-            BTWBlocks.jungleWoodSidingAndCorner.blockID,
-            BTWBlocks.jungleWoodMouldingAndDecorative.blockID,
-            BTWGBlockIDs.JUNGLE_DOOR_ID,
-            BTWGBlockIDs.JUNGLE_TRAPDOOR_ID,
+            0,
+            0,
+            BTWGBlockIDs.BLOOD_WOOD_DOOR_ID,
+            BTWGBlockIDs.BLOOD_WOOD_TRAPDOOR_ID,
 
-            BTWGItemIDs.DOOR_ID + 256, 2,
-            BTWItems.bark.itemID + 256, 3,
+            BTWGItemIDs.DOOR_ID + 256, 3,
+            0, 3,
 
             FurnaceBurnTime.PLANKS_JUNGLE.burnTime
     );
@@ -178,6 +186,31 @@ public record WoodType(
 
             BTWGItemIDs.DOOR_ID + 256, 4,
             BTWGItemIDs.BARK_ID + 256, 0,
+
+            FurnaceBurnTime.PLANKS_BIRCH.burnTime
+    );
+
+    public static final WoodType DARK_OAK = new WoodType(
+            "dark_oak",
+            BTWGBlockIDs.DARK_OAK_LOG_ID, 0,
+            BTWGBlockIDs.CHEWED_DARK_OAK_LOG_ID,
+            BTWGBlockIDs.DARK_OAK_LOG_SPIKE_ID,
+            BTWGBlockIDs.STUMP_ID, 1,
+            BTWGBlockIDs.WORK_STUMP_ID, 1,
+
+            BTWGBlockIDs.LEAVES_ID, 1,
+            BTWGBlockIDs.DARK_OAK_SAPLING_ID,
+
+            BTWGBlockIDs.PLANKS_ID, 1,
+            BTWGBlockIDs.DARK_OAK_STAIRS_ID,
+            BTWGBlockIDs.WOOD_SLAB_ID, 1,
+            BTWGBlockIDs.DARK_OAK_SIDING_ID,
+            BTWGBlockIDs.DARK_OAK_MOULDING_ID,
+            BTWGBlockIDs.DARK_OAK_DOOR_ID,
+            BTWGBlockIDs.DARK_OAK_TRAPDOOR_ID,
+
+            BTWGItemIDs.DOOR_ID + 256, 5,
+            BTWGItemIDs.BARK_ID + 256, 1,
 
             FurnaceBurnTime.PLANKS_BIRCH.burnTime
     );

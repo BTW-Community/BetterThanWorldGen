@@ -58,7 +58,9 @@ public class Recipes {
 
     private static void initWoodRecipes() {
         initWoodRecipesForType(WoodType.ACACIA);
+        initWoodRecipesForType(WoodType.DARK_OAK);
 
+        // Remove generic door and trapdoor recipes
         RecipeManager.removeVanillaRecipe(new ItemStack(Item.doorWood, 1 ), new Object[] {
                 "##",
                 "##",
@@ -71,21 +73,6 @@ public class Recipes {
                 "##",
                 '#', new ItemStack(BTWItems.woodSidingStubID, 1, InventoryUtils.IGNORE_METADATA)
         });
-
-        RecipeManager.addRecipe(new ItemStack(Item.doorWood),
-                new Object[]{
-                        "##",
-                        "##",
-                        "##",
-                        '#', new ItemStack(Block.planks, 1, 0)
-                });
-        RecipeManager.addRecipe(new ItemStack(Item.doorWood),
-                new Object[]{
-                        "##",
-                        "##",
-                        "##",
-                        '#', new ItemStack(Item.itemsList[BTWItems.woodSidingStubID], 1, 0)
-                });
 
         RecipeManager.removeVanillaRecipe(new ItemStack(Block.trapdoor),
                 new Object[]{
@@ -102,19 +89,42 @@ public class Recipes {
                         'P', new ItemStack(BTWItems.woodSidingStubID, 1, InventoryUtils.IGNORE_METADATA)
                 });
 
-        RecipeManager.addRecipe(new ItemStack(Block.trapdoor),
+        initVanillaWoodTypeRecipes(0, Item.doorWood.itemID, 0, Block.trapdoor.blockID);
+        initVanillaWoodTypeRecipes(1, WoodType.SPRUCE.doorItemID(), WoodType.SPRUCE.doorItemMetadata(), WoodType.SPRUCE.trapdoorID());
+        initVanillaWoodTypeRecipes(2, WoodType.BIRCH.doorItemID(), WoodType.BIRCH.doorItemMetadata(), WoodType.BIRCH.trapdoorID());
+        initVanillaWoodTypeRecipes(3, WoodType.JUNGLE.doorItemID(), WoodType.JUNGLE.doorItemMetadata(), WoodType.JUNGLE.trapdoorID());
+        initVanillaWoodTypeRecipes(4, WoodType.BLOOD_WOOD.doorItemID(), WoodType.BLOOD_WOOD.doorItemMetadata(), WoodType.BLOOD_WOOD.trapdoorID());
+    }
+
+    private static void initVanillaWoodTypeRecipes(int plankMetadata, int doorID, int doorMetadata, int trapdoorID) {
+        RecipeManager.addRecipe(new ItemStack(doorID, 1, doorMetadata),
                 new Object[]{
-                        "PPS",
-                        "PPS",
-                        'S', Item.stick,
-                        'P', new ItemStack(Block.planks, 1, 0)
+                        "##",
+                        "##",
+                        "##",
+                        '#', new ItemStack(Block.planks, 1, plankMetadata)
                 });
-        RecipeManager.addRecipe(new ItemStack(Block.trapdoor, 2),
+        RecipeManager.addRecipe(new ItemStack(trapdoorID, 1, 0),
                 new Object[]{
                         "PPS",
                         "PPS",
                         'S', Item.stick,
-                        'P', new ItemStack(Item.itemsList[BTWItems.woodSidingStubID], 1, 0)
+                        'P', new ItemStack(Block.planks, 1, plankMetadata)
+                });
+
+        RecipeManager.addRecipe(new ItemStack(doorID, 1, doorMetadata),
+                new Object[]{
+                        "##",
+                        "##",
+                        "##",
+                        '#', new ItemStack(BTWItems.woodSidingStubID, 1, plankMetadata)
+                });
+        RecipeManager.addRecipe(new ItemStack(trapdoorID, 2, 0),
+                new Object[]{
+                        "PPS",
+                        "PPS",
+                        'S', Item.stick,
+                        'P', new ItemStack(BTWItems.woodSidingStubID, 1, plankMetadata)
                 });
     }
 

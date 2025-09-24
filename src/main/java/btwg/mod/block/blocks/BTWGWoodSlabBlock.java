@@ -64,4 +64,8 @@ public class BTWGWoodSlabBlock extends SlabBlock {
         metadata = this.setIsUpsideDown(MathHelper.clamp_int(metadata, 0, this.woodTypes.length - 1), false);
         return Block.blocksList[this.woodTypes[metadata].plankID()].getIcon(side, this.woodTypes[metadata].plankMetadata());
     }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public void registerIcons(IconRegister iconRegister) {}
 }
