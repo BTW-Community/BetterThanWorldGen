@@ -1,4 +1,4 @@
-package btwg.mod.world.feature;
+package btwg.mod.world.feature.features.trees;
 
 import btw.world.feature.trees.grower.BigTreeGrower;
 import btw.world.feature.trees.grower.TreeGrowers;

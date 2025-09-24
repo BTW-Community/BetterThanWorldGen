@@ -1,6 +1,8 @@
 package btwg.mod.item;
 
 import btw.crafting.util.FurnaceBurnTime;
+import btwg.mod.block.WoodType;
+import btwg.mod.item.items.BTWGDoorItem;
 import btwg.mod.item.items.MultiItem;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
@@ -10,6 +12,7 @@ import static net.minecraft.src.Item.FILTERABLE_THIN;
 
 public class BTWGItems {
     public static Item bark;
+    public static Item door;
 
     public static void initItems() {
         bark = new MultiItem(BTWGItemIDs.BARK_ID, "bark",
@@ -21,5 +24,13 @@ public class BTWGItems {
                 .setfurnaceburntime(FurnaceBurnTime.KINDLING)
                 .setFilterableProperties(FILTERABLE_SMALL | FILTERABLE_THIN)
                 .setCreativeTab(CreativeTabs.tabMaterials);
+
+        door = new BTWGDoorItem(BTWGItemIDs.DOOR_ID,
+                new WoodType[] {
+                        WoodType.SPRUCE,
+                        WoodType.BIRCH,
+                        WoodType.JUNGLE,
+                        WoodType.ACACIA
+                });
     }
 }

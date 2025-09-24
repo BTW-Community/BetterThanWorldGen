@@ -1,17 +1,34 @@
 package btwg.mod.block;
 
-import btw.block.blocks.ChewedLogBlock;
-import btw.block.blocks.LogSpikeBlock;
+import btw.block.blocks.*;
+import btw.item.blockitems.MouldingAndDecorativeBlockItem;
+import btw.item.blockitems.SidingAndCornerBlockItem;
 import btwg.mod.block.blocks.*;
+import btwg.mod.block.blocks.WorkStumpBlock;
+import btwg.mod.item.items.blockItems.BTWGSlabBlockItem;
 import net.minecraft.src.*;
 
 public abstract class BTWGBlocks {
     public static Block planks;
+    public static Block woodSlab;
     public static Block stump;
     public static Block workStump;
+
+    public static Block spruceDoor;
+    public static Block spruceTrapdoor;
+    public static Block birchDoor;
+    public static Block birchTrapdoor;
+    public static Block jungleDoor;
+    public static Block jungleTrapdoor;
+
     public static Block acaciaLog;
     public static Block acaciaChewedLog;
     public static Block acaciaLogSpike;
+    public static Block acaciaStairs;
+    public static Block acaciaDoor;
+    public static Block acaciaTrapdoor;
+    public static Block acaciaSiding;
+    public static Block acaciaMoulding;
 
     public static Block earthenClay;
     public static Block grassyEarthenClay;
@@ -51,7 +68,6 @@ public abstract class BTWGBlocks {
     }
 
     private static void initPlants() {
-
         dryGrass = new ShrubBlock(BTWGBlockIDs.DRY_GRASS_ID)
                 .setCanStayOnSand()
                 .setReplaceable()
@@ -91,23 +107,57 @@ public abstract class BTWGBlocks {
     }
 
     private static void initWood() {
-        planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID, new WoodType[] {
-                WoodType.ACACIA
-        });
+        spruceDoor = new BTWGDoorBlock(BTWGBlockIDs.SPRUCE_DOOR_ID, WoodType.SPRUCE);
+        spruceTrapdoor = new BlockTrapDoor(BTWGBlockIDs.SPRUCE_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.spruce_trapdoor")
+                .setTextureName("btwg:spruce_trapdoor")
+                .setHopperFilter();
+        register(spruceTrapdoor);
+
+        birchDoor = new BTWGDoorBlock(BTWGBlockIDs.BIRCH_DOOR_ID, WoodType.BIRCH);
+        birchTrapdoor = new BlockTrapDoor(BTWGBlockIDs.BIRCH_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.birch_trapdoor")
+                .setTextureName("btwg:birch_trapdoor")
+                .setHopperFilter();
+        register(birchTrapdoor);
+
+        jungleDoor = new BTWGDoorBlock(BTWGBlockIDs.JUNGLE_DOOR_ID, WoodType.JUNGLE);
+        jungleTrapdoor = new BlockTrapDoor(BTWGBlockIDs.JUNGLE_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.jungle_trapdoor")
+                .setTextureName("btwg:jungle_trapdoor")
+                .setHopperFilter();
+        register(jungleTrapdoor);
+
+        planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID,
+                new WoodType[] {
+                        WoodType.ACACIA
+                });
         register(planks, new String[] {
                 "acacia"
         });
 
-        stump = new StumpBlock(BTWGBlockIDs.STUMP_ID, new WoodType[] {
-                WoodType.ACACIA
-        });
+        woodSlab = new BTWGWoodSlabBlock(BTWGBlockIDs.WOOD_SLAB_ID,
+                new WoodType[] {
+                        WoodType.ACACIA
+                });
+        register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, new String[] {
+                "acacia"
+        }));
+
+        stump = new StumpBlock(BTWGBlockIDs.STUMP_ID,
+                new WoodType[] {
+                        WoodType.ACACIA
+                })
+                .setUnlocalizedName("btwg.stump");
         register(stump, new String[] {
                 "acacia_stump"
         });
 
-        workStump = new WorkStumpBlock(BTWGBlockIDs.WORK_STUMP_ID, new WoodType[] {
-                WoodType.ACACIA
-        });
+        workStump = new WorkStumpBlock(BTWGBlockIDs.WORK_STUMP_ID,
+                new WoodType[] {
+                        WoodType.ACACIA
+                })
+                .setUnlocalizedName("btwg.work_stump");
         register(workStump, new String[] {
                 "acacia_work_stump"
         });
@@ -118,15 +168,41 @@ public abstract class BTWGBlocks {
         acaciaLogSpike = new LogSpikeBlock(BTWGBlockIDs.ACACIA_LOG_SPIKE_ID,
                 "btwg:chewed_" + WoodType.ACACIA.name() + "_log_top",
                 "btwg:chewed_" + WoodType.ACACIA.name() + "_log_side");
+        register(acaciaLogSpike);
 
         acaciaChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_ACACIA_LOG_ID,
                 "btwg:chewed_" + WoodType.ACACIA.name() + "_log_top",
                 "btwg:chewed_" + WoodType.ACACIA.name() + "_log_side",
                 "btwg:" + WoodType.ACACIA.name() + "_stump_top",
                 acaciaLogSpike);
+        register(acaciaChewedLog);
+
+        acaciaStairs = new WoodStairsBlock(BTWGBlockIDs.ACACIA_STAIRS_ID,
+                Block.blocksList[WoodType.ACACIA.plankID()],
+                WoodType.ACACIA.plankMetadata())
+                .setUnlocalizedName("btwg.acacia_stairs");
+        register(acaciaStairs);
+
+        acaciaDoor = new BTWGDoorBlock(BTWGBlockIDs.ACACIA_DOOR_ID, WoodType.ACACIA);
+
+        acaciaTrapdoor = new BlockTrapDoor(BTWGBlockIDs.ACACIA_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.acacia_trapdoor")
+                .setTextureName("btwg:acacia_trapdoor")
+                .setHopperFilter();
+        register(acaciaTrapdoor);
+
+        acaciaSiding = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.ACACIA_SIDING_ID,
+                "btwg:acacia_planks", "btwg.acacia_siding");
+        register(new SidingAndCornerBlockItem(BTWGBlockIDs.ACACIA_SIDING_ID - 256));
+
+        acaciaMoulding = new BTWGWoodMouldingBlock(BTWGBlockIDs.ACACIA_MOULDING_ID,
+                "btwg:acacia_planks", "btwg:acacia_column",
+                BTWGBlockIDs.ACACIA_SIDING_ID,
+                "btwg.acacia_moulding");
+        register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.ACACIA_MOULDING_ID - 256));
     }
 
-    private static void register(Block block, String[]names) {
+    private static void register(Block block, String[] names) {
         Item.itemsList[block.blockID] = new ItemMultiTextureTile(block.blockID - 256, block, names);
     }
 

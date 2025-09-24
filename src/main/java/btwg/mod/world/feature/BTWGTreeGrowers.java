@@ -1,6 +1,7 @@
 package btwg.mod.world.feature;
 
 import btw.world.feature.trees.grower.*;
+import btwg.mod.world.feature.features.trees.DeadTreeGrower;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
