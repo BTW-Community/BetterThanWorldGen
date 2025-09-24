@@ -1,7 +1,6 @@
-package btwg.mod.world.feature;
+package btwg.mod.world.feature.tree;
 
 import btw.world.feature.trees.grower.*;
-import btwg.mod.world.feature.features.trees.DeadTreeGrower;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
@@ -41,7 +40,10 @@ public abstract class BTWGTreeGrowers {
         }
     };
 
-    public static final TreeGrowers.TreeWoodType DEAD_WOOD_TYPE = new TreeGrowers.TreeWoodType(Block.wood.blockID, 0, Block.wood.blockID, 12, 0, 0);
-    public static final AbstractTreeGrower DEAD_TREE = new DeadTreeGrower( "btwg:dead_tree", 12, 16, DEAD_WOOD_TYPE);
-    public static final AbstractTreeGrower HUGE_DEAD_TREE = new DeadTreeGrower( "btwg:huge_dead_tree", 20, 24, DEAD_WOOD_TYPE);
+    public static final AbstractTreeGrower DEAD_TREE = new DeadTreeGrower( "btwg:dead_tree", 12, 16, BTWGTreeWoodTypes.DEAD);
+    public static final AbstractTreeGrower HUGE_DEAD_TREE = new DeadTreeGrower( "btwg:huge_dead_tree", 20, 24, BTWGTreeWoodTypes.DEAD);
+
+    public static final AbstractTreeGrower SAVANNA_TREE = new SavannaTreeGrower("btwg:savanna", 4, 8, BTWGTreeWoodTypes.ACACIA);
+    public static final AbstractTreeGrower SPLIT_SAVANNA_TREE = new SplitSavannaTreeGrower("btwg:savanna", 5, 9, BTWGTreeWoodTypes.ACACIA);
+    public static final AbstractTreeGrower SAVANNA_BUSH = new BushGrower("btwg:savanna_bush", BTWGTreeWoodTypes.ACACIA);
 }

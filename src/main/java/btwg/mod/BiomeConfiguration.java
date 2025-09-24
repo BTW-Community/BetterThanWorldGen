@@ -50,6 +50,7 @@ public abstract class BiomeConfiguration {
     public static final int DESERT_RIVER_SHORE_ID = 207;
     public static final int HIGHLAND_PEAKS_ID = 208;
     public static final int HIGHLAND_RIVER_SHORE_ID = 209;
+    public static final int SAVANNA_RIVER_ID = 210;
     
     public static final HeightData MOUNTAIN_HEIGHT = new HeightData(1.0F, 2.0F);
     public static final HeightData PLAINS_HEIGHT = new HeightData(0.1F, 0.3F);
@@ -92,6 +93,12 @@ public abstract class BiomeConfiguration {
             .setTopBlock(Block.sand.blockID)
             .setFillerBlock(Block.sand.blockID)
             .setWaterColor(DESERT_WATER_COLOR);
+
+    public static final BTWGBiome SAVANNA_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_RIVER_ID, loc("savanna_river")))
+            .setHeightData(RIVER_HEIGHT)
+            .setRiver())
+            .setTemperatureAndRainfall(1F, 0F)
+            .setNoRain();
     
     //------ Beaches ------//
 
@@ -146,9 +153,11 @@ public abstract class BiomeConfiguration {
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
 
     public static final BTWGBiome SAVANNA_PLATEAU = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_PLATEAU_ID, loc("savanna_plateau")))
-            .setHeightData(PLATEAU_HEIGHT))
+            .setHeightData(PLATEAU_HEIGHT)
+            .setRiverBiomeData(SAVANNA_RIVER))
             .setTemperatureAndRainfall(1F, 0F)
             .setNoRain()
+            .setTreeDistributor(new TreeDistributor(0) {})
             .setGrassDistributor(new PlantDistributor(10))
             .setHasHorses();
 
@@ -201,11 +210,13 @@ public abstract class BiomeConfiguration {
 
     public static final BTWGBiome SAVANNA = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_ID, loc("savanna")))
             .setHeightData(PLAINS_HEIGHT)
-            .setSubBiomeData(SAVANNA_PLATEAU))
+            .setSubBiomeData(SAVANNA_PLATEAU)
+            .setRiverBiomeData(SAVANNA_RIVER))
             .setTemperatureAndRainfall(1.0F, 0.0F)
             .addClimate(ARID)
             .setNoRain()
             .setHasHorses()
+            .setTreeDistributor(TreeDistributors.SAVANNA)
             .setGrassDistributor(new PlantDistributor(10));
     static { ((BiomeInterface) SAVANNA_PLATEAU).setRiverShoreBiomeData(SAVANNA); }
 
@@ -237,8 +248,8 @@ public abstract class BiomeConfiguration {
         ((BiomeInterface) BiomeGenBase.river).setRiver();
         ((BiomeInterface) BiomeGenBase.ocean).setMakesBeaches();
 
-        //addBiomes();
-        biomeList.add(HIGHLANDS);
+        addBiomes();
+        //biomeList.add(SAVANNA);
     }
 
     private static void addBiomes() {

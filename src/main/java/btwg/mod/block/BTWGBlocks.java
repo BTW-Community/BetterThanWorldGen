@@ -7,6 +7,7 @@ import btw.item.blockitems.SidingAndCornerBlockItem;
 import btwg.mod.block.blocks.*;
 import btwg.mod.block.blocks.WorkStumpBlock;
 import btwg.mod.item.items.blockItems.BTWGSlabBlockItem;
+import btwg.mod.world.feature.tree.BTWGTreeGrowers;
 import net.minecraft.src.*;
 
 public abstract class BTWGBlocks {
@@ -222,7 +223,9 @@ public abstract class BTWGBlocks {
                 "btwg.acacia_moulding");
         register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.ACACIA_MOULDING_ID - 256));
 
-        acaciaSapling = new SaplingBlock(BTWGBlockIDs.ACACIA_SAPLING_ID, "btwg.acacia_sapling", "btwg:acacia_sapling");
+        acaciaSapling = new SaplingBlock(BTWGBlockIDs.ACACIA_SAPLING_ID, "btwg.acacia_sapling", "btwg:acacia_sapling")
+                .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
+                .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
         register(new SaplingBlockItem(BTWGBlockIDs.ACACIA_SAPLING_ID - 256, acaciaSapling));
     }
 

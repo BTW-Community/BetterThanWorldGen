@@ -103,4 +103,15 @@ public class BTWGLeafBlock extends BlockLeaves {
             list.add(new ItemStack(id, 1, i));
         }
     }
+
+    @Override
+    @Environment(value=EnvType.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side) {
+        int adjacentBlockID = blockAccess.getBlockId(x, y, z);
+        Block adjacentBlock = Block.blocksList[adjacentBlockID];
+
+        boolean isAdjacentLeaf = adjacentBlock != null && adjacentBlock.isLeafBlock(blockAccess, x, y, z);
+
+        return (this.graphicsLevel || !isAdjacentLeaf) && super.shouldSideBeRendered(blockAccess, x, y, z, side);
+    }
 }

@@ -4,6 +4,7 @@ import btw.world.feature.trees.grower.AbstractTreeGrower;
 import btw.world.feature.trees.grower.TreeGrowers;
 import btwg.api.world.feature.TreeDistributor;
 import btwg.mod.block.BTWGBlocks;
+import btwg.mod.world.feature.tree.BTWGTreeGrowers;
 import net.minecraft.src.World;
 
 import java.util.Random;
@@ -69,6 +70,23 @@ public abstract class TreeDistributors {
             }
             else {
                 return BTWGTreeGrowers.OAK_BUSH;
+            }
+        }
+    };
+
+    public static final TreeDistributor SAVANNA = new TreeDistributor(1) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return BTWGTreeGrowers.SPLIT_SAVANNA_TREE;
+            }
+            else if (t <= 2) {
+                return BTWGTreeGrowers.SAVANNA_TREE;
+            }
+            else {
+                return BTWGTreeGrowers.SAVANNA_BUSH;
             }
         }
     };
