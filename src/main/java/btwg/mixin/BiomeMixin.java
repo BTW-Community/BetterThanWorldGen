@@ -1,5 +1,6 @@
 package btwg.mixin;
 
+import btwg.api.biome.DefaultBiomes;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData.HeightData;
@@ -204,7 +205,7 @@ public class BiomeMixin implements BiomeInterface {
 	@Override
 	public Optional<BiomeData<BiomeGenBase>> getBeachData() {
 		if (this.usesDefaultBeach && this.beachBiomeData == null) {
-			this.beachBiomeData = new BiomeData<>(BiomeGenBase.beach);
+			this.beachBiomeData = new BiomeData<>(DefaultBiomes.BEACH);
 		}
 		
 		return Optional.ofNullable(this.beachBiomeData);

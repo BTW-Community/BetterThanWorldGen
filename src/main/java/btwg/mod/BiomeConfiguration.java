@@ -3,6 +3,7 @@ package btwg.mod;
 import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.Climate;
+import btwg.api.biome.DefaultBiomes;
 import btwg.api.biome.data.BiomeData.HeightData;
 import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
@@ -54,25 +55,23 @@ public abstract class BiomeConfiguration {
     
     public static final HeightData MOUNTAIN_HEIGHT = new HeightData(1.0F, 2.0F);
     public static final HeightData PLAINS_HEIGHT = new HeightData(0.1F, 0.3F);
-    public static final HeightData RIVER_HEIGHT = new HeightData(-0.75F, 0.0F);
     public static final HeightData PLATEAU_HEIGHT = new HeightData(1.5F, 0.0F);
     public static final HeightData HIGHLANDS_HEIGHT = new HeightData(1.0F, 0.1F);
     public static final HeightData HIGHLAND_PEAKS_HEIGHT = new HeightData(2.5F, 0.2F);
     public static final HeightData ROLLING_HILLS_HEIGHT = new HeightData(0.75F, 0.75F);
-    public static final HeightData FLAT_HEIGHT = new HeightData(0.0F, 0.0F);
 
     public static final int DESERT_WATER_COLOR = 0x43D5EE;
     
     //------ Rivers ------//
     
     public static final BTWGBiome TROPICAL_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(TROPICAL_RIVER_ID, loc("tropical_river")))
-            .setHeightData(RIVER_HEIGHT)
+            .setHeightData(DefaultBiomes.RIVER_HEIGHT)
             .setRiver()
             .setSurfacer(new SandySurfacer()))
             .setTemperatureAndRainfall(1F, 1F);
 
     public static final BTWGBiome SCRUBLAND_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_RIVER_ID, loc("scrubland_river")))
-            .setHeightData(RIVER_HEIGHT)
+            .setHeightData(DefaultBiomes.RIVER_HEIGHT)
             .setRiver())
             .setTemperatureAndRainfall(1F, 0F)
             .setNoRain()
@@ -84,7 +83,7 @@ public abstract class BiomeConfiguration {
             .setWaterColor(DESERT_WATER_COLOR);
 
     public static final BTWGBiome DESERT_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DESERT_RIVER_ID, loc("desert_river")))
-            .setHeightData(RIVER_HEIGHT)
+            .setHeightData(DefaultBiomes.RIVER_HEIGHT)
             .setRiver())
             .setTemperatureAndRainfall(1F, 0F)
             .setNoRain()
@@ -95,7 +94,7 @@ public abstract class BiomeConfiguration {
             .setWaterColor(DESERT_WATER_COLOR);
 
     public static final BTWGBiome SAVANNA_RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SAVANNA_RIVER_ID, loc("savanna_river")))
-            .setHeightData(RIVER_HEIGHT)
+            .setHeightData(DefaultBiomes.RIVER_HEIGHT)
             .setRiver())
             .setTemperatureAndRainfall(1F, 0F)
             .setNoRain();
@@ -105,7 +104,7 @@ public abstract class BiomeConfiguration {
     //------ River Shores ------//
 
     public static final BTWGBiome PLAINS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(PLAINS_RIVER_SHORE_ID, loc("plains_river_shore")))
-            .setHeightData(FLAT_HEIGHT))
+            .setHeightData(DefaultBiomes.FLAT_HEIGHT))
             .setTemperatureAndRainfall(0.8F, 0.4F)
             .setTreeDistributor(new TreeDistributor(5) {})
             .setGrassDistributor(new PlantDistributor(10))
@@ -113,7 +112,7 @@ public abstract class BiomeConfiguration {
 
     public static final BTWGBiome SCRUBLAND_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(SCRUBLAND_RIVER_SHORE_ID, loc("scrubland_river_shore")))
             .setRiverBiomeData(SCRUBLAND_RIVER)
-            .setHeightData(FLAT_HEIGHT)
+            .setHeightData(DefaultBiomes.FLAT_HEIGHT)
             .setSurfacer(new ScrublandShoreSurfacer()))
             .setTemperatureAndRainfall(1F, 0.0F)
             .setNoRain()
@@ -127,7 +126,7 @@ public abstract class BiomeConfiguration {
 
     public static final BTWGBiome DESERT_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(DESERT_RIVER_SHORE_ID, loc("desert_river_shore")))
             .setRiverBiomeData(DESERT_RIVER)
-            .setHeightData(FLAT_HEIGHT))
+            .setHeightData(DefaultBiomes.FLAT_HEIGHT))
             .setTemperatureAndRainfall(1F, 0.0F)
             .setNoRain()
             .setNoLakes()
@@ -137,7 +136,7 @@ public abstract class BiomeConfiguration {
             .setWaterColor(DESERT_WATER_COLOR);
 
     public static final BTWGBiome HIGHLANDS_RIVER_SHORE = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(HIGHLAND_RIVER_SHORE_ID, loc("highlands_river_shore")))
-            .setHeightData(FLAT_HEIGHT))
+            .setHeightData(DefaultBiomes.FLAT_HEIGHT))
             .setTemperatureAndRainfall(0.4F, 0.5F)
             .setGrassDistributor(new PlantDistributor(10))
             .setTreeDistributor(TreeDistributors.HIGHLANDS);

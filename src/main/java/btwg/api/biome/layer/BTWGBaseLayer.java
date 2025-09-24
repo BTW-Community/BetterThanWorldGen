@@ -56,7 +56,7 @@ public abstract class BTWGBaseLayer extends GenLayer {
         var riverBaseLayer = GenLayerZoom.magnify(1000L, landShapeLayer, 0);
         var riverInitLayer = new GenLayerRiverInit(100L, riverBaseLayer);
         riverBaseLayer = GenLayerZoom.magnify(1000L, riverInitLayer, scale + 1);
-        GenLayer riverLayer = new GenLayerRiver(1L, riverBaseLayer);
+        GenLayer riverLayer = new RiverLayer(1L, riverBaseLayer);
         var smoothRiverLayer = new GenLayerSmooth(1000L, riverLayer);
         riverLayer = GenLayerZoom.magnify(1000L, smoothRiverLayer, 2);
 
