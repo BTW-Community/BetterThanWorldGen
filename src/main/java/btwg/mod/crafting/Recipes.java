@@ -2,11 +2,9 @@ package btwg.mod.crafting;
 
 import btw.block.blocks.MouldingAndDecorativeBlock;
 import btw.block.blocks.SidingAndCornerAndDecorativeBlock;
-import btw.crafting.recipe.CraftingRecipeList;
 import btw.crafting.recipe.RecipeManager;
 import btw.inventory.util.InventoryUtils;
 import btw.item.BTWItems;
-import btw.item.tag.BTWTags;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
 import btwg.mod.block.BTWGBlocks;
@@ -172,7 +170,7 @@ public class Recipes {
         });
 
         // Subblocks
-        addSubBlockRecipesOfType(
+        addWoodSubBlockRecipesOfType(
                 woodType.plankID(),
                 woodType.plankMetadata(),
                 woodType.sidingAndCornerID(),
@@ -227,7 +225,8 @@ public class Recipes {
                 });
     }
 
-    public static void addSubBlockRecipesOfType(int fullBlockID, int fullBlockMetadata, int sidingAndCornerBlockID, int mouldingBlockID) {
+    public static void addWoodSubBlockRecipesOfType(int fullBlockID, int fullBlockMetadata, int sidingAndCornerBlockID, int mouldingBlockID) {
+        // Subblock recipes
         RecipeManager.addRecipe(new ItemStack(mouldingBlockID, 6, MouldingAndDecorativeBlock.SUBTYPE_PEDESTAL_UP), new Object[] {
                 " S ",
                 "###",
@@ -262,8 +261,7 @@ public class Recipes {
                 '#', new ItemStack(mouldingBlockID, 1, 0)
         });
 
-        // Combine recipes
-
+        // Combining recipes
         RecipeManager.addShapelessRecipe(new ItemStack(fullBlockID, 1, fullBlockMetadata), new Object[] {
                 new ItemStack(sidingAndCornerBlockID, 1, 0),
                 new ItemStack(sidingAndCornerBlockID, 1, 0)
