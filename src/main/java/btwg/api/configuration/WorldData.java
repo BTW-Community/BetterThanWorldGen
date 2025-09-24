@@ -2,7 +2,7 @@ package btwg.api.configuration;
 
 import btw.world.util.data.DataEntry;
 import btw.world.util.data.DataProvider;
-import btwg.api.world.generate.ChunkProvider;
+import btwg.api.world.generate.LegacyChunkProvider;
 import btwg.api.world.generate.ChunkProviderRegistry;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.NBTTagCompound;
@@ -21,7 +21,7 @@ public class WorldData {
             .build();
 
     private boolean isBTWG = true;
-    private ResourceLocation overworldChunkProviderID = ChunkProvider.ID;
+    private ResourceLocation overworldChunkProviderID = LegacyChunkProvider.ID;
 
     public static WorldData readFromNBT(NBTTagCompound tag) {
         return new WorldData();

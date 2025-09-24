@@ -18,7 +18,7 @@ public class ChunkProviderRegistry {
         registerChunkProvider(VANILLA_NETHER, (world, seed, mapFeaturesEnebaled, worldData) -> new ChunkProviderHell(world, seed));
         registerChunkProvider(VANILLA_END, (world, seed, mapFeaturesEnebaled, worldData) -> new ChunkProviderEnd(world, seed));
 
-        registerChunkProvider(ChunkProvider.ID, ChunkProvider::new);
+        registerChunkProvider(LegacyChunkProvider.ID, LegacyChunkProvider::new);
     }
 
     public static <T> void  registerChunkProvider(ResourceLocation id, ChunkProviderProvider<T> providerProvider) {
