@@ -28,7 +28,7 @@
 
 package btwg.api.world.generate.noise.function;
 
-public class FastNoise {
+public class PerlinFastNoise {
 	public enum NoiseType {Value, ValueFractal, Perlin, PerlinFractal, Simplex, SimplexFractal, Cellular, WhiteNoise, Cubic, CubicFractal}
 	public enum Interp {Linear, Hermite, Quintic}
 	public enum FractalType {FBM, Billow, RigidMulti}
@@ -49,15 +49,15 @@ public class FastNoise {
 
 	private CellularDistanceFunction m_cellularDistanceFunction = CellularDistanceFunction.Euclidean;
 	private CellularReturnType m_cellularReturnType = CellularReturnType.CellValue;
-	private FastNoise m_cellularNoiseLookup = null;
+	private PerlinFastNoise m_cellularNoiseLookup = null;
 
 	private float m_gradientPerturbAmp = (float) (1.0 / 0.45);
 
-	public FastNoise() {
+	public PerlinFastNoise() {
 		this(1337);
 	}
 
-	public FastNoise(int seed) {
+	public PerlinFastNoise(int seed) {
 		m_seed = seed;
 		CalculateFractalBounding();
 	}
@@ -142,7 +142,7 @@ public class FastNoise {
 
 	// Noise used to calculate a cell value if cellular return type is NoiseLookup
 	// The lookup value is acquired through GetNoise() so ensure you SetNoiseType() on the noise lookup, value, gradient or simplex is recommended
-	public void SetCellularNoiseLookup(FastNoise noise) {
+	public void SetCellularNoiseLookup(PerlinFastNoise noise) {
 		m_cellularNoiseLookup = noise;
 	}
 

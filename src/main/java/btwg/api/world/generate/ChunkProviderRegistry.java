@@ -1,6 +1,7 @@
 package btwg.api.world.generate;
 
 import btwg.api.configuration.WorldData;
+import btwg.api.world.generate.noise.LegacyNoiseProvider;
 import net.minecraft.src.*;
 
 import java.util.HashMap;
@@ -11,12 +12,16 @@ public class ChunkProviderRegistry {
     public static final ResourceLocation VANILLA_NETHER = new ResourceLocation("vanilla_nether");
     public static final ResourceLocation VANILLA_END = new ResourceLocation("vanilla_end");
 
+    public static final ResourceLocation BTWG_LEGACY = new ResourceLocation("btwg_legacy");
+
     private static final Map<ResourceLocation, ChunkProviderProvider<?>> CHUNK_PROVIDERS = new HashMap<>();
 
     static {
-        registerChunkProvider(VANILLA, (world, seed, mapFeaturesEnebaled, worldData) -> new ChunkProviderGenerate(world, seed, mapFeaturesEnebaled));
-        registerChunkProvider(VANILLA_NETHER, (world, seed, mapFeaturesEnebaled, worldData) -> new ChunkProviderHell(world, seed));
-        registerChunkProvider(VANILLA_END, (world, seed, mapFeaturesEnebaled, worldData) -> new ChunkProviderEnd(world, seed));
+        registerChunkProvider(VANILLA, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderGenerate(world, seed, mapFeaturesEnabled));
+        registerChunkProvider(VANILLA_NETHER, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderHell(world, seed));
+        registerChunkProvider(VANILLA_END, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderEnd(world, seed));
+
+        registerChunkProvider(BTWG_LEGACY, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProvider<>(world, new LegacyNoiseProvider(world, seed), mapFeaturesEnabled));
 
         registerChunkProvider(LegacyChunkProvider.ID, LegacyChunkProvider::new);
     }

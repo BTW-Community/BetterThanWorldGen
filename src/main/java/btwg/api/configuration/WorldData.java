@@ -21,7 +21,7 @@ public class WorldData {
             .build();
 
     private boolean isBTWG = true;
-    private ResourceLocation overworldChunkProviderID = LegacyChunkProvider.ID;
+    private ResourceLocation overworldChunkProviderID = ChunkProviderRegistry.BTWG_LEGACY;
 
     public static WorldData readFromNBT(NBTTagCompound tag) {
         return new WorldData();

@@ -2,17 +2,17 @@ package btwg.api.world.generate.noise.function;
 
 import java.util.Random;
 
-public class FastNoiseOctaves {
-	private FastNoise[] generators;
+public class PerlinFastNoiseOctaves {
+	private PerlinFastNoise[] generators;
 	
-	public FastNoiseOctaves(long seed, int numOctaves) {
+	public PerlinFastNoiseOctaves(long seed, int numOctaves) {
 		Random rand = new Random();
 		rand.setSeed(seed);
 		
-		this.generators = new FastNoise[numOctaves];
+		this.generators = new PerlinFastNoise[numOctaves];
 		
 		for (int i = 0; i < numOctaves; i++) {
-			this.generators[i] = new FastNoise(rand.nextInt());
+			this.generators[i] = new PerlinFastNoise(rand.nextInt());
 		}
 	}
 	

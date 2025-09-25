@@ -1,5 +1,7 @@
 package btwg.api.world.generate.noise;
 
+import net.minecraft.src.BiomeGenBase;
+
 public class ModernNoiseProvider extends NoiseProvider {
     public ModernNoiseProvider(long seed) {
         super(seed);
@@ -11,7 +13,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     }
 
     @Override
-    public int[] getBiomes(int chunkX, int chunkZ) {
-        return new int[0];
+    public BiomeGenBase[] getBiomes(int chunkX, int chunkZ) {
+        return new BiomeGenBase[0];
     }
 }

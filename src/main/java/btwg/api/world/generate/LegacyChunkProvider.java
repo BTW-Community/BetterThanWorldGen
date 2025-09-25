@@ -61,66 +61,67 @@ public class LegacyChunkProvider implements IChunkProvider {
     }
 
     public void generateTerrain(int chunkX, int chunkZ, short[] blockIDs, byte[] metadata) {
-        byte var4 = 4;
-        byte var5 = 16;
-        byte var6 = 63;
-        int var7 = var4 + 1;
-        byte var8 = 17;
-        int var9 = var4 + 1;
-        this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, var7 + 5, var9 + 5);
-        this.noiseArray = this.initializeNoiseField(this.noiseArray, chunkX * var4, 0, chunkZ * var4, var7, var8, var9);
+        byte subChunkSize = 4;
+        byte heightSections = 16;
+        byte seaLevel = 63;
+        int subChunkPlusOne = subChunkSize + 1;
+        byte heightSectionsPlus1 = 17;
+        int noiseWidth = subChunkSize + 1;
+        this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, subChunkPlusOne + 5, noiseWidth + 5);
+        this.noiseArray = this.initializeNoiseField(this.noiseArray, chunkX * subChunkSize, 0, chunkZ * subChunkSize, subChunkPlusOne, heightSectionsPlus1, noiseWidth);
 
-        for(int var10 = 0; var10 < var4; ++var10) {
-            for(int var11 = 0; var11 < var4; ++var11) {
-                for(int var12 = 0; var12 < var5; ++var12) {
-                    double var13 = (double)0.125F;
-                    double var15 = this.noiseArray[((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 0];
-                    double var17 = this.noiseArray[((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 0];
-                    double var19 = this.noiseArray[((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 0];
-                    double var21 = this.noiseArray[((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 0];
-                    double var23 = (this.noiseArray[((var10 + 0) * var9 + var11 + 0) * var8 + var12 + 1] - var15) * var13;
-                    double var25 = (this.noiseArray[((var10 + 0) * var9 + var11 + 1) * var8 + var12 + 1] - var17) * var13;
-                    double var27 = (this.noiseArray[((var10 + 1) * var9 + var11 + 0) * var8 + var12 + 1] - var19) * var13;
-                    double var29 = (this.noiseArray[((var10 + 1) * var9 + var11 + 1) * var8 + var12 + 1] - var21) * var13;
+        for (int i = 0; i < subChunkSize; ++i) {
+            for (int k = 0; k < subChunkSize; ++k) {
+                for (int heightSection = 0; heightSection < heightSections; ++heightSection) {
+                    double noiseScale = (double) 0.125F;
+                    double noise00 = this.noiseArray[((i + 0) * noiseWidth + k + 0) * heightSectionsPlus1 + heightSection + 0];
+                    double noise01 = this.noiseArray[((i + 0) * noiseWidth + k + 1) * heightSectionsPlus1 + heightSection + 0];
+                    double noise10 = this.noiseArray[((i + 1) * noiseWidth + k + 0) * heightSectionsPlus1 + heightSection + 0];
+                    double noise11 = this.noiseArray[((i + 1) * noiseWidth + k + 1) * heightSectionsPlus1 + heightSection + 0];
+                    double noiseStep00 = (this.noiseArray[((i + 0) * noiseWidth + k + 0) * heightSectionsPlus1 + heightSection + 1] - noise00) * noiseScale;
+                    double noiseStep01 = (this.noiseArray[((i + 0) * noiseWidth + k + 1) * heightSectionsPlus1 + heightSection + 1] - noise01) * noiseScale;
+                    double noiseStep10 = (this.noiseArray[((i + 1) * noiseWidth + k + 0) * heightSectionsPlus1 + heightSection + 1] - noise10) * noiseScale;
+                    double noiseStep11 = (this.noiseArray[((i + 1) * noiseWidth + k + 1) * heightSectionsPlus1 + heightSection + 1] - noise11) * noiseScale;
 
-                    for(int var31 = 0; var31 < 8; ++var31) {
-                        double var32 = (double)0.25F;
-                        double var34 = var15;
-                        double var36 = var17;
-                        double var38 = (var19 - var15) * var32;
-                        double var40 = (var21 - var17) * var32;
+                    for (int j = 0; j < 8; ++j) {
+                        double interpolationScale = 0.25F;
+                        double interpValue1 = noise00;
+                        double interpValue2 = noise01;
+                        double interpStep1 = (noise10 - noise00) * interpolationScale;
+                        double interpStep2 = (noise11 - noise01) * interpolationScale;
 
-                        for(int var42 = 0; var42 < 4; ++var42) {
-                            int var43 = var42 + var10 * 4 << 11 | 0 + var11 * 4 << 7 | var12 * 8 + var31;
-                            short var44 = 128;
-                            var43 -= var44;
-                            double var45 = (double)0.25F;
-                            double var49 = (var36 - var34) * var45;
-                            double var47 = var34 - var49;
+                        for (int blockX = 0; blockX < 4; ++blockX) {
+                            int blockIndex = blockX + i * 4 << 11 | 0 + k * 4 << 7 | heightSection * 8 + j;
+                            short heightOffset128 = 128;
+                            blockIndex -= heightOffset128;
+                            double interpolationScale2 = (double) 0.25F;
+                            double heightStep = (interpValue2 - interpValue1) * interpolationScale2;
+                            double heightValue = interpValue1 - heightStep;
 
-                            for(int var51 = 0; var51 < 4; ++var51) {
-                                if ((var47 += var49) > (double)0.0F) {
-                                    blockIDs[var43 += var44] = (short)(Block.stone.blockID);
-                                } else if (var12 * 8 + var31 < var6) {
-                                    blockIDs[var43 += var44] = (short)(Block.waterStill.blockID);
-                                } else {
-                                    blockIDs[var43 += var44] = 0;
+                            for (int blockZ = 0; blockZ < 4; ++blockZ) {
+                                if ((heightValue += heightStep) > (double) 0.0F) {
+                                    blockIDs[blockIndex += heightOffset128] = (short) (Block.stone.blockID);
+                                }
+                                else if (heightSection * 8 + j < seaLevel) {
+                                    blockIDs[blockIndex += heightOffset128] = (short) (Block.waterStill.blockID);
+                                }
+                                else {
+                                    blockIDs[blockIndex += heightOffset128] = 0;
                                 }
                             }
 
-                            var34 += var38;
-                            var36 += var40;
+                            interpValue1 += interpStep1;
+                            interpValue2 += interpStep2;
                         }
 
-                        var15 += var23;
-                        var17 += var25;
-                        var19 += var27;
-                        var21 += var29;
+                        noise00 += noiseStep00;
+                        noise01 += noiseStep01;
+                        noise10 += noiseStep10;
+                        noise11 += noiseStep11;
                     }
                 }
             }
         }
-
     }
 
     public void replaceBlocksForBiome(int chunkX, int chunkZ, short[] blockIDs, byte[] metadata, BiomeGenBase[] biomes) {
@@ -253,128 +254,142 @@ public class LegacyChunkProvider implements IChunkProvider {
         return var4;
     }
 
-    private double[] initializeNoiseField(double[] par1ArrayOfDouble, int par2, int par3, int par4, int par5, int par6, int par7) {
-        if (par1ArrayOfDouble == null) {
-            par1ArrayOfDouble = new double[par5 * par6 * par7];
+    private double[] initializeNoiseField(double[] noiseArray, int x, int y, int z, int width, int height, int length) {
+        if (noiseArray == null) {
+            noiseArray = new double[width * height * length];
         }
 
         if (this.parabolicField == null) {
             this.parabolicField = new float[25];
 
-            for(int var8 = -2; var8 <= 2; ++var8) {
-                for(int var9 = -2; var9 <= 2; ++var9) {
-                    float var10 = 10.0F / MathHelper.sqrt_float((float)(var8 * var8 + var9 * var9) + 0.2F);
-                    this.parabolicField[var8 + 2 + (var9 + 2) * 5] = var10;
+            for (int parabolicX = -2; parabolicX <= 2; ++parabolicX) {
+                for (int parabolicZ = -2; parabolicZ <= 2; ++parabolicZ) {
+                    float parabolicValue = 10.0F / MathHelper.sqrt_float(parabolicX * parabolicX + parabolicZ * parabolicZ + 0.2F);
+                    this.parabolicField[parabolicX + 2 + (parabolicZ + 2) * 5] = parabolicValue;
                 }
             }
         }
 
-        double var44 = 684.412;
-        double var45 = 684.412;
-        this.noise5 = this.noiseGen5.generateNoiseOctaves(this.noise5, par2, par4, par5, par7, 1.121, 1.121, (double)0.5F);
-        this.noise6 = this.noiseGen6.generateNoiseOctaves(this.noise6, par2, par4, par5, par7, (double)200.0F, (double)200.0F, (double)0.5F);
-        this.noise3 = this.noiseGen3.generateNoiseOctaves(this.noise3, par2, par3, par4, par5, par6, par7, var44 / (double)80.0F, var45 / (double)160.0F, var44 / (double)80.0F);
-        this.noise1 = this.noiseGen1.generateNoiseOctaves(this.noise1, par2, par3, par4, par5, par6, par7, var44, var45, var44);
-        this.noise2 = this.noiseGen2.generateNoiseOctaves(this.noise2, par2, par3, par4, par5, par6, par7, var44, var45, var44);
-        boolean var43 = false;
-        boolean var42 = false;
-        int var12 = 0;
-        int var13 = 0;
+        double noiseScale1 = 684.412;
+        double noiseScale2 = 684.412;
+        this.noise5 = this.noiseGen5.generateNoiseOctaves(this.noise5, x, z, width, length, 1.121, 1.121, 0.5);
+        this.noise6 = this.noiseGen6.generateNoiseOctaves(this.noise6, x, z, width, length, 200.0, 200.0, 0.5);
+        this.noise3 = this.noiseGen3.generateNoiseOctaves(this.noise3, x, y, z, width, height, length, noiseScale1 / 80.0, noiseScale2 / 160.0, noiseScale1 / 80.0);
+        this.noise1 = this.noiseGen1.generateNoiseOctaves(this.noise1, x, y, z, width, height, length, noiseScale1, noiseScale2, noiseScale1);
+        this.noise2 = this.noiseGen2.generateNoiseOctaves(this.noise2, x, y, z, width, height, length, noiseScale1, noiseScale2, noiseScale1);
+        int noiseIndex = 0;
+        int surfaceNoiseIndex = 0;
 
-        for(int var14 = 0; var14 < par5; ++var14) {
-            for(int var15 = 0; var15 < par7; ++var15) {
-                float var16 = 0.0F;
-                float var17 = 0.0F;
-                float var18 = 0.0F;
-                byte var19 = 2;
+        for (int noiseX = 0; noiseX < width; ++noiseX) {
+            for (int noiseZ = 0; noiseZ < length; ++noiseZ) {
+                float totalVariance = 0.0F;
+                float totalHeight = 0.0F;
+                float totalWeight = 0.0F;
+                byte biomeRadius = 2;
 
-                BiomeGenBase currentBiome = this.biomesForGeneration[var14 + 2 + (var15 + 2) * (par5 + 5)];
+                BiomeGenBase currentBiome = this.biomesForGeneration[noiseX + 2 + (noiseZ + 2) * (width + 5)];
                 // TODO: Update with real version handling
                 var currentHeightData = ((BiomeInterface) currentBiome).getHeightData().get(BetterThanWorldGen.V1_0_0);
 
-                for(int var21 = -var19; var21 <= var19; ++var21) {
-                    for(int var22 = -var19; var22 <= var19; ++var22) {
-                        BiomeGenBase neighborBiome = this.biomesForGeneration[var14 + var21 + 2 + (var15 + var22 + 2) * (par5 + 5)];
+                for (int biomeX = -biomeRadius; biomeX <= biomeRadius; ++biomeX) {
+                    for (int biomeZ = -biomeRadius; biomeZ <= biomeRadius; ++biomeZ) {
+                        BiomeGenBase neighborBiome = this.biomesForGeneration[noiseX + biomeX + 2 + (noiseZ + biomeZ + 2) * (width + 5)];
 
                         // TODO: Update with real version handling
                         var neighborHeightData = ((BiomeInterface) neighborBiome).getHeightData().get(BetterThanWorldGen.V1_0_0);
 
-                        float var24 = this.parabolicField[var21 + 2 + (var22 + 2) * 5] / (neighborHeightData.height() + 2.0F);
+                        float biomeWeight = this.parabolicField[biomeX + 2 + (biomeZ + 2) * 5] / (neighborHeightData.height() + 2.0F);
 
                         if (neighborHeightData.height() > currentHeightData.height()) {
-                            var24 /= 2.0F;
+                            biomeWeight /= 2.0F;
                         }
 
-                        var16 += neighborHeightData.variance() * var24;
-                        var17 += neighborHeightData.height() * var24;
-                        var18 += var24;
+                        totalVariance += neighborHeightData.variance() * biomeWeight;
+                        totalHeight += neighborHeightData.height() * biomeWeight;
+                        totalWeight += biomeWeight;
                     }
                 }
 
-                var16 /= var18;
-                var17 /= var18;
-                var16 = var16 * 0.9F + 0.1F;
-                var17 = (var17 * 4.0F - 1.0F) / 8.0F;
-                double var47 = this.noise6[var13] / (double)8000.0F;
-                if (var47 < (double)0.0F) {
-                    var47 = -var47 * 0.3;
-                }
+                totalVariance /= totalWeight;
+                totalHeight /= totalWeight;
+                totalVariance = totalVariance * 0.9F + 0.1F;
+                totalHeight = (totalHeight * 4.0F - 1.0F) / 8.0F;
 
-                var47 = var47 * (double)3.0F - (double)2.0F;
-                if (var47 < (double)0.0F) {
-                    var47 /= (double)2.0F;
-                    if (var47 < (double)-1.0F) {
-                        var47 = (double)-1.0F;
+                double surfaceNoise = getSurfaceNoise(surfaceNoiseIndex);
+
+                ++surfaceNoiseIndex;
+
+                for (int noiseY = 0; noiseY < height; ++noiseY) {
+                    double heightValue = totalHeight;
+                    double varianceValue = totalVariance;
+                    heightValue += surfaceNoise * 0.2;
+                    heightValue = heightValue * height / 16.0;
+                    double heightScale = height / 2.0 + heightValue * 4.0;
+                    double finalNoise;
+                    double heightDiff = (noiseY - heightScale) * 12.0 * 128.0 / 128.0 / varianceValue;
+
+                    if (heightDiff < 0.0) {
+                        heightDiff *= 4.0;
                     }
 
-                    var47 /= 1.4;
-                    var47 /= (double)2.0F;
-                } else {
-                    if (var47 > (double)1.0F) {
-                        var47 = (double)1.0F;
+                    double noise1Value = this.noise1[noiseIndex] / 512.0;
+                    double noise2Value = this.noise2[noiseIndex] / 512.0;
+                    double noise3Value = (this.noise3[noiseIndex] / 10.0 + 1.0) / 2.0;
+
+                    if (noise3Value < 0.0) {
+                        finalNoise = noise1Value;
+                    }
+                    else if (noise3Value > 1.0) {
+                        finalNoise = noise2Value;
+                    }
+                    else {
+                        finalNoise = noise1Value + (noise2Value - noise1Value) * noise3Value;
                     }
 
-                    var47 /= (double)8.0F;
-                }
+                    finalNoise -= heightDiff;
 
-                ++var13;
-
-                for(int var46 = 0; var46 < par6; ++var46) {
-                    double var48 = (double)var17;
-                    double var26 = (double)var16;
-                    var48 += var47 * 0.2;
-                    var48 = var48 * (double)par6 / (double)16.0F;
-                    double var28 = (double)par6 / (double)2.0F + var48 * (double)4.0F;
-                    double var30 = (double)0.0F;
-                    double var32 = ((double)var46 - var28) * (double)12.0F * (double)128.0F / (double)128.0F / var26;
-                    if (var32 < (double)0.0F) {
-                        var32 *= (double)4.0F;
+                    if (noiseY > height - 4) {
+                        double fadeHeight = (noiseY - (height - 4)) / 3.0;
+                        finalNoise = finalNoise * (1.0 - fadeHeight) + -10.0 * fadeHeight;
                     }
 
-                    double var34 = this.noise1[var12] / (double)512.0F;
-                    double var36 = this.noise2[var12] / (double)512.0F;
-                    double var38 = (this.noise3[var12] / (double)10.0F + (double)1.0F) / (double)2.0F;
-                    if (var38 < (double)0.0F) {
-                        var30 = var34;
-                    } else if (var38 > (double)1.0F) {
-                        var30 = var36;
-                    } else {
-                        var30 = var34 + (var36 - var34) * var38;
-                    }
-
-                    var30 -= var32;
-                    if (var46 > par6 - 4) {
-                        double var40 = (double)((float)(var46 - (par6 - 4)) / 3.0F);
-                        var30 = var30 * ((double)1.0F - var40) + (double)-10.0F * var40;
-                    }
-
-                    par1ArrayOfDouble[var12] = var30;
-                    ++var12;
+                    noiseArray[noiseIndex] = finalNoise;
+                    ++noiseIndex;
                 }
             }
         }
 
-        return par1ArrayOfDouble;
+        return noiseArray;
+    }
+
+    private double getSurfaceNoise(int surfaceNoiseIndex) {
+        double surfaceNoise = this.noise6[surfaceNoiseIndex] / 8000.0;
+
+        if (surfaceNoise < 0.0) {
+            surfaceNoise = -surfaceNoise * 0.3;
+        }
+
+        surfaceNoise = surfaceNoise * 3.0 - 2.0;
+
+        if (surfaceNoise < 0.0) {
+            surfaceNoise /= 2.0;
+
+            if (surfaceNoise < -1.0) {
+                surfaceNoise = -1.0;
+            }
+
+            surfaceNoise /= 1.4;
+            surfaceNoise /= 2.0;
+        }
+        else {
+            if (surfaceNoise > 1.0) {
+                surfaceNoise = 1.0;
+            }
+
+            surfaceNoise /= 8.0;
+        }
+
+        return surfaceNoise;
     }
 
     public boolean chunkExists(int par1, int par2) {
