@@ -22,8 +22,6 @@ public class ChunkProviderRegistry {
         registerChunkProvider(VANILLA_END, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderEnd(world, seed));
 
         registerChunkProvider(BTWG_LEGACY, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProvider<>(world, new LegacyNoiseProvider(world, seed), mapFeaturesEnabled));
-
-        registerChunkProvider(LegacyChunkProvider.ID, LegacyChunkProvider::new);
     }
 
     public static <T> void  registerChunkProvider(ResourceLocation id, ChunkProviderProvider<T> providerProvider) {

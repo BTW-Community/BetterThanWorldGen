@@ -16,7 +16,15 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
     private final World world;
     private final boolean mapFeaturesEnabled;
 
-    private final Random rand = new Random();
+    private final Random rand;
+    private final Random structureRand;
+
+    private final MapGenBase caveGenerator = new MapGenCaves();
+    private final MapGenStronghold strongholdGenerator = new MapGenStronghold();
+    private final MapGenVillage villageGenerator = new MapGenVillage();
+    private final MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
+    private final MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
+    private final MapGenBase ravineGenerator = new MapGenRavine();
 
     private final NoiseGeneratorOctaves legacySoilDepthNoiseGenerator;
     private double[] legacySoilDepthNoise = new double[256];
@@ -25,6 +33,9 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
         this.noiseProvider = noiseProvider;
 
         this.world = world;
+        this.rand = new Random(this.getSeed());
+        this.structureRand = new Random(this.getSeed());
+        
         this.mapFeaturesEnabled = mapFeaturesEnabled;
 
         this.legacySoilDepthNoiseGenerator = new NoiseGeneratorOctaves(this.rand, 4);
@@ -71,7 +82,15 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
         BiomeGenBase[] biomes = this.noiseProvider.getBiomes(chunkX, chunkZ);
         this.replaceBlocksForBiome(chunkX, chunkZ, blockIDs, metadata, biomes);
 
-        // TODO: structure generation
+        this.caveGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+        this.ravineGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+        
+        if (this.mapFeaturesEnabled) {
+            this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+            this.villageGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+            this.strongholdGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+            this.scatteredFeatureGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+        }
 
         Chunk chunk = new Chunk(this.world, blockIDs, metadata, chunkX, chunkZ);
         byte[] chunkBiomes = chunk.getBiomeArray();
@@ -186,8 +205,111 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
     //------ Chunk Population ------//
 
     @Override
-    public void populate(IChunkProvider chunkProvider, int chunkX, int chunkZ) {
-        // TODO: implement
+    public void populate(IChunkProvider par1IChunkProvider, int chunkX, int chunkZ) {
+        int x = chunkX * 16;
+        int z = chunkZ * 16;
+        
+        BiomeGenBase biome = this.world.getBiomeGenForCoords(x + 16, z + 16);
+        this.rand.setSeed(this.world.getSeed());
+        long seedModifier1 = this.rand.nextLong() / 2L * 2L + 1L;
+        long seedModifier2 = this.rand.nextLong() / 2L * 2L + 1L;
+        this.rand.setSeed((long) chunkX * seedModifier1 + (long) chunkZ * seedModifier2 ^ this.world.getSeed());
+        boolean hasVillage = false;
+        
+        if (this.mapFeaturesEnabled) {
+            this.mineshaftGenerator.generateStructuresInChunk(this.world, this.rand, chunkX, chunkZ);
+            this.structureRand.setSeed((long) chunkX * seedModifier1 + (long) chunkZ * seedModifier2 ^ this.world.getSeed());
+            hasVillage = this.villageGenerator.generateStructuresInChunk(this.world, this.structureRand, chunkX, chunkZ);
+            this.strongholdGenerator.generateStructuresInChunk(this.world, this.structureRand, chunkX, chunkZ);
+            this.scatteredFeatureGenerator.generateStructuresInChunk(this.world, this.structureRand, chunkX, chunkZ);
+        }
+
+        if (biome != BiomeGenBase.desert && biome != BiomeGenBase.desertHills && !hasVillage && this.rand.nextInt(4) == 0) {
+            int lakeX = x + this.rand.nextInt(16) + 8;
+            int lakeY = this.rand.nextInt(128);
+            int lakeZ = z + this.rand.nextInt(16) + 8;
+            (new WorldGenLakes(Block.waterStill.blockID)).generate(this.world, this.rand, lakeX, lakeY, lakeZ);
+        }
+
+        if (!hasVillage && this.rand.nextInt(8) == 0) {
+            int lakeX = x + this.rand.nextInt(16) + 8;
+            int lakeY = this.rand.nextInt(this.rand.nextInt(120) + 8);
+            int lakeZ = z + this.rand.nextInt(16) + 8;
+            if (lakeY < 63 || this.rand.nextInt(10) == 0) {
+                (new WorldGenLakes(Block.lavaStill.blockID)).generate(this.world, this.rand, lakeX, lakeY, lakeZ);
+            }
+        }
+
+        for (int dungeonCount = 0; dungeonCount < 8; ++dungeonCount) {
+            int dungeonX = x + this.rand.nextInt(16) + 8;
+            int dungeonY = this.rand.nextInt(128);
+            int dungeonZ = z + this.rand.nextInt(16) + 8;
+            (new WorldGenDungeons()).generate(this.world, this.rand, dungeonX, dungeonY, dungeonZ);
+        }
+
+        biome.decorate(this.world, this.rand, x, z);
+        SpawnerAnimals.performWorldGenSpawning(this.world, biome, x + 8, z + 8, 16, 16, this.rand);
+        
+        x += 8;
+        z += 8;
+
+        for (int i = 0; i < 16; ++i) {
+            for (int k = 0; k < 16; ++k) {
+                int precipitationHeight = this.world.getPrecipitationHeight(x + i, z + k);
+                if (this.world.isBlockFreezable(i + x, precipitationHeight - 1, k + z)) {
+                    this.world.setBlock(i + x, precipitationHeight - 1, k + z, Block.ice.blockID, 0, 2);
+                }
+
+                if (this.world.canSnowAt(i + x, precipitationHeight, k + z)) {
+                    this.world.setBlock(i + x, precipitationHeight, k + z, Block.snow.blockID, 0, 2);
+                } else if (this.world.canSnowAt(i + x, precipitationHeight + 1, k + z)) {
+                    this.world.setBlock(i + x, precipitationHeight + 1, k + z, Block.snow.blockID, 0, 2);
+                }
+            }
+        }
+
+        this.btwPostProcessChunk(this.world, x - 8, z - 8);
+    }
+
+    private void btwPostProcessChunk(World worldObj, int chunkX, int chunkZ) {
+        if (worldObj.provider.dimensionId == 0) {
+            this.generateStrata(worldObj, chunkX, chunkZ);
+            this.generateAdditionalBrownMushrooms(worldObj, chunkX, chunkZ);
+        }
+    }
+
+    private void generateAdditionalBrownMushrooms(World worldObj, int chunkX, int chunkZ) {
+        if (worldObj.rand.nextInt(4) == 0) {
+            WorldGenerator mushroomBrownGen = new WorldGenFlowers(Block.mushroomBrown.blockID);
+            int mushroomX = chunkX + worldObj.rand.nextInt(16) + 8;
+            int mushroomY = worldObj.rand.nextInt(25);
+            int mushroomZ = chunkZ + worldObj.rand.nextInt(16) + 8;
+            mushroomBrownGen.generate(worldObj, worldObj.rand, mushroomX, mushroomY, mushroomZ);
+        }
+    }
+
+    private void generateStrata(World world, int chunkX, int chunkZ) {
+        Chunk chunk = world.getChunkFromChunkCoords(chunkX >> 4, chunkZ >> 4);
+
+        for (int localX = 0; localX < 16; ++localX) {
+            for (int localZ = 0; localZ < 16; ++localZ) {
+                int localY = 0;
+
+                for (int strataHeight = 24 + world.rand.nextInt(2); localY <= strataHeight; ++localY) {
+                    int blockID = chunk.getBlockID(localX, localY, localZ);
+                    if (blockID == Block.stone.blockID) {
+                        chunk.setBlockMetadata(localX, localY, localZ, 2);
+                    }
+                }
+
+                for (int strataHeight2 = 48 + world.rand.nextInt(2); localY <= strataHeight2; ++localY) {
+                    int blockID = chunk.getBlockID(localX, localY, localZ);
+                    if (blockID == Block.stone.blockID) {
+                        chunk.setBlockMetadata(localX, localY, localZ, 1);
+                    }
+                }
+            }
+        }
     }
 
     //------ Additional Functionality -----//
@@ -223,20 +345,29 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
     }
 
     @Override
-    public List getPossibleCreatures(EnumCreatureType enumCreatureType, int x, int y, int z) {
-        // TODO: implement
-        return List.of();
+    public List getPossibleCreatures(EnumCreatureType creatureType, int x, int y, int z) {
+        BiomeGenBase biome = this.world.getBiomeGenForCoords(x, z);
+
+        if (creatureType == EnumCreatureType.monster && this.scatteredFeatureGenerator.func_143030_a(x, y, z)) {
+            return this.scatteredFeatureGenerator.getScatteredFeatureSpawnList();
+        }
+
+        return biome.getSpawnableList(creatureType);
     }
 
     @Override
-    public ChunkPosition findClosestStructure(World world, String string, int x, int y, int z) {
-        // TODO: implement
-        return null;
+    public ChunkPosition findClosestStructure(World world, String structureName, int x, int y, int z) {
+        return "Stronghold".equals(structureName) ? this.strongholdGenerator.getNearestInstance(world, x, y, z) : null;
     }
 
     @Override
     public void recreateStructures(int chunkX, int chunkZ) {
-        // TODO: implement
+        if (this.mapFeaturesEnabled) {
+            this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, null, null);
+            this.villageGenerator.generate(this, this.world, chunkX, chunkZ, null, null);
+            this.strongholdGenerator.generate(this, this.world, chunkX, chunkZ, null, null);
+            this.scatteredFeatureGenerator.generate(this, this.world, chunkX, chunkZ, null, null);
+        }
     }
 
     @Override

@@ -2,7 +2,6 @@ package btwg.api.configuration;
 
 import btw.world.util.data.DataEntry;
 import btw.world.util.data.DataProvider;
-import btwg.api.world.generate.LegacyChunkProvider;
 import btwg.api.world.generate.ChunkProviderRegistry;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.NBTTagCompound;
