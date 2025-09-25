@@ -26,7 +26,7 @@
 // off every 'zix'.)
 //
 
-package btwg.api.world.generate.noise;
+package btwg.api.world.generate.noise.function;
 
 public class FastNoise {
 	public enum NoiseType {Value, ValueFractal, Perlin, PerlinFractal, Simplex, SimplexFractal, Cellular, WhiteNoise, Cubic, CubicFractal}

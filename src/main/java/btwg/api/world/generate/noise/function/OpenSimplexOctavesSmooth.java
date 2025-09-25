@@ -1,8 +1,7 @@
-package btwg.api.world.generate.noise;
+package btwg.api.world.generate.noise.function;
 
 import java.util.Random;
 
-import opensimplex2.OpenSimplex2;
 import opensimplex2.OpenSimplex2S;
 
 public class OpenSimplexOctavesSmooth {

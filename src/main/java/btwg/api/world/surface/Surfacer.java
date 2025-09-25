@@ -1,6 +1,6 @@
 package btwg.api.world.surface;
 
-import btwg.api.world.generate.noise.OpenSimplexOctavesFast;
+import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;

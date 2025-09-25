@@ -1,10 +1,21 @@
 package btwg.api.world.generate;
 
+import btwg.api.world.generate.noise.NoiseProvider;
 import net.minecraft.src.*;
 
 import java.util.List;
 
-public class ChunkProvider implements IChunkProvider {
+public class ChunkProvider<T extends NoiseProvider> implements IChunkProvider {
+    private final T noiseProvider;
+
+    public ChunkProvider(T noiseProvider) {
+        this.noiseProvider = noiseProvider;
+    }
+
+    public long getSeed() {
+        return this.noiseProvider.seed;
+    }
+
     @Override
     public Chunk provideChunk(int chunkX, int chunkZ) {
         return null;
