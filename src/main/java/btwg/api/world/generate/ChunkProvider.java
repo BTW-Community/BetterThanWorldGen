@@ -210,6 +210,8 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
 
     @Override
     public void populate(IChunkProvider par1IChunkProvider, int chunkX, int chunkZ) {
+        if (1==1) return;
+
         int x = chunkX * 16;
         int z = chunkZ * 16;
         
