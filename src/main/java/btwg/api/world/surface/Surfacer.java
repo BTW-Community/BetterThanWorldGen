@@ -30,8 +30,10 @@ public class Surfacer {
     }
 
     public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
-        short blockID = blockIDs[index(i, j, k)];
-        byte meta = metadata[index(i, j, k)];
+        int height = blockIDs.length / 256;
+
+        short blockID = blockIDs[index(i, j, k, height)];
+        byte meta = metadata[index(i, j, k, height)];
 
         int x = chunkX * 16 + i;
         int z = chunkZ * 16 + k;
@@ -40,7 +42,7 @@ public class Surfacer {
         int maxSandstoneDepth = this.getSandstoneDepth(x, z);
 
         if (depth == 0) {
-            if (blockIDs[index(i, j + 1, k)] == 0) {
+            if (blockIDs[index(i, j + 1, k, height)] == 0) {
                 blockID = biome.topBlock;
                 meta = biome.topBlockMetadata;
             }
@@ -49,8 +51,8 @@ public class Surfacer {
                 meta = biome.fillerBlockMetadata;
             }
 
-            blockIDs[index(i, j, k)] = blockID;
-            metadata[index(i, j, k)] = meta;
+            blockIDs[index(i, j, k, height)] = blockID;
+            metadata[index(i, j, k, height)] = meta;
         }
         else if (depth > 0) {
             if (depth < maxSoilDepth) {
@@ -62,8 +64,8 @@ public class Surfacer {
                 meta = 0;
             }
 
-            blockIDs[index(i, j, k)] = blockID;
-            metadata[index(i, j, k)] = meta;
+            blockIDs[index(i, j, k, height)] = blockID;
+            metadata[index(i, j, k, height)] = meta;
         }
     }
 
@@ -84,7 +86,7 @@ public class Surfacer {
         return (int) (this.sandstoneDepthNoise.noise2(x, z, sandstoneDepthScale) * 2.5 + 2.5);
     }
 
-    public static int index(int x, int y, int z) {
-        return y + 128 * (z + 16 * x);
+    public static int index(int x, int y, int z, int yHeight) {
+        return y + yHeight * (z + 16 * x);
     }
 }

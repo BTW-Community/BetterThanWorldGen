@@ -10,7 +10,9 @@ public class ScrublandSurfacer extends Surfacer {
 
     @Override
     public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
-        short blockID = blockIDs[index(i, j, k)];
+        int height = blockIDs.length / 256;
+
+        short blockID = blockIDs[index(i, j, k, height)];
 
         int x = chunkX * 16 + i;
         int z = chunkZ * 16 + k;
@@ -20,8 +22,8 @@ public class ScrublandSurfacer extends Surfacer {
 
         if (sandyDirtNoiseValue > 0.75) {
             if (depth < this.getSoilDepth(x, z)){
-                blockIDs[index(i, j, k)] = (short) BTWGBlocks.sandyDirt.blockID;
-                metadata[index(i, j, k)] = 0;
+                blockIDs[index(i, j, k, height)] = (short) BTWGBlocks.sandyDirt.blockID;
+                metadata[index(i, j, k, height)] = 0;
             }
         }
         else {

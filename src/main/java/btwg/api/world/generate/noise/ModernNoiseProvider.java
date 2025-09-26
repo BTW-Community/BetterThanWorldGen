@@ -1,8 +1,12 @@
 package btwg.api.world.generate.noise;
 
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
+import btwg.api.world.generate.noise.spline.Key;
+import btwg.api.world.generate.noise.spline.Spline;
+import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ModernNoiseProvider extends NoiseProvider {
@@ -16,8 +20,24 @@ public class ModernNoiseProvider extends NoiseProvider {
 
     public static final int TERRAIN_SCALE = 64;
 
-    public static final int NOISE_SUBSCALE = 4;
+    // TODO: fix interpolation
+    public static final int NOISE_SUBSCALE = 16;
     public static final int NOISE_SIZE = NOISE_SUBSCALE + 1;
+
+    public static final int TOTAL_Y_HEIGHT = 256;
+
+    private static final Spline continentalnessSpline = Spline.of(
+            new Key(-1.50, 40.0 / TOTAL_Y_HEIGHT),  // start
+            new Key(-1.00, 50.0 / TOTAL_Y_HEIGHT),  // deep ocean
+            new Key(-0.40, 85.0 / TOTAL_Y_HEIGHT),  // shallow shelf
+            new Key(0.00, 110.0 / TOTAL_Y_HEIGHT),  // plains
+            new Key(0.60, 150.0 / TOTAL_Y_HEIGHT),  // highlands
+            new Key(1.00, 180.0 / TOTAL_Y_HEIGHT),  // interior plateaus
+            new Key(1.50, 210.0 / TOTAL_Y_HEIGHT)   // end
+    );
+
+    private static final int DRIVER_OCTAVES = 4;
+    private static final int TERRAIN_OCTAVES = 3;
 
     private final OpenSimplexOctavesFast continentalnessGenerator;
     private final OpenSimplexOctavesFast erosionGenerator;
@@ -39,61 +59,86 @@ public class ModernNoiseProvider extends NoiseProvider {
 
     private double[] terrain;
 
+    private double[] interpolatedContinentalness;
+    private double[] interpolatedErosion;
+    private double[] interpolatedRidges;
+    private double[] interpolatedWeirdness;
+
+    private double[] interpolatedTemperature;
+    private double[] interpolatedHumidity;
+
+    private double[] interpolatedTerrain;
+
     public ModernNoiseProvider(long seed) {
         super(seed);
 
         Random rand = new Random(seed);
 
-        this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
-        this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
-        this.ridgesGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
-        this.weirdnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
+        this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.ridgesGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.weirdnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
 
-        this.temperatureGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
-        this.humidityGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 4);
+        this.temperatureGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.humidityGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
 
-        this.terrainGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), 8);
+        this.terrainGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), TERRAIN_OCTAVES);
+    }
+
+    public static double smoothstep(double edge0, double edge1, double x) {
+        double t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+        return t * t * (3.0 - 2.0 * t);
+    }
+
+    private static double clamp(double value, double min, double max) {
+        return Math.max(min, Math.min(value, max));
     }
 
     @Override
     public double[] getTerrainNoise(int chunkX, int chunkZ) {
         this.initNoiseFields(chunkX, chunkZ);
 
-        return new double[0];
-    }
+        double[] terrain = new double[16 * 16 * TOTAL_Y_HEIGHT];
 
-    private void initNoiseFields(int chunkX, int chunkZ) {
-        this.continentalness = getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, CONTINENTALNESS_SCALE);
-        this.erosion = getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, EROSION_SCALE);
-        this.ridges = getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, RIDGES_SCALE);
-        this.weirdness = getNoise2D(this.weirdnessGenerator, this.weirdness, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, WEIRDNESS_SCALE);
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                double continentalness = this.interpolatedContinentalness[idx(i, k, 16)];
+                int height = (int) Math.round(continentalness * TOTAL_Y_HEIGHT);
 
-        this.terrain = getNoise2D(this.terrainGenerator, this.terrain, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, TERRAIN_SCALE);
-    }
-    
-    private double[] interpolate(double[] noiseArray, int sizeX, int sizeZ, double n00, double n01, double n10, double n11) {
-        if (noiseArray == null || noiseArray.length < sizeX * sizeZ) {
-            noiseArray = new double[sizeX * sizeZ];
-        }
+                for (int j = 0; j < TOTAL_Y_HEIGHT; j++) {
+                    int idx = idx(i, j, k, TOTAL_Y_HEIGHT, 16);
 
-        for (int i = 0; i < sizeX; i++) {
-            for (int k = 0; k < sizeZ; k++) {
-                double x = (double) i / (sizeX - 1);
-                double z = (double) k / (sizeZ - 1);
+                    double terrainValue = this.terrain[idx];
 
-                double nx0 = n00 * (1 - x) + n10 * x;
-                double nx1 = n01 * (1 - x) + n11 * x;
-                double nz = nx0 * (1 - z) + nx1 * z;
+                    int distance = j - height;
 
-                noiseArray[i * sizeX + k] = nz;
+                    int amplitude = 10;
+                    int innerFadeRadius = 4;
+                    int outerFadeRadius = 40;
+
+                    double fade = 1 - smoothstep(innerFadeRadius, outerFadeRadius, Math.abs(distance));
+                    double offset = amplitude * terrainValue * fade;
+
+                    double density = -distance + offset;
+                    terrain[idx] = density;
+                }
             }
         }
 
-        return noiseArray;
+        return terrain;
     }
 
-    private double[] getNoise2D(OpenSimplexOctavesFast generator, double[] noiseArray, int chunkX, int chunkZ, int sizeX, int sizeZ, int scale) {
-        if  (noiseArray == null || noiseArray.length < sizeX * sizeZ) {
+    private void initNoiseFields(int chunkX, int chunkZ) {
+        this.continentalness = getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
+        // TODO: fix interpolation
+        this.interpolatedContinentalness = this.continentalness;
+        this.transformNoise(this.interpolatedContinentalness, continentalnessSpline);
+
+        this.terrain = getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
+    }
+
+    private double[] getNoise2D(OpenSimplexOctavesFast generator, double[] noiseArray, int chunkX, int chunkZ, int sizeX, int sizeZ, int stepX, int stepZ, int scale) {
+        if (noiseArray == null || noiseArray.length < sizeX * sizeZ) {
             noiseArray = new double[sizeX * sizeZ];
         }
 
@@ -102,8 +147,8 @@ public class ModernNoiseProvider extends NoiseProvider {
 
         for (int i = 0; i < sizeX; ++i) {
             for (int k = 0; k < sizeZ; ++k) {
-                double noise = generator.noise2(x + i, z + k, 1D / scale);
-                noiseArray[i * sizeX + k] = noise;
+                double noise = generator.noise2(x + i * stepX, z + k * stepZ, 1D / scale);
+                noiseArray[idx(i, k, sizeZ)] = noise;
             }
         }
 
@@ -122,7 +167,7 @@ public class ModernNoiseProvider extends NoiseProvider {
             for (int k = 0; k < sizeZ; ++k) {
                 for (int j = 0; j < sizeY; ++j) {
                     double noise = generator.noise3(x + i, y + j, z + k, 1D / scale);
-                    noiseArray[(i * sizeX + k) * sizeZ + j] = noise;
+                    noiseArray[idx(i, j, k, sizeY, sizeZ)] = noise;
                 }
             }
         }
@@ -130,11 +175,32 @@ public class ModernNoiseProvider extends NoiseProvider {
         return noiseArray;
     }
 
+    private void transformNoise(double[] noise, Spline spline) {
+        for (int i = 0; i < noise.length; i++) {
+            noise[i] = spline.eval(noise[i]);
+        }
+    }
+
+    private int idx(int x, int z, int sizeZ) {
+        return x * sizeZ + z;
+    }
+
+    private int idx(int x, int y, int z, int sizeY, int sizeZ) {
+        return x * sizeZ * sizeY + z * sizeY + y;
+    }
+
     @Override
     public BiomeGenBase[] getBiomes(int chunkX, int chunkZ) {
-        this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, TEMPERATURE_SCALE);
-        this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, HUMIDITY_SCALE);
+        //this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, TEMPERATURE_SCALE);
+        //this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, HUMIDITY_SCALE);
 
-        return new BiomeGenBase[0];
+        BiomeGenBase[] biomes = new BiomeGenBase[256];
+        Arrays.fill(biomes, BiomeConfiguration.RAINFOREST);
+        return biomes;
+    }
+
+    @Override
+    public byte getSeaLevel() {
+        return (int) ((100) / 256.0 * TOTAL_Y_HEIGHT);
     }
 }

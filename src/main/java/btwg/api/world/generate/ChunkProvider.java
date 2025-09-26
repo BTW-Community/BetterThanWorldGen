@@ -64,10 +64,12 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
         short[] blockIDs = new short[terrainNoise.length];
         byte[] metadata = new byte[terrainNoise.length];
 
+        int height = terrainNoise.length / 256;
+
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
-                for (int j = 0; j < terrainNoise.length / 256; j++) {
-                    int index = (i * 16 + k) * terrainNoise.length / 256 + j;
+                for (int j = 0; j < height; j++) {
+                    int index = (i * 16 + k) * height + j;
 
                     if (terrainNoise[index] > 0) {
                         blockIDs[index] = (short) Block.stone.blockID;
@@ -82,8 +84,8 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
         BiomeGenBase[] biomes = this.noiseProvider.getBiomes(chunkX, chunkZ);
         this.replaceBlocksForBiome(chunkX, chunkZ, blockIDs, metadata, biomes);
 
-        this.caveGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
-        this.ravineGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+        //this.caveGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
+        //this.ravineGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
         
         if (this.mapFeaturesEnabled) {
             this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
@@ -110,6 +112,8 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
 
         var defaultSurfacer = new BiomeData<>(Surfacer.DEFAULT);
 
+        int height = blockIDs.length / 256;
+
         for(int k = 0; k < 16; ++k) {
             for(int i = 0; i < 16; ++i) {
                 BiomeGenBase biome = biomes[i + k * 16];
@@ -118,8 +122,8 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
                     int depth = -1;
                     int lastSurface = -1;
 
-                    for (int j = 127; j >= 0; --j) {
-                        int index = (i * 16 + k) * 128 + j;
+                    for (int j = height - 1; j >= 0; --j) {
+                        int index = (i * 16 + k) * height + j;
                         if (j <= 0 + this.rand.nextInt(5)) {
                             blockIDs[index] = (short) Block.bedrock.blockID;
                         }
@@ -151,8 +155,8 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
                     short fillerBlock = biome.fillerBlock;
                     byte fillerBlockMetadata = biome.fillerBlockMetadata;
 
-                    for (int j = 127; j >= 0; --j) {
-                        int index = (i * 16 + k) * 128 + j;
+                    for (int j = height - 1; j >= 0; --j) {
+                        int index = (i * 16 + k) * height + j;
                         if (j <= this.rand.nextInt(5)) {
                             blockIDs[index] = (short) Block.bedrock.blockID;
                         } else {

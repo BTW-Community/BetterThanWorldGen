@@ -1,16 +1,11 @@
 package btwg.api.world.generate.noise.spline;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
-public final class CatmullRomSpline {
-    private final Key[] keys;
-
-    public CatmullRomSpline(Key... keys) {
-        if (keys == null || keys.length < 2) throw new IllegalArgumentException("Need at least 2 keys");
-        this.keys = Arrays.stream(keys).sorted(Comparator.comparingDouble(Key::x)).toArray(Key[]::new);
+public final class CatmullRomSpline extends Spline {
+    CatmullRomSpline(Key... keys) {
+        super(keys);
     }
 
+    @Override
     public double eval(double x) {
         // Clamp outside range to avoid kinks at ends (C1 within, C0 at ends by design)
         if (x <= keys[0].x()) return keys[0].y();
@@ -49,19 +44,5 @@ public final class CatmullRomSpline {
 
         double dx = (k2.x() - k1.x());
         return h00 * k1.y() + h10 * m1 * dx + h01 * k2.y() + h11 * m2 * dx;
-    }
-
-    private int locateSegment(double x) {
-        int lo = 0, hi = keys.length - 2;
-        while (lo <= hi) {
-            int mid = (lo + hi) >>> 1;
-            if (x < keys[mid + 1].x()) {
-                if (x >= keys[mid].x()) return mid;
-                hi = mid - 1;
-            } else {
-                lo = mid + 1;
-            }
-        }
-        return Math.max(0, Math.min(keys.length - 2, lo));
     }
 }
