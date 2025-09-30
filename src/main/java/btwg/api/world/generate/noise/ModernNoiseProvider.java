@@ -13,6 +13,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     public static final int CONTINENTALNESS_SCALE = 1536;
     public static final int EROSION_SCALE = 384;
     public static final int RIDGES_SCALE = 384;
+    public static final int VALLEY_SCALE = 96;
     public static final int WEIRDNESS_SCALE = 256;
 
     public static final int TEMPERATURE_SCALE = 1024;
@@ -68,6 +69,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     private final OpenSimplexOctavesFast continentalnessGenerator;
     private final OpenSimplexOctavesFast erosionGenerator;
     private final OpenSimplexOctavesFast ridgesGenerator;
+    private final OpenSimplexOctavesFast riverGenerator;
     private final OpenSimplexOctavesFast weirdnessGenerator;
 
     private final OpenSimplexOctavesFast temperatureGenerator;
@@ -83,6 +85,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     private double[] heightBias;
 
     private double[] ridges;
+    private double[] valleys;
     private double[] weirdness;
 
     private double[] temperature;
@@ -90,6 +93,7 @@ public class ModernNoiseProvider extends NoiseProvider {
 
     private double[] terrain;
 
+    private double[] gaussianBlur;
 
     public ModernNoiseProvider(long seed) {
         super(seed);
@@ -99,12 +103,20 @@ public class ModernNoiseProvider extends NoiseProvider {
         this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES + 2);
         this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES + 2);
         this.ridgesGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.riverGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.weirdnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
 
         this.temperatureGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.humidityGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
 
         this.terrainGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), TERRAIN_OCTAVES);
+
+        int gaussianBlurSize = 3;
+        gaussianBlur = Arrays.stream(new double[] {
+                1, 2, 1,
+                2, 4, 2,
+                1, 2, 1
+        }).map(x -> x / (double) (gaussianBlurSize * gaussianBlurSize)).toArray();
     }
 
     public static double smoothstep(double edge0, double edge1, double x) {
@@ -126,16 +138,63 @@ public class ModernNoiseProvider extends NoiseProvider {
         return Math.pow(r, exponent);   // sharpen ridges
     }
 
+    private double calculateLaplacianCurvature() {
+        double curvature = 0;
+        for (int i = 1; i < 15; i++) {
+            for (int k = 1; k < 15; k++) {
+                int center = idx(i, k, 16);
+                int left = idx(i - 1, k, 16);
+                int right = idx(i + 1, k, 16);
+                int up = idx(i, k - 1, 16);
+                int down = idx(i, k + 1, 16);
+
+                double laplacian = (this.continentalness[left] +
+                        this.continentalness[right] +
+                        this.continentalness[up] +
+                        this.continentalness[down] -
+                        4 * this.continentalness[center]);
+                curvature += Math.abs(laplacian);
+            }
+        }
+        return curvature / (14 * 14); // Average over interior points
+    }
+
+    private double calculateChunkSlope() {
+        double totalSlope = 0;
+        for (int i = 1; i < 15; i++) {
+            for (int k = 1; k < 15; k++) {
+                int center = idx(i, k, 16);
+                int right = idx(i + 1, k, 16);
+                int down = idx(i, k + 1, 16);
+
+                double slopeX = Math.abs(this.continentalness[right] - this.continentalness[center]);
+                double slopeZ = Math.abs(this.continentalness[down] - this.continentalness[center]);
+                totalSlope += Math.sqrt(slopeX * slopeX + slopeZ * slopeZ);
+            }
+        }
+        return totalSlope / (14 * 14);
+    }
+
     @Override
     public double[] getTerrainNoise(int chunkX, int chunkZ) {
         this.initNoiseFields(chunkX, chunkZ);
 
         double[] terrain = new double[16 * 16 * TOTAL_Y_HEIGHT];
 
+        // Calculate valleys for generating rivers
+        double rawCurvature = calculateLaplacianCurvature();
+        double curvature = smoothstep(0.05, 0.15, 0.05 * rawCurvature);
+
+        double rawSlope = calculateChunkSlope();
+        double slope = smoothstep(2, 6, rawSlope);
+
+        double valleyFactor = clamp(slope * curvature, 0.0, 1.0);
+
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
                 int colIdx = idx(i, k, 16);
 
+                // Erosion to manipulate 3D noise parameters
                 double thickness = 8;
                 double amplitude = 10;
                 double heightBias = 8;
@@ -144,15 +203,39 @@ public class ModernNoiseProvider extends NoiseProvider {
                 amplitude *= this.amplitude[colIdx];
                 heightBias *= this.heightBias[colIdx];
 
+                // Base heightmap from continentalness
                 double continentalness = this.continentalness[colIdx];
                 double height = continentalness * TOTAL_Y_HEIGHT + heightBias;
 
-                // Build a ridge mask from the 2D ridges field. Tune thresholds and exponent.
-                // ridges[colIdx] is ~[-1,1]. Convert to [0,1] peaks and gate with smoothstep.
-                double ridgePeak = ridge(this.ridges[colIdx], 2.0); // sharper peaks
-                double ridgeMask = smoothstep(0.25, 0.75, ridgePeak); // only keep strong ridges
-                // Let ridges increase 3D detail amplitude locally
-                double ridgeAmp = lerp(0.6, 2.0, ridgeMask); // 60%..140% of base amplitude
+                // Create ridges
+                // Exponent to sharpen the ridge mask, map to amplitude to control 3D noise
+                double ridgePeak = ridge(this.ridges[colIdx], 2.0);
+                double ridgeMask = smoothstep(0.25, 0.75, ridgePeak);
+                double ridgeAmp = lerp(0.6, 2.0, ridgeMask);
+
+                // Generate valley noise
+                double valleyBlur = 0;
+
+                for (int x = -1; x <= 1; x++) {
+                    for (int z = -1; z <= 1; z++) {
+                        int riverIdx = idx((int) clamp(i + x, 0, 15), (int) clamp(k + z, 0, 15), 16);
+
+                        double valleyNoise = this.valleys[riverIdx];
+                        valleyNoise = smoothstep(0.35, 0.55, Math.abs(valleyNoise));
+                        valleyNoise = clamp(valleyNoise * valleyFactor, 0.0, 1.0);
+
+                        valleyBlur += valleyNoise * gaussianBlur[idx(x + 1, z + 1, 3)];
+                    }
+                }
+
+                double valleyMask = Math.pow(valleyBlur, 0.8);
+
+                double baseDepth = 4;
+                int seaLevel = this.getSeaLevel();
+                double seaFade = smoothstep(seaLevel - 16, seaLevel + 8, height);
+                double depth = baseDepth * seaFade * valleyMask;
+
+                height -= depth;
 
                 for (int j = 0; j < TOTAL_Y_HEIGHT; j++) {
                     int idx = idx(i, j, k, TOTAL_Y_HEIGHT, 16);
@@ -186,18 +269,19 @@ public class ModernNoiseProvider extends NoiseProvider {
     }
 
     private void initNoiseFields(int chunkX, int chunkZ) {
+        // TODO: fix interpolation to improve performance
+
         this.continentalness = getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
-        // TODO: fix interpolation
         this.transformNoise(this.continentalness, continentalnessSpline);
 
         this.erosion = getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
-        // TODO: fix interpolation
         this.thickness = this.transformNoise(this.thickness, this.erosion, erosionToThickness);
         this.amplitude = this.transformNoise(this.amplitude, this.erosion, erosionToAmplitude);
         this.heightBias = this.transformNoise(this.heightBias, this.erosion, erosionToHeightBias);
 
         this.ridges = getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, 16, 16, 1, 1, RIDGES_SCALE);
-        // TODO: fix interpolation
+
+        this.valleys = getNoise2D(this.riverGenerator, this.valleys, chunkX, chunkZ, 16, 16, 1, 1, VALLEY_SCALE);
 
         this.terrain = getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
     }
