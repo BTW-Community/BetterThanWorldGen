@@ -7,9 +7,6 @@ import net.minecraft.src.BiomeGenBase;
 import java.util.Optional;
 
 public interface BiomeInterface {
-    BiomeData.HeightData getHeightData();
-    BiomeInterface setHeightData(BiomeData.HeightData heightData);
-    
     float getWeight();
     BiomeInterface setWeight(float weight);
     

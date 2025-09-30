@@ -3,7 +3,6 @@ package btwg.mixin;
 import btwg.api.biome.DefaultBiomes;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.biome.BiomeInterface;
-import btwg.api.biome.data.BiomeData.HeightData;
 import btwg.api.world.surface.Surfacer;
 import net.minecraft.src.BiomeGenBase;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,12 +15,8 @@ import java.util.Optional;
 
 @Mixin(BiomeGenBase.class)
 public class BiomeMixin implements BiomeInterface {
-	@Shadow public float minHeight;
-	@Shadow public float maxHeight;
-
     @Shadow
     public int waterColorMultiplier;
-    private HeightData heightData;
     private BiomeData<Surfacer> surfacerData;
 	private BiomeData<BiomeGenBase> subBiomeData;
 	private BiomeData<BiomeGenBase> riverShoreBiomeData;
@@ -41,21 +36,6 @@ public class BiomeMixin implements BiomeInterface {
     public void setWaterColor(CallbackInfo ci) {
         this.waterColorMultiplier = 0x3F76E4;
     }
-	
-	@Override
-	public HeightData getHeightData() {
-		if (this.heightData == null) {
-			this.heightData = new HeightData(this.minHeight, this.maxHeight);
-		}
-		
-		return this.heightData;
-	}
-	
-	@Override
-	public BiomeInterface setHeightData(HeightData heightData) {
-		this.heightData = heightData;
-		return this;
-	}
 	
 	@Override
 	public float getWeight() {

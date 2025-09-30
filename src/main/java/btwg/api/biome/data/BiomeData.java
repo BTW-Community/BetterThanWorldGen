@@ -25,14 +25,6 @@ public class BiomeData<T> {
         return this.data.getData(version);
     }
     
-    public static class HeightData extends BiomeData<HeightData.HeightValues>  {
-        public HeightData(float height, float variance) {
-            super(new HeightValues(height, variance));
-        }
-        
-        public record HeightValues(float height, float variance) {}
-    }
-    
     public static class ConditionalBiomeData extends BiomeData<Function<BiomeInterface, Optional<BiomeGenBase>>>  {
         public ConditionalBiomeData(Function<BiomeInterface, Optional<BiomeGenBase>> transform) {
             super(transform);

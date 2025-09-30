@@ -11,9 +11,6 @@ public class DefaultBiomes {
     public static final int BEACH_ID = 52;
     public static final int FROZEN_BEACH_ID = 53;
 
-    public static final BiomeData.HeightData RIVER_HEIGHT = new BiomeData.HeightData(-0.75F, 0.0F);
-    public static final BiomeData.HeightData FLAT_HEIGHT = new BiomeData.HeightData(0.0F, 0.0F);
-
     /*
     public static final BTWGBiome RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RIVER_ID, loc("river")))
             .setHeightData(RIVER_HEIGHT)
