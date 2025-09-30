@@ -7,7 +7,6 @@
     "BiomeMixin",
     "BlockLeavesBaseMixin",
     "ChunkMixin",
-    "WorldChunkManagerMixin",
     "WorldProviderMixin"
   ],
   "client": [

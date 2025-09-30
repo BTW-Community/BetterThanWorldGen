@@ -30,13 +30,6 @@ public class BTWGBiome extends BiomeGenBase {
 
         biomeList.add(this);
     }
-
-    public BTWGBiome addClimate(Climate climate) {
-        Climate.climateBiomeMap
-                .computeIfAbsent(climate, k -> new ArrayList<>())
-                .add(new Climate.ClimateEntry(this, 1.0F));
-        return this;
-    }
     
     public PlantDistributor getGrassDistributor() {
         return this.grassDistributor;
