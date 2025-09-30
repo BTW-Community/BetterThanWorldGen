@@ -28,6 +28,14 @@ public class BTWGBiome extends BiomeGenBase {
         this.temperature = (float) noiseTarget.target().temperature();
         this.rainfall = (float) noiseTarget.target().humidity();
 
+        if (this.temperature < 0.15F) {
+            this.setEnableSnow();
+        }
+
+        if (this.rainfall < 0.1F) {
+            this.setDisableRain();
+        }
+
         biomeList.add(this);
     }
     

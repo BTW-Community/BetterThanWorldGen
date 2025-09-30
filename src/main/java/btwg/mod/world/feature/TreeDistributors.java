@@ -10,6 +10,43 @@ import net.minecraft.src.World;
 import java.util.Random;
 
 public abstract class TreeDistributors {
+    public static final TreeDistributor FOREST = new TreeDistributor(10) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return BTWGTreeGrowers.OAK_BUSH;
+            }
+            else if (t == 1) {
+                return TreeGrowers.BIG_OAK_TREE;
+            }
+            else if (t == 2) {
+                return TreeGrowers.BIRCH_TREE;
+            }
+            else if (t <= 5) {
+                return BTWGTreeGrowers.TALL_OAK_TREE;
+            }
+            else {
+                return BTWGTreeGrowers.TALL_OAK_TREE;
+            }
+        }
+    };
+
+    public static final TreeDistributor TAIGA = new TreeDistributor(20) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t < 5) {
+                return TreeGrowers.SPRUCE_TREE;
+            }
+            else {
+                return TreeGrowers.PINE_TREE;
+            }
+        }
+    };
+
     public static final TreeDistributor RAINFOREST = new TreeDistributor(10) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {

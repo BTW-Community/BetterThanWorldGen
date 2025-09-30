@@ -23,6 +23,9 @@ public abstract class BiomeConfiguration {
     public static final int SAVANNA_ID = 103;
     public static final int DUNES_ID = 104;
     public static final int ARID_HIGHLANDS_ID = 105;
+    public static final int FOREST_ID = 106;
+    public static final int TAIGA_ID = 107;
+    public static final int SNOWY_TAIGA_ID = 108;
 
     public static final int TROPICAL_RIVER_ID = 202;
     public static final int SCRUBLAND_RIVER_ID = 204;
@@ -218,6 +221,48 @@ public abstract class BiomeConfiguration {
             ))
             .setGrassDistributor(new PlantDistributor(10))
             .setTreeDistributor(TreeDistributors.HIGHLANDS);
+
+    public static final BTWGBiome FOREST = new BTWGBiome(
+            FOREST_ID,
+            loc("forest"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            SEMI_HUMID,
+                            MID_CONTINENT,
+                            LOW_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.FOREST);
+
+    public static final BTWGBiome TAIGA = new BTWGBiome(
+            TAIGA_ID,
+            loc("taiga"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            COLD,
+                            HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.TAIGA);
+
+    public static final BTWGBiome SNOWY_TAIGA = new BTWGBiome(
+            SNOWY_TAIGA_ID,
+            loc("snowy_taiga"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.TAIGA);
     
     public static void initBiomes() {}
     

@@ -5,6 +5,7 @@ import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
+import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
 
 import java.util.Arrays;
@@ -392,6 +393,7 @@ public class ModernNoiseProvider extends NoiseProvider {
 
                 for (BTWGBiome biome : BTWGBiome.biomeList) {
                     if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance
+                            // TODO: fix validator
                             )//&& biome.noiseTarget.validator().test(biomeVector, (int) this.heightmap[idx]))
                     {
                         closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
@@ -402,6 +404,8 @@ public class ModernNoiseProvider extends NoiseProvider {
                 biomes[idx] = closestBiome;
             }
         }
+
+        Arrays.fill(biomes, BiomeConfiguration.SNOWY_TAIGA);
 
         return biomes;
     }
