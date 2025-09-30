@@ -39,23 +39,23 @@ public abstract class BiomeConfiguration {
     public static final double BEACH = 0;
     public static final double LOWLANDS = 0.2;
     public static final double MID_CONTINENT = 0.5;
-    public static final double HIGHLANDS = 0.75;
-    public static final double MOUNTAINS = 0.95;
+    public static final double HIGHLANDS = 0.7;
+    public static final double MOUNTAINS = 1.0;
 
     // Erosion constants
-    public static final double LOW_EROSION = -0.66;
+    public static final double LOW_EROSION = -0.6;
     public static final double MEDIUM_EROSION = 0;
-    public static final double HIGH_EROSION = 0.66;
+    public static final double HIGH_EROSION = 0.6;
 
     // Weirdness constants
-    public static final double LOW_WEIRDNESS = -0.66;
+    public static final double LOW_WEIRDNESS = -0.6;
     public static final double MEDIUM_WEIRDNESS = 0;
-    public static final double HIGH_WEIRDNESS = 0.66;
+    public static final double HIGH_WEIRDNESS = 0.6;
 
     // Temperature constants
     public static final double FROZEN = 0.0;
-    public static final double COLD = 0.33;
-    public static final double TEMPERATE = 0.66;
+    public static final double COLD = 0.3;
+    public static final double TEMPERATE = 0.6;
     public static final double HOT = 1.0;
 
     // Humidity constants

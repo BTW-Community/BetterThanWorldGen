@@ -8,10 +8,11 @@ public record BiomeNoiseVector(
         double weirdness
 ) {
     public BiomeNoiseVector {
-        temperature = Math.round(temperature / 0.05) * 0.05;
-        humidity = Math.round(humidity / 0.05) * 0.05;
-        continentalness = Math.round(continentalness / 0.05) * 0.05;
-        erosion = Math.round(erosion / 0.05) * 0.05;
-        weirdness = Math.round(weirdness / 0.05) * 0.05;
+        final double step = 0.05;
+        temperature = Math.round(temperature / step) * step;
+        humidity = Math.round(humidity / step) * step;
+        continentalness = Math.round(continentalness / step) * step;
+        erosion = Math.round(erosion / step) * step;
+        weirdness = Math.round(weirdness / step) * step;
     }
 }

@@ -5,7 +5,6 @@ import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
-import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
 
 import java.util.Arrays;
@@ -30,18 +29,19 @@ public class ModernNoiseProvider extends NoiseProvider {
     public static final int NOISE_SUBSCALE = 16;
     public static final int NOISE_SIZE = NOISE_SUBSCALE + 1;
 
-    public static final int TOTAL_Y_HEIGHT = 256;
+    public static final int TOTAL_HEIGHT = 256;
+    public static final int SEA_LEVEL = 100;
 
     private static final Spline continentalnessSpline = Spline.of(
-            new Key(-1.50, 40.0 / TOTAL_Y_HEIGHT),
-            new Key(-1.00, 50.0 / TOTAL_Y_HEIGHT),
-            new Key(-0.40, 85.0 / TOTAL_Y_HEIGHT),
-            new Key(-0.10, 95.0 / TOTAL_Y_HEIGHT),
-            new Key(0.00, 105.0 / TOTAL_Y_HEIGHT),
-            new Key(0.50, 110.0 / TOTAL_Y_HEIGHT),
-            new Key(0.80, 150.0 / TOTAL_Y_HEIGHT),
-            new Key(1.00, 180.0 / TOTAL_Y_HEIGHT),
-            new Key(1.50, 210.0 / TOTAL_Y_HEIGHT)
+            new Key(-1.50, 40.0 / TOTAL_HEIGHT),
+            new Key(-1.00, 50.0 / TOTAL_HEIGHT),
+            new Key(-0.40, 85.0 / TOTAL_HEIGHT),
+            new Key(-0.10, 95.0 / TOTAL_HEIGHT),
+            new Key(0.00, 105.0 / TOTAL_HEIGHT),
+            new Key(0.50, 110.0 / TOTAL_HEIGHT),
+            new Key(0.80, 150.0 / TOTAL_HEIGHT),
+            new Key(1.00, 180.0 / TOTAL_HEIGHT),
+            new Key(1.50, 210.0 / TOTAL_HEIGHT)
     );
 
     private static final Spline erosionToThickness = Spline.of(
@@ -185,7 +185,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     public double[] getTerrainNoise(int chunkX, int chunkZ) {
         this.initNoiseFields(chunkX, chunkZ);
 
-        double[] terrain = new double[16 * 16 * TOTAL_Y_HEIGHT];
+        double[] terrain = new double[16 * 16 * TOTAL_HEIGHT];
 
         // Calculate valleys for generating rivers
         double rawCurvature = calculateLaplacianCurvature();
@@ -211,7 +211,7 @@ public class ModernNoiseProvider extends NoiseProvider {
 
                 // Base heightmap from continentalness
                 double continentalness = this.heightmap[colIdx];
-                double height = continentalness * TOTAL_Y_HEIGHT + heightBias;
+                double height = continentalness * TOTAL_HEIGHT + heightBias;
 
                 // Create ridges
                 // Exponent to sharpen the ridge mask, map to amplitude to control 3D noise
@@ -243,9 +243,9 @@ public class ModernNoiseProvider extends NoiseProvider {
 
                 height -= depth;
 
-                for (int j = 0; j < TOTAL_Y_HEIGHT; j++) {
+                for (int j = 0; j < TOTAL_HEIGHT; j++) {
                     // Calculate base 3D noise density, then modulate it based on distance to the target heightmap
-                    int idx = idx(i, j, k, TOTAL_Y_HEIGHT, 16);
+                    int idx = idx(i, j, k, TOTAL_HEIGHT, 16);
                     double terrainValue = this.terrain[idx];
 
                     double distance = j - height;
@@ -288,7 +288,7 @@ public class ModernNoiseProvider extends NoiseProvider {
 
         // TODO: add rivers
 
-        this.terrain = this.getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
+        this.terrain = this.getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, TERRAIN_SCALE);
 
         this.lastChunkX = chunkX;
         this.lastChunkZ = chunkZ;
@@ -375,9 +375,13 @@ public class ModernNoiseProvider extends NoiseProvider {
             for (int k = 0; k < 16; k++) {
                 int idx = idx(i, k, 16);
 
+                // Normalize temperature and humidity to [0, 1]
+                double temperature = this.temperature[idx] * 0.5 + 0.5;
+                double humidity = this.humidity[idx] * 0.5 + 0.5;
+
                 var biomeVector = new BiomeNoiseVector(
-                        this.temperature[idx],
-                        this.humidity[idx],
+                        temperature,
+                        humidity,
                         this.continentalness[idx],
                         this.erosion[idx],
                         this.weirdness[idx]
@@ -388,7 +392,7 @@ public class ModernNoiseProvider extends NoiseProvider {
 
                 for (BTWGBiome biome : BTWGBiome.biomeList) {
                     if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance
-                            && biome.noiseTarget.validator().test(biomeVector))
+                            )//&& biome.noiseTarget.validator().test(biomeVector, (int) this.heightmap[idx]))
                     {
                         closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
                         closestBiome = biome;
@@ -404,6 +408,6 @@ public class ModernNoiseProvider extends NoiseProvider {
 
     @Override
     public byte getSeaLevel() {
-        return (int) ((100) / 256.0 * TOTAL_Y_HEIGHT);
+        return SEA_LEVEL;
     }
 }
