@@ -6,15 +6,29 @@ import btwg.api.world.feature.TreeDistributor;
 import net.minecraft.src.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BTWGBiome extends BiomeGenBase {
+    public static final Set<BTWGBiome> biomeList = new HashSet<>();
+
     private TreeDistributor treeDistributor = new TreeDistributor() {};
     private PlantDistributor grassDistributor = new PlantDistributor() {};
+
+    public final BiomeNoiseParameterTarget noiseTarget;
     
-    public BTWGBiome(int par1, ResourceLocation resourceLocation) {
-        super(par1);
+    public BTWGBiome(int id, ResourceLocation name, BiomeNoiseParameterTarget noiseTarget) {
+        super(id);
+
         this.theBiomeDecorator = new BTWGBiomeDecorator(this);
-        this.biomeName = resourceLocation.toString();
+        this.biomeName = name.toString();
+
+        this.noiseTarget = noiseTarget;
+
+        this.temperature = (float) noiseTarget.target().temperature();
+        this.rainfall = (float) noiseTarget.target().humidity();
+
+        biomeList.add(this);
     }
 
     public BTWGBiome addClimate(Climate climate) {
@@ -22,24 +36,6 @@ public class BTWGBiome extends BiomeGenBase {
                 .computeIfAbsent(climate, k -> new ArrayList<>())
                 .add(new Climate.ClimateEntry(this, 1.0F));
         return this;
-    }
-
-    public BTWGBiome addClimate(Climate climate, float weight) {
-        Climate.climateBiomeMap
-                .computeIfAbsent(climate, k -> new ArrayList<>())
-                .add(new Climate.ClimateEntry(this, weight));
-        return this;
-    }
-    
-    public BTWGBiome setTemperatureAndRainfall(float temp, float rainfall) {
-        if (temp > 0.1F && temp < 0.2F) {
-            throw new IllegalArgumentException("Please avoid temperatures in the range 0.1 - 0.2 because of snow");
-        }
-        else {
-            this.temperature = temp;
-            this.rainfall = rainfall;
-            return this;
-        }
     }
     
     public PlantDistributor getGrassDistributor() {
@@ -77,16 +73,6 @@ public class BTWGBiome extends BiomeGenBase {
     public BTWGBiome setFillerBlock(int blockID, int meta) {
         this.fillerBlock = (short) blockID;
         this.fillerBlockMetadata = (byte) meta;
-        return this;
-    }
-
-    public BTWGBiome setSnow() {
-        this.setEnableSnow();
-        return this;
-    }
-
-    public BTWGBiome setNoRain() {
-        this.setDisableRain();
         return this;
     }
 

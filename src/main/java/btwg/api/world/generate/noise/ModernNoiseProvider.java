@@ -1,12 +1,12 @@
 package btwg.api.world.generate.noise;
 
+import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
 import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.ChunkCoordIntPair;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -18,8 +18,8 @@ public class ModernNoiseProvider extends NoiseProvider {
     public static final int VALLEY_SCALE = 96;
     public static final int WEIRDNESS_SCALE = 256;
 
-    public static final int TEMPERATURE_SCALE = 1024;
-    public static final int HUMIDITY_SCALE = 512;
+    public static final int TEMPERATURE_SCALE = 2048;
+    public static final int HUMIDITY_SCALE = 1024;
 
     public static final int TERRAIN_SCALE = 256;
 
@@ -273,7 +273,7 @@ public class ModernNoiseProvider extends NoiseProvider {
         // TODO: fix interpolation to improve performance
 
         this.continentalness = this.getNoise2D(this.continentalnessGenerator, this.heightmap, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
-        this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
+        this.heightmap = this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
 
         this.erosion = this.getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
         this.thickness = this.transformNoise(this.thickness, this.erosion, erosionToThickness);
@@ -373,19 +373,32 @@ public class ModernNoiseProvider extends NoiseProvider {
 
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
-                int colIdx = idx(i, k, 16);
+                int idx = idx(i, k, 16);
 
                 var biomeVector = new BiomeNoiseVector(
-                        this.temperature[colIdx],
-                        this.humidity[colIdx],
-                        this.continentalness[colIdx],
-                        this.erosion[colIdx],
-                        this.weirdness[colIdx]
+                        this.temperature[idx],
+                        this.humidity[idx],
+                        this.continentalness[idx],
+                        this.erosion[idx],
+                        this.weirdness[idx]
                 );
+
+                double closestDistance = Double.MAX_VALUE;
+                BiomeGenBase closestBiome = BiomeGenBase.ocean;
+
+                for (BTWGBiome biome : BTWGBiome.biomeList) {
+                    if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance
+                            && biome.noiseTarget.validator().test(biomeVector))
+                    {
+                        closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
+                        closestBiome = biome;
+                    }
+                }
+
+                biomes[idx] = closestBiome;
             }
         }
 
-        Arrays.fill(biomes, BiomeConfiguration.RAINFOREST);
         return biomes;
     }
 

@@ -14,6 +14,7 @@ public class DefaultBiomes {
     public static final BiomeData.HeightData RIVER_HEIGHT = new BiomeData.HeightData(-0.75F, 0.0F);
     public static final BiomeData.HeightData FLAT_HEIGHT = new BiomeData.HeightData(0.0F, 0.0F);
 
+    /*
     public static final BTWGBiome RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RIVER_ID, loc("river")))
             .setHeightData(RIVER_HEIGHT)
             .setRiver());
@@ -35,6 +36,7 @@ public class DefaultBiomes {
             .setSnow()
             .setTopBlock(Block.sand.blockID)
             .setFillerBlock(Block.sand.blockID);
+     */
 
     public static void initBiomes() {}
 

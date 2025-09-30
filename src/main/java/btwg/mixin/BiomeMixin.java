@@ -205,7 +205,7 @@ public class BiomeMixin implements BiomeInterface {
 	@Override
 	public Optional<BiomeData<BiomeGenBase>> getBeachData() {
 		if (this.usesDefaultBeach && this.beachBiomeData == null) {
-			this.beachBiomeData = new BiomeData<>(DefaultBiomes.BEACH);
+			this.beachBiomeData = new BiomeData<>(/*DefaultBiomes.BEACH*/ BiomeGenBase.beach);
 		}
 		
 		return Optional.ofNullable(this.beachBiomeData);

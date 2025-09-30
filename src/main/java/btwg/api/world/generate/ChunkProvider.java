@@ -116,7 +116,7 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
 
         for(int k = 0; k < 16; ++k) {
             for(int i = 0; i < 16; ++i) {
-                BiomeGenBase biome = biomes[i + k * 16];
+                BiomeGenBase biome = biomes[i * 16 + k];
 
                 if (!((BiomeInterface) biome).isVanilla()) {
                     int depth = -1;
@@ -210,7 +210,7 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
 
     @Override
     public void populate(IChunkProvider par1IChunkProvider, int chunkX, int chunkZ) {
-        if (1==1) return;
+        //if (1==1) return;
 
         int x = chunkX * 16;
         int z = chunkZ * 16;
