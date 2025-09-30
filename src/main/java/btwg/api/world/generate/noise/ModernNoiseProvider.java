@@ -30,13 +30,15 @@ public class ModernNoiseProvider extends NoiseProvider {
     public static final int TOTAL_Y_HEIGHT = 256;
 
     private static final Spline continentalnessSpline = Spline.of(
-            new Key(-1.50, 40.0 / TOTAL_Y_HEIGHT),  // start
-            new Key(-1.00, 50.0 / TOTAL_Y_HEIGHT),  // deep ocean
-            new Key(-0.40, 85.0 / TOTAL_Y_HEIGHT),  // shallow shelf
-            new Key(0.00, 110.0 / TOTAL_Y_HEIGHT),  // plains
-            new Key(0.60, 150.0 / TOTAL_Y_HEIGHT),  // highlands
-            new Key(1.00, 180.0 / TOTAL_Y_HEIGHT),  // interior plateaus
-            new Key(1.50, 210.0 / TOTAL_Y_HEIGHT)   // end
+            new Key(-1.50, 40.0 / TOTAL_Y_HEIGHT),
+            new Key(-1.00, 50.0 / TOTAL_Y_HEIGHT),
+            new Key(-0.40, 85.0 / TOTAL_Y_HEIGHT),
+            new Key(-0.10, 95.0 / TOTAL_Y_HEIGHT),
+            new Key(0.00, 105.0 / TOTAL_Y_HEIGHT),
+            new Key(0.50, 120.0 / TOTAL_Y_HEIGHT),
+            new Key(0.80, 150.0 / TOTAL_Y_HEIGHT),
+            new Key(1.00, 180.0 / TOTAL_Y_HEIGHT),
+            new Key(1.50, 210.0 / TOTAL_Y_HEIGHT)
     );
 
     private static final Spline erosionToThickness = Spline.of(
@@ -128,13 +130,13 @@ public class ModernNoiseProvider extends NoiseProvider {
             for (int k = 0; k < 16; k++) {
                 int colIdx = idx(i, k, 16);
 
-                double baseThickness = 8;
-                double baseAmplitude = 10;
-                double baseHeightBias = 8;
+                double thickness = 8;
+                double amplitude = 10;
+                double heightBias = 8;
 
-                double thickness = this.thickness[colIdx] * baseThickness;
-                double amplitude = this.amplitude[colIdx] * baseAmplitude;
-                double heightBias = this.heightBias[colIdx] * baseHeightBias;
+                thickness *= this.thickness[colIdx];
+                amplitude *= this.amplitude[colIdx];
+                heightBias *= this.heightBias[colIdx];
 
                 double continentalness = this.continentalness[colIdx];
                 double height = continentalness * TOTAL_Y_HEIGHT + heightBias;
