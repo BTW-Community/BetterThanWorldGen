@@ -10,9 +10,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class ModernNoiseProvider extends NoiseProvider {
-    public static final int CONTINENTALNESS_SCALE = 2048;
-    public static final int EROSION_SCALE = 512;
-    public static final int RIDGES_SCALE = 256;
+    public static final int CONTINENTALNESS_SCALE = 1536;
+    public static final int EROSION_SCALE = 384;
+    public static final int RIDGES_SCALE = 384;
     public static final int WEIRDNESS_SCALE = 256;
 
     public static final int TEMPERATURE_SCALE = 1024;
@@ -35,7 +35,7 @@ public class ModernNoiseProvider extends NoiseProvider {
             new Key(-0.40, 85.0 / TOTAL_Y_HEIGHT),
             new Key(-0.10, 95.0 / TOTAL_Y_HEIGHT),
             new Key(0.00, 105.0 / TOTAL_Y_HEIGHT),
-            new Key(0.50, 120.0 / TOTAL_Y_HEIGHT),
+            new Key(0.50, 110.0 / TOTAL_Y_HEIGHT),
             new Key(0.80, 150.0 / TOTAL_Y_HEIGHT),
             new Key(1.00, 180.0 / TOTAL_Y_HEIGHT),
             new Key(1.50, 210.0 / TOTAL_Y_HEIGHT)
