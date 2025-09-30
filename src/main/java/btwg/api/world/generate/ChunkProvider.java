@@ -83,9 +83,6 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
 
         BiomeGenBase[] biomes = this.noiseProvider.getBiomes(chunkX, chunkZ);
         this.replaceBlocksForBiome(chunkX, chunkZ, blockIDs, metadata, biomes);
-
-        //this.caveGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
-        //this.ravineGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
         
         if (this.mapFeaturesEnabled) {
             this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
@@ -97,8 +94,11 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
         Chunk chunk = new Chunk(this.world, blockIDs, metadata, chunkX, chunkZ);
         byte[] chunkBiomes = chunk.getBiomeArray();
 
-        for(int i = 0; i < chunkBiomes.length; ++i) {
-            chunkBiomes[i] = (byte) biomes[i].biomeID;
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                // Chunk biomes uses inverse indexing from everything else :/
+                chunkBiomes[k * 16 + i] = (byte) biomes[i * 16 + k].biomeID;
+            }
         }
 
         chunk.generateSkylightMap();
