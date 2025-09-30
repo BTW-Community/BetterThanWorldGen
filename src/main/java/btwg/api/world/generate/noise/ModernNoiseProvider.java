@@ -78,6 +78,7 @@ public class ModernNoiseProvider extends NoiseProvider {
     private final OpenSimplexOctavesFast terrainGenerator;
 
     private double[] continentalness;
+    private double[] heightmap;
 
     private double[] erosion;
     private double[] thickness;
@@ -148,11 +149,11 @@ public class ModernNoiseProvider extends NoiseProvider {
                 int up = idx(i, k - 1, 16);
                 int down = idx(i, k + 1, 16);
 
-                double laplacian = (this.continentalness[left] +
-                        this.continentalness[right] +
-                        this.continentalness[up] +
-                        this.continentalness[down] -
-                        4 * this.continentalness[center]);
+                double laplacian = (this.heightmap[left] +
+                        this.heightmap[right] +
+                        this.heightmap[up] +
+                        this.heightmap[down] -
+                        4 * this.heightmap[center]);
                 curvature += Math.abs(laplacian);
             }
         }
@@ -167,8 +168,8 @@ public class ModernNoiseProvider extends NoiseProvider {
                 int right = idx(i + 1, k, 16);
                 int down = idx(i, k + 1, 16);
 
-                double slopeX = Math.abs(this.continentalness[right] - this.continentalness[center]);
-                double slopeZ = Math.abs(this.continentalness[down] - this.continentalness[center]);
+                double slopeX = Math.abs(this.heightmap[right] - this.heightmap[center]);
+                double slopeZ = Math.abs(this.heightmap[down] - this.heightmap[center]);
                 totalSlope += Math.sqrt(slopeX * slopeX + slopeZ * slopeZ);
             }
         }
@@ -204,7 +205,7 @@ public class ModernNoiseProvider extends NoiseProvider {
                 heightBias *= this.heightBias[colIdx];
 
                 // Base heightmap from continentalness
-                double continentalness = this.continentalness[colIdx];
+                double continentalness = this.heightmap[colIdx];
                 double height = continentalness * TOTAL_Y_HEIGHT + heightBias;
 
                 // Create ridges
@@ -238,26 +239,21 @@ public class ModernNoiseProvider extends NoiseProvider {
                 height -= depth;
 
                 for (int j = 0; j < TOTAL_Y_HEIGHT; j++) {
+                    // Calculate base 3D noise density, then modulate it based on distance to the target heightmap
                     int idx = idx(i, j, k, TOTAL_Y_HEIGHT, 16);
-
                     double terrainValue = this.terrain[idx];
 
                     double distance = j - height;
 
+                    // Reduce influence of 3D noise with distance from target heightmap
                     int innerFadeRadius = 8;
                     int outerFadeRadius = 32;
-
                     double fade = 1 - smoothstep(innerFadeRadius, outerFadeRadius, Math.abs(distance));
 
-                    // Extra height-aware fade so detail is strongest around the surface
-                    double nearSurface = 1.0 - smoothstep(12.0, 48.0, Math.abs(distance));
-
+                    // Calculate final density
                     double densityBase = -distance / thickness;
-
                     double erosionDetail = amplitude * terrainValue * fade;
-                    double ridgeDetail = nearSurface * ridgeAmp;
-
-                    double detail = ridgeDetail * erosionDetail;
+                    double detail = ridgeAmp * erosionDetail;
 
                     double density = densityBase + detail;
                     terrain[idx] = density;
@@ -271,8 +267,8 @@ public class ModernNoiseProvider extends NoiseProvider {
     private void initNoiseFields(int chunkX, int chunkZ) {
         // TODO: fix interpolation to improve performance
 
-        this.continentalness = getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
-        this.transformNoise(this.continentalness, continentalnessSpline);
+        this.continentalness = getNoise2D(this.continentalnessGenerator, this.heightmap, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
+        this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
 
         this.erosion = getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
         this.thickness = this.transformNoise(this.thickness, this.erosion, erosionToThickness);
@@ -282,6 +278,8 @@ public class ModernNoiseProvider extends NoiseProvider {
         this.ridges = getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, 16, 16, 1, 1, RIDGES_SCALE);
 
         this.valleys = getNoise2D(this.riverGenerator, this.valleys, chunkX, chunkZ, 16, 16, 1, 1, VALLEY_SCALE);
+
+        // TODO: add rivers
 
         this.terrain = getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
     }
