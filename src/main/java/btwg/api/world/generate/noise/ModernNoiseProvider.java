@@ -1,10 +1,12 @@
 package btwg.api.world.generate.noise;
 
+import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
 import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.ChunkCoordIntPair;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -95,6 +97,9 @@ public class ModernNoiseProvider extends NoiseProvider {
     private double[] terrain;
 
     private double[] gaussianBlur;
+
+    private int lastChunkX = Integer.MAX_VALUE;
+    private int lastChunkZ = Integer.MAX_VALUE;
 
     public ModernNoiseProvider(long seed) {
         super(seed);
@@ -267,21 +272,26 @@ public class ModernNoiseProvider extends NoiseProvider {
     private void initNoiseFields(int chunkX, int chunkZ) {
         // TODO: fix interpolation to improve performance
 
-        this.continentalness = getNoise2D(this.continentalnessGenerator, this.heightmap, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
+        this.continentalness = this.getNoise2D(this.continentalnessGenerator, this.heightmap, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
         this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
 
-        this.erosion = getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
+        this.erosion = this.getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
         this.thickness = this.transformNoise(this.thickness, this.erosion, erosionToThickness);
         this.amplitude = this.transformNoise(this.amplitude, this.erosion, erosionToAmplitude);
         this.heightBias = this.transformNoise(this.heightBias, this.erosion, erosionToHeightBias);
 
-        this.ridges = getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, 16, 16, 1, 1, RIDGES_SCALE);
+        this.ridges = this.getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, 16, 16, 1, 1, RIDGES_SCALE);
 
-        this.valleys = getNoise2D(this.riverGenerator, this.valleys, chunkX, chunkZ, 16, 16, 1, 1, VALLEY_SCALE);
+        this.valleys = this.getNoise2D(this.riverGenerator, this.valleys, chunkX, chunkZ, 16, 16, 1, 1, VALLEY_SCALE);
+
+        this.weirdness = this.getNoise2D(this.weirdnessGenerator, this.weirdness, chunkX, chunkZ, 16, 16, 1, 1, WEIRDNESS_SCALE);
 
         // TODO: add rivers
 
-        this.terrain = getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
+        this.terrain = this.getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
+
+        this.lastChunkX = chunkX;
+        this.lastChunkZ = chunkZ;
     }
 
     private double[] getNoise2D(OpenSimplexOctavesFast generator, double[] noiseArray, int chunkX, int chunkZ, int sizeX, int sizeZ, int stepX, int stepZ, int scale) {
@@ -350,10 +360,31 @@ public class ModernNoiseProvider extends NoiseProvider {
 
     @Override
     public BiomeGenBase[] getBiomes(int chunkX, int chunkZ) {
-        //this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, TEMPERATURE_SCALE);
-        //this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, NOISE_SIZE, NOISE_SIZE, HUMIDITY_SCALE);
+        // Use terrain noise fields
+        // Regenerate if for some reason it was last called on a different chunk
+        if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            this.initNoiseFields(chunkX, chunkZ);
+        }
+
+        this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
+        this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
 
         BiomeGenBase[] biomes = new BiomeGenBase[256];
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                int colIdx = idx(i, k, 16);
+
+                var biomeVector = new BiomeNoiseVector(
+                        this.temperature[colIdx],
+                        this.humidity[colIdx],
+                        this.continentalness[colIdx],
+                        this.erosion[colIdx],
+                        this.weirdness[colIdx]
+                );
+            }
+        }
+
         Arrays.fill(biomes, BiomeConfiguration.RAINFOREST);
         return biomes;
     }
