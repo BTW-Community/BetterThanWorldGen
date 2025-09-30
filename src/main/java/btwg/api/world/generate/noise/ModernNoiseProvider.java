@@ -120,6 +120,12 @@ public class ModernNoiseProvider extends NoiseProvider {
         return start + (stop - start) * amount;
     }
 
+    private static double ridge(double n, double exponent) {
+        double r = 1.0 - Math.abs(n);   // [0,1], peaks high
+        r = clamp(r, 0.0, 1.0);
+        return Math.pow(r, exponent);   // sharpen ridges
+    }
+
     @Override
     public double[] getTerrainNoise(int chunkX, int chunkZ) {
         this.initNoiseFields(chunkX, chunkZ);
@@ -141,6 +147,13 @@ public class ModernNoiseProvider extends NoiseProvider {
                 double continentalness = this.continentalness[colIdx];
                 double height = continentalness * TOTAL_Y_HEIGHT + heightBias;
 
+                // Build a ridge mask from the 2D ridges field. Tune thresholds and exponent.
+                // ridges[colIdx] is ~[-1,1]. Convert to [0,1] peaks and gate with smoothstep.
+                double ridgePeak = ridge(this.ridges[colIdx], 2.0); // sharper peaks
+                double ridgeMask = smoothstep(0.25, 0.75, ridgePeak); // only keep strong ridges
+                // Let ridges increase 3D detail amplitude locally
+                double ridgeAmp = lerp(0.6, 2.0, ridgeMask); // 60%..140% of base amplitude
+
                 for (int j = 0; j < TOTAL_Y_HEIGHT; j++) {
                     int idx = idx(i, j, k, TOTAL_Y_HEIGHT, 16);
 
@@ -153,10 +166,17 @@ public class ModernNoiseProvider extends NoiseProvider {
 
                     double fade = 1 - smoothstep(innerFadeRadius, outerFadeRadius, Math.abs(distance));
 
-                    double densityBase = -distance / thickness;
-                    double erosionOffset = amplitude * terrainValue * fade;
+                    // Extra height-aware fade so detail is strongest around the surface
+                    double nearSurface = 1.0 - smoothstep(12.0, 48.0, Math.abs(distance));
 
-                    double density = densityBase + erosionOffset;
+                    double densityBase = -distance / thickness;
+
+                    double erosionDetail = amplitude * terrainValue * fade;
+                    double ridgeDetail = nearSurface * ridgeAmp;
+
+                    double detail = ridgeDetail * erosionDetail;
+
+                    double density = densityBase + detail;
                     terrain[idx] = density;
                 }
             }
@@ -178,7 +198,6 @@ public class ModernNoiseProvider extends NoiseProvider {
 
         this.ridges = getNoise2D(this.ridgesGenerator, this.ridges, chunkX, chunkZ, 16, 16, 1, 1, RIDGES_SCALE);
         // TODO: fix interpolation
-        //this.transformNoise(this.ridges, ridgeSpline);
 
         this.terrain = getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_Y_HEIGHT, 16, TERRAIN_SCALE);
     }
