@@ -1,5 +1,6 @@
 package btwg.api.world.surface;
 
+import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -14,7 +15,7 @@ public class Surfacer {
 
     public static final Surfacer DEFAULT = new Surfacer();
 
-    public final void replaceBlockForLocation(World world, int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+    public final void replaceBlockForLocation(World world, int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata, NoiseProvider noiseProvider) {
         if (depth == -1) {
             return;
         }
@@ -26,10 +27,10 @@ public class Surfacer {
             this.lastWorld = world;
         }
 
-        this.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
+        this.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, noiseProvider);
     }
 
-    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  BiomeGenBase biome, short[] blockIDs, byte[] metadata, NoiseProvider noiseProvider) {
         int height = blockIDs.length / 256;
 
         short blockID = blockIDs[index(i, j, k, height)];

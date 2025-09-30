@@ -1,5 +1,6 @@
 package btwg.mod.world.surface;
 
+import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.surface.Surfacer;
 import btwg.mod.block.BTWGBlocks;
@@ -9,7 +10,7 @@ public class ScrublandSurfacer extends Surfacer {
     private OpenSimplexOctavesFast sandyDirtNoise;
 
     @Override
-    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata, NoiseProvider noiseProvider) {
         int height = blockIDs.length / 256;
 
         short blockID = blockIDs[index(i, j, k, height)];
@@ -27,7 +28,7 @@ public class ScrublandSurfacer extends Surfacer {
             }
         }
         else {
-            super.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
+            super.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, noiseProvider);
         }
     }
 

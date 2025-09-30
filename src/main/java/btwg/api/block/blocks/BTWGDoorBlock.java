@@ -1,4 +1,4 @@
-package btwg.mod.block.blocks;
+package btwg.api.block.blocks;
 
 import btw.block.blocks.DoorBlockWood;
 import btwg.mod.block.WoodType;

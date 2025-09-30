@@ -4,9 +4,10 @@ import btw.block.blocks.*;
 import btw.item.blockitems.MouldingAndDecorativeBlockItem;
 import btw.item.blockitems.SaplingBlockItem;
 import btw.item.blockitems.SidingAndCornerBlockItem;
+import btwg.api.block.blocks.*;
+import btwg.api.block.blocks.WorkStumpBlock;
 import btwg.mod.block.blocks.*;
-import btwg.mod.block.blocks.WorkStumpBlock;
-import btwg.mod.item.items.blockItems.BTWGSlabBlockItem;
+import btwg.api.item.items.blockItems.BTWGSlabBlockItem;
 import btwg.mod.world.feature.tree.BTWGTreeGrowers;
 import net.minecraft.src.*;
 

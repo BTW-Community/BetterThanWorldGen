@@ -1,7 +1,7 @@
 package btwg.api.world.generate;
 
 import btwg.api.configuration.WorldData;
-import btwg.api.world.generate.noise.ModernNoiseProvider;
+import btwg.api.world.generate.noise.NoiseProvider;
 import net.minecraft.src.*;
 
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class ChunkProviderRegistry {
         registerChunkProvider(VANILLA_NETHER, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderHell(world, seed));
         registerChunkProvider(VANILLA_END, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProviderEnd(world, seed));
 
-        registerChunkProvider(BTWG, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProvider<>(world, new ModernNoiseProvider(seed), mapFeaturesEnabled));
+        registerChunkProvider(BTWG, (world, seed, mapFeaturesEnabled, worldData) -> new ChunkProvider(world, new NoiseProvider(seed), mapFeaturesEnabled));
     }
 
     public static <T> void  registerChunkProvider(ResourceLocation id, ChunkProviderProvider<T> providerProvider) {

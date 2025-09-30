@@ -1,5 +1,6 @@
 package btwg.api.world.surface;
 
+import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -8,7 +9,7 @@ public class SandySurfacer extends Surfacer {
     private OpenSimplexOctavesFast sandHeightNoise;
 
     @Override
-    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata) {
+    public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface, BiomeGenBase biome, short[] blockIDs, byte[] metadata, NoiseProvider noiseProvider) {
         int height = blockIDs.length / 256;
 
         short blockID = blockIDs[index(i, j, k, height)];
@@ -35,7 +36,7 @@ public class SandySurfacer extends Surfacer {
             metadata[index(i, j, k, height)] = 0;
         }
         else {
-            super.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
+            super.replaceBlock(chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, noiseProvider);
         }
     }
 

@@ -10,8 +10,8 @@ import net.minecraft.src.*;
 import java.util.List;
 import java.util.Random;
 
-public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvider {
-    private final T noiseProvider;
+public final class ChunkProvider implements IChunkProvider {
+    private final NoiseProvider noiseProvider;
 
     private final World world;
     private final boolean mapFeaturesEnabled;
@@ -29,7 +29,7 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
     private final NoiseGeneratorOctaves legacySoilDepthNoiseGenerator;
     private double[] legacySoilDepthNoise = new double[256];
 
-    public ChunkProvider(World world, T noiseProvider, boolean mapFeaturesEnabled) {
+    public ChunkProvider(World world, NoiseProvider noiseProvider, boolean mapFeaturesEnabled) {
         this.noiseProvider = noiseProvider;
 
         this.world = world;
@@ -141,7 +141,7 @@ public final class ChunkProvider<T extends NoiseProvider> implements IChunkProvi
                         var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(defaultSurfacer);
 
                         // TODO: Update with real version handling
-                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata);
+                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, this.noiseProvider);
 
                         depth++;
                     }

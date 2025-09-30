@@ -1,4 +1,4 @@
-package btwg.mod.block.blocks;
+package btwg.api.block.blocks;
 
 import com.prupe.mcpatcher.cc.ColorizeBlock;
 import net.fabricmc.api.EnvType;
@@ -7,9 +7,9 @@ import net.minecraft.src.ColorizerFoliage;
 import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.IBlockAccess;
 
-public class ColorizedTallPlantBlock extends TallPlantBlock {
-    public ColorizedTallPlantBlock(int blockID, String baseTexture, String[] names) {
-        super(blockID, baseTexture, names);
+public class ColorizedShrubBlock extends ShrubBlock {
+    public ColorizedShrubBlock(int id) {
+        super(id);
     }
 
     //----------- Client Side Functionality -----------//

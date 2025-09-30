@@ -1,4 +1,4 @@
-package btwg.mod.block.blocks;
+package btwg.api.block.blocks;
 
 import btw.block.BTWBlocks;
 import btw.item.util.ItemUtils;
@@ -6,8 +6,6 @@ import btwg.mod.block.WoodType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;
-
-import java.util.List;
 
 public class WorkStumpBlock extends StumpBlock {
     public WorkStumpBlock(int id, WoodType[] woodTypes) {

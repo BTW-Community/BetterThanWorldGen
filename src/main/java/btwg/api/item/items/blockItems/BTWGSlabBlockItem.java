@@ -1,4 +1,4 @@
-package btwg.mod.item.items.blockItems;
+package btwg.api.item.items.blockItems;
 
 import btw.item.blockitems.SlabBlockItem;
 import net.minecraft.src.ItemStack;

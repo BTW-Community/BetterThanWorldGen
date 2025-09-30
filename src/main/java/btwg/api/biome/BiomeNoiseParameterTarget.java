@@ -1,6 +1,6 @@
 package btwg.api.biome;
 
-import btwg.api.world.generate.noise.ModernNoiseProvider;
+import btwg.api.world.generate.noise.NoiseProvider;
 
 import java.util.function.BiPredicate;
 
@@ -10,7 +10,7 @@ public record BiomeNoiseParameterTarget(
 ) {
     public BiomeNoiseParameterTarget(BiomeNoiseVector target) {
         // TODO: Make sea level check dynamic
-        this(target, (v, h) -> h >= ModernNoiseProvider.SEA_LEVEL);
+        this(target, (v, h) -> h >= NoiseProvider.SEA_LEVEL);
     }
 
     public double distanceSqFromTarget(BiomeNoiseVector vector) {

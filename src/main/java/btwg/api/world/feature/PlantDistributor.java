@@ -1,7 +1,7 @@
 package btwg.api.world.feature;
 
 import btwg.mod.block.BTWGBlocks;
-import btwg.mod.block.blocks.TallPlantBlock;
+import btwg.api.block.blocks.TallPlantBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
