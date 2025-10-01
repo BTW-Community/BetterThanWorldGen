@@ -5,6 +5,7 @@ import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
+import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
 
 import java.util.Arrays;
@@ -404,7 +405,7 @@ public final class NoiseProvider {
             }
         }
 
-        //Arrays.fill(biomes, BiomeConfiguration.SNOWY_TAIGA);
+        Arrays.fill(biomes, BiomeConfiguration.PALE_GARDEN);
 
         return biomes;
     }

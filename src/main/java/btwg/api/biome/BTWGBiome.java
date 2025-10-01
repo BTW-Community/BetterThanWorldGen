@@ -7,6 +7,7 @@ import net.minecraft.src.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class BTWGBiome extends BiomeGenBase {
@@ -16,6 +17,9 @@ public class BTWGBiome extends BiomeGenBase {
     private PlantDistributor grassDistributor = new PlantDistributor() {};
 
     public final BiomeNoiseParameterTarget noiseTarget;
+
+    private Optional<Integer> grassColorOverride;
+    private Optional<Integer> foliageColorOverride;
     
     public BTWGBiome(int id, ResourceLocation name, BiomeNoiseParameterTarget noiseTarget) {
         super(id);
@@ -127,5 +131,25 @@ public class BTWGBiome extends BiomeGenBase {
     public BTWGBiome setWaterColor(int color) {
         this.waterColorMultiplier = color;
         return this;
+    }
+
+    public BTWGBiome setGrassColor(int color) {
+        this.grassColorOverride = Optional.of(color);
+        return this;
+    }
+
+    public BTWGBiome setFoliageColor(int color) {
+        this.foliageColorOverride = Optional.of(color);
+        return this;
+    }
+
+    @Override
+    public int getBiomeGrassColor() {
+        return this.grassColorOverride.orElseGet(super::getBiomeGrassColor);
+    }
+
+    @Override
+    public int getBiomeFoliageColor() {
+        return this.foliageColorOverride.orElseGet(super::getBiomeFoliageColor);
     }
 }

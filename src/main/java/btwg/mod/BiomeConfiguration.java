@@ -26,6 +26,12 @@ public abstract class BiomeConfiguration {
     public static final int FOREST_ID = 106;
     public static final int TAIGA_ID = 107;
     public static final int SNOWY_TAIGA_ID = 108;
+    public static final int STONY_PEAKS_ID = 109;
+    public static final int FROZEN_PEAKS_ID = 110;
+    public static final int SNOWY_SLOPES_ID = 111;
+    public static final int WINDSWEPT_HILLS_ID = 112;
+    public static final int DARK_FOREST_ID = 113;
+    public static final int PALE_GARDEN_ID = 114;
 
     public static final int TROPICAL_RIVER_ID = 202;
     public static final int SCRUBLAND_RIVER_ID = 204;
@@ -41,9 +47,9 @@ public abstract class BiomeConfiguration {
     public static final double OCEAN = -0.5;
     public static final double BEACH = 0;
     public static final double LOWLANDS = 0.2;
-    public static final double MID_CONTINENT = 0.5;
-    public static final double HIGHLANDS = 0.7;
-    public static final double MOUNTAINS = 1.0;
+    public static final double MID_CONTINENT = 0.4;
+    public static final double HIGHLANDS = 0.6;
+    public static final double MOUNTAIN_PEAKS = 0.9;
 
     // Erosion constants
     public static final double LOW_EROSION = -0.6;
@@ -263,6 +269,95 @@ public abstract class BiomeConfiguration {
                     )
             ))
             .setTreeDistributor(TreeDistributors.TAIGA);
+
+    public static final BTWGBiome STONY_PEAKS = new BTWGBiome(
+            STONY_PEAKS_ID,
+            loc("stony_peaks"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            SEMI_HUMID,
+                            MOUNTAIN_PEAKS,
+                            HIGH_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTopBlock(Block.stone.blockID)
+            .setFillerBlock(Block.stone.blockID);
+
+    public static final BTWGBiome WINDSWEPT_HILLS = new BTWGBiome(
+            WINDSWEPT_HILLS_ID,
+            loc("windswept_hills"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            COLD,
+                            SEMI_ARID,
+                            HIGHLANDS,
+                            MEDIUM_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ));
+
+    public static final BTWGBiome FROZEN_PEAKS = new BTWGBiome(
+            FROZEN_PEAKS_ID,
+            loc("frozen_peaks"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            ARID,
+                            MOUNTAIN_PEAKS,
+                            MEDIUM_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTopBlock(Block.stone.blockID)
+            .setFillerBlock(Block.stone.blockID);
+
+    public static final BTWGBiome SNOWY_SLOPES = new BTWGBiome(
+            SNOWY_SLOPES_ID,
+            loc("snowy_slopes"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            ARID,
+                            HIGHLANDS,
+                            MEDIUM_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ));
+
+    public static final BTWGBiome DARK_FOREST = new BTWGBiome(
+            DARK_FOREST_ID,
+            loc("dark_forest"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            VERY_HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            MEDIUM_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.DARK_FOREST)
+            .setGrassColor(0x507A32)
+            .setFoliageColor(0x59AE30);
+
+    public static final BTWGBiome PALE_GARDEN = new BTWGBiome(
+            PALE_GARDEN_ID,
+            loc("pale_garden"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            VERY_HUMID,
+                            MID_CONTINENT,
+                            LOW_EROSION,
+                            HIGH_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.PALE_GARDEN)
+            .setGrassColor(0x778272)
+            .setFoliageColor(0x878D76)
+            .setWaterColor(0x76889D);
     
     public static void initBiomes() {}
     

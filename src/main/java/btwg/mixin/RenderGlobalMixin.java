@@ -18,7 +18,9 @@ public abstract class RenderGlobalMixin {
     @Inject(method = "loadRenderers()V", at = @At("RETURN"))
     public void setLeavesGraphicsLevel(CallbackInfo ci) {
         if (this.theWorld != null) {
+            // TODO: make this generic
             ((BlockLeaves) BTWGBlocks.leaves).setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
+            ((BlockLeaves) BTWGBlocks.leaves2).setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
         }
     }
 }

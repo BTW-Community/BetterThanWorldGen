@@ -212,6 +212,81 @@ public record WoodType(
             BTWGItemIDs.DOOR_ID + 256, 5,
             BTWGItemIDs.BARK_ID + 256, 1,
 
+            FurnaceBurnTime.PLANKS_SPRUCE.burnTime
+    );
+
+    public static final WoodType MANGROVE = new WoodType(
+            "mangrove",
+            BTWGBlockIDs.MANGROVE_LOG_ID, 0,
+            BTWGBlockIDs.CHEWED_MANGROVE_LOG_ID,
+            BTWGBlockIDs.MANGROVE_LOG_SPIKE_ID,
+            BTWGBlockIDs.STUMP_ID, 2,
+            BTWGBlockIDs.WORK_STUMP_ID, 2,
+
+            BTWGBlockIDs.LEAVES_ID, 2,
+            BTWGBlockIDs.MANGROVE_SAPLING_ID,
+
+            BTWGBlockIDs.PLANKS_ID, 2,
+            BTWGBlockIDs.MANGROVE_STAIRS_ID,
+            BTWGBlockIDs.WOOD_SLAB_ID, 2,
+            BTWGBlockIDs.MANGROVE_SIDING_ID,
+            BTWGBlockIDs.MANGROVE_MOULDING_ID,
+            BTWGBlockIDs.MANGROVE_DOOR_ID,
+            BTWGBlockIDs.MANGROVE_TRAPDOOR_ID,
+
+            BTWGItemIDs.DOOR_ID + 256, 6,
+            BTWGItemIDs.BARK_ID + 256, 2,
+
+            FurnaceBurnTime.PLANKS_JUNGLE.burnTime
+    );
+
+    public static final WoodType CHERRY = new WoodType(
+            "cherry",
+            BTWGBlockIDs.CHERRY_LOG_ID, 0,
+            BTWGBlockIDs.CHEWED_CHERRY_LOG_ID,
+            BTWGBlockIDs.CHERRY_LOG_SPIKE_ID,
+            BTWGBlockIDs.STUMP_ID, 3,
+            BTWGBlockIDs.WORK_STUMP_ID, 3,
+
+            BTWGBlockIDs.LEAVES_ID, 3,
+            BTWGBlockIDs.CHERRY_SAPLING_ID,
+
+            BTWGBlockIDs.PLANKS_ID, 3,
+            BTWGBlockIDs.CHERRY_STAIRS_ID,
+            BTWGBlockIDs.WOOD_SLAB_ID, 3,
+            BTWGBlockIDs.CHERRY_SIDING_ID,
+            BTWGBlockIDs.CHERRY_MOULDING_ID,
+            BTWGBlockIDs.CHERRY_DOOR_ID,
+            BTWGBlockIDs.CHERRY_TRAPDOOR_ID,
+
+            BTWGItemIDs.DOOR_ID + 256, 7,
+            BTWGItemIDs.BARK_ID + 256, 3,
+
+            FurnaceBurnTime.PLANKS_BIRCH.burnTime
+    );
+
+    public static final WoodType PALE_OAK = new WoodType(
+            "pale_oak",
+            BTWGBlockIDs.PALE_OAK_LOG_ID, 0,
+            BTWGBlockIDs.CHEWED_PALE_OAK_LOG_ID,
+            BTWGBlockIDs.PALE_OAK_LOG_SPIKE_ID,
+            BTWGBlockIDs.STUMP_ID, 4,
+            BTWGBlockIDs.WORK_STUMP_ID, 4,
+
+            BTWGBlockIDs.LEAVES_2_ID, 0,
+            BTWGBlockIDs.PALE_OAK_SAPLING_ID,
+
+            BTWGBlockIDs.PLANKS_ID, 4,
+            BTWGBlockIDs.PALE_OAK_STAIRS_ID,
+            BTWGBlockIDs.WOOD_SLAB_ID, 4,
+            BTWGBlockIDs.PALE_OAK_SIDING_ID,
+            BTWGBlockIDs.PALE_OAK_MOULDING_ID,
+            BTWGBlockIDs.PALE_OAK_DOOR_ID,
+            BTWGBlockIDs.PALE_OAK_TRAPDOOR_ID,
+
+            BTWGItemIDs.DOOR_ID + 256, 8,
+            BTWGItemIDs.BARK_ID + 256, 4,
+
             FurnaceBurnTime.PLANKS_BIRCH.burnTime
     );
 }

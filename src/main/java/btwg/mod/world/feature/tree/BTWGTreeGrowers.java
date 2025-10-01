@@ -46,4 +46,10 @@ public abstract class BTWGTreeGrowers {
     public static final AbstractTreeGrower SAVANNA_TREE = new SavannaTreeGrower("btwg:savanna", 4, 8, BTWGTreeWoodTypes.ACACIA);
     public static final AbstractTreeGrower SPLIT_SAVANNA_TREE = new SplitSavannaTreeGrower("btwg:savanna", 5, 9, BTWGTreeWoodTypes.ACACIA);
     public static final AbstractTreeGrower SAVANNA_BUSH = new BushGrower("btwg:savanna_bush", BTWGTreeWoodTypes.ACACIA);
+
+    public static final AbstractTreeGrower DARK_OAK_TREE = new BranchingTreeGrower("btwg:dark_oak", 9, 16, BTWGTreeWoodTypes.DARK_OAK);
+    public static final AbstractTreeGrower HUGE_DARK_OAK_TREE = new DarkOakTreeGrower("deco:huge_dark_oak", 4, 10, BTWGTreeWoodTypes.DARK_OAK);
+
+    public static final AbstractTreeGrower PALE_OAK_TREE = new BranchingTreeGrower("btwg:pale_oak", 9, 16, BTWGTreeWoodTypes.PALE_OAK);
+    public static final AbstractTreeGrower HUGE_PALE_OAK_TREE = new DarkOakTreeGrower("deco:huge_pale_oak", 4, 10, BTWGTreeWoodTypes.PALE_OAK);
 }

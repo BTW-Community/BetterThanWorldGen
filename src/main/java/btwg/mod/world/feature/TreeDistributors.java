@@ -33,6 +33,32 @@ public abstract class TreeDistributors {
         }
     };
 
+    public static final TreeDistributor DARK_FOREST = new TreeDistributor(20) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t <= 3) {
+                return BTWGTreeGrowers.DARK_OAK_TREE;
+            }
+
+            return BTWGTreeGrowers.HUGE_DARK_OAK_TREE;
+        }
+    };
+
+    public static final TreeDistributor PALE_GARDEN = new TreeDistributor(20) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t <= 3) {
+                return BTWGTreeGrowers.PALE_OAK_TREE;
+            }
+
+            return BTWGTreeGrowers.HUGE_PALE_OAK_TREE;
+        }
+    };
+
     public static final TreeDistributor TAIGA = new TreeDistributor(20) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {

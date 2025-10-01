@@ -18,7 +18,10 @@ public class BTWGItems {
         bark = new MultiItem(BTWGItemIDs.BARK_ID, "bark",
                 new String[] {
                         "acacia",
-                        "dark_oak"
+                        "dark_oak",
+                        "mangrove",
+                        "cherry",
+                        "pale_oak"
                 })
                 .setBuoyant()
                 .setBellowsBlowDistance(2)
@@ -33,7 +36,10 @@ public class BTWGItems {
                         WoodType.JUNGLE,
                         WoodType.BLOOD_WOOD,
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY,
+                        WoodType.PALE_OAK
                 });
     }
 }

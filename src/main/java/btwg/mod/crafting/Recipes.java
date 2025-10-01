@@ -57,6 +57,9 @@ public class Recipes {
     private static void initWoodRecipes() {
         initWoodRecipesForType(WoodType.ACACIA);
         initWoodRecipesForType(WoodType.DARK_OAK);
+        initWoodRecipesForType(WoodType.MANGROVE);
+        initWoodRecipesForType(WoodType.CHERRY);
+        initWoodRecipesForType(WoodType.PALE_OAK);
 
         // Remove generic door and trapdoor recipes
         RecipeManager.removeVanillaRecipe(new ItemStack(Item.doorWood, 1 ), new Object[] {

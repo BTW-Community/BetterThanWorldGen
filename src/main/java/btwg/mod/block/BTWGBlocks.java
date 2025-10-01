@@ -17,6 +17,7 @@ public abstract class BTWGBlocks {
     public static Block stump;
     public static Block workStump;
     public static Block leaves;
+    public static Block leaves2;
 
     public static Block spruceDoor;
     public static Block spruceTrapdoor;
@@ -46,6 +47,36 @@ public abstract class BTWGBlocks {
     public static Block darkOakSidingAndCorner;
     public static Block darkOakMoulding;
     public static Block darkOakSapling;
+
+    public static Block mangroveLog;
+    public static Block mangroveChewedLog;
+    public static Block mangroveLogSpike;
+    public static Block mangroveStairs;
+    public static Block mangroveDoor;
+    public static Block mangroveTrapdoor;
+    public static Block mangroveSidingAndCorner;
+    public static Block mangroveMoulding;
+    public static Block mangroveSapling;
+
+    public static Block cherryLog;
+    public static Block cherryChewedLog;
+    public static Block cherryLogSpike;
+    public static Block cherryStairs;
+    public static Block cherryDoor;
+    public static Block cherryTrapdoor;
+    public static Block cherrySidingAndCorner;
+    public static Block cherryMoulding;
+    public static Block cherrySapling;
+
+    public static Block paleOakLog;
+    public static Block paleOakChewedLog;
+    public static Block paleOakLogSpike;
+    public static Block paleOakStairs;
+    public static Block paleOakDoor;
+    public static Block paleOakTrapdoor;
+    public static Block paleOakSidingAndCorner;
+    public static Block paleOakMoulding;
+    public static Block paleOakSapling;
 
     public static Block earthenClay;
     public static Block grassyEarthenClay;
@@ -160,54 +191,91 @@ public abstract class BTWGBlocks {
         planks = new BTWGPlanksBlock(BTWGBlockIDs.PLANKS_ID,
                 new WoodType[] {
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY,
+                        WoodType.PALE_OAK
                 });
         register(planks, new String[] {
                 "acacia",
-                "dark_oak"
+                "dark_oak",
+                "mangrove",
+                "cherry",
+                "pale_oak"
         });
 
         woodSlab = new BTWGWoodSlabBlock(BTWGBlockIDs.WOOD_SLAB_ID,
                 new WoodType[] {
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY,
+                        WoodType.PALE_OAK
                 });
         register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, new String[] {
                 "acacia",
-                "dark_oak"
+                "dark_oak",
+                "mangrove",
+                "cherry",
+                "pale_oak"
         }));
 
         stump = new StumpBlock(BTWGBlockIDs.STUMP_ID,
                 new WoodType[] {
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY,
+                        WoodType.PALE_OAK
                 })
                 .setUnlocalizedName("btwg.stump");
         register(stump, new String[] {
                 "acacia_stump",
-                "dark_oak_stump"
+                "dark_oak_stump",
+                "mangrove",
+                "cherry",
+                "pale_oak"
         });
 
         workStump = new WorkStumpBlock(BTWGBlockIDs.WORK_STUMP_ID,
                 new WoodType[] {
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY,
+                        WoodType.PALE_OAK
                 })
                 .setUnlocalizedName("btwg.work_stump");
         register(workStump, new String[] {
                 "acacia",
-                "dark_oak"
+                "dark_oak",
+                "mangrove",
+                "cherry",
+                "pale_oak"
         });
 
         leaves = new BTWGLeafBlock(BTWGBlockIDs.LEAVES_ID,
                 new WoodType[] {
                         WoodType.ACACIA,
-                        WoodType.DARK_OAK
+                        WoodType.DARK_OAK,
+                        WoodType.MANGROVE,
+                        WoodType.CHERRY
                 })
                 .setUnlocalizedName("btwg.leaves");
         register(leaves, new String[] {
                 "acacia",
-                "dark_oak"
+                "dark_oak",
+                "mangrove",
+                "cherry"
+        });
+
+        leaves2 = new BTWGLeafBlock(BTWGBlockIDs.LEAVES_2_ID,
+                new WoodType[] {
+                        WoodType.PALE_OAK
+                })
+                .setUnlocalizedName("btwg.leaves");
+        register(leaves2, new String[] {
+                "pale_oak"
         });
 
         //------ Acacia ------//
@@ -298,9 +366,147 @@ public abstract class BTWGBlocks {
         register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.DARK_OAK_MOULDING_ID - 256));
 
         darkOakSapling = new SaplingBlock(BTWGBlockIDs.DARK_OAK_SAPLING_ID, "btwg.dark_oak_sapling", "btwg:dark_oak_sapling")
+                .addTreeGrower(BTWGTreeGrowers.DARK_OAK_TREE, 1)
+                .add2x2TreeGrower(BTWGTreeGrowers.HUGE_DARK_OAK_TREE, 1);
+        register(new SaplingBlockItem(BTWGBlockIDs.DARK_OAK_SAPLING_ID - 256, darkOakSapling));
+
+        //------ Mangrove ------//
+
+        mangroveLog = new BTWGLogBlock(BTWGBlockIDs.MANGROVE_LOG_ID, WoodType.MANGROVE);
+        register(mangroveLog);
+
+        mangroveLogSpike = new LogSpikeBlock(BTWGBlockIDs.MANGROVE_LOG_SPIKE_ID,
+                "btwg:chewed_" + WoodType.MANGROVE.name() + "_log_top",
+                "btwg:chewed_" + WoodType.MANGROVE.name() + "_log_side");
+        register(mangroveLogSpike);
+
+        mangroveChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_MANGROVE_LOG_ID,
+                "btwg:chewed_" + WoodType.MANGROVE.name() + "_log_top",
+                "btwg:chewed_" + WoodType.MANGROVE.name() + "_log_side",
+                "btwg:" + WoodType.MANGROVE.name() + "_stump_top",
+                mangroveLogSpike);
+        register(mangroveChewedLog);
+
+        mangroveStairs = new WoodStairsBlock(BTWGBlockIDs.MANGROVE_STAIRS_ID,
+                Block.blocksList[WoodType.MANGROVE.plankID()],
+                WoodType.MANGROVE.plankMetadata())
+                .setUnlocalizedName("btwg.mangrove_stairs");
+        register(mangroveStairs);
+
+        mangroveDoor = new BTWGDoorBlock(BTWGBlockIDs.MANGROVE_DOOR_ID, WoodType.MANGROVE);
+
+        mangroveTrapdoor = new BlockTrapDoor(BTWGBlockIDs.MANGROVE_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.mangrove_trapdoor")
+                .setTextureName("btwg:mangrove_trapdoor")
+                .setHopperFilter();
+        register(mangroveTrapdoor);
+
+        mangroveSidingAndCorner = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.MANGROVE_SIDING_ID,
+                "btwg:mangrove_planks", "btwg.mangrove_siding");
+        register(new SidingAndCornerBlockItem(BTWGBlockIDs.MANGROVE_SIDING_ID - 256));
+
+        mangroveMoulding = new BTWGWoodMouldingBlock(BTWGBlockIDs.MANGROVE_MOULDING_ID,
+                "btwg:mangrove_planks", "btwg:mangrove_column",
+                BTWGBlockIDs.MANGROVE_SIDING_ID,
+                "btwg.mangrove_moulding");
+        register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.MANGROVE_MOULDING_ID - 256));
+
+        mangroveSapling = new SaplingBlock(BTWGBlockIDs.MANGROVE_SAPLING_ID, "btwg.mangrove_sapling", "btwg:mangrove_sapling")
                 .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
                 .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
-        register(new SaplingBlockItem(BTWGBlockIDs.DARK_OAK_SAPLING_ID - 256, darkOakSapling));
+        register(new SaplingBlockItem(BTWGBlockIDs.MANGROVE_SAPLING_ID - 256, mangroveSapling));
+
+        //------ Cherry ------//
+
+        cherryLog = new BTWGLogBlock(BTWGBlockIDs.CHERRY_LOG_ID, WoodType.CHERRY);
+        register(cherryLog);
+
+        cherryLogSpike = new LogSpikeBlock(BTWGBlockIDs.CHERRY_LOG_SPIKE_ID,
+                "btwg:chewed_" + WoodType.CHERRY.name() + "_log_top",
+                "btwg:chewed_" + WoodType.CHERRY.name() + "_log_side");
+        register(cherryLogSpike);
+
+        cherryChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_CHERRY_LOG_ID,
+                "btwg:chewed_" + WoodType.CHERRY.name() + "_log_top",
+                "btwg:chewed_" + WoodType.CHERRY.name() + "_log_side",
+                "btwg:" + WoodType.CHERRY.name() + "_stump_top",
+                cherryLogSpike);
+        register(cherryChewedLog);
+
+        cherryStairs = new WoodStairsBlock(BTWGBlockIDs.CHERRY_STAIRS_ID,
+                Block.blocksList[WoodType.CHERRY.plankID()],
+                WoodType.CHERRY.plankMetadata())
+                .setUnlocalizedName("btwg.cherry_stairs");
+        register(cherryStairs);
+
+        cherryDoor = new BTWGDoorBlock(BTWGBlockIDs.CHERRY_DOOR_ID, WoodType.CHERRY);
+
+        cherryTrapdoor = new BlockTrapDoor(BTWGBlockIDs.CHERRY_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.cherry_trapdoor")
+                .setTextureName("btwg:cherry_trapdoor")
+                .setHopperFilter();
+        register(cherryTrapdoor);
+
+        cherrySidingAndCorner = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.CHERRY_SIDING_ID,
+                "btwg:cherry_planks", "btwg.cherry_siding");
+        register(new SidingAndCornerBlockItem(BTWGBlockIDs.CHERRY_SIDING_ID - 256));
+
+        cherryMoulding = new BTWGWoodMouldingBlock(BTWGBlockIDs.CHERRY_MOULDING_ID,
+                "btwg:cherry_planks", "btwg:cherry_column",
+                BTWGBlockIDs.CHERRY_SIDING_ID,
+                "btwg.cherry_moulding");
+        register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.CHERRY_MOULDING_ID - 256));
+
+        cherrySapling = new SaplingBlock(BTWGBlockIDs.CHERRY_SAPLING_ID, "btwg.cherry_sapling", "btwg:cherry_sapling")
+                .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
+                .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
+        register(new SaplingBlockItem(BTWGBlockIDs.CHERRY_SAPLING_ID - 256, cherrySapling));
+
+        //------ Pale Oak ------//
+
+        paleOakLog = new BTWGLogBlock(BTWGBlockIDs.PALE_OAK_LOG_ID, WoodType.PALE_OAK);
+        register(paleOakLog);
+
+        paleOakLogSpike = new LogSpikeBlock(BTWGBlockIDs.PALE_OAK_LOG_SPIKE_ID,
+                "btwg:chewed_" + WoodType.PALE_OAK.name() + "_log_top",
+                "btwg:chewed_" + WoodType.PALE_OAK.name() + "_log_side");
+        register(paleOakLogSpike);
+
+        paleOakChewedLog = new ChewedLogBlock(BTWGBlockIDs.CHEWED_PALE_OAK_LOG_ID,
+                "btwg:chewed_" + WoodType.PALE_OAK.name() + "_log_top",
+                "btwg:chewed_" + WoodType.PALE_OAK.name() + "_log_side",
+                "btwg:" + WoodType.PALE_OAK.name() + "_stump_top",
+                paleOakLogSpike);
+        register(paleOakChewedLog);
+
+        paleOakStairs = new WoodStairsBlock(BTWGBlockIDs.PALE_OAK_STAIRS_ID,
+                Block.blocksList[WoodType.PALE_OAK.plankID()],
+                WoodType.PALE_OAK.plankMetadata())
+                .setUnlocalizedName("btwg.pale_oak_stairs");
+        register(paleOakStairs);
+
+        paleOakDoor = new BTWGDoorBlock(BTWGBlockIDs.PALE_OAK_DOOR_ID, WoodType.PALE_OAK);
+
+        paleOakTrapdoor = new BlockTrapDoor(BTWGBlockIDs.PALE_OAK_TRAPDOOR_ID)
+                .setUnlocalizedName("btwg.pale_oak_trapdoor")
+                .setTextureName("btwg:pale_oak_trapdoor")
+                .setHopperFilter();
+        register(paleOakTrapdoor);
+
+        paleOakSidingAndCorner = new BTWGWoodSidingAndCornerBlock(BTWGBlockIDs.PALE_OAK_SIDING_ID,
+                "btwg:pale_oak_planks", "btwg.pale_oak_siding");
+        register(new SidingAndCornerBlockItem(BTWGBlockIDs.PALE_OAK_SIDING_ID - 256));
+
+        paleOakMoulding = new BTWGWoodMouldingBlock(BTWGBlockIDs.PALE_OAK_MOULDING_ID,
+                "btwg:pale_oak_planks", "btwg:pale_oak_column",
+                BTWGBlockIDs.PALE_OAK_SIDING_ID,
+                "btwg.pale_oak_moulding");
+        register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.PALE_OAK_MOULDING_ID - 256));
+
+        paleOakSapling = new SaplingBlock(BTWGBlockIDs.PALE_OAK_SAPLING_ID, "btwg.pale_oak_sapling", "btwg:pale_oak_sapling")
+                .addTreeGrower(BTWGTreeGrowers.PALE_OAK_TREE, 1)
+                .add2x2TreeGrower(BTWGTreeGrowers.HUGE_PALE_OAK_TREE, 1);
+        register(new SaplingBlockItem(BTWGBlockIDs.PALE_OAK_SAPLING_ID - 256, paleOakSapling));
     }
 
     private static void register(Block block, String[] names) {

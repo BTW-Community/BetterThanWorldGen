@@ -92,12 +92,12 @@ public class StumpBlock extends Block {
     @Environment(value= EnvType.CLIENT)
     public Icon getIcon(int iSide, int iMetadata) {
         if (iSide > 1) {
-            return this.sideIcons[iMetadata & 3];
+            return this.sideIcons[iMetadata];
         }
         if (iSide == 1) {
-            return this.topIcons[iMetadata & 3];
+            return this.topIcons[iMetadata];
         }
-        return this.topIcons[iMetadata & 3];
+        return this.topIcons[iMetadata];
     }
 
     @Override
