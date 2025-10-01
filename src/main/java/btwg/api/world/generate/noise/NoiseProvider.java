@@ -2,6 +2,7 @@ package btwg.api.world.generate.noise;
 
 import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.BiomeNoiseVector;
+import btwg.api.biome.DefaultBiomes;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
@@ -508,16 +509,16 @@ public final class NoiseProvider {
                 );
 
                 double closestDistance = Double.MAX_VALUE;
-                BiomeGenBase closestBiome = BiomeGenBase.ocean;
+                BTWGBiome closestBiome = null;
+
+                double targetHeight = this.heightmap[idx] * TOTAL_HEIGHT;
 
                 for (BTWGBiome biome : BTWGBiome.biomeList) {
-                    double targetHeight = this.heightmap[idx] * TOTAL_HEIGHT;
-
-                    if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance
-                            && biome.noiseTarget.validator().test(biomeVector, (int) targetHeight))
-                    {
-                        closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
-                        closestBiome = biome;
+                    if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance) {
+                        if (biome.noiseTarget.validator().test(biomeVector, (int) targetHeight)) {
+                            closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
+                            closestBiome = biome;
+                        }
                     }
                 }
 

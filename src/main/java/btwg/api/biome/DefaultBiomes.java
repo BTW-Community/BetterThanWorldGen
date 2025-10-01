@@ -1,15 +1,32 @@
 package btwg.api.biome;
 
 import btwg.api.biome.data.BiomeData;
+import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.Block;
 import net.minecraft.src.ResourceLocation;
 
 public class DefaultBiomes {
-    public static final int RIVER_ID = 50;
-    public static final int FROZEN_RIVER_ID = 51;
-    public static final int BEACH_ID = 52;
-    public static final int FROZEN_BEACH_ID = 53;
+    public static final int OCEAN_ID = 50;
+    public static final int RIVER_ID = 51;
+    public static final int FROZEN_RIVER_ID = 52;
+    public static final int BEACH_ID = 53;
+    public static final int FROZEN_BEACH_ID = 54;
+
+    public static final BTWGBiome OCEAN = new BTWGBiome(
+            OCEAN_ID,
+            loc("ocean"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            0.5,
+                            0.5,
+                            -0.5,
+                            0.0,
+                            0.5
+                    ),
+                    (v, h) -> h < NoiseProvider.SEA_LEVEL
+            ))
+            .setNoAnimals();
 
     /*
     public static final BTWGBiome RIVER = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(RIVER_ID, loc("river")))

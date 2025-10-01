@@ -12,11 +12,12 @@ public record BiomeNoiseParameterTarget(
     private static final double HUMIDITY_BIAS = 2;
     private static final double SEA_LEVEL_BIAS = 5;
 
-    public static final BiPredicate<BiomeNoiseVector, Integer> DEFAULT_PREDICATE = (v, h) -> h >= NoiseProvider.SEA_LEVEL * 0.8 && h <= NoiseProvider.SEA_LEVEL * 2 && v.temperature() > 0.2;
+    public static final BiPredicate<BiomeNoiseVector, Integer> DEFAULT_PREDICATE = (v, h) -> h >= NoiseProvider.SEA_LEVEL * 0.8;
+    public static final BiPredicate<BiomeNoiseVector, Integer> DEFAULT_NON_SNOWY = (v, h) -> DEFAULT_PREDICATE.test(v, h) && v.temperature() > 0.2;
 
     public BiomeNoiseParameterTarget(BiomeNoiseVector target) {
         // TODO: Make sea level check dynamic
-        this(target, DEFAULT_PREDICATE);
+        this(target, DEFAULT_NON_SNOWY);
     }
 
     public double distanceSqFromTarget(BiomeNoiseVector vector) {
