@@ -522,6 +522,10 @@ public final class NoiseProvider {
                     }
                 }
 
+                if (closestBiome == null) {
+                    closestBiome = DefaultBiomes.OCEAN;
+                }
+
                 biomes[idx] = closestBiome;
             }
         }

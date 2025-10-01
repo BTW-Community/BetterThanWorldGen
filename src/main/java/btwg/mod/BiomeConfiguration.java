@@ -10,8 +10,7 @@ import btwg.mod.world.feature.GrassDistributors;
 import btwg.mod.world.feature.TreeDistributors;
 import btwg.mod.world.surface.OutbackSurfacer;
 import btwg.mod.world.surface.ScrublandSurfacer;
-import net.minecraft.src.Block;
-import net.minecraft.src.ResourceLocation;
+import net.minecraft.src.*;
 
 import java.util.function.BiPredicate;
 
@@ -242,6 +241,7 @@ public abstract class BiomeConfiguration {
                             MEDIUM_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setGrassDistributor(new PlantDistributor(10))
             .setTreeDistributor(TreeDistributors.HIGHLANDS);
 
@@ -257,6 +257,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setGrassDistributor(new PlantDistributor(5))
             .setTreeDistributor(TreeDistributors.FOREST);
 
@@ -272,6 +273,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
@@ -287,6 +289,7 @@ public abstract class BiomeConfiguration {
                             HIGH_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
@@ -303,6 +306,7 @@ public abstract class BiomeConfiguration {
                     ),
                     (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
             ))
+            .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
@@ -319,6 +323,7 @@ public abstract class BiomeConfiguration {
                     ),
                     (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
             ))
+            .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
@@ -400,6 +405,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
@@ -514,6 +520,8 @@ public abstract class BiomeConfiguration {
                             MEDIUM_WEIRDNESS
                     )
             ))
+            .setHasJungleSpiders()
+            .setNoLargeAnimals()
             .setTreeDistributor(TreeDistributors.JUNGLE)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
 
@@ -530,6 +538,9 @@ public abstract class BiomeConfiguration {
                     ),
                     (v, h) -> h < NoiseProvider.SEA_LEVEL * 1.05 && DEFAULT_PREDICATE.test(v, h)
             ))
+            .setNoLargeAnimals()
+            .setHasSlimes()
+            .setHasWitches()
             .setTreeDistributor(TreeDistributors.SWAMP)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setGrassColor(0x4C763C)
@@ -548,6 +559,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setHasWolves()
             .setTreeDistributor(TreeDistributors.BIRCH)
             .setGrassDistributor(new PlantDistributor(6));
 
@@ -564,6 +576,8 @@ public abstract class BiomeConfiguration {
                     ),
                     (v, h) -> h < NoiseProvider.SEA_LEVEL * 1.05 && DEFAULT_PREDICATE.test(v, h)
             ))
+            .setHasSlimes()
+            .setHasWitches()
             .setTreeDistributor(TreeDistributors.WETLAND)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setGrassColor(0x4C903C)
@@ -590,7 +604,30 @@ public abstract class BiomeConfiguration {
             .setFillerBlock(BTWGBlocks.sandyDirt.blockID)
             .setWaterColor(DESERT_WATER_COLOR);
     
-    public static void initBiomes() {}
+    public static void initBiomes() {
+        BTWGBiome.biomeList.forEach(WorldGenReed::addBiomeToGenerator);
+
+        WorldGenPumpkin.addBiomeToGenerator(PLAINS);
+        WorldGenPumpkin.addBiomeToGenerator(ARID_HIGHLANDS);
+        WorldGenPumpkin.addBiomeToGenerator(SAVANNA);
+
+        ComponentVillageStartPiece.addDesertBiome(OUTBACK);
+        ComponentVillageStartPiece.addDesertBiome(SCRUBLAND);
+
+        MapGenVillage.villageSpawnBiomes.add(OUTBACK);
+        MapGenVillage.villageSpawnBiomes.add(SCRUBLAND);
+        MapGenVillage.villageSpawnBiomes.add(PLAINS);
+        MapGenVillage.villageSpawnBiomes.add(SAVANNA);
+
+        StructureScatteredFeatureStart.addDesertBiome(OUTBACK);
+        StructureScatteredFeatureStart.addDesertBiome(SCRUBLAND);
+
+        StructureScatteredFeatureStart.addSwampBiome(SWAMP);
+        StructureScatteredFeatureStart.addSwampBiome(WETLAND);
+
+        StructureScatteredFeatureStart.addJungleBiome(JUNGLE);
+        StructureScatteredFeatureStart.addJungleBiome(RAINFOREST);
+    }
     
     public static ResourceLocation loc(String name) {
         return new ResourceLocation(BetterThanWorldGen.MODID, name);

@@ -1,22 +1,72 @@
 package btwg.mod.crafting;
 
+import btw.block.BTWBlocks;
 import btw.block.blocks.MouldingAndDecorativeBlock;
 import btw.block.blocks.SidingAndCornerAndDecorativeBlock;
 import btw.crafting.recipe.RecipeManager;
+import btw.crafting.recipe.types.customcrafting.ConditionalRecipe;
 import btw.inventory.util.InventoryUtils;
 import btw.item.BTWItems;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
 import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.WoodType;
-import net.minecraft.src.Block;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
+import net.minecraft.src.*;
 
 public class Recipes {
     public static void initRecipes() {
+        initTorchRecipes();
         initSoilRecipes();
         initWoodRecipes();
+    }
+
+    private static void initTorchRecipes() {
+        // Remove BTW torch recipes
+        RecipeManager.removeVanillaRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch, 1), new Object[]{
+                "#",
+                "X",
+                '#', BTWItems.nethercoal,
+                'X', Item.stick
+        });
+        RecipeManager.removeVanillaRecipe(new ItemStack(BTWBlocks.finiteUnlitTorch), new Object[]{
+                "#",
+                "X",
+                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                'X', Item.stick
+        });
+        RecipeManager.removeVanillaRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch), new Object[]{
+                "#",
+                "X",
+                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                'X', Item.stick
+        });
+
+        // Readd recipes with higher quanyities
+        RecipeManager.addRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch, 4), new Object[]{
+                "#",
+                "X",
+                '#', BTWItems.nethercoal,
+                'X', Item.stick
+        });
+
+        ShapedRecipes crudeTorchRecipe = CraftingManager.getInstance().createRecipe(new ItemStack(BTWBlocks.finiteUnlitTorch, 4), new Object[]{
+                "#",
+                "X",
+                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                'X', Item.stick
+        });
+
+        ShapedRecipes infiniteTorchFromCoalRecipe = CraftingManager.getInstance().createRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch, 4), new Object[]{
+                "#",
+                "X",
+                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                'X', Item.stick
+        });
+
+        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(crudeTorchRecipe, world -> !world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
+        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(infiniteTorchFromCoalRecipe, world -> world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
+
+        RecipeManager.addShapelessRecipe(new ItemStack(BTWBlocks.infiniteBurningTorch), new Object[]{new ItemStack(Block.torchWood)});
     }
 
     private static void initSoilRecipes() {
