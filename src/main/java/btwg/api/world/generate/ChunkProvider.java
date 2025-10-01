@@ -52,6 +52,7 @@ public final class ChunkProvider implements IChunkProvider {
         this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
 
         double[] terrainNoise = this.noiseProvider.getTerrainNoise(chunkX, chunkZ);
+        double[] caveNoise = this.noiseProvider.getCaveNoise(chunkX, chunkZ);
 
         if (terrainNoise == null) {
             throw new IllegalStateException("No terrain noise provided!");
@@ -83,6 +84,28 @@ public final class ChunkProvider implements IChunkProvider {
 
         BiomeGenBase[] biomes = this.noiseProvider.getBiomes(chunkX, chunkZ);
         this.replaceBlocksForBiome(chunkX, chunkZ, blockIDs, metadata, biomes);
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                for (int j = 0; j < height; j++) {
+                    int index = (i * 16 + k) * height + j;
+
+                    if (caveNoise[index] < -0.5 && blockIDs[index] != Block.waterStill.blockID) {
+                        if (j < 16) {
+                            blockIDs[index] = (short) Block.lavaStill.blockID;
+                        }
+                        else {
+                            blockIDs[index] = 0;
+                        }
+
+                        //blockIDs[index] = (short) Block.stone.blockID;
+                    }
+                    else {
+                        //blockIDs[index] = 0;
+                    }
+                }
+            }
+        }
         
         if (this.mapFeaturesEnabled) {
             this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
@@ -305,14 +328,14 @@ public final class ChunkProvider implements IChunkProvider {
             for (int localZ = 0; localZ < 16; ++localZ) {
                 int localY = 0;
 
-                for (int strataHeight = 24 + world.rand.nextInt(2); localY <= strataHeight; ++localY) {
+                for (int strataHeight = 33 + world.rand.nextInt(2); localY <= strataHeight; ++localY) {
                     int blockID = chunk.getBlockID(localX, localY, localZ);
                     if (blockID == Block.stone.blockID) {
                         chunk.setBlockMetadata(localX, localY, localZ, 2);
                     }
                 }
 
-                for (int strataHeight2 = 48 + world.rand.nextInt(2); localY <= strataHeight2; ++localY) {
+                for (int strataHeight2 = 66 + world.rand.nextInt(2); localY <= strataHeight2; ++localY) {
                     int blockID = chunk.getBlockID(localX, localY, localZ);
                     if (blockID == Block.stone.blockID) {
                         chunk.setBlockMetadata(localX, localY, localZ, 1);

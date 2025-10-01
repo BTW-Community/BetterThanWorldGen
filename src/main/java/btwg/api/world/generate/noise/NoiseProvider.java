@@ -5,7 +5,6 @@ import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
-import btwg.mod.BiomeConfiguration;
 import net.minecraft.src.BiomeGenBase;
 
 import java.util.Arrays;
@@ -25,8 +24,20 @@ public final class NoiseProvider {
 
     public static final int TERRAIN_SCALE = 256;
 
+    // Cave generation scales
+    public static final int CHEESE_CAVE_SCALE_XZ = 128;
+    public static final int CHEESE_CAVE_SCALE_Y = 96;
+    public static final int SPAGHETTI_CAVE_SCALE_XZ = 192;
+    public static final int SPAGHETTI_CAVE_SCALE_Y = 96;
+    public static final int NOODLE_CAVE_SCALE = 128;
+
     private static final int DRIVER_OCTAVES = 6;
     private static final int TERRAIN_OCTAVES = 6;
+
+    private static final int CHEESE_CAVES_OCTAVES = 4;
+    private static final int SPAGHETTI_CAVES_OCTAVES = 3;
+    private static final int NOODLE_CAVES_OCTAVES = 3;
+    private static final int CAVE_PILLAR_OCTAVES = 2;
 
     // TODO: fix interpolation
     public static final int NOISE_SUBSCALE = 16;
@@ -84,6 +95,14 @@ public final class NoiseProvider {
 
     private final OpenSimplexOctavesFast terrainGenerator;
 
+    // Cave noise generators
+    private final OpenSimplexOctavesFast cheeseCaveGenerator;
+    private final OpenSimplexOctavesFast spaghettiCave1Generator;
+    private final OpenSimplexOctavesFast spaghettiCave2Generator;
+    private final OpenSimplexOctavesFast noodleCave1Generator;
+    private final OpenSimplexOctavesFast noodleCave2Generator;
+    private final OpenSimplexOctavesFast pillarGenerator;
+
     private double[] continentalness;
     private double[] heightmap;
 
@@ -121,6 +140,13 @@ public final class NoiseProvider {
         this.humidityGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
 
         this.terrainGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), TERRAIN_OCTAVES);
+
+        this.cheeseCaveGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), CHEESE_CAVES_OCTAVES);
+        this.spaghettiCave1Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), SPAGHETTI_CAVES_OCTAVES);
+        this.spaghettiCave2Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), SPAGHETTI_CAVES_OCTAVES);
+        this.noodleCave1Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), NOODLE_CAVES_OCTAVES);
+        this.noodleCave2Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), NOODLE_CAVES_OCTAVES);
+        this.pillarGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), CAVE_PILLAR_OCTAVES);
 
         int gaussianBlurSize = 3;
         gaussianBlur = Arrays.stream(new double[] {
@@ -271,6 +297,97 @@ public final class NoiseProvider {
         }
 
         return terrain;
+    }
+
+    public double[] getCaveNoise(int chunkX, int chunkZ) {
+        if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            this.initNoiseFields(chunkX, chunkZ);
+        }
+
+        double[] caves = new double[16 * 16 * TOTAL_HEIGHT];
+
+        int baseX = chunkX * 16;
+        int baseZ = chunkZ * 16;
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                int colIdx = idx(i, k, 16);
+                double surfaceHeight = this.heightmap[colIdx] * TOTAL_HEIGHT;
+
+                for (int j = 0; j < TOTAL_HEIGHT; j++) {
+                    int idx = idx(i, j, k, TOTAL_HEIGHT, 16);
+
+                    int worldX = baseX + i;
+                    int worldZ = baseZ + k;
+
+                    // Calculate depth from surface for cave density modulation
+                    double depthFromSurface = surfaceHeight - j;
+
+                    // Don't generate caves in bottom 5 blocks
+                    if (j < 5) {
+                        caves[idx] = 1.0; // Solid
+                        continue;
+                    }
+
+                    // Calculate cave density
+                    double caveDensity = calculateCaveDensity(worldX, j, worldZ, depthFromSurface);
+
+                    caves[idx] = caveDensity;
+                }
+            }
+        }
+
+        return caves;
+    }
+
+    private double calculateCaveDensity(int x, int y, int z, double depthFromSurface) {
+        // Cheese caves (large caverns)
+        double cheese = cheeseCaveGenerator.noise3(x, y, z, 1.0 / CHEESE_CAVE_SCALE_XZ, 1.0 / CHEESE_CAVE_SCALE_Y);
+
+        // Spaghetti caves (winding tunnels)
+        // Use two noise functions to create tubular structures
+        double spaghetti1 = spaghettiCave1Generator.noise3(
+                x, y * 0.75, z, 1.0 / SPAGHETTI_CAVE_SCALE_XZ, 1.0 / SPAGHETTI_CAVE_SCALE_Y
+        );
+        double spaghetti2 = spaghettiCave2Generator.noise3(
+                x, y * 0.75, z, 1.0 / SPAGHETTI_CAVE_SCALE_XZ, 1.0 / SPAGHETTI_CAVE_SCALE_Y
+        );
+
+        // Combine to create tubes
+        double spaghettiRadius = 0.25;
+        double spaghettiDist = Math.sqrt(spaghetti1 * spaghetti1 + spaghetti2 * spaghetti2);
+        double spaghettiDensity = 1.0;
+
+        if (spaghettiDist < spaghettiRadius) {
+            spaghettiDensity = -1.0;
+        }
+
+        // Noodle caves (thin, vertical tunnels)
+        double noodle1 = noodleCave1Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
+        double noodle2 = noodleCave2Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
+
+        double noodleRadius = 0.1;
+        double noodleDist = Math.sqrt(noodle1 * noodle1 + noodle2 * noodle2);
+        double noodleDensity = 1.0;
+
+        if (noodleDist < noodleRadius) {
+            noodleDensity = -1.0;
+        }
+
+        // Combine all cave types (multiply densities - caves are where density is low)
+        double combinedDensity = Math.min(Math.min(cheese, spaghettiDensity), noodleDensity);
+
+        // Fade out caves near surface
+        //double surfaceFade = smoothstep(8, 20, depthFromSurface);
+        //combinedDensity = lerp(1.0, combinedDensity, surfaceFade);
+
+        // Reduce cave frequency at very deep levels (optional)
+        if (y < 20) {
+            double deepFade = smoothstep(5, 16, y);
+            combinedDensity = lerp(1.0, combinedDensity, deepFade);
+        }
+
+        return combinedDensity;
     }
 
     private void initNoiseFields(int chunkX, int chunkZ) {
