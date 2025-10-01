@@ -354,7 +354,7 @@ public final class NoiseProvider {
         );
 
         // Combine to create tubes
-        double spaghettiRadius = 0.25;
+        double spaghettiRadius = 0.15;
         double spaghettiDist = Math.sqrt(spaghetti1 * spaghetti1 + spaghetti2 * spaghetti2);
         double spaghettiDensity = 1.0;
 
@@ -366,7 +366,7 @@ public final class NoiseProvider {
         double noodle1 = noodleCave1Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
         double noodle2 = noodleCave2Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
 
-        double noodleRadius = 0.1;
+        double noodleRadius = 0.08;
         double noodleDist = Math.sqrt(noodle1 * noodle1 + noodle2 * noodle2);
         double noodleDensity = 1.0;
 

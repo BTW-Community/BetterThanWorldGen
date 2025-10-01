@@ -90,7 +90,10 @@ public final class ChunkProvider implements IChunkProvider {
                 for (int j = 0; j < height; j++) {
                     int index = (i * 16 + k) * height + j;
 
-                    if (caveNoise[index] < -0.5 && blockIDs[index] != Block.waterStill.blockID) {
+                    if (caveNoise[index] < -0.9
+                            && blockIDs[index] != Block.waterStill.blockID
+                            && !isAdjacentToWater(chunkX, chunkZ, i, j, k, height, blockIDs))
+                    {
                         if (j < 16) {
                             blockIDs[index] = (short) Block.lavaStill.blockID;
                         }
@@ -98,10 +101,13 @@ public final class ChunkProvider implements IChunkProvider {
                             blockIDs[index] = 0;
                         }
 
-                        //blockIDs[index] = (short) Block.stone.blockID;
-                    }
-                    else {
-                        //blockIDs[index] = 0;
+                        if (j < height - 1 && blockIDs[index + 1] == Block.sand.blockID) {
+                            blockIDs[index + 1] = (short) Block.sandStone.blockID;
+                        }
+
+                        if (j > 0 && blockIDs[index - 1] == biomes[i * 16 + k].fillerBlock) {
+                            blockIDs[index - 1] = biomes[i * 16 + k].topBlock;
+                        }
                     }
                 }
             }
@@ -227,6 +233,56 @@ public final class ChunkProvider implements IChunkProvider {
                 }
             }
         }
+    }
+
+    private boolean isAdjacentToWater(int chunkX, int chunkZ, int i, int j, int k, int height, short[] blockIDs) {
+        int worldX = chunkX * 16 + i;
+        int worldZ = chunkZ * 16 + k;
+
+        // Check block above
+        if (j < height - 1) {
+            int aboveIndex = (i * 16 + k) * height + (j + 1);
+            if (blockIDs[aboveIndex] == Block.waterStill.blockID || blockIDs[aboveIndex] == Block.waterMoving.blockID) {
+                return true;
+            }
+        }
+
+        // Check horizontal neighbors
+        // For edge blocks, use world.getBlockId() which handles chunk boundaries
+
+        // Check -X direction
+        if (i > 0) {
+            int neighborIndex = ((i - 1) * 16 + k) * height + j;
+            if (blockIDs[neighborIndex] == Block.waterStill.blockID || blockIDs[neighborIndex] == Block.waterMoving.blockID) {
+                return true;
+            }
+        }
+
+        // Check +X direction
+        if (i < 15) {
+            int neighborIndex = ((i + 1) * 16 + k) * height + j;
+            if (blockIDs[neighborIndex] == Block.waterStill.blockID || blockIDs[neighborIndex] == Block.waterMoving.blockID) {
+                return true;
+            }
+        }
+
+        // Check -Z direction
+        if (k > 0) {
+            int neighborIndex = (i * 16 + (k - 1)) * height + j;
+            if (blockIDs[neighborIndex] == Block.waterStill.blockID || blockIDs[neighborIndex] == Block.waterMoving.blockID) {
+                return true;
+            }
+        }
+
+        // Check +Z direction
+        if (k < 15) {
+            int neighborIndex = (i * 16 + (k + 1)) * height + j;
+            if (blockIDs[neighborIndex] == Block.waterStill.blockID || blockIDs[neighborIndex] == Block.waterMoving.blockID) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public NoiseProvider getNoiseProvider() {
