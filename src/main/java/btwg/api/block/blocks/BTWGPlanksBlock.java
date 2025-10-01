@@ -3,7 +3,7 @@ package btwg.api.block.blocks;
 import btw.block.BTWBlocks;
 import btw.block.util.Flammability;
 import btw.item.BTWItems;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import net.minecraft.src.*;
 
 import java.util.Arrays;

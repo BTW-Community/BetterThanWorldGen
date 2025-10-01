@@ -206,6 +206,10 @@ public final class ChunkProvider implements IChunkProvider {
         }
     }
 
+    public NoiseProvider getNoiseProvider() {
+        return noiseProvider;
+    }
+
     //------ Chunk Population ------//
 
     @Override

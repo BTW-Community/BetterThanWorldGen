@@ -14,14 +14,14 @@ import java.util.Random;
 public final class NoiseProvider {
     public final long seed;
 
-    public static final int CONTINENTALNESS_SCALE = 1536;
+    public static final int CONTINENTALNESS_SCALE = 2048;
     public static final int EROSION_SCALE = 384;
     public static final int RIDGES_SCALE = 384;
     public static final int VALLEY_SCALE = 96;
-    public static final int WEIRDNESS_SCALE = 256;
+    public static final int WEIRDNESS_SCALE = 1024;
 
-    public static final int TEMPERATURE_SCALE = 2048;
-    public static final int HUMIDITY_SCALE = 1024;
+    public static final int TEMPERATURE_SCALE = 4096;
+    public static final int HUMIDITY_SCALE = 2048;
 
     public static final int TERRAIN_SCALE = 256;
 
@@ -41,10 +41,12 @@ public final class NoiseProvider {
             new Key(-0.40, 85.0 / TOTAL_HEIGHT),
             new Key(-0.10, 95.0 / TOTAL_HEIGHT),
             new Key(0.00, 105.0 / TOTAL_HEIGHT),
-            new Key(0.50, 110.0 / TOTAL_HEIGHT),
-            new Key(0.80, 150.0 / TOTAL_HEIGHT),
-            new Key(1.00, 180.0 / TOTAL_HEIGHT),
-            new Key(1.50, 210.0 / TOTAL_HEIGHT)
+            new Key(0.40, 110.0 / TOTAL_HEIGHT),
+            new Key(0.60, 130.0 / TOTAL_HEIGHT),
+            new Key(0.70, 140.0 / TOTAL_HEIGHT),
+            new Key(0.85, 160.0 / TOTAL_HEIGHT),
+            new Key(1.00, 190.0 / TOTAL_HEIGHT),
+            new Key(1.50, 220.0 / TOTAL_HEIGHT)
     );
 
     private static final Spline erosionToThickness = Spline.of(
@@ -274,7 +276,7 @@ public final class NoiseProvider {
     private void initNoiseFields(int chunkX, int chunkZ) {
         // TODO: fix interpolation to improve performance
 
-        this.continentalness = this.getNoise2D(this.continentalnessGenerator, this.heightmap, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
+        this.continentalness = this.getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
         this.heightmap = this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
 
         this.erosion = this.getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
@@ -392,9 +394,10 @@ public final class NoiseProvider {
                 BiomeGenBase closestBiome = BiomeGenBase.ocean;
 
                 for (BTWGBiome biome : BTWGBiome.biomeList) {
+                    double targetHeight = this.heightmap[idx] * TOTAL_HEIGHT;
+
                     if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance
-                            // TODO: fix validator
-                            )//&& biome.noiseTarget.validator().test(biomeVector, (int) this.heightmap[idx]))
+                            && biome.noiseTarget.validator().test(biomeVector, (int) targetHeight))
                     {
                         closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
                         closestBiome = biome;
@@ -405,12 +408,45 @@ public final class NoiseProvider {
             }
         }
 
-        Arrays.fill(biomes, BiomeConfiguration.PALE_GARDEN);
+        //Arrays.fill(biomes, BiomeConfiguration.MEADOW);
 
         return biomes;
     }
 
     public byte getSeaLevel() {
         return SEA_LEVEL;
+    }
+
+    public BiomeNoiseVector getBiomeVector(int x, int z) {
+        int chunkX = x >> 4;
+        int chunkZ = z >> 4;
+
+        int idx = idx(x & 15, z & 15, 16);
+
+        double[] array = new double[256];
+
+        array = this.getNoise2D(this.continentalnessGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
+        double continentalness = array[idx];
+
+        array = this.getNoise2D(this.erosionGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
+        double erosion = array[idx];
+
+        array = this.getNoise2D(this.weirdnessGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, WEIRDNESS_SCALE);
+        double weirdness = array[idx];
+
+        array = this.getNoise2D(this.temperatureGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
+        double temperature = array[idx] * 0.5 + 0.5;
+
+        array = this.getNoise2D(this.humidityGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
+        double humidity = array[idx] * 0.5 + 0.5;
+
+        return new BiomeNoiseVector(
+                temperature,
+                humidity,
+                continentalness,
+                erosion,
+                weirdness,
+                0.01
+        );
     }
 }

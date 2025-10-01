@@ -2,7 +2,7 @@ package btwg.api.block.blocks;
 
 import btw.block.BTWBlocks;
 import btw.block.util.Flammability;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;
@@ -113,5 +113,17 @@ public class BTWGLeafBlock extends BlockLeaves {
         boolean isAdjacentLeaf = adjacentBlock != null && adjacentBlock.isLeafBlock(blockAccess, x, y, z);
 
         return (this.graphicsLevel || !isAdjacentLeaf) && super.shouldSideBeRendered(blockAccess, x, y, z, side);
+    }
+
+    @Override
+    @Environment(value=EnvType.CLIENT)
+    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
+        int type = blockAccess.getBlockMetadata(x, y, z) & 3;
+
+        if (woodTypes[MathHelper.clamp_int(type, 0, this.woodTypes.length - 1)].colorLeaves()) {
+            return super.colorMultiplier(blockAccess, x, y, z);
+        }
+
+        return 0xFFFFFF;
     }
 }

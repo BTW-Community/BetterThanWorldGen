@@ -30,8 +30,6 @@ public abstract class GrassDistributors {
     public static final PlantDistributor DESERT_GRASS = new PlantDistributor(3, 32, 8) {
         @Override
         public void setPlant(World world, Random rand, int x, int y, int z) {
-            if (y > 80) return;
-
             int r = rand.nextInt(7);
 
             if (r <= 1) {

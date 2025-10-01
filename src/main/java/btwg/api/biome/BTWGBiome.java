@@ -18,8 +18,8 @@ public class BTWGBiome extends BiomeGenBase {
 
     public final BiomeNoiseParameterTarget noiseTarget;
 
-    private Optional<Integer> grassColorOverride;
-    private Optional<Integer> foliageColorOverride;
+    private Optional<Integer> grassColorOverride = Optional.empty();
+    private Optional<Integer> foliageColorOverride = Optional.empty();
     
     public BTWGBiome(int id, ResourceLocation name, BiomeNoiseParameterTarget noiseTarget) {
         super(id);

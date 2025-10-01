@@ -4,6 +4,7 @@ import btw.block.blocks.*;
 import btw.item.blockitems.MouldingAndDecorativeBlockItem;
 import btw.item.blockitems.SaplingBlockItem;
 import btw.item.blockitems.SidingAndCornerBlockItem;
+import btwg.api.block.WoodType;
 import btwg.api.block.blocks.*;
 import btwg.api.block.blocks.WorkStumpBlock;
 import btwg.mod.block.blocks.*;

@@ -1,7 +1,7 @@
 package btwg.mod.item;
 
 import btw.crafting.util.FurnaceBurnTime;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import btwg.api.item.items.BTWGDoorItem;
 import btwg.api.item.items.MultiItem;
 import net.minecraft.src.CreativeTabs;

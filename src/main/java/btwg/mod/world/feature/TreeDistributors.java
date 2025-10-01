@@ -46,6 +46,13 @@ public abstract class TreeDistributors {
         }
     };
 
+    public static final TreeDistributor CHERRY = new TreeDistributor(5) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            return BTWGTreeGrowers.CHERRY_TREE;
+        }
+    };
+
     public static final TreeDistributor PALE_GARDEN = new TreeDistributor(20) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
@@ -59,17 +66,10 @@ public abstract class TreeDistributors {
         }
     };
 
-    public static final TreeDistributor TAIGA = new TreeDistributor(20) {
+    public static final TreeDistributor MEADOW = new TreeDistributor(-10) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
-            int t = rand.nextInt(10);
-
-            if (t < 5) {
-                return TreeGrowers.SPRUCE_TREE;
-            }
-            else {
-                return TreeGrowers.PINE_TREE;
-            }
+            return TreeGrowers.BIRCH_TREE;
         }
     };
 
@@ -150,6 +150,34 @@ public abstract class TreeDistributors {
             }
             else {
                 return BTWGTreeGrowers.SAVANNA_BUSH;
+            }
+        }
+    };
+
+    public static final TreeDistributor WINDSWEPT_HILLS = new TreeDistributor(-10) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t < 5) {
+                return TreeGrowers.SPRUCE_TREE;
+            }
+            else {
+                return TreeGrowers.PINE_TREE;
+            }
+        }
+    };
+
+    public static final TreeDistributor TAIGA = new TreeDistributor(20) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t < 5) {
+                return TreeGrowers.SPRUCE_TREE;
+            }
+            else {
+                return TreeGrowers.PINE_TREE;
             }
         }
     };

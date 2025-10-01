@@ -1,7 +1,7 @@
 package btwg.api.item.items;
 
 import btw.item.items.DoorItem;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;

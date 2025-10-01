@@ -8,7 +8,7 @@ import btw.item.BTWItems;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
 import btwg.mod.block.BTWGBlocks;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;

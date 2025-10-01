@@ -1,4 +1,4 @@
-package btwg.mod.block;
+package btwg.api.block;
 
 import btw.block.BTWBlocks;
 import btw.item.BTWItems;

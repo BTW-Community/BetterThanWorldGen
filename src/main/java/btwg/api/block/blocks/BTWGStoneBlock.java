@@ -6,7 +6,7 @@ import btw.item.items.PickaxeItem;
 import btw.item.items.ToolItem;
 import btw.item.util.ItemUtils;
 import btwg.mod.BetterThanWorldGen;
-import btwg.mod.block.StoneType;
+import btwg.api.block.StoneType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;

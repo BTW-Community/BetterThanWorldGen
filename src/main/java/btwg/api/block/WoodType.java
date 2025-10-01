@@ -1,11 +1,10 @@
-package btwg.mod.block;
+package btwg.api.block;
 
 import btw.block.BTWBlocks;
 import btw.crafting.util.FurnaceBurnTime;
-import btw.item.BTWItems;
+import btwg.mod.block.BTWGBlockIDs;
 import btwg.mod.item.BTWGItemIDs;
 import net.minecraft.src.Block;
-import net.minecraft.src.Item;
 
 public record WoodType(
         String name,
@@ -17,6 +16,7 @@ public record WoodType(
         int workStumpID, int workStumpMetadata,
 
         int leavesID, int leavesMetadata,
+        boolean colorLeaves,
         int saplingID,
 
         int plankID, int plankMetadata,
@@ -49,6 +49,7 @@ public record WoodType(
             0, 0,
 
             LEAVES_ID, 0,
+            true,
             0,
 
             PLANKS_ID, 0,
@@ -74,6 +75,7 @@ public record WoodType(
             0, 0,
 
             LEAVES_ID, 1,
+            true,
             BTWBlocks.spruceSapling.blockID,
 
             PLANKS_ID, 1,
@@ -99,6 +101,7 @@ public record WoodType(
             0, 0,
 
             LEAVES_ID, 2,
+            true,
             BTWBlocks.birchSapling.blockID,
 
             PLANKS_ID, 2,
@@ -124,6 +127,7 @@ public record WoodType(
             0, 0,
 
             LEAVES_ID, 0,
+            true,
             0,
 
             PLANKS_ID, 3,
@@ -149,6 +153,7 @@ public record WoodType(
             0, 0,
 
             0, 0,
+            true,
             0,
 
             PLANKS_ID, 3,
@@ -174,6 +179,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 0,
 
             BTWGBlockIDs.LEAVES_ID, 0,
+            true,
             BTWGBlockIDs.ACACIA_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 0,
@@ -199,6 +205,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 1,
 
             BTWGBlockIDs.LEAVES_ID, 1,
+            true,
             BTWGBlockIDs.DARK_OAK_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 1,
@@ -224,6 +231,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 2,
 
             BTWGBlockIDs.LEAVES_ID, 2,
+            true,
             BTWGBlockIDs.MANGROVE_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 2,
@@ -249,6 +257,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 3,
 
             BTWGBlockIDs.LEAVES_ID, 3,
+            false,
             BTWGBlockIDs.CHERRY_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 3,
@@ -274,6 +283,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 4,
 
             BTWGBlockIDs.LEAVES_2_ID, 0,
+            true,
             BTWGBlockIDs.PALE_OAK_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 4,

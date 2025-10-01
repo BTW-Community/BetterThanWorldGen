@@ -4,7 +4,7 @@ import btw.block.BTWBlocks;
 import btw.block.util.Flammability;
 import btw.item.BTWItems;
 import btw.item.util.ItemUtils;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;

@@ -1,7 +1,7 @@
 package btwg.mod.world.feature.tree;
 
 import btw.world.feature.trees.grower.TreeGrowers;
-import btwg.mod.block.WoodType;
+import btwg.api.block.WoodType;
 
 public class BTWGTreeWoodTypes {
     public static final TreeGrowers.TreeWoodType ACACIA = new TreeGrowers.TreeWoodType(
