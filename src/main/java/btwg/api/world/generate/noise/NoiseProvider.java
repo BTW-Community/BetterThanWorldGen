@@ -15,8 +15,8 @@ public final class NoiseProvider {
     public final long seed;
 
     public static final int CONTINENTALNESS_SCALE = 2048;
-    public static final int EROSION_SCALE = 384;
-    public static final int RIDGES_SCALE = 384;
+    public static final int EROSION_SCALE = 768;
+    public static final int RIDGES_SCALE = 512;
     public static final int VALLEY_SCALE = 96;
     public static final int WEIRDNESS_SCALE = 1024;
 
@@ -25,7 +25,7 @@ public final class NoiseProvider {
 
     public static final int TERRAIN_SCALE = 256;
 
-    private static final int DRIVER_OCTAVES = 4;
+    private static final int DRIVER_OCTAVES = 6;
     private static final int TERRAIN_OCTAVES = 5;
 
     // TODO: fix interpolation
@@ -111,8 +111,8 @@ public final class NoiseProvider {
 
         Random rand = new Random(seed);
 
-        this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES + 2);
-        this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES + 2);
+        this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
+        this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.ridgesGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.riverGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.weirdnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
