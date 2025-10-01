@@ -5,14 +5,17 @@ import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.surface.SandySurfacer;
+import btwg.mod.block.BTWGBlocks;
 import btwg.mod.world.feature.GrassDistributors;
 import btwg.mod.world.feature.TreeDistributors;
+import btwg.mod.world.surface.OutbackSurfacer;
 import btwg.mod.world.surface.ScrublandSurfacer;
 import net.minecraft.src.Block;
 import net.minecraft.src.ResourceLocation;
 
 import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+
+import static btwg.api.biome.BiomeNoiseParameterTarget.DEFAULT_PREDICATE;
 
 public abstract class BiomeConfiguration {
     public static final int RAINFOREST_ID = 100;
@@ -35,6 +38,15 @@ public abstract class BiomeConfiguration {
     public static final int MEADOW_ID = 117;
     public static final int SANDSTONE_PEAKS_ID = 118;
     public static final int JAGGED_PEAKS_ID = 119;
+    public static final int OLD_GROWTH_TAIGA_ID = 120;
+    public static final int OLD_GROWTH_SNOWY_TAIGA_ID = 120;
+    public static final int JUNGLE_ID = 121;
+    public static final int SWAMP_ID = 122;
+    public static final int BIRCH_FOREST_ID = 123;
+    public static final int WETLAND_ID = 124;
+    public static final int ARID_WOODLAND_ID = 125;
+    public static final int LUSH_DESERT_ID = 126;
+    public static final int OUTBACK_ID = 127;
 
     public static final int TROPICAL_RIVER_ID = 202;
     public static final int SCRUBLAND_RIVER_ID = 204;
@@ -77,7 +89,7 @@ public abstract class BiomeConfiguration {
 
     public static final BiPredicate<BiomeNoiseVector, Integer> IS_OCEAN = (vec, height) -> vec.continentalness() < 0;
     public static final BiPredicate<BiomeNoiseVector, Integer> IS_MOUNTAIN_PEAK = (vec, height) -> height >= NoiseProvider.SEA_LEVEL * 2;
-    public static final BiPredicate<BiomeNoiseVector, Integer> IS_SNOWY = (vec, height) -> vec.temperature() < 0.2;
+    public static final BiPredicate<BiomeNoiseVector, Integer> IS_SNOWY = (vec, height) -> vec.temperature() <= 0.2;
     
     //------ Rivers ------//
 
@@ -192,7 +204,7 @@ public abstract class BiomeConfiguration {
                             ARID,
                             MID_CONTINENT,
                             LOW_EROSION,
-                            LOW_WEIRDNESS
+                            HIGH_WEIRDNESS
                     )
             )))
             .setSurfacer(new ScrublandSurfacer()))
@@ -245,7 +257,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
-            .setGrassDistributor(new PlantDistributor(4))
+            .setGrassDistributor(new PlantDistributor(5))
             .setTreeDistributor(TreeDistributors.FOREST);
 
     public static final BTWGBiome TAIGA = new BTWGBiome(
@@ -260,7 +272,23 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
+
+    public static final BTWGBiome OLD_GROWTH_TAIGA = new BTWGBiome(
+            OLD_GROWTH_TAIGA_ID,
+            loc("old_growth_taiga"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            COLD,
+                            HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            HIGH_WEIRDNESS
+                    )
+            ))
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
     public static final BTWGBiome SNOWY_TAIGA = new BTWGBiome(
             SNOWY_TAIGA_ID,
@@ -273,9 +301,26 @@ public abstract class BiomeConfiguration {
                             LOW_EROSION,
                             LOW_WEIRDNESS
                     ),
-                    (v, h) -> BiomeNoiseParameterTarget.DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
+                    (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
             ))
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
+
+    public static final BTWGBiome OLD_GROWTH_SNOWY_TAIGA = new BTWGBiome(
+            OLD_GROWTH_SNOWY_TAIGA_ID,
+            loc("old_growth_snowy_taiga"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            HIGH_WEIRDNESS
+                    ),
+                    (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
+            ))
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
     public static final BTWGBiome STONY_PEAKS = new BTWGBiome(
             STONY_PEAKS_ID,
@@ -316,7 +361,7 @@ public abstract class BiomeConfiguration {
             loc("sandstone_peaks"),
             new BiomeNoiseParameterTarget(
                     new BiomeNoiseVector(
-                            HOT,
+                            1.2,
                             ARID,
                             MOUNTAIN_PEAKS,
                             LOW_EROSION,
@@ -340,7 +385,8 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
-            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS);
+            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS)
+            .setGrassDistributor(new PlantDistributor(10));
 
     public static final BTWGBiome WINDSWEPT_FOREST = new BTWGBiome(
             WINDSWEPT_FOREST_ID,
@@ -354,6 +400,7 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
     public static final BTWGBiome FROZEN_PEAKS = new BTWGBiome(
@@ -384,7 +431,7 @@ public abstract class BiomeConfiguration {
                             MEDIUM_EROSION,
                             LOW_WEIRDNESS
                     ),
-                    (v, h) -> BiomeNoiseParameterTarget.DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
+                    (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
             ));
 
     public static final BTWGBiome DARK_FOREST = new BTWGBiome(
@@ -428,10 +475,10 @@ public abstract class BiomeConfiguration {
             new BiomeNoiseParameterTarget(
                     new BiomeNoiseVector(
                             HOT,
-                            HUMID,
+                            SEMI_ARID,
                             HIGHLANDS,
-                            LOW_EROSION,
-                            MEDIUM_WEIRDNESS
+                            MEDIUM_EROSION,
+                            HIGH_WEIRDNESS
                     )
             ))
             .setGrassDistributor(new PlantDistributor(6))
@@ -445,8 +492,8 @@ public abstract class BiomeConfiguration {
             loc("meadow"),
             new BiomeNoiseParameterTarget(
                     new BiomeNoiseVector(
-                            COLD,
-                            SEMI_HUMID,
+                            TEMPERATE,
+                            SEMI_ARID,
                             HIGHLANDS,
                             LOW_EROSION,
                             LOW_WEIRDNESS
@@ -454,6 +501,94 @@ public abstract class BiomeConfiguration {
             ))
             .setGrassDistributor(new PlantDistributor(10))
             .setTreeDistributor(TreeDistributors.MEADOW);
+
+    public static final BTWGBiome JUNGLE = new BTWGBiome(
+            JUNGLE_ID,
+            loc("jungle"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            HOT,
+                            VERY_HUMID,
+                            MID_CONTINENT,
+                            HIGH_EROSION,
+                            MEDIUM_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.JUNGLE)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
+
+    public static final BTWGBiome SWAMP = new BTWGBiome(
+            SWAMP_ID,
+            loc("swamp"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            VERY_HUMID,
+                            MID_CONTINENT,
+                            1.0,
+                            MEDIUM_WEIRDNESS
+                    ),
+                    (v, h) -> h < NoiseProvider.SEA_LEVEL * 1.05 && DEFAULT_PREDICATE.test(v, h)
+            ))
+            .setTreeDistributor(TreeDistributors.SWAMP)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setGrassColor(0x4C763C)
+            .setFoliageColor(0x6A7039)
+            .setWaterColor(0x617B64);
+
+    public static final BTWGBiome BIRCH_FOREST = new BTWGBiome(
+            BIRCH_FOREST_ID,
+            loc("birch_forest"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            COLD,
+                            HUMID,
+                            MID_CONTINENT,
+                            MEDIUM_EROSION,
+                            LOW_WEIRDNESS
+                    )
+            ))
+            .setTreeDistributor(TreeDistributors.BIRCH)
+            .setGrassDistributor(new PlantDistributor(6));
+
+    public static final BTWGBiome WETLAND = new BTWGBiome(
+            WETLAND_ID,
+            loc("wetland"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            VERY_HUMID,
+                            MID_CONTINENT,
+                            1.0,
+                            HIGH_WEIRDNESS
+                    ),
+                    (v, h) -> h < NoiseProvider.SEA_LEVEL * 1.05 && DEFAULT_PREDICATE.test(v, h)
+            ))
+            .setTreeDistributor(TreeDistributors.WETLAND)
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setGrassColor(0x4C903C)
+            .setFoliageColor(0x5A6029);
+
+    public static final BTWGBiome OUTBACK = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(
+            OUTBACK_ID,
+            loc("outback"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            HOT,
+                            ARID,
+                            MID_CONTINENT,
+                            MEDIUM_EROSION,
+                            HIGH_WEIRDNESS
+                    )
+            )))
+            .setSurfacer(new OutbackSurfacer()))
+            .setTreeDistributor(TreeDistributors.SCRUBLAND)
+            .setGrassDistributor(GrassDistributors.OUTBACK)
+            .setNoLakes()
+            .setNoAnimals()
+            .setTopBlock(BTWGBlocks.sandyDirt.blockID)
+            .setFillerBlock(BTWGBlocks.sandyDirt.blockID)
+            .setWaterColor(DESERT_WATER_COLOR);
     
     public static void initBiomes() {}
     

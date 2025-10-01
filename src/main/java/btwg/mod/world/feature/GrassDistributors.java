@@ -27,6 +27,29 @@ public abstract class GrassDistributors {
             }
         }
     };
+    public static final PlantDistributor OUTBACK = new PlantDistributor(2, 32, 8) {
+        @Override
+        public void setPlant(World world, Random rand, int x, int y, int z) {
+            int r = rand.nextInt(10);
+
+            if (r == 0) {
+                this.placeSinglePlant(world, rand, x, y, z, Block.deadBush.blockID, 0);
+            }
+            else if (r == 1) {
+                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.bush.blockID, 0);
+            }
+            else if (r <= 3) {
+                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
+            }
+            else if (r <= 7) {
+                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.shortDryGrass.blockID, 0);
+            }
+            else {
+                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
+            }
+        }
+    };
+
     public static final PlantDistributor DESERT_GRASS = new PlantDistributor(3, 32, 8) {
         @Override
         public void setPlant(World world, Random rand, int x, int y, int z) {
@@ -53,10 +76,20 @@ public abstract class GrassDistributors {
                 this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.bush.blockID, 0);
             }
             else if (r == 1) {
-                this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 1);
+                if (rand.nextInt(10) == 0) {
+                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 0);
+                }
+                else {
+                    this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 1);
+                }
             }
             else {
-                this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 2);
+                if (rand.nextInt(10) == 0) {
+                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallFern.blockID, 0);
+                }
+                else {
+                    this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 2);
+                }
             }
         }
     };

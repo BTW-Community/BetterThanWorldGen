@@ -93,7 +93,35 @@ public abstract class TreeDistributors {
         }
     };
 
-    public static final TreeDistributor SCRUBLAND = new TreeDistributor(5) {
+    public static final TreeDistributor JUNGLE = new TreeDistributor(25) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return TreeGrowers.BIG_OAK_TREE;
+            }
+            else if (t <= 4) {
+                return TreeGrowers.BIG_JUNGLE_TREE;
+            }
+            else if (t <= 6) {
+                return TreeGrowers.JUNGLE_TREE;
+            }
+            else {
+                return TreeGrowers.JUNGLE_TREE;
+            }
+        }
+    };
+
+    // TODO: Fix swamp trees not generating above 128 and not generating in water
+    public static final TreeDistributor SWAMP = new TreeDistributor(7) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            return TreeGrowers.SWAMP_OAK_TREE;
+        }
+    };
+
+    public static final TreeDistributor SCRUBLAND = new TreeDistributor(10) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
             if (rand.nextInt(500) == 0) {
@@ -105,7 +133,17 @@ public abstract class TreeDistributors {
             }
 
             if (world.getBlockId(x, y - 1, z) == BTWGBlocks.sandyDirt.blockID) {
-                return BTWGTreeGrowers.OAK_BUSH;
+                int r = rand.nextInt(10);
+
+                if (r == 0) {
+                    return BTWGTreeGrowers.OAK_BUSH;
+                }
+                else if (r <= 4) {
+                    return BTWGTreeGrowers.OAK_SHRUB;
+                }
+                else {
+                    return BTWGTreeGrowers.TINY_OAK_SHRUB;
+                }
             }
 
             if (rand.nextInt(20) == 0) {
@@ -154,7 +192,7 @@ public abstract class TreeDistributors {
         }
     };
 
-    public static final TreeDistributor WINDSWEPT_HILLS = new TreeDistributor(-10) {
+    public static final TreeDistributor WINDSWEPT_HILLS = new TreeDistributor(-3) {
         @Override
         public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
             int t = rand.nextInt(10);
@@ -178,6 +216,66 @@ public abstract class TreeDistributors {
             }
             else {
                 return TreeGrowers.PINE_TREE;
+            }
+        }
+    };
+
+    public static final TreeDistributor OLD_GROWTH_TAIGA = new TreeDistributor(20) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return BTWGTreeGrowers.SPRUCE_SHRUB;
+            }
+            else if (t == 1) {
+                return BTWGTreeGrowers.SPRUCE_BUSH;
+            }
+            else if (t <= 4) {
+                return BTWGTreeGrowers.HUGE_SPRUCE_TREE;
+            }
+            else if (t <= 6) {
+                return TreeGrowers.PINE_TREE;
+            }
+            else {
+                return TreeGrowers.SPRUCE_TREE;
+            }
+        }
+    };
+
+    public static final TreeDistributor WETLAND = new TreeDistributor(15) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t <= 3) {
+                return TreeGrowers.SPRUCE_TREE;
+            }
+            else if (t <= 6) {
+                return BTWGTreeGrowers.SPRUCE_BUSH;
+            }
+            else if (t <= 8) {
+                return BTWGTreeGrowers.SPRUCE_SHRUB;
+            }
+            else {
+                return BTWGTreeGrowers.TINY_SPRUCE_SHRUB;
+            }
+        }
+    };
+
+    public static final TreeDistributor BIRCH = new TreeDistributor(10) {
+        @Override
+        public AbstractTreeGrower getTree(World world, Random rand, int x, int y, int z) {
+            int t = rand.nextInt(10);
+
+            if (t == 0) {
+                return BTWGTreeGrowers.LARGE_BIRCH_TREE;
+            }
+            else if (t <= 5) {
+                return BTWGTreeGrowers.TALL_BIRCH_TREE;
+            }
+            else {
+                return TreeGrowers.BIRCH_TREE;
             }
         }
     };

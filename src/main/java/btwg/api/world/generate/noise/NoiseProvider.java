@@ -15,18 +15,18 @@ public final class NoiseProvider {
     public final long seed;
 
     public static final int CONTINENTALNESS_SCALE = 2048;
-    public static final int EROSION_SCALE = 768;
+    public static final int EROSION_SCALE = 1024;
     public static final int RIDGES_SCALE = 512;
     public static final int VALLEY_SCALE = 96;
-    public static final int WEIRDNESS_SCALE = 1024;
+    public static final int WEIRDNESS_SCALE = 2048;
 
     public static final int TEMPERATURE_SCALE = 4096;
-    public static final int HUMIDITY_SCALE = 2048;
+    public static final int HUMIDITY_SCALE = 4096;
 
     public static final int TERRAIN_SCALE = 256;
 
     private static final int DRIVER_OCTAVES = 6;
-    private static final int TERRAIN_OCTAVES = 5;
+    private static final int TERRAIN_OCTAVES = 6;
 
     // TODO: fix interpolation
     public static final int NOISE_SUBSCALE = 16;
@@ -46,7 +46,7 @@ public final class NoiseProvider {
             new Key(0.70, 140.0 / TOTAL_HEIGHT),
             new Key(0.85, 160.0 / TOTAL_HEIGHT),
             new Key(1.00, 190.0 / TOTAL_HEIGHT),
-            new Key(1.50, 220.0 / TOTAL_HEIGHT)
+            new Key(1.20, 220.0 / TOTAL_HEIGHT)
     );
 
     private static final Spline erosionToThickness = Spline.of(
@@ -220,8 +220,8 @@ public final class NoiseProvider {
                 // Create ridges
                 // Exponent to sharpen the ridge mask, map to amplitude to control 3D noise
                 double ridgePeak = ridge(this.ridges[colIdx], 2.0);
-                double ridgeMask = smoothstep(0.25, 0.75, ridgePeak);
-                double ridgeAmp = lerp(0.6, 2.0, ridgeMask);
+                double ridgeMask = smoothstep(0.25, 1.0, ridgePeak);
+                double ridgeAmp = lerp(0.6, 2.5, ridgeMask);
 
                 // Generate valley noise
                 double valleyBlur = 0;
@@ -408,7 +408,7 @@ public final class NoiseProvider {
             }
         }
 
-        //Arrays.fill(biomes, BiomeConfiguration.MEADOW);
+        //Arrays.fill(biomes, BiomeConfiguration.OUTBACK);
 
         return biomes;
     }
