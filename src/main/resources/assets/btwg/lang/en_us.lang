@@ -1,0 +1,52 @@
+#------ Plants ------#
+
+# Renamed vanilla blocks
+
+# Shrubs
+tile.btwg.dry_grass.name=Dry Grass
+tile.btwg.short_dry_grass.name=Short Dry Grass
+tile.btwg.tall_dry_grass.name=Tall Dry Grass
+tile.btwg.bush.name=Bush
+tile.btwg.tall_grass.name=Tall Grass
+tile.btwg.large_fern.name=Large Fern
+
+#------ Wood ------#
+
+# Renamed vanilla blocks
+
+# Extra vanilla wood type blocks
+tile.btwg.spruce_trapdoor.name=Spruce Trapdoor
+tile.btwg.birch_trapdoor.name=Birch Trapdoor
+tile.btwg.jungle_trapdoor.name=Jungle Trapdoor
+tile.btwg.blood_wood_trapdoor.name=Blood Wood Trapdoor
+
+# Acacia
+tile.btwg.stump.acacia.name=Acacia Stump
+tile.btwg.work_stump.acacia.name=Acacia Work stump
+tile.btwg.acacia_log.name=Acacia Log
+tile.btwg.acacia_log_spike.name=Acacia Log Spike
+tile.btwg.chewed_acacia_log.name=Chewed Acacia Log
+
+tile.btwg.planks.acacia.name=Acacia Planks
+tile.btwg.wood_slab.acacia.name=Acacia Slab
+tile.btwg.acacia_staris.name=Acacia Stairs
+
+tile.btwg.acacia_siding.siding.name=Acacia Siding
+tile.btwg.acacia_siding.corner.name=Acacia Corner
+tile.btwg.acacia_siding.fence.name=Acacia Fence
+tile.btwg.acacia_siding.bench.name=Acacia Bench
+
+tile.btwg.acacia_moulding.moulding.name=Acacia Moulding
+tile.btwg.acacia_moulding.pedestal.name=Acacia Pedestal
+tile.btwg.acacia_moulding.column.name=Acacia Column
+tile.btwg.acacia_moulding.table.name=Acacia Table
+
+tile.btwg.acacia_door.name=Acacia Door
+tile.btwg.acacia_trapdoor.name=Acacia Trapdoor
+
+tile.btwg.leaves.acacia.name=Acacia Leaves
+tile.btwg.sapling.name=Acacia Sapling
+tile.btwg.sapling.mature.name=Mature Acacia Sapling
+
+item.btwg.bark.acacia.name=Acacia Bark
+item.btwg.door.acacia.name=Acacia Door
