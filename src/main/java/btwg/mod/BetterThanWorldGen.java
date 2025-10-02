@@ -34,7 +34,7 @@ public class BetterThanWorldGen extends BTWAddon {
             throw new IllegalStateException("Mod id does not match records!");
         }
         
-        currentVersion = Version.fromString(this.getModID(), this.getVersionString()).orElseThrow();
+        //currentVersion = Version.fromString(this.getModID(), this.getVersionString()).orElseThrow();
 
         BTWGBlocks.initBlocks();
         BTWGItems.initItems();

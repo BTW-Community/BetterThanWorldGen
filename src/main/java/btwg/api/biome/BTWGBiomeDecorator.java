@@ -144,6 +144,10 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
                 (new WorldGenLiquids(Block.lavaMoving.blockID)).generate(this.currentWorld, this.randomGenerator, var3, var4, var7);
             }
         }
+
+        var2 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+        var3 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+        this.clayGen.generate(this.currentWorld, this.randomGenerator, var2, this.currentWorld.getTopSolidOrLiquidBlock(var2, var3), var3);
         
         AddonHandler.decorateWorld(this, this.currentWorld, this.forkedRand, this.chunk_X, this.chunk_Z, this.biome);
     }

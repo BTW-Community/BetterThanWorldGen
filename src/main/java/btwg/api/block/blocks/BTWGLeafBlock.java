@@ -47,7 +47,7 @@ public class BTWGLeafBlock extends BlockLeaves {
 
     @Override
     public int idDropped(int metadata, Random rand, int fortuneModifier) {
-        return woodTypes[MathHelper.clamp_int(metadata, 0, woodTypes.length - 1)].leavesID();
+        return woodTypes[MathHelper.clamp_int(metadata, 0, woodTypes.length - 1)].saplingID();
     }
 
     @Override

@@ -81,6 +81,15 @@ public class StumpBlock extends Block {
         return true;
     }
 
+    @Override
+    public boolean isLog(IBlockAccess blockAccess, int x, int y, int z) {
+        return true;
+    }
+
+    public boolean canSupportLeaves(IBlockAccess blockAccess, int x, int y, int z) {
+        return false;
+    }
+
     //------ Client Functionality ------//
 
     @Environment(value= EnvType.CLIENT)
