@@ -25,4 +25,9 @@ public class WorldProviderMixin {
             cir.setReturnValue(worldData.getOverworldChunkProvider(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled()));
         }
     }
+
+    @Inject(method = "getAverageGroundLevel", at = @At("RETURN"), cancellable = true)
+    public void getAverageGroundLevel(CallbackInfoReturnable<Integer> cir) {
+        cir.setReturnValue(this.terrainType == WorldType.FLAT ? 4 : 120);
+    }
 }

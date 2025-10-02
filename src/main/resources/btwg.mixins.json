@@ -8,7 +8,10 @@
     "BlockGrassMixin",
     "BlockLeavesBaseMixin",
     "ChunkMixin",
+    "ComponentVillageMixin",
+    "ComponentVillageWellMixin",
     "EntityPlayerMixin",
+    "WorldMixin",
     "WorldProviderMixin"
   ],
   "client": [

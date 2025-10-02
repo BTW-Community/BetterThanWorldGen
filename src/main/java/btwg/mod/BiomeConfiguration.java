@@ -12,6 +12,7 @@ import btwg.mod.world.surface.OutbackSurfacer;
 import btwg.mod.world.surface.ScrublandSurfacer;
 import net.minecraft.src.*;
 
+import java.util.ArrayList;
 import java.util.function.BiPredicate;
 
 import static btwg.api.biome.BiomeNoiseParameterTarget.DEFAULT_PREDICATE;
@@ -614,6 +615,7 @@ public abstract class BiomeConfiguration {
         ComponentVillageStartPiece.addDesertBiome(OUTBACK);
         ComponentVillageStartPiece.addDesertBiome(SCRUBLAND);
 
+        MapGenVillage.villageSpawnBiomes = new ArrayList<>();
         MapGenVillage.villageSpawnBiomes.add(OUTBACK);
         MapGenVillage.villageSpawnBiomes.add(SCRUBLAND);
         MapGenVillage.villageSpawnBiomes.add(PLAINS);

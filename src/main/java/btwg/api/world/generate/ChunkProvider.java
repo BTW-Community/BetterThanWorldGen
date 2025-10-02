@@ -466,4 +466,20 @@ public final class ChunkProvider implements IChunkProvider {
 
     @Override
     public void saveExtraData() {}
+
+    public MapGenStronghold getStrongholdGenerator() {
+        return this.strongholdGenerator;
+    }
+
+    public MapGenVillage getVillageGenerator() {
+        return this.villageGenerator;
+    }
+
+    public MapGenMineshaft getMineshaftGenerator() {
+        return this.mineshaftGenerator;
+    }
+
+    public MapGenScatteredFeature getScatteredFeatureGenerator() {
+        return this.scatteredFeatureGenerator;
+    }
 }
