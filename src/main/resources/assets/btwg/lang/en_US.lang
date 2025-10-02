@@ -1,0 +1,244 @@
+#------ Soils ------#
+
+tile.btwg.earthen_clay.name=Earthen Clay
+tile.btwg.loose_earthen_clay.name=Loose Earthen Clay
+tile.btwg.grassy_earthen_clay.name=Grassy Earthen Clay
+
+tile.btwg.sandy_dirt.name=Sandy Dirt
+tile.btwg.loose_sandy_dirt.name=Loose Sandy Dirt
+
+#Renamed vanilla blocks
+tile.grass.name=Grass
+
+#------ Plants ------#
+
+# Shrubs
+tile.btwg.dry_grass.name=Dry Grass
+tile.btwg.short_dry_grass.name=Short Dry Grass
+tile.btwg.tall_dry_grass.name=Tall Dry Grass
+tile.btwg.bush.name=Bush
+tile.btwg.tall_grass.name=Tall Grass
+tile.btwg.large_fern.name=Large Fern
+
+# Renamed vanilla blocks
+tile.tallgrass.grass.name=Short Grass
+
+#------ Wood ------#
+
+# Extra vanilla wood type blocks
+tile.btwg.spruce_trapdoor.name=Spruce Trapdoor
+tile.btwg.birch_trapdoor.name=Birch Trapdoor
+tile.btwg.jungle_trapdoor.name=Jungle Trapdoor
+tile.btwg.blood_wood_trapdoor.name=Blood Wood Trapdoor
+
+# Acacia
+tile.btwg.stump.acacia.name=Acacia Stump
+tile.btwg.work_stump.acacia.name=Acacia Work stump
+tile.btwg.acacia_log.name=Acacia Log
+tile.btwg.acacia_log_spike.name=Acacia Log Spike
+tile.btwg.chewed_acacia_log.name=Chewed Acacia Log
+
+tile.btwg.planks.acacia.name=Acacia Planks
+tile.btwg.wood_slab.acacia.name=Acacia Slab
+tile.btwg.acacia_stairs.name=Acacia Stairs
+
+tile.btwg.acacia_siding.siding.name=Acacia Siding
+tile.btwg.acacia_siding.corner.name=Acacia Corner
+tile.btwg.acacia_siding.fence.name=Acacia Fence
+tile.btwg.acacia_siding.bench.name=Acacia Bench
+
+tile.btwg.acacia_moulding.moulding.name=Acacia Moulding
+tile.btwg.acacia_moulding.pedestal.name=Acacia Pedestal
+tile.btwg.acacia_moulding.column.name=Acacia Column
+tile.btwg.acacia_moulding.table.name=Acacia Table
+
+tile.btwg.acacia_door.name=Acacia Door
+tile.btwg.acacia_trapdoor.name=Acacia Trapdoor
+
+tile.btwg.leaves.acacia.name=Acacia Leaves
+tile.btwg.acacia_sapling.name=Acacia Sapling
+tile.btwg.acacia_sapling.mature.name=Mature Acacia Sapling
+
+item.btwg.bark.acacia.name=Acacia Bark
+item.btwg.door.acacia.name=Acacia Door
+
+# Dark Oak
+tile.btwg.stump.dark_oak.name=Dark Oak Stump
+tile.btwg.work_stump.dark_oak.name=Dark Oak Work stump
+tile.btwg.dark_oak_log.name=Dark Oak Log
+tile.btwg.dark_oak_log_spike.name=Dark Oak Log Spike
+tile.btwg.chewed_dark_oak_log.name=Chewed Dark Oak Log
+
+tile.btwg.planks.dark_oak.name=Dark Oak Planks
+tile.btwg.wood_slab.dark_oak.name=Dark Oak Slab
+tile.btwg.dark_oak_stairs.name=Dark Oak Stairs
+
+tile.btwg.dark_oak_siding.siding.name=Dark Oak Siding
+tile.btwg.dark_oak_siding.corner.name=Dark Oak Corner
+tile.btwg.dark_oak_siding.fence.name=Dark Oak Fence
+tile.btwg.dark_oak_siding.bench.name=Dark Oak Bench
+
+tile.btwg.dark_oak_moulding.moulding.name=Dark Oak Moulding
+tile.btwg.dark_oak_moulding.pedestal.name=Dark Oak Pedestal
+tile.btwg.dark_oak_moulding.column.name=Dark Oak Column
+tile.btwg.dark_oak_moulding.table.name=Dark Oak Table
+
+tile.btwg.dark_oak_door.name=Dark Oak Door
+tile.btwg.dark_oak_trapdoor.name=Dark Oak Trapdoor
+
+tile.btwg.leaves.dark_oak.name=Dark Oak Leaves
+tile.btwg.dark_oak_sapling.name=Dark Oak Sapling
+tile.btwg.dark_oak_sapling.mature.name=Mature Dark Oak Sapling
+
+item.btwg.bark.dark_oak.name=Dark Oak Bark
+item.btwg.door.dark_oak.name=Dark Oak Door
+
+# Mangrove
+tile.btwg.stump.mangrove.name=Mangrove Stump
+tile.btwg.work_stump.mangrove.name=Mangrove Work stump
+tile.btwg.mangrove_log.name=Mangrove Log
+tile.btwg.mangrove_log_spike.name=Mangrove Log Spike
+tile.btwg.chewed_mangrove_log.name=Chewed Mangrove Log
+
+tile.btwg.planks.mangrove.name=Mangrove Planks
+tile.btwg.wood_slab.mangrove.name=Mangrove Slab
+tile.btwg.mangrove_stairs.name=Mangrove Stairs
+
+tile.btwg.mangrove_siding.siding.name=Mangrove Siding
+tile.btwg.mangrove_siding.corner.name=Mangrove Corner
+tile.btwg.mangrove_siding.fence.name=Mangrove Fence
+tile.btwg.mangrove_siding.bench.name=Mangrove Bench
+
+tile.btwg.mangrove_moulding.moulding.name=Mangrove Moulding
+tile.btwg.mangrove_moulding.pedestal.name=Mangrove Pedestal
+tile.btwg.mangrove_moulding.column.name=Mangrove Column
+tile.btwg.mangrove_moulding.table.name=Mangrove Table
+
+tile.btwg.mangrove_door.name=Mangrove Door
+tile.btwg.mangrove_trapdoor.name=Mangrove Trapdoor
+
+tile.btwg.leaves.mangrove.name=Mangrove Leaves
+tile.btwg.mangrove_sapling.name=Mangrove Sapling
+tile.btwg.mangrove_sapling.mature.name=Mature Mangrove Sapling
+
+item.btwg.bark.mangrove.name=Mangrove Bark
+item.btwg.door.mangrove.name=Mangrove Door
+
+# Cherry
+tile.btwg.stump.cherry.name=Cherry Stump
+tile.btwg.work_stump.cherry.name=Cherry Work stump
+tile.btwg.cherry_log.name=Cherry Log
+tile.btwg.cherry_log_spike.name=Cherry Log Spike
+tile.btwg.chewed_cherry_log.name=Chewed Cherry Log
+
+tile.btwg.planks.cherry.name=Cherry Planks
+tile.btwg.wood_slab.cherry.name=Cherry Slab
+tile.btwg.cherry_stairs.name=Cherry Stairs
+
+tile.btwg.cherry_siding.siding.name=Cherry Siding
+tile.btwg.cherry_siding.corner.name=Cherry Corner
+tile.btwg.cherry_siding.fence.name=Cherry Fence
+tile.btwg.cherry_siding.bench.name=Cherry Bench
+
+tile.btwg.cherry_moulding.moulding.name=Cherry Moulding
+tile.btwg.cherry_moulding.pedestal.name=Cherry Pedestal
+tile.btwg.cherry_moulding.column.name=Cherry Column
+tile.btwg.cherry_moulding.table.name=Cherry Table
+
+tile.btwg.cherry_door.name=Cherry Door
+tile.btwg.cherry_trapdoor.name=Cherry Trapdoor
+
+tile.btwg.leaves.cherry.name=Cherry Leaves
+tile.btwg.cherry_sapling.name=Cherry Sapling
+tile.btwg.cherry_sapling.mature.name=Mature Cherry Sapling
+
+item.btwg.bark.cherry.name=Cherry Bark
+item.btwg.door.cherry.name=Cherry Door
+
+# Pale Oak
+tile.btwg.stump.pale_oak.name=Pale Oak Stump
+tile.btwg.work_stump.pale_oak.name=Pale Oak Work stump
+tile.btwg.pale_oak_log.name=Pale Oak Log
+tile.btwg.pale_oak_log_spike.name=Pale Oak Log Spike
+tile.btwg.chewed_pale_oak_log.name=Chewed Pale Oak Log
+
+tile.btwg.planks.pale_oak.name=Pale Oak Planks
+tile.btwg.wood_slab.pale_oak.name=Pale Oak Slab
+tile.btwg.pale_oak_stairs.name=Pale Oak Stairs
+
+tile.btwg.pale_oak_siding.siding.name=Pale Oak Siding
+tile.btwg.pale_oak_siding.corner.name=Pale Oak Corner
+tile.btwg.pale_oak_siding.fence.name=Pale Oak Fence
+tile.btwg.pale_oak_siding.bench.name=Pale Oak Bench
+
+tile.btwg.pale_oak_moulding.moulding.name=Pale Oak Moulding
+tile.btwg.pale_oak_moulding.pedestal.name=Pale Oak Pedestal
+tile.btwg.pale_oak_moulding.column.name=Pale Oak Column
+tile.btwg.pale_oak_moulding.table.name=Pale Oak Table
+
+tile.btwg.pale_oak_door.name=Pale Oak Door
+tile.btwg.pale_oak_trapdoor.name=Pale Oak Trapdoor
+
+tile.btwg.leaves.pale_oak.name=Pale Oak Leaves
+tile.btwg.pale_oak_sapling.name=Pale Oak Sapling
+tile.btwg.pale_oak_sapling.mature.name=Mature Pale Oak Sapling
+
+item.btwg.bark.pale_oak.name=Pale Oak Bark
+item.btwg.door.pale_oak.name=Pale Oak Door
+
+# Renamed vanilla blocks
+tile.log.oak.name=Oak Log
+tile.log.spruce.name=Spruce Log
+tile.log.birch.name=Birch Log
+tile.log.jungle.name=Jungle Log
+
+tile.wood.oak.name=Oak Planks
+tile.wood.spruce.name=Spruce Planks
+tile.wood.birch.name=Birch Planks
+tile.wood.jungle.name=Jungle Planks
+
+tile.woodSlab.oak.name=Oak Slab
+tile.woodSlab.spruce.name=Spruce Slab
+tile.woodSlab.birch.name=Birch Slab
+tile.woodSlab.jungle.name=Jungle Slab
+
+#Renamed BTW blocks
+tile.fcWoodSpruceSiding.oak.name=Oak Siding
+tile.fcWoodSpruceSiding.spruce.name=Spruce Siding
+tile.fcWoodSpruceSiding.birch.name=Birch Siding
+tile.fcWoodSpruceSiding.jungle.name=Jungle Siding
+
+tile.fcWoodSpruceMoulding.oak.name=Oak Moulding
+tile.fcWoodSpruceMoulding.spruce.name=Spruce Moulding
+tile.fcWoodSpruceMoulding.birch.name=Birch Moulding
+tile.fcWoodSpruceMoulding.jungle.name=Jungle Moulding
+
+tile.fcWoodBirchSiding.oak.name=Oak Corner
+tile.fcWoodBirchSiding.spruce.name=Spruce Corner
+tile.fcWoodBirchSiding.birch.name=Birch Corner
+tile.fcWoodBirchSiding.jungle.name=Jungle Corner
+
+tile.fcWoodBirchMoulding.oak.pedestal.name=Oak Pedestal
+tile.fcWoodBirchMoulding.spruce.pedestal.name=Spruce Pedestal
+tile.fcWoodBirchMoulding.birch.pedestal.name=Birch Pedestal
+tile.fcWoodBirchMoulding.jungle.pedestal.name=Jungle Pedestal
+
+tile.fcWoodBirchMoulding.oak.column.name=Oak Column
+tile.fcWoodBirchMoulding.spruce.column.name=Spruce Column
+tile.fcWoodBirchMoulding.birch.column.name=Birch Column
+tile.fcWoodBirchMoulding.jungle.column.name=Jungle Column
+
+tile.fcWoodBirchMoulding.oak.table.name=Oak Table
+tile.fcWoodBirchMoulding.spruce.table.name=Spruce Table
+tile.fcWoodBirchMoulding.birch.table.name=Birch Table
+tile.fcWoodBirchMoulding.jungle.table.name=Jungle Table
+
+tile.fcWoodJungleSiding.oak.bench.name=Oak Bench
+tile.fcWoodJungleSiding.spruce.bench.name=Spruce Bench
+tile.fcWoodJungleSiding.birch.bench.name=Birch Bench
+tile.fcWoodJungleSiding.jungle.bench.name=Jungle Bench
+
+tile.fcWoodJungleSiding.oak.fence.name=Oak Fence
+tile.fcWoodJungleSiding.spruce.fence.name=Spruce Fence
+tile.fcWoodJungleSiding.birch.fence.name=Birch Fence
+tile.fcWoodJungleSiding.jungle.fence.name=Jungle Fence

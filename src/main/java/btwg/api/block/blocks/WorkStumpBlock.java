@@ -52,15 +52,15 @@ public class WorkStumpBlock extends StumpBlock {
     @Environment(value= EnvType.CLIENT)
     public Icon getIcon(int iSide, int iMetadata) {
         if (iSide > 1) {
-            return this.sideIcons[iMetadata & 3];
+            return this.sideIcons[iMetadata];
         }
         if (iSide == 1) {
             if (!this.isUnfinishedWorkStump(iMetadata)) {
-                return this.topIcons[iMetadata & 3];
+                return this.topIcons[iMetadata];
             }
-            return this.craftingIcons[iMetadata & 3];
+            return this.craftingIcons[iMetadata];
         }
-        return this.topIcons[iMetadata & 3];
+        return this.topIcons[iMetadata];
     }
 
     @Override

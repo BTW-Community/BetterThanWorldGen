@@ -213,7 +213,7 @@ public abstract class BTWGBlocks {
                         WoodType.CHERRY,
                         WoodType.PALE_OAK
                 });
-        register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, new String[] {
+        register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, "wood_slab", new String[] {
                 "acacia",
                 "dark_oak",
                 "mangrove",
@@ -231,8 +231,8 @@ public abstract class BTWGBlocks {
                 })
                 .setUnlocalizedName("btwg.stump");
         register(stump, new String[] {
-                "acacia_stump",
-                "dark_oak_stump",
+                "acacia",
+                "dark_oak",
                 "mangrove",
                 "cherry",
                 "pale_oak"
@@ -412,9 +412,7 @@ public abstract class BTWGBlocks {
                 "btwg.mangrove_moulding");
         register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.MANGROVE_MOULDING_ID - 256));
 
-        mangroveSapling = new SaplingBlock(BTWGBlockIDs.MANGROVE_SAPLING_ID, "btwg.mangrove_sapling", "btwg:mangrove_sapling")
-                .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
-                .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
+        mangroveSapling = new SaplingBlock(BTWGBlockIDs.MANGROVE_SAPLING_ID, "btwg.mangrove_sapling", "btwg:mangrove_sapling");
         register(new SaplingBlockItem(BTWGBlockIDs.MANGROVE_SAPLING_ID - 256, mangroveSapling));
 
         //------ Cherry ------//
@@ -459,8 +457,7 @@ public abstract class BTWGBlocks {
         register(new MouldingAndDecorativeBlockItem(BTWGBlockIDs.CHERRY_MOULDING_ID - 256));
 
         cherrySapling = new SaplingBlock(BTWGBlockIDs.CHERRY_SAPLING_ID, "btwg.cherry_sapling", "btwg:cherry_sapling")
-                .addTreeGrower(BTWGTreeGrowers.SAVANNA_TREE, 2)
-                .addTreeGrower(BTWGTreeGrowers.SPLIT_SAVANNA_TREE, 1);
+                .addTreeGrower(BTWGTreeGrowers.CHERRY_TREE, 1);
         register(new SaplingBlockItem(BTWGBlockIDs.CHERRY_SAPLING_ID - 256, cherrySapling));
 
         //------ Pale Oak ------//

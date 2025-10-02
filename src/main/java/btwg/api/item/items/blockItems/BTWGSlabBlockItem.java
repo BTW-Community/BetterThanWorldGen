@@ -5,17 +5,19 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 
 public class BTWGSlabBlockItem extends SlabBlockItem {
+    private final String baseName;
     private final String[] names;
 
-    public BTWGSlabBlockItem(int id, String[] names) {
+    public BTWGSlabBlockItem(int id, String baseName, String[] names) {
         super(id);
 
+        this.baseName = baseName;
         this.names = names;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return "btwg." + names[MathHelper.clamp_int(stack.getItemDamage(), 0, names.length - 1)] + "_slab";
+        return "tile.btwg." + baseName + "." + names[MathHelper.clamp_int(stack.getItemDamage(), 0, names.length - 1)];
     }
 
     @Override
