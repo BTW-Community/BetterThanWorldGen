@@ -28,10 +28,14 @@ public final class NoiseProvider {
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
     public static final int CHEESE_CAVE_SCALE_Y = 128;
+
     public static final int SPAGHETTI_CAVE_SCALE_XZ = 240;
     public static final int SPAGHETTI_CAVE_SCALE_Y = 96;
+
     public static final int NOODLE_CAVE_SCALE_XZ = 144;
     public static final int NOODLE_CAVE_SCALE_Y = 96;
+
+    public static final int PILLAR_SCALE = 32;
 
     public static final double SPAGHETTI_CAVE_RADIUS = 0.15;
     public static final double NOODLE_CAVE_RADIUS = 0.08;
@@ -89,6 +93,14 @@ public final class NoiseProvider {
             new Key( 0.0,  0.25),
             new Key( 0.5,  0.125),
             new Key( 1.0,  0.0625)
+    );
+
+    private static final Spline pillarSpline = Spline.of(
+            new Key(-1.0, 0),
+            new Key( 0.0, 0),
+            new Key( 1.0, 0.1),
+            new Key( 1.15, 0.3),
+            new Key( 1.3, 1.0)
     );
 
     private final OpenSimplexOctavesFast continentalnessGenerator;
@@ -354,6 +366,10 @@ public final class NoiseProvider {
         // Fade out cheese near surface
         double surfaceFade = smoothstep(8, 20, depthFromSurface);
         cheese = lerp(1.0, cheese, surfaceFade);
+
+        // Pillar caves (vertical columns)
+        double pillarNoise = pillarGenerator.noise2(x, z, 1.0 / PILLAR_SCALE);
+        cheese += pillarSpline.eval(pillarNoise);
 
         // Spaghetti caves (winding tunnels)
         // Use two noise functions to create tubular structures
