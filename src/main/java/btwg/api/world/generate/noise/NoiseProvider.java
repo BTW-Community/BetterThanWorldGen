@@ -26,11 +26,17 @@ public final class NoiseProvider {
     public static final int TERRAIN_SCALE = 256;
 
     // Cave generation scales
-    public static final int CHEESE_CAVE_SCALE_XZ = 128;
-    public static final int CHEESE_CAVE_SCALE_Y = 96;
-    public static final int SPAGHETTI_CAVE_SCALE_XZ = 192;
+    public static final int CHEESE_CAVE_SCALE_XZ = 320;
+    public static final int CHEESE_CAVE_SCALE_Y = 128;
+    public static final int SPAGHETTI_CAVE_SCALE_XZ = 240;
     public static final int SPAGHETTI_CAVE_SCALE_Y = 96;
-    public static final int NOODLE_CAVE_SCALE = 128;
+    public static final int NOODLE_CAVE_SCALE_XZ = 144;
+    public static final int NOODLE_CAVE_SCALE_Y = 96;
+
+    public static final double SPAGHETTI_CAVE_RADIUS = 0.15;
+    public static final double NOODLE_CAVE_RADIUS = 0.08;
+
+    public static final double CAVE_THRESHOLD = -0.7;
 
     private static final int DRIVER_OCTAVES = 6;
     private static final int TERRAIN_OCTAVES = 6;
@@ -345,6 +351,10 @@ public final class NoiseProvider {
         // Cheese caves (large caverns)
         double cheese = cheeseCaveGenerator.noise3(x, y, z, 1.0 / CHEESE_CAVE_SCALE_XZ, 1.0 / CHEESE_CAVE_SCALE_Y);
 
+        // Fade out cheese near surface
+        double surfaceFade = smoothstep(8, 20, depthFromSurface);
+        cheese = lerp(1.0, cheese, surfaceFade);
+
         // Spaghetti caves (winding tunnels)
         // Use two noise functions to create tubular structures
         double spaghetti1 = spaghettiCave1Generator.noise3(
@@ -355,34 +365,28 @@ public final class NoiseProvider {
         );
 
         // Combine to create tubes
-        double spaghettiRadius = 0.15;
         double spaghettiDist = Math.sqrt(spaghetti1 * spaghetti1 + spaghetti2 * spaghetti2);
         double spaghettiDensity = 1.0;
 
-        if (spaghettiDist < spaghettiRadius) {
+        if (spaghettiDist < SPAGHETTI_CAVE_RADIUS) {
             spaghettiDensity = -1.0;
         }
 
         // Noodle caves (thin, vertical tunnels)
-        double noodle1 = noodleCave1Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
-        double noodle2 = noodleCave2Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE);
+        double noodle1 = noodleCave1Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE_XZ, 1.0 / NOODLE_CAVE_SCALE_Y);
+        double noodle2 = noodleCave2Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE_XZ, 1.0 / NOODLE_CAVE_SCALE_Y);
 
-        double noodleRadius = 0.08;
         double noodleDist = Math.sqrt(noodle1 * noodle1 + noodle2 * noodle2);
         double noodleDensity = 1.0;
 
-        if (noodleDist < noodleRadius) {
+        if (noodleDist < NOODLE_CAVE_RADIUS) {
             noodleDensity = -1.0;
         }
 
         // Combine all cave types (multiply densities - caves are where density is low)
         double combinedDensity = Math.min(Math.min(cheese, spaghettiDensity), noodleDensity);
 
-        // Fade out caves near surface
-        //double surfaceFade = smoothstep(8, 20, depthFromSurface);
-        //combinedDensity = lerp(1.0, combinedDensity, surfaceFade);
-
-        // Reduce cave frequency at very deep levels (optional)
+        // Reduce cave frequency at very deep levels
         if (y < 20) {
             double deepFade = smoothstep(5, 16, y);
             combinedDensity = lerp(1.0, combinedDensity, deepFade);

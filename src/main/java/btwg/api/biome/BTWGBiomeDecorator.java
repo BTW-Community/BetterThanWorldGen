@@ -19,23 +19,24 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         super(biome);
         this.biome = biome;
     }
-    
+
+    @Override
     public void decorate(World par1World, Random par2Random, int par3, int par4) {
         if (this.currentWorld != null) {
             throw new RuntimeException("Already decorating!!");
-        } else {
-            this.currentWorld = par1World;
-            this.randomGenerator = par2Random;
-            this.forkedRand = ForkableRandom.forkRandom(this.randomGenerator);
-            this.chunk_X = par3;
-            this.chunk_Z = par4;
-            this.decorate();
-            this.currentWorld = null;
-            this.randomGenerator = null;
-            this.forkedRand = null;
         }
+        this.currentWorld = par1World;
+        this.randomGenerator = par2Random;
+        this.forkedRand = ForkableRandom.forkRandom(this.randomGenerator);
+        this.chunk_X = par3;
+        this.chunk_Z = par4;
+        this.decorate();
+        this.currentWorld = null;
+        this.randomGenerator = null;
+        this.forkedRand = null;
     }
-    
+
+    @Override
     protected void decorate() {
         this.generateOres();
 
@@ -151,43 +152,36 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         
         AddonHandler.decorateWorld(this, this.currentWorld, this.forkedRand, this.chunk_X, this.chunk_Z, this.biome);
     }
-    
-    protected void genStandardOre1(int par1, WorldGenerator par2WorldGenerator, int par3, int par4) {
-        for(int var5 = 0; var5 < par1; ++var5) {
-            int var6 = this.chunk_X + this.randomGenerator.nextInt(16);
-            int var7 = this.randomGenerator.nextInt(par4 - par3) + par3;
-            int var8 = this.chunk_Z + this.randomGenerator.nextInt(16);
-            par2WorldGenerator.generate(this.currentWorld, this.randomGenerator, var6, var7, var8);
-        }
+
+    private void genOreLinearDistribution(int count, WorldGenerator worldGen, int minHeight, int maxHeight) {
+        this.genStandardOre1(count, worldGen, minHeight, maxHeight);
     }
-    
-    protected void genStandardOre2(int par1, WorldGenerator par2WorldGenerator, int par3, int par4) {
-        for(int var5 = 0; var5 < par1; ++var5) {
-            int var6 = this.chunk_X + this.randomGenerator.nextInt(16);
-            int var7 = this.randomGenerator.nextInt(par4) + this.randomGenerator.nextInt(par4) + (par3 - par4);
-            int var8 = this.chunk_Z + this.randomGenerator.nextInt(16);
-            par2WorldGenerator.generate(this.currentWorld, this.randomGenerator, var6, var7, var8);
-        }
+
+    private void genOreTriangleDistribution(int count, WorldGenerator worldGen, int radius, int center) {
+        this.genStandardOre1(count, worldGen, radius, center);
     }
-    
-    protected void genModdedOre(int count, WorldGenerator worldGenerator, int minHeight, int maxHeight) {
-        for(int i = 0; i < count; ++i) {
-            int var6 = this.chunk_X + this.forkedRand.nextInt(16);
-            int var7 = this.forkedRand.nextInt(maxHeight - minHeight) + minHeight;
-            int var8 = this.chunk_Z + this.forkedRand.nextInt(16);
-            worldGenerator.generate(this.currentWorld, this.forkedRand, var6, var7, var8);
-        }
-    }
-    
+
+    @Override
     protected void generateOres() {
-        this.genStandardOre1(20, this.dirtGen, 8, 144);
-        this.genStandardOre1(15, this.gravelGen, 8, 144);
-        this.genStandardOre1(30, this.coalGen, 8, 256);
-        this.genStandardOre1(30, this.ironGen, 8, 128);
-        this.genStandardOre1(3, this.goldGen, 8, 48);
-        this.genStandardOre1(8, this.redstoneGen, 8, 24);
-        this.genStandardOre1(2, this.diamondGen, 8, 24);
-        this.genModdedOre(1, this.diamondGenAirExposed, 16, 20);
-        this.genStandardOre2(1, this.lapisGen, 16, 16);
+
+        this.genOreLinearDistribution(20, this.dirtGen, 8, 144);
+        this.genOreLinearDistribution(15, this.gravelGen, 8, 144);
+
+        ((WorldGenMinable) this.coalGen).setNoAirExposure(0.5F);
+        this.genOreLinearDistribution(30, this.coalGen, 8, 256);
+
+        ((WorldGenMinable) this.ironGen).setNoAirExposure(0.5F);
+        this.genOreLinearDistribution(20, this.ironGen, 8, 100);
+        ((WorldGenMinable) this.ironGen).setNoAirExposure(1.0F);
+        this.genOreTriangleDistribution(10, this.ironGen, 60, 64);
+
+        this.genOreLinearDistribution(3, this.goldGen, 8, 48);
+
+        this.genOreTriangleDistribution(8, this.redstoneGen, 12, 20);
+
+        this.genOreTriangleDistribution(1, this.diamondGen, 12, 20);
+        this.genOreLinearDistribution(1, this.diamondGenAirExposed, 16, 24);
+
+        this.genOreTriangleDistribution(1, this.lapisGen, 16, 24);
     }
 }

@@ -90,7 +90,7 @@ public final class ChunkProvider implements IChunkProvider {
                 for (int j = 0; j < height; j++) {
                     int index = (i * 16 + k) * height + j;
 
-                    if (caveNoise[index] < -0.9
+                    if (caveNoise[index] < NoiseProvider.CAVE_THRESHOLD
                             && blockIDs[index] != Block.waterStill.blockID
                             && !isAdjacentToWater(chunkX, chunkZ, i, j, k, height, blockIDs))
                     {
