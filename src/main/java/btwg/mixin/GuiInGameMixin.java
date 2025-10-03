@@ -35,6 +35,10 @@ public abstract class GuiInGameMixin extends Gui {
             this.drawString(fontRenderer, "Biome Noise:", 2, y += j + 3, 0xE0E0E0);
             this.drawString(fontRenderer, String.format("T: %.2f, H: %.2f, C: %.2f, E: %.2f, W: %.2f", vector.temperature(), vector.humidity(), vector.continentalness(), vector.erosion(), vector.weirdness()), 2, y += j, 0xE0E0E0);
 
+            if (!(currentBiome instanceof BTWGBiome)) {
+                return;
+            }
+
             BiomeNoiseVector target = ((BTWGBiome) currentBiome).noiseTarget.target();
             this.drawString(fontRenderer, "Biome Targets:", 2, y += j + 3, 0xE0E0E0);
             this.drawString(fontRenderer, String.format("T: %.2f, H: %.2f, C: %.2f, E: %.2f, W: %.2f", target.temperature(), target.humidity(), target.continentalness(), target.erosion(), target.weirdness()), 2, y += j, 0xE0E0E0);

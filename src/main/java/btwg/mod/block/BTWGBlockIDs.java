@@ -73,6 +73,7 @@ public class BTWGBlockIDs {
     public static final int BUSH_ID = 3753;
     public static final int TALL_GRASS_ID = 3754;
     public static final int LARGE_FERN_ID = 3755;
+    public static final int GLOW_WORMS_ID = 3756;
 
     public static final int LIMESTONE_ID = 3800;
     public static final int LIMESTONE_COBBLESTONE_ID = 3801;

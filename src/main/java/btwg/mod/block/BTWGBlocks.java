@@ -92,6 +92,7 @@ public abstract class BTWGBlocks {
     public static Block bush;
     public static Block tallGrass;
     public static Block tallFern;
+    public static Block glowWorms;
 
     public static void initBlocks() {
         initSoils();
@@ -153,6 +154,13 @@ public abstract class BTWGBlocks {
                 .setReplaceable()
                 .setNeedsShears();
         register(tallFern);
+
+        glowWorms = new HangingVineBlock(BTWGBlockIDs.GLOW_WORMS_ID)
+                .setReplaceable(false)
+                .setTextureName("btwg:glow_worms")
+                .setUnlocalizedName("btwg.glow_worms")
+                .setLightValue(0.5F);
+        register(glowWorms);
     }
 
     private static void initWood() {

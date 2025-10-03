@@ -14,7 +14,12 @@ public abstract class BlockGrassMixin extends Block {
     }
 
     @ModifyConstant(method = "canGrassSurviveAtLocation(Lnet/minecraft/src/World;III)Z", constant = @Constant(intValue = 9))
-    private static int modifyGrassSurviveAtLocation(int value) {
+    private static int modifyMinimumLightLevel(int value) {
         return 4;
+    }
+
+    @ModifyConstant(method = "canGrassSurviveAtLocation(Lnet/minecraft/src/World;III)Z", constant = @Constant(intValue = 2))
+    private static int modifyMinimumOpacity(int value) {
+        return 1;
     }
 }
