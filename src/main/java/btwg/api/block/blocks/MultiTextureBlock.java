@@ -26,12 +26,17 @@ public class MultiTextureBlock extends Block {
         return this.types.length;
     }
 
+    public String[] getNames() {
+        return types;
+    }
+
     //------ Client Side Functionality ------//
 
     @Environment(EnvType.CLIENT)
-    private Icon[] icons;
+    protected Icon[] icons;
 
     @Override
+    @Environment(EnvType.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
         this.icons = new Icon[types.length];
 

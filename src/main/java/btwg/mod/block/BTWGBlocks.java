@@ -1,12 +1,14 @@
 package btwg.mod.block;
 
+import btw.block.BTWBlocks;
 import btw.block.blocks.*;
-import btw.item.blockitems.MouldingAndDecorativeBlockItem;
-import btw.item.blockitems.SaplingBlockItem;
-import btw.item.blockitems.SidingAndCornerBlockItem;
+import btw.item.blockitems.*;
+import btwg.api.block.StoneType;
 import btwg.api.block.WoodType;
 import btwg.api.block.blocks.*;
 import btwg.api.block.blocks.WorkStumpBlock;
+import btwg.api.item.ItemInterface;
+import btwg.mod.BetterThanWorldGen;
 import btwg.mod.block.blocks.*;
 import btwg.api.item.items.blockItems.BTWGSlabBlockItem;
 import btwg.mod.world.feature.tree.BTWGTreeGrowers;
@@ -94,13 +96,39 @@ public abstract class BTWGBlocks {
     public static Block tallFern;
     public static Block glowWorms;
 
+    public static Block limestone;
+    public static Block roughLimestone;
+    public static Block limestoneStairs;
+    public static Block limestoneDecorative;
+    public static Block limestoneSlab;
+    public static Block cobbledLimestoneStairs;
+    public static Block limestoneBrickStairs;
+    public static Block looseLimestone;
+    public static Block looseLimestoneSlab;
+    public static Block looseCobbledLimestoneStairs;
+    public static Block looseLimestoneBrickStairs;
+    public static Block limestoneRegolith;
+    public static Block limestoneRegolithSlab;
+    public static Block looseLimestoneRegolith;
+    public static Block looseLimestoneRegolithSlab;
+    public static Block grassyLimestoneRegolith;
+    public static Block grassyLimestoneRegolithSlab;
+    public static Block limestoneRegolithFarmland;
+    public static Block limestoneGravel;
+    public static Block limestoneGravelSlab;
+
     public static void initBlocks() {
         initSoils();
         initPlants();
         initWood();
+        initStone();
 
         Block.waterMoving.setLightOpacity(2);
         Block.waterStill.setLightOpacity(2);
+
+        RoughStoneBlock.strataLevelBlockArray[0] = (RoughStoneBlock) BTWBlocks.upperStrataRoughStone;
+        RoughStoneBlock.strataLevelBlockArray[1] = (RoughStoneBlock) BTWBlocks.midStrataRoughStone;
+        RoughStoneBlock.strataLevelBlockArray[2] = (RoughStoneBlock) BTWBlocks.deepStrataRoughStone;
     }
 
     private static void initSoils() {
@@ -515,16 +543,104 @@ public abstract class BTWGBlocks {
         register(new SaplingBlockItem(BTWGBlockIDs.PALE_OAK_SAPLING_ID - 256, paleOakSapling));
     }
 
+    private static void initStone() {
+
+        //------ Limestone ------//
+
+        limestone = new BTWGStoneBlock(BTWGBlockIDs.LIMESTONE_ID, StoneType.LIMESTONE);
+        register(limestone);
+
+        roughLimestone = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_LIMESTONE_ID, StoneType.LIMESTONE);
+        register(roughLimestone);
+
+        limestoneStairs = new StairsBlock(BTWGBlockIDs.LIMESTONE_STAIRS_ID, limestone, StoneType.LIMESTONE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".limestone_stairs");
+        register(limestoneStairs);
+
+        limestoneDecorative = new StoneDecorativeBlock(BTWGBlockIDs.LIMESTONE_DECORATIVE_ID, StoneType.LIMESTONE);
+        register(limestoneDecorative, ((MultiTextureBlock) limestoneDecorative).getNames());
+
+        limestoneSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.LIMESTONE_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabWithMetadataBlockItem(
+                limestoneSlab.blockID - 256,
+                ((MultiTextureBlock) limestoneDecorative).getNames()
+        ));
+
+        cobbledLimestoneStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_LIMESTONE_STAIRS_ID, limestoneDecorative,
+                StoneType.LIMESTONE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_LIMESTONE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_limestone_stairs");
+        register(cobbledLimestoneStairs);
+
+        limestoneBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.LIMESTONE_BRICK_STAIRS_ID, limestoneDecorative,
+                StoneType.LIMESTONE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_LIMESTONE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".limestone_brick_stairs");
+        register(limestoneBrickStairs);
+
+        looseLimestone = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_LIMESTONE_ID, StoneType.LIMESTONE);
+        register(looseLimestone, new String[] {
+                "cobblestone",
+                "brick"
+        });
+
+        looseLimestoneSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_LIMESTONE_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabWithMetadataBlockItem(
+                looseLimestoneSlab.blockID - 256,
+                new String[] {
+                    "cobblestone",
+                    "brick"
+                }
+        ));
+
+        looseCobbledLimestoneStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_LIMESTONE_STAIRS_ID,
+                looseLimestone, StoneType.LIMESTONE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_LIMESTONE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_limestone_stairs");
+        register(looseCobbledLimestoneStairs);
+
+        looseLimestoneBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_LIMESTONE_BRICK_STAIRS_ID,
+                looseLimestone, StoneType.LIMESTONE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_LIMESTONE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_limestone_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseLimestoneBrickStairs);
+
+        limestoneRegolith = new RegolithBlock(BTWGBlockIDs.LIMESTONE_REGOLITH_ID, StoneType.LIMESTONE);
+        register(limestoneRegolith);
+
+        limestoneRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.LIMESTONE_REGOLITH_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabBlockItem(limestoneRegolithSlab.blockID - 256));
+
+        grassyLimestoneRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_LIMESTONE_REGOLITH_ID, StoneType.LIMESTONE);
+        register(grassyLimestoneRegolith);
+
+        grassyLimestoneRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_LIMESTONE_REGOLITH_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabBlockItem(grassyLimestoneRegolithSlab.blockID - 256));
+
+        looseLimestoneRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_LIMESTONE_REGOLITH_ID, StoneType.LIMESTONE);
+        register(looseLimestoneRegolith);
+
+        limestoneGravel = new BTWGGravelBlock(BTWGBlockIDs.LIMESTONE_GRAVEL_ID, StoneType.LIMESTONE);
+        register(limestoneGravel);
+
+        limestoneGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.LIMESTONE_GRAVEL_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabBlockItem(limestoneGravelSlab.blockID - 256));
+    }
+
     private static void register(Block block, String[] names) {
-        Item.itemsList[block.blockID] = new ItemMultiTextureTile(block.blockID - 256, block, names);
+        Item.itemsList[block.blockID] = ((ItemInterface) new ItemMultiTextureTile(block.blockID - 256, block, names)).btwg$setModNamespace(BetterThanWorldGen.NAME);
     }
 
     private static void register(ItemBlock blockItem) {
-        Item.itemsList[blockItem.itemID] = blockItem;
+        Item.itemsList[blockItem.itemID] = ((ItemInterface) blockItem).btwg$setModNamespace(BetterThanWorldGen.NAME);
     }
 
     private static void register(Block block) {
-        ItemBlock blockItem = new ItemBlock(block.blockID - 256);
-        Item.itemsList[blockItem.itemID] = blockItem;
+        Item.itemsList[block.blockID] = ((ItemInterface) new ItemBlock(block.blockID - 256)).btwg$setModNamespace(BetterThanWorldGen.NAME);
     }
 }

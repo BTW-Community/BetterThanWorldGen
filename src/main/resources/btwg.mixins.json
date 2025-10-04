@@ -11,6 +11,7 @@
     "ComponentVillageMixin",
     "ComponentVillageWellMixin",
     "EntityPlayerMixin",
+    "ItemMixin",
     "WorldGenMineableMixin",
     "WorldMixin",
     "WorldProviderMixin"

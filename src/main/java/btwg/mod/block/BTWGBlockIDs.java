@@ -76,10 +76,26 @@ public class BTWGBlockIDs {
     public static final int GLOW_WORMS_ID = 3756;
 
     public static final int LIMESTONE_ID = 3800;
-    public static final int LIMESTONE_COBBLESTONE_ID = 3801;
-    public static final int LIMESTONE_LOOSE_COBBLESTONE_ID = 3802;
-    public static final int LIMESTONE_MOSSY_COBBLESTONE_ID = 3803;
-    public static final int LIMESTONE_STONE_BRICK_ID = 3804;
-    public static final int LIMESTONE_LOOSE_STONE_BRICK_ID = 3805;
-    public static final int LIMESTONE_GRAVEL_ID = 3806;
+    public static final int ROUGH_LIMESTONE_ID = 3801;
+    public static final int LIMESTONE_DECORATIVE_ID = 3802;
+    public static final int LIMESTONE_SLAB_ID = 3803;
+    public static final int COBBLED_LIMESTONE_STAIRS_ID = 3804;
+    public static final int LIMESTONE_BRICK_STAIRS_ID = 3805;
+    public static final int LOOSE_LIMESTONE_ID = 3806;
+    public static final int LOOSE_LIMESTONE_SLAB_ID = 3807;
+    public static final int LOOSE_COBBLED_LIMESTONE_STAIRS_ID = 3808;
+    public static final int LOOSE_LIMESTONE_BRICK_STAIRS_ID = 3809;
+    public static final int LIMESTONE_REGOLITH_ID = 3810;
+    public static final int GRASSY_LIMESTONE_REGOLITH_ID = 3811;
+    public static final int LOOSE_LIMESTONE_REGOLITH_ID = 3812;
+    public static final int LIMESTONE_REGOLITH_SLAB_ID = 3813;
+    public static final int GRASSY_LIMESTONE_REGOLITH_SLAB_ID = 3814;
+    public static final int LOOSE_LIMESTONE_REGOLITH_SLAB_ID = 3815;
+    public static final int LIMESTONE_REGOLITH_FARMLAND_ID = 3816;
+    public static final int LIMESTONE_STAIRS_ID = 3817;
+    public static final int LIMESTONE_GRAVEL_ID = 3818;
+    public static final int LIMESTONE_GRAVEL_SLAB_ID = 3819;
+    public static final int LOOSE_SPARSE_GRASSY_LIMESTONE_REGOLITH_ID = 3820;
+    public static final int LOOSE_SPARSE_GRASSY_LIMESTONE_REGOLITH_SLAB_ID = 3821;
+
 }

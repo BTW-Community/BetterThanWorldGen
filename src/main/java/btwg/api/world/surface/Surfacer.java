@@ -1,5 +1,6 @@
 package btwg.api.world.surface;
 
+import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import net.minecraft.src.BiomeGenBase;
@@ -42,14 +43,27 @@ public class Surfacer {
         int maxSoilDepth = this.getSoilDepth(x, z);
         int maxSandstoneDepth = this.getSandstoneDepth(x, z);
 
+        short topBlock = biome.topBlock;
+        byte topBlockMetadata = biome.topBlockMetadata;
+
+        short fillerBlock = biome.fillerBlock;
+        byte fillerBlockMetadata = biome.fillerBlockMetadata;
+
+        if (biome.topBlock == Block.grass.blockID) {
+            topBlock = (short) StoneType.LIMESTONE.grassID();
+        }
+        if (biome.fillerBlock == Block.dirt.blockID) {
+            fillerBlock = (short) StoneType.LIMESTONE.dirtID();
+        }
+
         if (depth == 0) {
             if (blockIDs[index(i, j + 1, k, height)] == 0) {
-                blockID = biome.topBlock;
-                meta = biome.topBlockMetadata;
+                blockID = topBlock;
+                meta = topBlockMetadata;
             }
             else {
-                blockID = biome.fillerBlock;
-                meta = biome.fillerBlockMetadata;
+                blockID = fillerBlock;
+                meta = fillerBlockMetadata;
             }
 
             blockIDs[index(i, j, k, height)] = blockID;
@@ -57,12 +71,16 @@ public class Surfacer {
         }
         else if (depth > 0) {
             if (depth < maxSoilDepth) {
-                blockID = biome.fillerBlock;
-                meta = biome.fillerBlockMetadata;
+                blockID = fillerBlock;
+                meta = fillerBlockMetadata;
             }
             else if (depth < maxSoilDepth + maxSandstoneDepth && biome.fillerBlock == Block.sand.blockID && biome.fillerBlockMetadata == 0) {
                 blockID = (short) Block.sandStone.blockID;
                 meta = 0;
+            }
+            else {
+                blockID = (short) StoneType.LIMESTONE.stoneID();
+                meta = (byte) StoneType.LIMESTONE.stoneMetadata();
             }
 
             blockIDs[index(i, j, k, height)] = blockID;

@@ -12,6 +12,7 @@ import btwg.mod.item.BTWGItems;
 public class BetterThanWorldGen extends BTWAddon {
     private static BetterThanWorldGen instance;
     public static final String MODID = "btwg";
+    public static final String NAME = "Better Than World Gen";
     
     public static final Version V1_0_0 = new Version(MODID, 1, 0, 0);
     

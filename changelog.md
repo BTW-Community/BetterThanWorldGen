@@ -1,5 +1,8 @@
 # Alpha
 
+## 0.0.4
+- 
+
 ## 0.0.3
 - Modified ore generation to be slightly less plentiful in caves
 - Tweaked cave generation to create larger caverns more often and to generate vertical cracks less often

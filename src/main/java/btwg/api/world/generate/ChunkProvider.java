@@ -2,9 +2,11 @@ package btwg.api.world.generate;
 
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData;
+import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.surface.Surfacer;
 import btwg.mod.BetterThanWorldGen;
+import btwg.mod.block.BTWGBlockIDs;
 import net.minecraft.src.*;
 
 import java.util.List;

@@ -283,7 +283,7 @@ public record WoodType(
             BTWGBlockIDs.WORK_STUMP_ID, 4,
 
             BTWGBlockIDs.LEAVES_2_ID, 0,
-            true,
+            false,
             BTWGBlockIDs.PALE_OAK_SAPLING_ID,
 
             BTWGBlockIDs.PLANKS_ID, 4,
