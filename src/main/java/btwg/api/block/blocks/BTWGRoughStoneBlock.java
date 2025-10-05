@@ -93,8 +93,8 @@ public class BTWGRoughStoneBlock extends RoughStoneBlock {
     @Override
     @Environment(value=EnvType.CLIENT)
     public void registerIcons(IconRegister register) {
-        this.blockIcon = register.registerIcon(BetterThanWorldGen.MODID + ":rough_" + type.name());
-        this.iconBroken = register.registerIcon(BetterThanWorldGen.MODID + ":broken_" + type.name());
+        this.blockIcon = register.registerIcon(BetterThanWorldGen.MODID + ":" + type.name() + "/rough");
+        this.iconBroken = register.registerIcon(BetterThanWorldGen.MODID + ":" + type.name() + "/broken");
         this.crackIcons = new Icon[7];
 
         for (int i = 0; i < 7; ++i) {

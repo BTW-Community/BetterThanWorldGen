@@ -53,7 +53,17 @@ public class BTWGItems {
 
         rock = ((ItemInterface) new MultiItem(BTWGItemIDs.ROCK_ID, "rock",
                 new String[] {
-                        StoneType.LIMESTONE.name()
+                        StoneType.LIMESTONE.name(),
+                        StoneType.ANDESITE.name(),
+                        StoneType.BASALT.name(),
+                        StoneType.CALCITE.name(),
+                        StoneType.DIORITE.name(),
+                        StoneType.GRANITE.name(),
+                        StoneType.KIMBERLITE.name(),
+                        StoneType.PHYLLITE.name(),
+                        StoneType.SCHIST.name(),
+                        StoneType.SHALE.name(),
+                        StoneType.TUFF.name(),
                 }))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_SMALL)
@@ -61,14 +71,34 @@ public class BTWGItems {
 
         stoneBrick = ((ItemInterface) new MultiItem(BTWGItemIDs.STONE_BRICK_ID, "brick",
                 new String[] {
-                        StoneType.LIMESTONE.name()
+                        StoneType.LIMESTONE.name(),
+                        StoneType.ANDESITE.name(),
+                        StoneType.BASALT.name(),
+                        StoneType.CALCITE.name(),
+                        StoneType.DIORITE.name(),
+                        StoneType.GRANITE.name(),
+                        StoneType.KIMBERLITE.name(),
+                        StoneType.PHYLLITE.name(),
+                        StoneType.SCHIST.name(),
+                        StoneType.SHALE.name(),
+                        StoneType.TUFF.name(),
                 }))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setCreativeTab(CreativeTabs.tabMaterials);
 
         dirtPile = ((ItemInterface) new MultiItem(BTWGItemIDs.DIRT_PILE_ID, "regolith_pile",
                 new String[] {
-                        StoneType.LIMESTONE.name()
+                        StoneType.LIMESTONE.name(),
+                        StoneType.ANDESITE.name(),
+                        StoneType.BASALT.name(),
+                        StoneType.CALCITE.name(),
+                        StoneType.DIORITE.name(),
+                        StoneType.GRANITE.name(),
+                        StoneType.KIMBERLITE.name(),
+                        StoneType.PHYLLITE.name(),
+                        StoneType.SCHIST.name(),
+                        StoneType.SHALE.name(),
+                        StoneType.TUFF.name(),
                 }))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_FINE)
@@ -76,7 +106,17 @@ public class BTWGItems {
 
         gravelPile = ((ItemInterface) new MultiItem(BTWGItemIDs.GRAVEL_PILE_ID, "gravel_pile",
                 new String[] {
-                        StoneType.LIMESTONE.name()
+                        StoneType.LIMESTONE.name(),
+                        StoneType.ANDESITE.name(),
+                        StoneType.BASALT.name(),
+                        StoneType.CALCITE.name(),
+                        StoneType.DIORITE.name(),
+                        StoneType.GRANITE.name(),
+                        StoneType.KIMBERLITE.name(),
+                        StoneType.PHYLLITE.name(),
+                        StoneType.SCHIST.name(),
+                        StoneType.SHALE.name(),
+                        StoneType.TUFF.name(),
                 }))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_FINE)

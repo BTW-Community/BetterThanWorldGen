@@ -22,7 +22,7 @@ public class LooseSparseGrassyRegolithSlabBlock extends LooseSparseGrassSlabBloc
         super(id);
         this.type = type;
 
-        this.setTextureName(BetterThanWorldGen.MODID + ":loose_sparse_grassy_" + type.name()  + "_regolith");
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/loose_sparse_grass");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_sparse_grassy_" + type.name()  + "_regolith_slab");
     }
 
@@ -121,8 +121,8 @@ public class LooseSparseGrassyRegolithSlabBlock extends LooseSparseGrassSlabBloc
         this.iconGrassSideOverlay = register.registerIcon(this.getTextureName() + "_side_overlay");
         this.iconGrassTopSparse = register.registerIcon(this.getTextureName() + "_top_overlay");
         this.iconDirtTopSparse = register.registerIcon(this.getTextureName() + "_top");
-        this.iconSnowSideHalf = register.registerIcon(BetterThanWorldGen.MODID + ":sparse_loose_grass_regolith_slab_side_snowed");
-        this.iconGrassSideOverlayHalf = register.registerIcon(BetterThanWorldGen.MODID + ":sparse_loose_grass_regolith_slab_side_overlay");
+        this.iconSnowSideHalf = register.registerIcon(this.getTextureName() + "_slab_side_snowed");
+        this.iconGrassSideOverlayHalf = register.registerIcon(this.getTextureName() + "_slab_side_overlay");
     }
 
     @Override

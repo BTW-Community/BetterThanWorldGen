@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
+    public static final int TYPE_OFFSET = 1;
     private final StoneType type;
 
     public LooseStoneDecorativeBlock(int id, StoneType type) {
@@ -24,7 +25,7 @@ public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
         this.setChiselsEffectiveOn();
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name());
-        this.setTextureName(BetterThanWorldGen.MODID + ":loose_" + type.name());
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
@@ -89,13 +90,13 @@ public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
     public void registerIcons(IconRegister iconRegister) {
         this.icons = new Icon[2];
 
-        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":loose_cobbled_" + this.type.name());
-        this.icons[StoneType.STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":loose_" + this.type.name() + "_bricks");
+        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/loose_cobble");
+        this.icons[StoneType.STONE_BRICK_TYPE - TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/loose_bricks");
 
         this.lavaOverlayIcons = new Icon[2];
 
-        this.lavaOverlayIcons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":cobbled_" + this.type.name() + "_lava_overlay");
-        this.lavaOverlayIcons[StoneType.STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "_brick_lava_overlay");
+        this.lavaOverlayIcons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "/cobble_lava_overlay");
+        this.lavaOverlayIcons[StoneType.STONE_BRICK_TYPE - TYPE_OFFSET] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "/brick_lava_overlay");
     }
 
     @Override

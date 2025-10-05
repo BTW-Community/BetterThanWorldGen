@@ -24,6 +24,7 @@ public class LooseStoneSlab extends MortarReceiverSlabBlock {
         this.setChiselsEffectiveOn();
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name() + "_slab");
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
@@ -81,10 +82,10 @@ public class LooseStoneSlab extends MortarReceiverSlabBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        this.icons = new Icon[3];
+        this.icons = new Icon[2];
 
-        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":loose_cobbled_" + this.type.name());
-        this.icons[StoneType.STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":loose_" + this.type.name() + "_bricks");
+        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/loose_cobble");
+        this.icons[StoneType.STONE_BRICK_TYPE - LooseStoneDecorativeBlock.TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/loose_bricks");
     }
 
     @Override

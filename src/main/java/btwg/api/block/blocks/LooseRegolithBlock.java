@@ -19,7 +19,7 @@ public class LooseRegolithBlock extends LooseDirtBlock {
         this.type = type;
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name() + "_regolith");
-        this.setTextureName(BetterThanWorldGen.MODID + ":loose_" + type.name() + "_regolith");
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/loose_regolith");
     }
 
     @Override

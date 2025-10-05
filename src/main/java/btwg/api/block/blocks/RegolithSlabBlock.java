@@ -21,7 +21,7 @@ public class RegolithSlabBlock extends DirtSlabBlock {
         this.type = type;
 
         this.setUnlocalizedName("btwg." + type.name() + "_regolith_slab");
-        this.setTextureName("btwg:" + type.name() + "_regolith");
+        this.setTextureName("btwg:" + type.name() + "/regolith");
     }
 
     @Override

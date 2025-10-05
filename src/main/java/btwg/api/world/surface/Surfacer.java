@@ -50,10 +50,10 @@ public class Surfacer {
         byte fillerBlockMetadata = biome.fillerBlockMetadata;
 
         if (biome.topBlock == Block.grass.blockID) {
-            topBlock = (short) StoneType.LIMESTONE.grassID();
+            //topBlock = (short) StoneType.LIMESTONE.grassID();
         }
         if (biome.fillerBlock == Block.dirt.blockID) {
-            fillerBlock = (short) StoneType.LIMESTONE.dirtID();
+            //fillerBlock = (short) StoneType.LIMESTONE.dirtID();
         }
 
         if (depth == 0) {
@@ -79,8 +79,8 @@ public class Surfacer {
                 meta = 0;
             }
             else {
-                blockID = (short) StoneType.LIMESTONE.stoneID();
-                meta = (byte) StoneType.LIMESTONE.stoneMetadata();
+                //blockID = (short) StoneType.LIMESTONE.stoneID();
+                //meta = (byte) StoneType.LIMESTONE.stoneMetadata();
             }
 
             blockIDs[index(i, j, k, height)] = blockID;

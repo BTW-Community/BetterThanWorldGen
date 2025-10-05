@@ -107,6 +107,12 @@ public abstract class BTWGBlocks {
     public static Block looseLimestoneSlab;
     public static Block looseCobbledLimestoneStairs;
     public static Block looseLimestoneBrickStairs;
+    public static Block limestoneSidingAndCorner;
+    public static Block limestoneMoulding;
+    public static Block cobbledLimestoneSidingAndCorner;
+    public static Block cobbledLimestoneMoulding;
+    public static Block limestoneBrickSidingAndCorner;
+    public static Block limestoneBrickMoulding;
     public static Block limestoneRegolith;
     public static Block limestoneRegolithSlab;
     public static Block looseLimestoneRegolith;
@@ -115,9 +121,299 @@ public abstract class BTWGBlocks {
     public static Block grassyLimestoneRegolithSlab;
     public static Block looseSparseGrassyLimestoneRegolith;
     public static Block looseSparseGrassyLimestoneRegolithSlab;
-    public static Block limestoneRegolithFarmland;
     public static Block limestoneGravel;
     public static Block limestoneGravelSlab;
+    public static Block limestoneRegolithFarmland;
+
+    public static Block andesite;
+    public static Block roughAndesite;
+    public static Block andesiteStairs;
+    public static Block andesiteDecorative;
+    public static Block andesiteSlab;
+    public static Block cobbledAndesiteStairs;
+    public static Block andesiteBrickStairs;
+    public static Block looseAndesite;
+    public static Block looseAndesiteSlab;
+    public static Block looseCobbledAndesiteStairs;
+    public static Block looseAndesiteBrickStairs;
+    public static Block andesiteSidingAndCorner;
+    public static Block andesiteMoulding;
+    public static Block cobbledAndesiteSidingAndCorner;
+    public static Block cobbledAndesiteMoulding;
+    public static Block andesiteBrickSidingAndCorner;
+    public static Block andesiteBrickMoulding;
+    public static Block andesiteRegolith;
+    public static Block andesiteRegolithSlab;
+    public static Block looseAndesiteRegolith;
+    public static Block looseAndesiteRegolithSlab;
+    public static Block grassyAndesiteRegolith;
+    public static Block grassyAndesiteRegolithSlab;
+    public static Block looseSparseGrassyAndesiteRegolith;
+    public static Block looseSparseGrassyAndesiteRegolithSlab;
+    public static Block andesiteGravel;
+    public static Block andesiteGravelSlab;
+    public static Block andesiteRegolithFarmland;
+
+    public static Block basalt;
+    public static Block roughBasalt;
+    public static Block basaltStairs;
+    public static Block basaltDecorative;
+    public static Block basaltSlab;
+    public static Block cobbledBasaltStairs;
+    public static Block basaltBrickStairs;
+    public static Block looseBasalt;
+    public static Block looseBasaltSlab;
+    public static Block looseCobbledBasaltStairs;
+    public static Block looseBasaltBrickStairs;
+    public static Block basaltSidingAndCorner;
+    public static Block basaltMoulding;
+    public static Block cobbledBasaltSidingAndCorner;
+    public static Block cobbledBasaltMoulding;
+    public static Block basaltBrickSidingAndCorner;
+    public static Block basaltBrickMoulding;
+    public static Block basaltRegolith;
+    public static Block basaltRegolithSlab;
+    public static Block looseBasaltRegolith;
+    public static Block looseBasaltRegolithSlab;
+    public static Block grassyBasaltRegolith;
+    public static Block grassyBasaltRegolithSlab;
+    public static Block looseSparseGrassyBasaltRegolith;
+    public static Block looseSparseGrassyBasaltRegolithSlab;
+    public static Block basaltGravel;
+    public static Block basaltGravelSlab;
+    public static Block basaltRegolithFarmland;
+
+    public static Block calcite;
+    public static Block roughCalcite;
+    public static Block calciteStairs;
+    public static Block calciteDecorative;
+    public static Block calciteSlab;
+    public static Block cobbledCalciteStairs;
+    public static Block calciteBrickStairs;
+    public static Block looseCalcite;
+    public static Block looseCalciteSlab;
+    public static Block looseCobbledCalciteStairs;
+    public static Block looseCalciteBrickStairs;
+    public static Block calciteSidingAndCorner;
+    public static Block calciteMoulding;
+    public static Block cobbledCalciteSidingAndCorner;
+    public static Block cobbledCalciteMoulding;
+    public static Block calciteBrickSidingAndCorner;
+    public static Block calciteBrickMoulding;
+    public static Block calciteRegolith;
+    public static Block calciteRegolithSlab;
+    public static Block looseCalciteRegolith;
+    public static Block looseCalciteRegolithSlab;
+    public static Block grassyCalciteRegolith;
+    public static Block grassyCalciteRegolithSlab;
+    public static Block looseSparseGrassyCalciteRegolith;
+    public static Block looseSparseGrassyCalciteRegolithSlab;
+    public static Block calciteGravel;
+    public static Block calciteGravelSlab;
+    public static Block calciteRegolithFarmland;
+
+    public static Block diorite;
+    public static Block roughDiorite;
+    public static Block dioriteStairs;
+    public static Block dioriteDecorative;
+    public static Block dioriteSlab;
+    public static Block cobbledDioriteStairs;
+    public static Block dioriteBrickStairs;
+    public static Block looseDiorite;
+    public static Block looseDioriteSlab;
+    public static Block looseCobbledDioriteStairs;
+    public static Block looseDioriteBrickStairs;
+    public static Block dioriteSidingAndCorner;
+    public static Block dioriteMoulding;
+    public static Block cobbledDioriteSidingAndCorner;
+    public static Block cobbledDioriteMoulding;
+    public static Block dioriteBrickSidingAndCorner;
+    public static Block dioriteBrickMoulding;
+    public static Block dioriteRegolith;
+    public static Block dioriteRegolithSlab;
+    public static Block looseDioriteRegolith;
+    public static Block looseDioriteRegolithSlab;
+    public static Block grassyDioriteRegolith;
+    public static Block grassyDioriteRegolithSlab;
+    public static Block looseSparseGrassyDioriteRegolith;
+    public static Block looseSparseGrassyDioriteRegolithSlab;
+    public static Block dioriteGravel;
+    public static Block dioriteGravelSlab;
+    public static Block dioriteRegolithFarmland;
+
+    public static Block granite;
+    public static Block roughGranite;
+    public static Block graniteStairs;
+    public static Block graniteDecorative;
+    public static Block graniteSlab;
+    public static Block cobbledGraniteStairs;
+    public static Block graniteBrickStairs;
+    public static Block looseGranite;
+    public static Block looseGraniteSlab;
+    public static Block looseCobbledGraniteStairs;
+    public static Block looseGraniteBrickStairs;
+    public static Block graniteSidingAndCorner;
+    public static Block graniteMoulding;
+    public static Block cobbledGraniteSidingAndCorner;
+    public static Block cobbledGraniteMoulding;
+    public static Block graniteBrickSidingAndCorner;
+    public static Block graniteBrickMoulding;
+    public static Block graniteRegolith;
+    public static Block graniteRegolithSlab;
+    public static Block looseGraniteRegolith;
+    public static Block looseGraniteRegolithSlab;
+    public static Block grassyGraniteRegolith;
+    public static Block grassyGraniteRegolithSlab;
+    public static Block looseSparseGrassyGraniteRegolith;
+    public static Block looseSparseGrassyGraniteRegolithSlab;
+    public static Block graniteGravel;
+    public static Block graniteGravelSlab;
+    public static Block graniteRegolithFarmland;
+
+    public static Block kimberlite;
+    public static Block roughKimberlite;
+    public static Block kimberliteStairs;
+    public static Block kimberliteDecorative;
+    public static Block kimberliteSlab;
+    public static Block cobbledKimberliteStairs;
+    public static Block kimberliteBrickStairs;
+    public static Block looseKimberlite;
+    public static Block looseKimberliteSlab;
+    public static Block looseCobbledKimberliteStairs;
+    public static Block looseKimberliteBrickStairs;
+    public static Block kimberliteSidingAndCorner;
+    public static Block kimberliteMoulding;
+    public static Block cobbledKimberliteSidingAndCorner;
+    public static Block cobbledKimberliteMoulding;
+    public static Block kimberliteBrickSidingAndCorner;
+    public static Block kimberliteBrickMoulding;
+    public static Block kimberliteRegolith;
+    public static Block kimberliteRegolithSlab;
+    public static Block looseKimberliteRegolith;
+    public static Block looseKimberliteRegolithSlab;
+    public static Block grassyKimberliteRegolith;
+    public static Block grassyKimberliteRegolithSlab;
+    public static Block looseSparseGrassyKimberliteRegolith;
+    public static Block looseSparseGrassyKimberliteRegolithSlab;
+    public static Block kimberliteGravel;
+    public static Block kimberliteGravelSlab;
+    public static Block kimberliteRegolithFarmland;
+
+    public static Block phyllite;
+    public static Block roughPhyllite;
+    public static Block phylliteStairs;
+    public static Block phylliteDecorative;
+    public static Block phylliteSlab;
+    public static Block cobbledPhylliteStairs;
+    public static Block phylliteBrickStairs;
+    public static Block loosePhyllite;
+    public static Block loosePhylliteSlab;
+    public static Block looseCobbledPhylliteStairs;
+    public static Block loosePhylliteBrickStairs;
+    public static Block phylliteSidingAndCorner;
+    public static Block phylliteMoulding;
+    public static Block cobbledPhylliteSidingAndCorner;
+    public static Block cobbledPhylliteMoulding;
+    public static Block phylliteBrickSidingAndCorner;
+    public static Block phylliteBrickMoulding;
+    public static Block phylliteRegolith;
+    public static Block phylliteRegolithSlab;
+    public static Block loosePhylliteRegolith;
+    public static Block loosePhylliteRegolithSlab;
+    public static Block grassyPhylliteRegolith;
+    public static Block grassyPhylliteRegolithSlab;
+    public static Block looseSparseGrassyPhylliteRegolith;
+    public static Block looseSparseGrassyPhylliteRegolithSlab;
+    public static Block phylliteGravel;
+    public static Block phylliteGravelSlab;
+    public static Block phylliteRegolithFarmland;
+
+    public static Block schist;
+    public static Block roughSchist;
+    public static Block schistStairs;
+    public static Block schistDecorative;
+    public static Block schistSlab;
+    public static Block cobbledSchistStairs;
+    public static Block schistBrickStairs;
+    public static Block looseSchist;
+    public static Block looseSchistSlab;
+    public static Block looseCobbledSchistStairs;
+    public static Block looseSchistBrickStairs;
+    public static Block schistSidingAndCorner;
+    public static Block schistMoulding;
+    public static Block cobbledSchistSidingAndCorner;
+    public static Block cobbledSchistMoulding;
+    public static Block schistBrickSidingAndCorner;
+    public static Block schistBrickMoulding;
+    public static Block schistRegolith;
+    public static Block schistRegolithSlab;
+    public static Block looseSchistRegolith;
+    public static Block looseSchistRegolithSlab;
+    public static Block grassySchistRegolith;
+    public static Block grassySchistRegolithSlab;
+    public static Block looseSparseGrassySchistRegolith;
+    public static Block looseSparseGrassySchistRegolithSlab;
+    public static Block schistGravel;
+    public static Block schistGravelSlab;
+    public static Block schistRegolithFarmland;
+
+    public static Block shale;
+    public static Block roughShale;
+    public static Block shaleStairs;
+    public static Block shaleDecorative;
+    public static Block shaleSlab;
+    public static Block cobbledShaleStairs;
+    public static Block shaleBrickStairs;
+    public static Block looseShale;
+    public static Block looseShaleSlab;
+    public static Block looseCobbledShaleStairs;
+    public static Block looseShaleBrickStairs;
+    public static Block shaleSidingAndCorner;
+    public static Block shaleMoulding;
+    public static Block cobbledShaleSidingAndCorner;
+    public static Block cobbledShaleMoulding;
+    public static Block shaleBrickSidingAndCorner;
+    public static Block shaleBrickMoulding;
+    public static Block shaleRegolith;
+    public static Block shaleRegolithSlab;
+    public static Block looseShaleRegolith;
+    public static Block looseShaleRegolithSlab;
+    public static Block grassyShaleRegolith;
+    public static Block grassyShaleRegolithSlab;
+    public static Block looseSparseGrassyShaleRegolith;
+    public static Block looseSparseGrassyShaleRegolithSlab;
+    public static Block shaleGravel;
+    public static Block shaleGravelSlab;
+    public static Block shaleRegolithFarmland;
+
+    public static Block tuff;
+    public static Block roughTuff;
+    public static Block tuffStairs;
+    public static Block tuffDecorative;
+    public static Block tuffSlab;
+    public static Block cobbledTuffStairs;
+    public static Block tuffBrickStairs;
+    public static Block looseTuff;
+    public static Block looseTuffSlab;
+    public static Block looseCobbledTuffStairs;
+    public static Block looseTuffBrickStairs;
+    public static Block tuffSidingAndCorner;
+    public static Block tuffMoulding;
+    public static Block cobbledTuffSidingAndCorner;
+    public static Block cobbledTuffMoulding;
+    public static Block tuffBrickSidingAndCorner;
+    public static Block tuffBrickMoulding;
+    public static Block tuffRegolith;
+    public static Block tuffRegolithSlab;
+    public static Block looseTuffRegolith;
+    public static Block looseTuffRegolithSlab;
+    public static Block grassyTuffRegolith;
+    public static Block grassyTuffRegolithSlab;
+    public static Block looseSparseGrassyTuffRegolith;
+    public static Block looseSparseGrassyTuffRegolithSlab;
+    public static Block tuffGravel;
+    public static Block tuffGravelSlab;
+    public static Block tuffRegolithFarmland;
 
     public static void initBlocks() {
         initSoils();
@@ -565,7 +861,12 @@ public abstract class BTWGBlocks {
         limestoneSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.LIMESTONE_SLAB_ID, StoneType.LIMESTONE);
         register(new SlabWithMetadataBlockItem(
                 limestoneSlab.blockID - 256,
-                ((MultiTextureBlock) limestoneDecorative).getNames()
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
         ));
 
         cobbledLimestoneStairs = new MortaredStairsBlock(
@@ -584,7 +885,7 @@ public abstract class BTWGBlocks {
 
         looseLimestone = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_LIMESTONE_ID, StoneType.LIMESTONE);
         register(looseLimestone, new String[] {
-                "cobblestone",
+                "cobble",
                 "brick"
         });
 
@@ -592,8 +893,8 @@ public abstract class BTWGBlocks {
         register(new SlabWithMetadataBlockItem(
                 looseLimestoneSlab.blockID - 256,
                 new String[] {
-                    "cobblestone",
-                    "brick"
+                        "cobble",
+                        "brick"
                 }
         ));
 
@@ -641,6 +942,906 @@ public abstract class BTWGBlocks {
 
         limestoneGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.LIMESTONE_GRAVEL_SLAB_ID, StoneType.LIMESTONE);
         register(new SlabBlockItem(limestoneGravelSlab.blockID - 256));
+
+        //------ Andesite ------//
+
+        andesite = new BTWGStoneBlock(BTWGBlockIDs.ANDESITE_ID, StoneType.ANDESITE);
+        register(andesite);
+
+        roughAndesite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_ANDESITE_ID, StoneType.ANDESITE);
+        register(roughAndesite);
+
+        andesiteStairs = new StairsBlock(BTWGBlockIDs.ANDESITE_STAIRS_ID, andesite, StoneType.ANDESITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".andesite_stairs");
+        register(andesiteStairs);
+
+        andesiteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.ANDESITE_DECORATIVE_ID, StoneType.ANDESITE);
+        register(andesiteDecorative, ((MultiTextureBlock) andesiteDecorative).getNames());
+
+        andesiteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.ANDESITE_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabWithMetadataBlockItem(
+                andesiteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledAndesiteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_ANDESITE_STAIRS_ID, andesiteDecorative,
+                StoneType.ANDESITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_ANDESITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_andesite_stairs");
+        register(cobbledAndesiteStairs);
+
+        andesiteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.ANDESITE_BRICK_STAIRS_ID, andesiteDecorative,
+                StoneType.ANDESITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_ANDESITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".andesite_brick_stairs");
+        register(andesiteBrickStairs);
+
+        looseAndesite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_ANDESITE_ID, StoneType.ANDESITE);
+        register(looseAndesite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseAndesiteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_ANDESITE_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabWithMetadataBlockItem(
+                looseAndesiteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledAndesiteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_ANDESITE_STAIRS_ID,
+                looseAndesite, StoneType.ANDESITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_ANDESITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_andesite_stairs");
+        register(looseCobbledAndesiteStairs);
+
+        looseAndesiteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_ANDESITE_BRICK_STAIRS_ID,
+                looseAndesite, StoneType.ANDESITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_ANDESITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_andesite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseAndesiteBrickStairs);
+
+        andesiteRegolith = new RegolithBlock(BTWGBlockIDs.ANDESITE_REGOLITH_ID, StoneType.ANDESITE);
+        register(andesiteRegolith);
+
+        andesiteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.ANDESITE_REGOLITH_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabBlockItem(andesiteRegolithSlab.blockID - 256));
+
+        grassyAndesiteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_ANDESITE_REGOLITH_ID, StoneType.ANDESITE);
+        register(grassyAndesiteRegolith);
+
+        grassyAndesiteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_ANDESITE_REGOLITH_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabBlockItem(grassyAndesiteRegolithSlab.blockID - 256));
+
+        looseAndesiteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_ANDESITE_REGOLITH_ID, StoneType.ANDESITE);
+        register(looseAndesiteRegolith);
+
+        looseAndesiteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_ANDESITE_REGOLITH_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabBlockItem(looseAndesiteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyAndesiteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_ANDESITE_REGOLITH_ID, StoneType.ANDESITE);
+        register(looseSparseGrassyAndesiteRegolith);
+
+        looseSparseGrassyAndesiteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_ANDESITE_REGOLITH_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabBlockItem(looseSparseGrassyAndesiteRegolithSlab.blockID - 256));
+
+        andesiteGravel = new BTWGGravelBlock(BTWGBlockIDs.ANDESITE_GRAVEL_ID, StoneType.ANDESITE);
+        register(andesiteGravel);
+
+        andesiteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.ANDESITE_GRAVEL_SLAB_ID, StoneType.ANDESITE);
+        register(new SlabBlockItem(andesiteGravelSlab.blockID - 256));
+
+        //------ Basalt ------//
+
+        basalt = new BTWGStoneBlock(BTWGBlockIDs.BASALT_ID, StoneType.BASALT);
+        register(basalt);
+
+        roughBasalt = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_BASALT_ID, StoneType.BASALT);
+        register(roughBasalt);
+
+        basaltStairs = new StairsBlock(BTWGBlockIDs.BASALT_STAIRS_ID, basalt, StoneType.BASALT.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".basalt_stairs");
+        register(basaltStairs);
+
+        basaltDecorative = new StoneDecorativeBlock(BTWGBlockIDs.BASALT_DECORATIVE_ID, StoneType.BASALT);
+        register(basaltDecorative, ((MultiTextureBlock) basaltDecorative).getNames());
+
+        basaltSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.BASALT_SLAB_ID, StoneType.BASALT);
+        register(new SlabWithMetadataBlockItem(
+                basaltSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledBasaltStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_BASALT_STAIRS_ID, basaltDecorative,
+                StoneType.BASALT.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_BASALT_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_basalt_stairs");
+        register(cobbledBasaltStairs);
+
+        basaltBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.BASALT_BRICK_STAIRS_ID, basaltDecorative,
+                StoneType.BASALT.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_BASALT_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".basalt_brick_stairs");
+        register(basaltBrickStairs);
+
+        looseBasalt = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_BASALT_ID, StoneType.BASALT);
+        register(looseBasalt, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseBasaltSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_BASALT_SLAB_ID, StoneType.BASALT);
+        register(new SlabWithMetadataBlockItem(
+                looseBasaltSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledBasaltStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_BASALT_STAIRS_ID,
+                looseBasalt, StoneType.BASALT.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_BASALT_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_basalt_stairs");
+        register(looseCobbledBasaltStairs);
+
+        looseBasaltBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_BASALT_BRICK_STAIRS_ID,
+                looseBasalt, StoneType.BASALT.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_BASALT_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_basalt_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseBasaltBrickStairs);
+
+        basaltRegolith = new RegolithBlock(BTWGBlockIDs.BASALT_REGOLITH_ID, StoneType.BASALT);
+        register(basaltRegolith);
+
+        basaltRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.BASALT_REGOLITH_SLAB_ID, StoneType.BASALT);
+        register(new SlabBlockItem(basaltRegolithSlab.blockID - 256));
+
+        grassyBasaltRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_BASALT_REGOLITH_ID, StoneType.BASALT);
+        register(grassyBasaltRegolith);
+
+        grassyBasaltRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_BASALT_REGOLITH_SLAB_ID, StoneType.BASALT);
+        register(new SlabBlockItem(grassyBasaltRegolithSlab.blockID - 256));
+
+        looseBasaltRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_BASALT_REGOLITH_ID, StoneType.BASALT);
+        register(looseBasaltRegolith);
+
+        looseBasaltRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_BASALT_REGOLITH_SLAB_ID, StoneType.BASALT);
+        register(new SlabBlockItem(looseBasaltRegolithSlab.blockID - 256));
+
+        looseSparseGrassyBasaltRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_BASALT_REGOLITH_ID, StoneType.BASALT);
+        register(looseSparseGrassyBasaltRegolith);
+
+        looseSparseGrassyBasaltRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_BASALT_REGOLITH_SLAB_ID, StoneType.BASALT);
+        register(new SlabBlockItem(looseSparseGrassyBasaltRegolithSlab.blockID - 256));
+
+        basaltGravel = new BTWGGravelBlock(BTWGBlockIDs.BASALT_GRAVEL_ID, StoneType.BASALT);
+        register(basaltGravel);
+
+        basaltGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.BASALT_GRAVEL_SLAB_ID, StoneType.BASALT);
+        register(new SlabBlockItem(basaltGravelSlab.blockID - 256));
+
+        //------ Calcite ------//
+
+        calcite = new BTWGStoneBlock(BTWGBlockIDs.CALCITE_ID, StoneType.CALCITE);
+        register(calcite);
+
+        roughCalcite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_CALCITE_ID, StoneType.CALCITE);
+        register(roughCalcite);
+
+        calciteStairs = new StairsBlock(BTWGBlockIDs.CALCITE_STAIRS_ID, calcite, StoneType.CALCITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".calcite_stairs");
+        register(calciteStairs);
+
+        calciteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.CALCITE_DECORATIVE_ID, StoneType.CALCITE);
+        register(calciteDecorative, ((MultiTextureBlock) calciteDecorative).getNames());
+
+        calciteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.CALCITE_SLAB_ID, StoneType.CALCITE);
+        register(new SlabWithMetadataBlockItem(
+                calciteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledCalciteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_CALCITE_STAIRS_ID, calciteDecorative,
+                StoneType.CALCITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_CALCITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_calcite_stairs");
+        register(cobbledCalciteStairs);
+
+        calciteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.CALCITE_BRICK_STAIRS_ID, calciteDecorative,
+                StoneType.CALCITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_CALCITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".calcite_brick_stairs");
+        register(calciteBrickStairs);
+
+        looseCalcite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_CALCITE_ID, StoneType.CALCITE);
+        register(looseCalcite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseCalciteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_CALCITE_SLAB_ID, StoneType.CALCITE);
+        register(new SlabWithMetadataBlockItem(
+                looseCalciteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledCalciteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_CALCITE_STAIRS_ID,
+                looseCalcite, StoneType.CALCITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_CALCITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_calcite_stairs");
+        register(looseCobbledCalciteStairs);
+
+        looseCalciteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_CALCITE_BRICK_STAIRS_ID,
+                looseCalcite, StoneType.CALCITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_CALCITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_calcite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseCalciteBrickStairs);
+
+        calciteRegolith = new RegolithBlock(BTWGBlockIDs.CALCITE_REGOLITH_ID, StoneType.CALCITE);
+        register(calciteRegolith);
+
+        calciteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.CALCITE_REGOLITH_SLAB_ID, StoneType.CALCITE);
+        register(new SlabBlockItem(calciteRegolithSlab.blockID - 256));
+
+        grassyCalciteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_CALCITE_REGOLITH_ID, StoneType.CALCITE);
+        register(grassyCalciteRegolith);
+
+        grassyCalciteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_CALCITE_REGOLITH_SLAB_ID, StoneType.CALCITE);
+        register(new SlabBlockItem(grassyCalciteRegolithSlab.blockID - 256));
+
+        looseCalciteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_CALCITE_REGOLITH_ID, StoneType.CALCITE);
+        register(looseCalciteRegolith);
+
+        looseCalciteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_CALCITE_REGOLITH_SLAB_ID, StoneType.CALCITE);
+        register(new SlabBlockItem(looseCalciteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyCalciteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_CALCITE_REGOLITH_ID, StoneType.CALCITE);
+        register(looseSparseGrassyCalciteRegolith);
+
+        looseSparseGrassyCalciteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_CALCITE_REGOLITH_SLAB_ID, StoneType.CALCITE);
+        register(new SlabBlockItem(looseSparseGrassyCalciteRegolithSlab.blockID - 256));
+
+        calciteGravel = new BTWGGravelBlock(BTWGBlockIDs.CALCITE_GRAVEL_ID, StoneType.CALCITE);
+        register(calciteGravel);
+
+        calciteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.CALCITE_GRAVEL_SLAB_ID, StoneType.CALCITE);
+        register(new SlabBlockItem(calciteGravelSlab.blockID - 256));
+
+        //------ Diorite ------//
+
+        diorite = new BTWGStoneBlock(BTWGBlockIDs.DIORITE_ID, StoneType.DIORITE);
+        register(diorite);
+
+        roughDiorite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_DIORITE_ID, StoneType.DIORITE);
+        register(roughDiorite);
+
+        dioriteStairs = new StairsBlock(BTWGBlockIDs.DIORITE_STAIRS_ID, diorite, StoneType.DIORITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".diorite_stairs");
+        register(dioriteStairs);
+
+        dioriteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.DIORITE_DECORATIVE_ID, StoneType.DIORITE);
+        register(dioriteDecorative, ((MultiTextureBlock) dioriteDecorative).getNames());
+
+        dioriteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.DIORITE_SLAB_ID, StoneType.DIORITE);
+        register(new SlabWithMetadataBlockItem(
+                dioriteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledDioriteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_DIORITE_STAIRS_ID, dioriteDecorative,
+                StoneType.DIORITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_DIORITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_diorite_stairs");
+        register(cobbledDioriteStairs);
+
+        dioriteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.DIORITE_BRICK_STAIRS_ID, dioriteDecorative,
+                StoneType.DIORITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_DIORITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".diorite_brick_stairs");
+        register(dioriteBrickStairs);
+
+        looseDiorite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_DIORITE_ID, StoneType.DIORITE);
+        register(looseDiorite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseDioriteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_DIORITE_SLAB_ID, StoneType.DIORITE);
+        register(new SlabWithMetadataBlockItem(
+                looseDioriteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledDioriteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_DIORITE_STAIRS_ID,
+                looseDiorite, StoneType.DIORITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_DIORITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_diorite_stairs");
+        register(looseCobbledDioriteStairs);
+
+        looseDioriteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_DIORITE_BRICK_STAIRS_ID,
+                looseDiorite, StoneType.DIORITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_DIORITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_diorite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseDioriteBrickStairs);
+
+        dioriteRegolith = new RegolithBlock(BTWGBlockIDs.DIORITE_REGOLITH_ID, StoneType.DIORITE);
+        register(dioriteRegolith);
+
+        dioriteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.DIORITE_REGOLITH_SLAB_ID, StoneType.DIORITE);
+        register(new SlabBlockItem(dioriteRegolithSlab.blockID - 256));
+
+        grassyDioriteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_DIORITE_REGOLITH_ID, StoneType.DIORITE);
+        register(grassyDioriteRegolith);
+
+        grassyDioriteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_DIORITE_REGOLITH_SLAB_ID, StoneType.DIORITE);
+        register(new SlabBlockItem(grassyDioriteRegolithSlab.blockID - 256));
+
+        looseDioriteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_DIORITE_REGOLITH_ID, StoneType.DIORITE);
+        register(looseDioriteRegolith);
+
+        looseDioriteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_DIORITE_REGOLITH_SLAB_ID, StoneType.DIORITE);
+        register(new SlabBlockItem(looseDioriteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyDioriteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_DIORITE_REGOLITH_ID, StoneType.DIORITE);
+        register(looseSparseGrassyDioriteRegolith);
+
+        looseSparseGrassyDioriteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_DIORITE_REGOLITH_SLAB_ID, StoneType.DIORITE);
+        register(new SlabBlockItem(looseSparseGrassyDioriteRegolithSlab.blockID - 256));
+
+        dioriteGravel = new BTWGGravelBlock(BTWGBlockIDs.DIORITE_GRAVEL_ID, StoneType.DIORITE);
+        register(dioriteGravel);
+
+        dioriteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.DIORITE_GRAVEL_SLAB_ID, StoneType.DIORITE);
+        register(new SlabBlockItem(dioriteGravelSlab.blockID - 256));
+
+        //------ Granite ------//
+
+        granite = new BTWGStoneBlock(BTWGBlockIDs.GRANITE_ID, StoneType.GRANITE);
+        register(granite);
+
+        roughGranite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_GRANITE_ID, StoneType.GRANITE);
+        register(roughGranite);
+
+        graniteStairs = new StairsBlock(BTWGBlockIDs.GRANITE_STAIRS_ID, granite, StoneType.GRANITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".granite_stairs");
+        register(graniteStairs);
+
+        graniteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.GRANITE_DECORATIVE_ID, StoneType.GRANITE);
+        register(graniteDecorative, ((MultiTextureBlock) graniteDecorative).getNames());
+
+        graniteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.GRANITE_SLAB_ID, StoneType.GRANITE);
+        register(new SlabWithMetadataBlockItem(
+                graniteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledGraniteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_GRANITE_STAIRS_ID, graniteDecorative,
+                StoneType.GRANITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_GRANITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_granite_stairs");
+        register(cobbledGraniteStairs);
+
+        graniteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.GRANITE_BRICK_STAIRS_ID, graniteDecorative,
+                StoneType.GRANITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_GRANITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".granite_brick_stairs");
+        register(graniteBrickStairs);
+
+        looseGranite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_GRANITE_ID, StoneType.GRANITE);
+        register(looseGranite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseGraniteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_GRANITE_SLAB_ID, StoneType.GRANITE);
+        register(new SlabWithMetadataBlockItem(
+                looseGraniteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledGraniteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_GRANITE_STAIRS_ID,
+                looseGranite, StoneType.GRANITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_GRANITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_granite_stairs");
+        register(looseCobbledGraniteStairs);
+
+        looseGraniteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_GRANITE_BRICK_STAIRS_ID,
+                looseGranite, StoneType.GRANITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_GRANITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_granite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseGraniteBrickStairs);
+
+        graniteRegolith = new RegolithBlock(BTWGBlockIDs.GRANITE_REGOLITH_ID, StoneType.GRANITE);
+        register(graniteRegolith);
+
+        graniteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.GRANITE_REGOLITH_SLAB_ID, StoneType.GRANITE);
+        register(new SlabBlockItem(graniteRegolithSlab.blockID - 256));
+
+        grassyGraniteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_GRANITE_REGOLITH_ID, StoneType.GRANITE);
+        register(grassyGraniteRegolith);
+
+        grassyGraniteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_GRANITE_REGOLITH_SLAB_ID, StoneType.GRANITE);
+        register(new SlabBlockItem(grassyGraniteRegolithSlab.blockID - 256));
+
+        looseGraniteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_GRANITE_REGOLITH_ID, StoneType.GRANITE);
+        register(looseGraniteRegolith);
+
+        looseGraniteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_GRANITE_REGOLITH_SLAB_ID, StoneType.GRANITE);
+        register(new SlabBlockItem(looseGraniteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyGraniteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GRANITE_REGOLITH_ID, StoneType.GRANITE);
+        register(looseSparseGrassyGraniteRegolith);
+
+        looseSparseGrassyGraniteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GRANITE_REGOLITH_SLAB_ID, StoneType.GRANITE);
+        register(new SlabBlockItem(looseSparseGrassyGraniteRegolithSlab.blockID - 256));
+
+        graniteGravel = new BTWGGravelBlock(BTWGBlockIDs.GRANITE_GRAVEL_ID, StoneType.GRANITE);
+        register(graniteGravel);
+
+        graniteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.GRANITE_GRAVEL_SLAB_ID, StoneType.GRANITE);
+        register(new SlabBlockItem(graniteGravelSlab.blockID - 256));
+
+        //------ Phyllite ------//
+
+        phyllite = new BTWGStoneBlock(BTWGBlockIDs.PHYLLITE_ID, StoneType.PHYLLITE);
+        register(phyllite);
+
+        roughPhyllite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_PHYLLITE_ID, StoneType.PHYLLITE);
+        register(roughPhyllite);
+
+        phylliteStairs = new StairsBlock(BTWGBlockIDs.PHYLLITE_STAIRS_ID, phyllite, StoneType.PHYLLITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".phyllite_stairs");
+        register(phylliteStairs);
+
+        phylliteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.PHYLLITE_DECORATIVE_ID, StoneType.PHYLLITE);
+        register(phylliteDecorative, ((MultiTextureBlock) phylliteDecorative).getNames());
+
+        phylliteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.PHYLLITE_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabWithMetadataBlockItem(
+                phylliteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledPhylliteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_PHYLLITE_STAIRS_ID, phylliteDecorative,
+                StoneType.PHYLLITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_PHYLLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_phyllite_stairs");
+        register(cobbledPhylliteStairs);
+
+        phylliteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.PHYLLITE_BRICK_STAIRS_ID, phylliteDecorative,
+                StoneType.PHYLLITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_PHYLLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".phyllite_brick_stairs");
+        register(phylliteBrickStairs);
+
+        loosePhyllite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_PHYLLITE_ID, StoneType.PHYLLITE);
+        register(loosePhyllite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        loosePhylliteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_PHYLLITE_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabWithMetadataBlockItem(
+                loosePhylliteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledPhylliteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_PHYLLITE_STAIRS_ID,
+                loosePhyllite, StoneType.PHYLLITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_PHYLLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_phyllite_stairs");
+        register(looseCobbledPhylliteStairs);
+
+        loosePhylliteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_PHYLLITE_BRICK_STAIRS_ID,
+                loosePhyllite, StoneType.PHYLLITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_PHYLLITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_phyllite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(loosePhylliteBrickStairs);
+
+        phylliteRegolith = new RegolithBlock(BTWGBlockIDs.PHYLLITE_REGOLITH_ID, StoneType.PHYLLITE);
+        register(phylliteRegolith);
+
+        phylliteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.PHYLLITE_REGOLITH_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabBlockItem(phylliteRegolithSlab.blockID - 256));
+
+        grassyPhylliteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_PHYLLITE_REGOLITH_ID, StoneType.PHYLLITE);
+        register(grassyPhylliteRegolith);
+
+        grassyPhylliteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_PHYLLITE_REGOLITH_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabBlockItem(grassyPhylliteRegolithSlab.blockID - 256));
+
+        loosePhylliteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_PHYLLITE_REGOLITH_ID, StoneType.PHYLLITE);
+        register(loosePhylliteRegolith);
+
+        loosePhylliteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_PHYLLITE_REGOLITH_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabBlockItem(loosePhylliteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyPhylliteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_PHYLLITE_REGOLITH_ID, StoneType.PHYLLITE);
+        register(looseSparseGrassyPhylliteRegolith);
+
+        looseSparseGrassyPhylliteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_PHYLLITE_REGOLITH_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabBlockItem(looseSparseGrassyPhylliteRegolithSlab.blockID - 256));
+
+        phylliteGravel = new BTWGGravelBlock(BTWGBlockIDs.PHYLLITE_GRAVEL_ID, StoneType.PHYLLITE);
+        register(phylliteGravel);
+
+        phylliteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.PHYLLITE_GRAVEL_SLAB_ID, StoneType.PHYLLITE);
+        register(new SlabBlockItem(phylliteGravelSlab.blockID - 256));
+
+        //------ Schist ------//
+
+        schist = new BTWGStoneBlock(BTWGBlockIDs.SCHIST_ID, StoneType.SCHIST);
+        register(schist);
+
+        roughSchist = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_SCHIST_ID, StoneType.SCHIST);
+        register(roughSchist);
+
+        schistStairs = new StairsBlock(BTWGBlockIDs.SCHIST_STAIRS_ID, schist, StoneType.SCHIST.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".schist_stairs");
+        register(schistStairs);
+
+        schistDecorative = new StoneDecorativeBlock(BTWGBlockIDs.SCHIST_DECORATIVE_ID, StoneType.SCHIST);
+        register(schistDecorative, ((MultiTextureBlock) schistDecorative).getNames());
+
+        schistSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.SCHIST_SLAB_ID, StoneType.SCHIST);
+        register(new SlabWithMetadataBlockItem(
+                schistSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledSchistStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_SCHIST_STAIRS_ID, schistDecorative,
+                StoneType.SCHIST.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_SCHIST_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_schist_stairs");
+        register(cobbledSchistStairs);
+
+        schistBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.SCHIST_BRICK_STAIRS_ID, schistDecorative,
+                StoneType.SCHIST.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_SCHIST_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".schist_brick_stairs");
+        register(schistBrickStairs);
+
+        looseSchist = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_SCHIST_ID, StoneType.SCHIST);
+        register(looseSchist, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseSchistSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_SCHIST_SLAB_ID, StoneType.SCHIST);
+        register(new SlabWithMetadataBlockItem(
+                looseSchistSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledSchistStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_SCHIST_STAIRS_ID,
+                looseSchist, StoneType.SCHIST.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_SCHIST_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_schist_stairs");
+        register(looseCobbledSchistStairs);
+
+        looseSchistBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_SCHIST_BRICK_STAIRS_ID,
+                looseSchist, StoneType.SCHIST.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_SCHIST_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_schist_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseSchistBrickStairs);
+
+        schistRegolith = new RegolithBlock(BTWGBlockIDs.SCHIST_REGOLITH_ID, StoneType.SCHIST);
+        register(schistRegolith);
+
+        schistRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.SCHIST_REGOLITH_SLAB_ID, StoneType.SCHIST);
+        register(new SlabBlockItem(schistRegolithSlab.blockID - 256));
+
+        grassySchistRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_SCHIST_REGOLITH_ID, StoneType.SCHIST);
+        register(grassySchistRegolith);
+
+        grassySchistRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_SCHIST_REGOLITH_SLAB_ID, StoneType.SCHIST);
+        register(new SlabBlockItem(grassySchistRegolithSlab.blockID - 256));
+
+        looseSchistRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_SCHIST_REGOLITH_ID, StoneType.SCHIST);
+        register(looseSchistRegolith);
+
+        looseSchistRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_SCHIST_REGOLITH_SLAB_ID, StoneType.SCHIST);
+        register(new SlabBlockItem(looseSchistRegolithSlab.blockID - 256));
+
+        looseSparseGrassySchistRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SCHIST_REGOLITH_ID, StoneType.SCHIST);
+        register(looseSparseGrassySchistRegolith);
+
+        looseSparseGrassySchistRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SCHIST_REGOLITH_SLAB_ID, StoneType.SCHIST);
+        register(new SlabBlockItem(looseSparseGrassySchistRegolithSlab.blockID - 256));
+
+        schistGravel = new BTWGGravelBlock(BTWGBlockIDs.SCHIST_GRAVEL_ID, StoneType.SCHIST);
+        register(schistGravel);
+
+        schistGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.SCHIST_GRAVEL_SLAB_ID, StoneType.SCHIST);
+        register(new SlabBlockItem(schistGravelSlab.blockID - 256));
+
+        //------ Shale ------//
+
+        shale = new BTWGStoneBlock(BTWGBlockIDs.SHALE_ID, StoneType.SHALE);
+        register(shale);
+
+        roughShale = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_SHALE_ID, StoneType.SHALE);
+        register(roughShale);
+
+        shaleStairs = new StairsBlock(BTWGBlockIDs.SHALE_STAIRS_ID, shale, StoneType.SHALE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".shale_stairs");
+        register(shaleStairs);
+
+        shaleDecorative = new StoneDecorativeBlock(BTWGBlockIDs.SHALE_DECORATIVE_ID, StoneType.SHALE);
+        register(shaleDecorative, ((MultiTextureBlock) shaleDecorative).getNames());
+
+        shaleSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.SHALE_SLAB_ID, StoneType.SHALE);
+        register(new SlabWithMetadataBlockItem(
+                shaleSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledShaleStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_SHALE_STAIRS_ID, shaleDecorative,
+                StoneType.SHALE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_SHALE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_shale_stairs");
+        register(cobbledShaleStairs);
+
+        shaleBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.SHALE_BRICK_STAIRS_ID, shaleDecorative,
+                StoneType.SHALE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_SHALE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".shale_brick_stairs");
+        register(shaleBrickStairs);
+
+        looseShale = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_SHALE_ID, StoneType.SHALE);
+        register(looseShale, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseShaleSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_SHALE_SLAB_ID, StoneType.SHALE);
+        register(new SlabWithMetadataBlockItem(
+                looseShaleSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledShaleStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_SHALE_STAIRS_ID,
+                looseShale, StoneType.SHALE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_SHALE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_shale_stairs");
+        register(looseCobbledShaleStairs);
+
+        looseShaleBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_SHALE_BRICK_STAIRS_ID,
+                looseShale, StoneType.SHALE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_SHALE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_shale_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseShaleBrickStairs);
+
+        shaleRegolith = new RegolithBlock(BTWGBlockIDs.SHALE_REGOLITH_ID, StoneType.SHALE);
+        register(shaleRegolith);
+
+        shaleRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.SHALE_REGOLITH_SLAB_ID, StoneType.SHALE);
+        register(new SlabBlockItem(shaleRegolithSlab.blockID - 256));
+
+        grassyShaleRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_SHALE_REGOLITH_ID, StoneType.SHALE);
+        register(grassyShaleRegolith);
+
+        grassyShaleRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_SHALE_REGOLITH_SLAB_ID, StoneType.SHALE);
+        register(new SlabBlockItem(grassyShaleRegolithSlab.blockID - 256));
+
+        looseShaleRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_SHALE_REGOLITH_ID, StoneType.SHALE);
+        register(looseShaleRegolith);
+
+        looseShaleRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_SHALE_REGOLITH_SLAB_ID, StoneType.SHALE);
+        register(new SlabBlockItem(looseShaleRegolithSlab.blockID - 256));
+
+        looseSparseGrassyShaleRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SHALE_REGOLITH_ID, StoneType.SHALE);
+        register(looseSparseGrassyShaleRegolith);
+
+        looseSparseGrassyShaleRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SHALE_REGOLITH_SLAB_ID, StoneType.SHALE);
+        register(new SlabBlockItem(looseSparseGrassyShaleRegolithSlab.blockID - 256));
+
+        shaleGravel = new BTWGGravelBlock(BTWGBlockIDs.SHALE_GRAVEL_ID, StoneType.SHALE);
+        register(shaleGravel);
+
+        shaleGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.SHALE_GRAVEL_SLAB_ID, StoneType.SHALE);
+        register(new SlabBlockItem(shaleGravelSlab.blockID - 256));
+
+        //------ Tuff ------//
+
+        tuff = new BTWGStoneBlock(BTWGBlockIDs.TUFF_ID, StoneType.TUFF);
+        register(tuff);
+
+        roughTuff = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_TUFF_ID, StoneType.TUFF);
+        register(roughTuff);
+
+        tuffStairs = new StairsBlock(BTWGBlockIDs.TUFF_STAIRS_ID, tuff, StoneType.TUFF.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".tuff_stairs");
+        register(tuffStairs);
+
+        tuffDecorative = new StoneDecorativeBlock(BTWGBlockIDs.TUFF_DECORATIVE_ID, StoneType.TUFF);
+        register(tuffDecorative, ((MultiTextureBlock) tuffDecorative).getNames());
+
+        tuffSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.TUFF_SLAB_ID, StoneType.TUFF);
+        register(new SlabWithMetadataBlockItem(
+                tuffSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledTuffStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_TUFF_STAIRS_ID, tuffDecorative,
+                StoneType.TUFF.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_TUFF_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_tuff_stairs");
+        register(cobbledTuffStairs);
+
+        tuffBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.TUFF_BRICK_STAIRS_ID, tuffDecorative,
+                StoneType.TUFF.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_TUFF_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".tuff_brick_stairs");
+        register(tuffBrickStairs);
+
+        looseTuff = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_TUFF_ID, StoneType.TUFF);
+        register(looseTuff, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseTuffSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_TUFF_SLAB_ID, StoneType.TUFF);
+        register(new SlabWithMetadataBlockItem(
+                looseTuffSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledTuffStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_TUFF_STAIRS_ID,
+                looseTuff, StoneType.TUFF.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_TUFF_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_tuff_stairs");
+        register(looseCobbledTuffStairs);
+
+        looseTuffBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_TUFF_BRICK_STAIRS_ID,
+                looseTuff, StoneType.TUFF.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_TUFF_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_tuff_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseTuffBrickStairs);
+
+        tuffRegolith = new RegolithBlock(BTWGBlockIDs.TUFF_REGOLITH_ID, StoneType.TUFF);
+        register(tuffRegolith);
+
+        tuffRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.TUFF_REGOLITH_SLAB_ID, StoneType.TUFF);
+        register(new SlabBlockItem(tuffRegolithSlab.blockID - 256));
+
+        grassyTuffRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_TUFF_REGOLITH_ID, StoneType.TUFF);
+        register(grassyTuffRegolith);
+
+        grassyTuffRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_TUFF_REGOLITH_SLAB_ID, StoneType.TUFF);
+        register(new SlabBlockItem(grassyTuffRegolithSlab.blockID - 256));
+
+        looseTuffRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_TUFF_REGOLITH_ID, StoneType.TUFF);
+        register(looseTuffRegolith);
+
+        looseTuffRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_TUFF_REGOLITH_SLAB_ID, StoneType.TUFF);
+        register(new SlabBlockItem(looseTuffRegolithSlab.blockID - 256));
+
+        looseSparseGrassyTuffRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_TUFF_REGOLITH_ID, StoneType.TUFF);
+        register(looseSparseGrassyTuffRegolith);
+
+        looseSparseGrassyTuffRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_TUFF_REGOLITH_SLAB_ID, StoneType.TUFF);
+        register(new SlabBlockItem(looseSparseGrassyTuffRegolithSlab.blockID - 256));
+
+        tuffGravel = new BTWGGravelBlock(BTWGBlockIDs.TUFF_GRAVEL_ID, StoneType.TUFF);
+        register(tuffGravel);
+
+        tuffGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.TUFF_GRAVEL_SLAB_ID, StoneType.TUFF);
+        register(new SlabBlockItem(tuffGravelSlab.blockID - 256));
     }
 
     private static void register(Block block, String[] names) {

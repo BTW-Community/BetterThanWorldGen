@@ -10,13 +10,14 @@ import net.minecraft.src.*;
 import java.util.Random;
 
 public class StoneDecorativeBlock extends MultiTextureBlock {
-    public static final int NUM_TYPES = 6;
+    public static final int NUM_TYPES = 7;
 
     private final StoneType type;
 
     public StoneDecorativeBlock(int id, StoneType type) {
         super(id, Material.rock, type.name(), new String[] {
                 "cobblestone",
+                "polished",
                 "bricks",
                 "mossy_bricks",
                 "cracked_bricks",
@@ -56,8 +57,7 @@ public class StoneDecorativeBlock extends MultiTextureBlock {
                  StoneType.MOSSY_STONE_BRICK_TYPE,
                  StoneType.CRACKED_STONE_BRICK_TYPE,
                  StoneType.CHISELED_STONE_BRICK_TYPE -> this.type.looseStoneBrickID();
-            case StoneType.MOSSY_COBBLESTONE_TYPE -> this.type.mossyCobblestoneID();
-            default -> 0;
+            default -> this.blockID;
         };
     }
 
@@ -69,8 +69,7 @@ public class StoneDecorativeBlock extends MultiTextureBlock {
                  StoneType.MOSSY_STONE_BRICK_TYPE,
                  StoneType.CRACKED_STONE_BRICK_TYPE,
                  StoneType.CHISELED_STONE_BRICK_TYPE -> this.type.looseStoneBrickMetadata();
-            case StoneType.MOSSY_COBBLESTONE_TYPE -> this.type.mossyCobblestoneMetadata();
-            default -> 0;
+            default -> metadata;
         };
     }
 
@@ -122,11 +121,12 @@ public class StoneDecorativeBlock extends MultiTextureBlock {
     public void registerIcons(IconRegister iconRegister) {
         this.icons = new Icon[NUM_TYPES];
 
-        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":cobbled_" + this.type.name());
-        this.icons[StoneType.STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "_bricks");
-        this.icons[StoneType.MOSSY_STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":mossy_" + this.type.name() + "_bricks");
-        this.icons[StoneType.CRACKED_STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":cracked_" + this.type.name() + "_bricks");
-        this.icons[StoneType.CHISELED_STONE_BRICK_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":chiseled_" + this.type.name() + "_bricks");
-        this.icons[StoneType.MOSSY_COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":mossy_cobbled_" + this.type.name());
+        this.icons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/cobble");
+        this.icons[StoneType.POLISHED_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/polished");
+        this.icons[StoneType.STONE_BRICK_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/bricks");
+        this.icons[StoneType.MOSSY_STONE_BRICK_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/mossy_bricks");
+        this.icons[StoneType.CRACKED_STONE_BRICK_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/cracked_bricks");
+        this.icons[StoneType.CHISELED_STONE_BRICK_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/chiseled_bricks");
+        this.icons[StoneType.MOSSY_COBBLESTONE_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/mossy_cobble");
     }
 }

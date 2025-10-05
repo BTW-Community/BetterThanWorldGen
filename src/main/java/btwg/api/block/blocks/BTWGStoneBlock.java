@@ -21,7 +21,7 @@ public class BTWGStoneBlock extends BlockStone {
         super(id);
         this.type = type;
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name());
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/raw");
     }
     
     @Override
@@ -165,7 +165,7 @@ public class BTWGStoneBlock extends BlockStone {
     @Environment(EnvType.CLIENT)
     public void registerIcons(IconRegister register) {
         super.registerIcons(register);
-        crackedIcon = register.registerIcon(BetterThanWorldGen.MODID + ":cracked_" + type.name());
+        crackedIcon = register.registerIcon(BetterThanWorldGen.MODID + ":" + type.name() + "/cracked");
     }
     
     @Override

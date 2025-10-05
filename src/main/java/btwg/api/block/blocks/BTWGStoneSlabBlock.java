@@ -35,8 +35,8 @@ public class BTWGStoneSlabBlock extends SlabBlock {
         this.setPicksEffectiveOn();
         this.setChiselsEffectiveOn();
 
-        this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name() + "_gravel_slab");
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "_gravel");
+        this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name() + "_slab");
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
@@ -92,11 +92,12 @@ public class BTWGStoneSlabBlock extends SlabBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        this.icons = new Icon[3];
+        this.icons = new Icon[4];
 
-        this.icons[0] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name());
-        this.icons[StoneType.COBBLESTONE_TYPE + TYPE_OFFSET] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":cobbled_" + this.type.name());
-        this.icons[StoneType.STONE_BRICK_TYPE + TYPE_OFFSET] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "_bricks");
+        this.icons[0] = iconRegister.registerIcon(this.getTextureName() + "/raw");
+        this.icons[StoneType.COBBLESTONE_TYPE + TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/cobble");
+        this.icons[StoneType.POLISHED_TYPE + TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/polished");
+        this.icons[StoneType.STONE_BRICK_TYPE + TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/bricks");
     }
 
     @Override
@@ -104,5 +105,6 @@ public class BTWGStoneSlabBlock extends SlabBlock {
         list.add(new ItemStack(iBlockID, 1, 0));
         list.add(new ItemStack(iBlockID, 1, 2));
         list.add(new ItemStack(iBlockID, 1, 4));
+        list.add(new ItemStack(iBlockID, 1, 6));
     }
 }

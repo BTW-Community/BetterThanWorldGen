@@ -17,7 +17,7 @@ public class BTWGGravelSlabBlock extends FallingSlabBlock {
         this.setShovelsEffectiveOn(true);
         this.setStepSound(soundGravelFootstep);
         this.setUnlocalizedName("btwg." + type.name() + "_gravel_slab");
-        this.setTextureName("btwg:" + type.name() + "_gravel");
+        this.setTextureName("btwg:" + type.name() + "/gravel");
     }
 
     @Override

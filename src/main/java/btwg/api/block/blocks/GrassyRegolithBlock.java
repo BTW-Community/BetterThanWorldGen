@@ -20,7 +20,7 @@ public class GrassyRegolithBlock extends BlockGrass {
 
         this.type = type;
 
-        this.setTextureName(BetterThanWorldGen.MODID + ":grassy_" + type.name()  + "_regolith");
+        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name()  + "/grass");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".grassy_" + type.name()  + "_regolith");
     }
 
@@ -111,8 +111,8 @@ public class GrassyRegolithBlock extends BlockGrass {
         this.iconGrassTop = register.registerIcon(this.getTextureName() + "_top");
         this.iconSnowSide = register.registerIcon(this.getTextureName() + "_side_snowed");
         this.iconGrassSideOverlay = register.registerIcon(this.getTextureName() + "_side_overlay");
-        this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":sparse_grassy_" + this.type.name() + "_regolith_top_overlay");
-        this.iconGrassTopSparseDirt = register.registerIcon(BetterThanWorldGen.MODID + ":sparse_grassy_" + this.type.name() + "_regolith_top");
+        this.iconGrassTopSparse = register.registerIcon(this.getTextureName() + "_sparse_top_overlay");
+        this.iconGrassTopSparseDirt = register.registerIcon(this.getTextureName() + "_sparse_top");
     }
 
     // Everything below this is copied from BlockGrass - access wideners didn't work on the icon fields
