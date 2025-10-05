@@ -1,7 +1,8 @@
 # Alpha
 
 ## 0.0.4
-- 
+- Added several new stone types
+- Fixed an issue where some wood textures were missing
 
 ## 0.0.3
 - Modified ore generation to be slightly less plentiful in caves
