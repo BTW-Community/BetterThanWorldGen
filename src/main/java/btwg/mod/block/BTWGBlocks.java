@@ -113,6 +113,8 @@ public abstract class BTWGBlocks {
     public static Block looseLimestoneRegolithSlab;
     public static Block grassyLimestoneRegolith;
     public static Block grassyLimestoneRegolithSlab;
+    public static Block looseSparseGrassyLimestoneRegolith;
+    public static Block looseSparseGrassyLimestoneRegolithSlab;
     public static Block limestoneRegolithFarmland;
     public static Block limestoneGravel;
     public static Block limestoneGravelSlab;
@@ -624,6 +626,15 @@ public abstract class BTWGBlocks {
 
         looseLimestoneRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_LIMESTONE_REGOLITH_ID, StoneType.LIMESTONE);
         register(looseLimestoneRegolith);
+
+        looseLimestoneRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_LIMESTONE_REGOLITH_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabBlockItem(looseLimestoneRegolithSlab.blockID - 256));
+
+        looseSparseGrassyLimestoneRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_LIMESTONE_REGOLITH_ID, StoneType.LIMESTONE);
+        register(looseSparseGrassyLimestoneRegolith);
+
+        looseSparseGrassyLimestoneRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_LIMESTONE_REGOLITH_SLAB_ID, StoneType.LIMESTONE);
+        register(new SlabBlockItem(looseSparseGrassyLimestoneRegolithSlab.blockID - 256));
 
         limestoneGravel = new BTWGGravelBlock(BTWGBlockIDs.LIMESTONE_GRAVEL_ID, StoneType.LIMESTONE);
         register(limestoneGravel);
