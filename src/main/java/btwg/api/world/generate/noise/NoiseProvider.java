@@ -3,6 +3,7 @@ package btwg.api.world.generate.noise;
 import btwg.api.biome.BTWGBiome;
 import btwg.api.biome.BiomeNoiseVector;
 import btwg.api.biome.DefaultBiomes;
+import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
@@ -24,6 +25,8 @@ public final class NoiseProvider {
     public static final int HUMIDITY_SCALE = 4096;
 
     public static final int TERRAIN_SCALE = 256;
+
+    public static final int STONE_TYPE_SCALE = 1024;
 
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
@@ -50,12 +53,32 @@ public final class NoiseProvider {
     private static final int NOODLE_CAVES_OCTAVES = 3;
     private static final int CAVE_PILLAR_OCTAVES = 2;
 
+    private static final int STONE_TYPE_OCTAVES = 2;
+
     // TODO: fix interpolation
     public static final int NOISE_SUBSCALE = 16;
     public static final int NOISE_SIZE = NOISE_SUBSCALE + 1;
 
     public static final int TOTAL_HEIGHT = 256;
     public static final int SEA_LEVEL = 100;
+
+    public static final double SECOND_STRATA_RATIO;
+    public static final double THIRD_STRATA_RATIO;
+    static {
+        int minThirdStrataHeight = 24;
+        int totalDiff = SEA_LEVEL - minThirdStrataHeight;
+
+        double secondStrataPortion = 4.0/5.0;
+        double thirdStrataPortion = 2.0/5.0;
+
+        SECOND_STRATA_RATIO = (totalDiff * secondStrataPortion + minThirdStrataHeight) / SEA_LEVEL;
+        THIRD_STRATA_RATIO = (totalDiff * thirdStrataPortion + minThirdStrataHeight) / SEA_LEVEL;
+
+        System.out.println("Second strata: " + SECOND_STRATA_RATIO);
+        System.out.println("Third strata: " + THIRD_STRATA_RATIO);
+    }
+
+    private static final double STONE_TYPE_WARP_FACTOR = 0.5;
 
     private static final Spline continentalnessSpline = Spline.of(
             new Key(-1.50, 40.0 / TOTAL_HEIGHT),
@@ -122,8 +145,12 @@ public final class NoiseProvider {
     private final OpenSimplexOctavesFast noodleCave2Generator;
     private final OpenSimplexOctavesFast pillarGenerator;
 
+    private final OpenSimplexOctavesFast stoneTypeGenerator;
+
     private double[] continentalness;
     private double[] heightmap;
+    private double[] strata2Heightmap;
+    private double[] strata3Heightmap;
 
     private double[] erosion;
     private double[] thickness;
@@ -139,15 +166,23 @@ public final class NoiseProvider {
 
     private double[] terrain;
 
-    private double[] gaussianBlur;
+    private double[] stoneTypes;
+
+    private double[] finalTerrainNoise;
+    private double[] finalCaveNoise;
+    private StoneType[] finalStoneTypes;
+
+    private final double[] gaussianBlur;
 
     private int lastChunkX = Integer.MAX_VALUE;
     private int lastChunkZ = Integer.MAX_VALUE;
 
+    private final Random rand;
+
     public NoiseProvider(long seed) {
         this.seed = seed;
 
-        Random rand = new Random(seed);
+        this.rand = new Random(seed);
 
         this.continentalnessGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
         this.erosionGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), DRIVER_OCTAVES);
@@ -166,6 +201,8 @@ public final class NoiseProvider {
         this.noodleCave1Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), NOODLE_CAVES_OCTAVES);
         this.noodleCave2Generator = new OpenSimplexOctavesFast(seed + rand.nextLong(), NOODLE_CAVES_OCTAVES);
         this.pillarGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), CAVE_PILLAR_OCTAVES);
+
+        this.stoneTypeGenerator = new OpenSimplexOctavesFast(seed + rand.nextLong(), STONE_TYPE_OCTAVES);
 
         int gaussianBlurSize = 3;
         gaussianBlur = Arrays.stream(new double[] {
@@ -231,10 +268,12 @@ public final class NoiseProvider {
         return totalSlope / (14 * 14);
     }
 
-    public double[] getTerrainNoise(int chunkX, int chunkZ) {
+    public double[] generateTerrainNoise(int chunkX, int chunkZ) {
         this.initNoiseFields(chunkX, chunkZ);
 
-        double[] terrain = new double[16 * 16 * TOTAL_HEIGHT];
+        if (this.finalTerrainNoise == null) {
+            this.finalTerrainNoise = new double[16 * 16 * TOTAL_HEIGHT];
+        }
 
         // Calculate valleys for generating rivers
         double rawCurvature = calculateLaplacianCurvature();
@@ -310,20 +349,22 @@ public final class NoiseProvider {
                     double detail = ridgeAmp * erosionDetail;
 
                     double density = densityBase + detail;
-                    terrain[idx] = density;
+                    this.finalTerrainNoise[idx] = density;
                 }
             }
         }
 
-        return terrain;
+        return this.finalTerrainNoise;
     }
 
-    public double[] getCaveNoise(int chunkX, int chunkZ) {
+    public double[] generateCaveNoise(int chunkX, int chunkZ) {
         if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
             this.initNoiseFields(chunkX, chunkZ);
         }
 
-        double[] caves = new double[16 * 16 * TOTAL_HEIGHT];
+        if (this.finalCaveNoise == null) {
+            this.finalCaveNoise = new double[16 * 16 * TOTAL_HEIGHT];
+        }
 
         int baseX = chunkX * 16;
         int baseZ = chunkZ * 16;
@@ -344,19 +385,19 @@ public final class NoiseProvider {
 
                     // Don't generate caves in bottom 5 blocks
                     if (j < 5) {
-                        caves[idx] = 1.0; // Solid
+                        this.finalCaveNoise[idx] = 1.0; // Solid
                         continue;
                     }
 
                     // Calculate cave density
                     double caveDensity = calculateCaveDensity(worldX, j, worldZ, depthFromSurface);
 
-                    caves[idx] = caveDensity;
+                    this.finalCaveNoise[idx] = caveDensity;
                 }
             }
         }
 
-        return caves;
+        return this.finalCaveNoise;
     }
 
     private double calculateCaveDensity(int x, int y, int z, double depthFromSurface) {
@@ -416,6 +457,8 @@ public final class NoiseProvider {
 
         this.continentalness = this.getNoise2D(this.continentalnessGenerator, this.continentalness, chunkX, chunkZ, 16, 16, 1, 1, CONTINENTALNESS_SCALE);
         this.heightmap = this.transformNoise(this.heightmap, this.continentalness, continentalnessSpline);
+        this.strata2Heightmap = this.getHeight(this.strata2Heightmap, SECOND_STRATA_RATIO);
+        this.strata3Heightmap = this.getHeight(this.strata3Heightmap, THIRD_STRATA_RATIO);
 
         this.erosion = this.getNoise2D(this.erosionGenerator, this.erosion, chunkX, chunkZ, 16, 16, 1, 1, EROSION_SCALE);
         this.thickness = this.transformNoise(this.thickness, this.erosion, erosionToThickness);
@@ -431,6 +474,11 @@ public final class NoiseProvider {
         // TODO: add rivers
 
         this.terrain = this.getNoise3D(this.terrainGenerator, this.terrain, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, TERRAIN_SCALE);
+
+        this.stoneTypes = this.getNoise3D(this.stoneTypeGenerator, this.stoneTypes, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, STONE_TYPE_SCALE);
+
+        this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
+        this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
 
         this.lastChunkX = chunkX;
         this.lastChunkZ = chunkZ;
@@ -500,15 +548,10 @@ public final class NoiseProvider {
         return x * sizeZ * sizeY + z * sizeY + y;
     }
 
-    public BiomeGenBase[] getBiomes(int chunkX, int chunkZ) {
-        // Use terrain noise fields
-        // Regenerate if for some reason it was last called on a different chunk
+    public BiomeGenBase[] generateBiomes(int chunkX, int chunkZ) {
         if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
             this.initNoiseFields(chunkX, chunkZ);
         }
-
-        this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
-        this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
 
         BiomeGenBase[] biomes = new BiomeGenBase[256];
 
@@ -555,8 +598,80 @@ public final class NoiseProvider {
         return biomes;
     }
 
-    public byte getSeaLevel() {
-        return SEA_LEVEL;
+    public StoneType[] generateStoneTypes(int chunkX, int chunkZ) {
+        if (this.finalStoneTypes == null) {
+            this.finalStoneTypes = new StoneType[16 * 16 * TOTAL_HEIGHT];
+        }
+
+        if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            this.initNoiseFields(chunkX, chunkZ);
+        }
+
+        this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                int colIdx = idx(i, k, 16);
+
+                double strata2Height = this.strata2Heightmap[colIdx];
+                double strata3Height = this.strata3Heightmap[colIdx];
+
+                for (int j = 0; j < TOTAL_HEIGHT; j++) {
+                    int idx = idx(i, j, k, TOTAL_HEIGHT, 16);
+
+                    int strata = 0;
+
+                    if (j <= strata3Height) {
+                        strata = 2;
+
+                        if (j == strata3Height && this.rand.nextInt(2) == 0) {
+                            strata = 1;
+                        }
+                    }
+                    else if (j <= strata2Height) {
+                        strata = 1;
+
+                        if (j == strata2Height && this.rand.nextInt(2) == 0) {
+                            strata = 0;
+                        }
+                    }
+
+                    var validTypes = StoneType.STONE_TYPES_BY_STRATA.get(strata);
+
+                    double stoneNoise = this.stoneTypes[idx];
+
+                    stoneNoise = clamp(stoneNoise, -1.25, 1.24);
+                    stoneNoise = stoneNoise / 2.5 + 0.5;
+                    int index = (int) Math.floor(stoneNoise * validTypes.size());
+
+                    this.finalStoneTypes[idx] = validTypes.get(index);
+                }
+            }
+        }
+
+        return this.finalStoneTypes;
+    }
+
+    public StoneType[] getStoneTypes(int chunkX, int chunkZ) {
+        if (this.finalStoneTypes == null || chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            return this.generateStoneTypes(chunkX, chunkZ);
+        }
+        return this.finalStoneTypes;
+    }
+
+    private double[] getHeight(double[] dest, double multiplier) {
+        if (dest == null) {
+            dest = new double[16 * 16];
+        }
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                int idx = idx(i, k, 16);
+                dest[idx] = this.heightmap[idx] * TOTAL_HEIGHT * multiplier;
+            }
+        }
+
+        return dest;
     }
 
     public BiomeNoiseVector getBiomeVector(int x, int z) {
@@ -590,5 +705,9 @@ public final class NoiseProvider {
                 weirdness,
                 0.01
         );
+    }
+
+    public byte getSeaLevel() {
+        return SEA_LEVEL;
     }
 }

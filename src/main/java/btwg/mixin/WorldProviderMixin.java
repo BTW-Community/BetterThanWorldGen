@@ -1,10 +1,9 @@
 package btwg.mixin;
 
+import btwg.api.block.blocks.GrassyRegolithBlock;
+import btwg.api.block.blocks.RegolithBlock;
 import btwg.api.configuration.WorldData;
-import net.minecraft.src.IChunkProvider;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldProvider;
-import net.minecraft.src.WorldType;
+import net.minecraft.src.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,5 +28,16 @@ public class WorldProviderMixin {
     @Inject(method = "getAverageGroundLevel", at = @At("RETURN"), cancellable = true)
     public void getAverageGroundLevel(CallbackInfoReturnable<Integer> cir) {
         cir.setReturnValue(this.terrainType == WorldType.FLAT ? 4 : 120);
+    }
+
+    @Inject(method = "canCoordinateBeSpawn(II)Z", at = @At("RETURN"), cancellable = true)
+    public void canCoordinateBeSpawn(int x, int z, CallbackInfoReturnable<Boolean> cir) {
+        int spawnBlockID = this.worldObj.getFirstUncoveredBlock(x, z);
+        Block spawnBlock = Block.blocksList[spawnBlockID];
+
+        if (spawnBlock instanceof GrassyRegolithBlock || spawnBlock instanceof RegolithBlock) {
+            cir.setReturnValue(true);
+            cir.cancel();
+        }
     }
 }

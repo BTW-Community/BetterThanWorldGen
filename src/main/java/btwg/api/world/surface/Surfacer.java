@@ -49,11 +49,13 @@ public class Surfacer {
         short fillerBlock = biome.fillerBlock;
         byte fillerBlockMetadata = biome.fillerBlockMetadata;
 
+        StoneType stoneType = noiseProvider.getStoneTypes(chunkX, chunkZ)[index(i, j, k, height)];
+
         if (biome.topBlock == Block.grass.blockID) {
-            //topBlock = (short) StoneType.LIMESTONE.grassID();
+            topBlock = (short) stoneType.grassID();
         }
         if (biome.fillerBlock == Block.dirt.blockID) {
-            //fillerBlock = (short) StoneType.LIMESTONE.dirtID();
+            fillerBlock = (short) stoneType.dirtID();
         }
 
         if (depth == 0) {
@@ -77,10 +79,6 @@ public class Surfacer {
             else if (depth < maxSoilDepth + maxSandstoneDepth && biome.fillerBlock == Block.sand.blockID && biome.fillerBlockMetadata == 0) {
                 blockID = (short) Block.sandStone.blockID;
                 meta = 0;
-            }
-            else {
-                //blockID = (short) StoneType.LIMESTONE.stoneID();
-                //meta = (byte) StoneType.LIMESTONE.stoneMetadata();
             }
 
             blockIDs[index(i, j, k, height)] = blockID;

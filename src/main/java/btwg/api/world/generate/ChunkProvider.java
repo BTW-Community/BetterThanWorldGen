@@ -6,7 +6,6 @@ import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.surface.Surfacer;
 import btwg.mod.BetterThanWorldGen;
-import btwg.mod.block.BTWGBlockIDs;
 import net.minecraft.src.*;
 
 import java.util.List;
@@ -53,8 +52,9 @@ public final class ChunkProvider implements IChunkProvider {
     public Chunk provideChunk(int chunkX, int chunkZ) {
         this.rand.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
 
-        double[] terrainNoise = this.noiseProvider.getTerrainNoise(chunkX, chunkZ);
-        double[] caveNoise = this.noiseProvider.getCaveNoise(chunkX, chunkZ);
+        double[] terrainNoise = this.noiseProvider.generateTerrainNoise(chunkX, chunkZ);
+        double[] caveNoise = this.noiseProvider.generateCaveNoise(chunkX, chunkZ);
+        StoneType[] stoneTypeNoise = this.noiseProvider.generateStoneTypes(chunkX, chunkZ);
 
         if (terrainNoise == null) {
             throw new IllegalStateException("No terrain noise provided!");
@@ -75,7 +75,8 @@ public final class ChunkProvider implements IChunkProvider {
                     int index = (i * 16 + k) * height + j;
 
                     if (terrainNoise[index] > 0) {
-                        blockIDs[index] = (short) Block.stone.blockID;
+                        blockIDs[index] = (short) stoneTypeNoise[index].stoneID();
+                        metadata[index] = (byte) stoneTypeNoise[index].stoneMetadata();
                     }
                     else if (j < this.noiseProvider.getSeaLevel()) {
                         blockIDs[index] = (short) Block.waterStill.blockID;
@@ -84,7 +85,7 @@ public final class ChunkProvider implements IChunkProvider {
             }
         }
 
-        BiomeGenBase[] biomes = this.noiseProvider.getBiomes(chunkX, chunkZ);
+        BiomeGenBase[] biomes = this.noiseProvider.generateBiomes(chunkX, chunkZ);
         this.replaceBlocksForBiome(chunkX, chunkZ, blockIDs, metadata, biomes);
 
         for (int i = 0; i < 16; i++) {
@@ -364,7 +365,7 @@ public final class ChunkProvider implements IChunkProvider {
 
     private void btwPostProcessChunk(World worldObj, int chunkX, int chunkZ) {
         if (worldObj.provider.dimensionId == 0) {
-            this.generateStrata(worldObj, chunkX, chunkZ);
+            //this.generateStrata(worldObj, chunkX, chunkZ);
             this.generateAdditionalBrownMushrooms(worldObj, chunkX, chunkZ);
         }
     }
