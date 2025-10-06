@@ -60,14 +60,8 @@ public record StoneType(
         int strata,
         int index
 ) {
-    public static final Map<Integer, ArrayList<StoneType>> STONE_TYPES_BY_STRATA = new HashMap<>();
-
     public StoneType {
-        var list = STONE_TYPES_BY_STRATA.computeIfAbsent(strata, k -> new ArrayList<>());
-        while (index >= list.size()) {
-            list.add(null);
-        }
-        list.set(index, this);
+        var list = STONE_TYPES_BY_STRATA.get(strata)[index] = this;
     }
 
     public static final int COBBLESTONE_TYPE = 0;
@@ -77,6 +71,39 @@ public record StoneType(
     public static final int CRACKED_STONE_BRICK_TYPE = 4;
     public static final int CHISELED_STONE_BRICK_TYPE = 5;
     public static final int MOSSY_COBBLESTONE_TYPE = 6;
+
+    //------ Stone Type Indices ------//
+
+    public static final Map<Integer, StoneType[]> STONE_TYPES_BY_STRATA = new HashMap<>();
+    public static final int NUM_FIRST_STRATA = 6;
+    public static final int NUM_SECOND_STRATA = 5;
+    public static final int NUM_THIRD_STRATA = 3;
+
+    static {
+        STONE_TYPES_BY_STRATA.put(0, new StoneType[NUM_FIRST_STRATA]);
+        STONE_TYPES_BY_STRATA.put(1, new StoneType[NUM_SECOND_STRATA]);
+        STONE_TYPES_BY_STRATA.put(2, new StoneType[NUM_THIRD_STRATA]);
+    }
+
+    // First Strata
+    public static final int RHYOLITE_INDEX = 0;
+    public static final int GRANITE_INDEX = 1;
+    public static final int DIORITE_INDEX = 2;
+    public static final int LIMESTONE_INDEX = 3;
+    public static final int CALCITE_INDEX = 4;
+    public static final int SHALE_INDEX = 5;
+
+    // Second Strata
+    public static final int ANDESITE_INDEX = 0;
+    public static final int TUFF_INDEX = 1;
+    public static final int SLATE_INDEX = 2;
+    public static final int PHYLLITE_INDEX = 3;
+    public static final int SCHIST_INDEX = 4;
+
+    // Third Strata
+    public static final int BASALT_INDEX = 0;
+    public static final int GABBRO_INDEX = 1;
+    public static final int KIMBERLITE_INDEX = 2;
 
     //------ Igneous Extrusive ------//
 
@@ -129,7 +156,7 @@ public record StoneType(
             BTWItems.dirtPile.itemID, 0,
 
             0,
-            0
+            RHYOLITE_INDEX
     );
 
     public static final StoneType ANDESITE = new StoneType(
@@ -178,8 +205,8 @@ public record StoneType(
             BTWGItemIDs.GRAVEL_PILE_ID + 256, 0,
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
-            0,
-            1
+            1,
+            ANDESITE_INDEX
     );
 
     public static final StoneType GRANITE = new StoneType(
@@ -229,7 +256,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             0,
-            2
+            GRANITE_INDEX
     );
 
     public static final StoneType BASALT = new StoneType(
@@ -279,7 +306,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             2,
-            0
+            BASALT_INDEX
     );
 
     //------ Igneous Intrusive ------//
@@ -331,7 +358,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             0,
-            3
+            DIORITE_INDEX
     );
 
     // Vanilla blackstone
@@ -383,7 +410,7 @@ public record StoneType(
             BTWItems.dirtPile.itemID, 0,
 
             2,
-            1
+            GABBRO_INDEX
     );
 
     public static final StoneType KIMBERLITE = new StoneType(
@@ -433,7 +460,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             2,
-            2
+            KIMBERLITE_INDEX
     );
 
     //------ Sedimentary ------//
@@ -485,7 +512,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             0,
-            4
+            LIMESTONE_INDEX
     );
 
     public static final StoneType CALCITE = new StoneType(
@@ -535,7 +562,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             0,
-            5
+            CALCITE_INDEX
     );
 
     public static final StoneType TUFF = new StoneType(
@@ -585,7 +612,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             1,
-            0
+            TUFF_INDEX
     );
 
     //------ Metamorphic ------//
@@ -637,7 +664,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             0,
-            6
+            SHALE_INDEX
     );
 
     // Vanilla deepslate
@@ -689,7 +716,7 @@ public record StoneType(
             BTWItems.dirtPile.itemID, 0,
 
             1,
-            1
+            SLATE_INDEX
     );
 
     public static final StoneType PHYLLITE = new StoneType(
@@ -739,7 +766,7 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             1,
-            2
+            PHYLLITE_INDEX
     );
 
     public static final StoneType SCHIST = new StoneType(
@@ -789,6 +816,6 @@ public record StoneType(
             BTWGItemIDs.DIRT_PILE_ID + 256, 0,
 
             1,
-            3
+            SCHIST_INDEX
     );
 }

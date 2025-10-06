@@ -1,6 +1,7 @@
 package btwg.mod.item;
 
 import btw.crafting.util.FurnaceBurnTime;
+import btw.item.BTWItems;
 import btwg.api.block.StoneType;
 import btwg.api.block.WoodType;
 import btwg.api.item.ItemInterface;
@@ -22,6 +23,12 @@ public class BTWGItems {
     public static Item dirtPile;
 
     public static void initItems() {
+        initBTWGItems();
+
+        BTWItems.dirtPile.setTextureName(BetterThanWorldGen.MODID + ":rhyolite_regolith_pile");
+    }
+
+    private static void initBTWGItems() {
         bark = ((ItemInterface) new MultiItem(BTWGItemIDs.BARK_ID, "bark",
                 new String[] {
                         WoodType.ACACIA.name(),

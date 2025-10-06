@@ -3,6 +3,7 @@ package btwg.api.world.generate;
 import btwg.api.biome.BiomeInterface;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.block.StoneType;
+import btwg.api.block.blocks.RegolithBlock;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.surface.Surfacer;
 import btwg.mod.BetterThanWorldGen;
@@ -108,8 +109,19 @@ public final class ChunkProvider implements IChunkProvider {
                             blockIDs[index + 1] = (short) Block.sandStone.blockID;
                         }
 
-                        if (j > 0 && blockIDs[index - 1] == biomes[i * 16 + k].fillerBlock) {
-                            blockIDs[index - 1] = biomes[i * 16 + k].topBlock;
+
+                        if (j > 0) {
+                            int blockBelowID = blockIDs[index - 1];
+                            Block blockBelow = Block.blocksList[blockBelowID];
+
+                            if (blockBelowID == biomes[i * 16 + k].fillerBlock) {
+                                blockIDs[index - 1] = biomes[i * 16 + k].topBlock;
+                                metadata[index - 1] = biomes[i * 16 + k].topBlockMetadata;
+                            }
+                            else if (blockBelow instanceof RegolithBlock regolithBlock) {
+                                blockIDs[index - 1] = (short) regolithBlock.getStoneType().grassID();
+                                metadata[index - 1] = (byte) regolithBlock.getStoneType().grassMetadata();
+                            }
                         }
                     }
                 }

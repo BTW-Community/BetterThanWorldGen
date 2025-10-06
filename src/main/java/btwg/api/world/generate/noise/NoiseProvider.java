@@ -26,7 +26,7 @@ public final class NoiseProvider {
 
     public static final int TERRAIN_SCALE = 256;
 
-    public static final int STONE_TYPE_SCALE = 1024;
+    public static final int STONE_TYPE_SCALE = 512;
 
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
@@ -62,21 +62,22 @@ public final class NoiseProvider {
     public static final int TOTAL_HEIGHT = 256;
     public static final int SEA_LEVEL = 100;
 
+    public static final int MIN_THIRD_STRATA_HEIGHT = 24;
+    public static final int MAX_SECOND_STRATA_HEIGHT = SEA_LEVEL;
+
     public static final double SECOND_STRATA_RATIO;
     public static final double THIRD_STRATA_RATIO;
     static {
-        int minThirdStrataHeight = 24;
-        int totalDiff = SEA_LEVEL - minThirdStrataHeight;
 
-        double secondStrataPortion = 4.0/5.0;
-        double thirdStrataPortion = 2.0/5.0;
+        int totalDiff = SEA_LEVEL - MIN_THIRD_STRATA_HEIGHT;
 
-        SECOND_STRATA_RATIO = (totalDiff * secondStrataPortion + minThirdStrataHeight) / SEA_LEVEL;
-        THIRD_STRATA_RATIO = (totalDiff * thirdStrataPortion + minThirdStrataHeight) / SEA_LEVEL;
+        double secondStrataPortion = 2/3.;
+        double thirdStrataPortion = 1/3.;
 
-        System.out.println("Second strata: " + SECOND_STRATA_RATIO);
-        System.out.println("Third strata: " + THIRD_STRATA_RATIO);
+        SECOND_STRATA_RATIO = (totalDiff * secondStrataPortion + MIN_THIRD_STRATA_HEIGHT) / SEA_LEVEL;
+        THIRD_STRATA_RATIO = (totalDiff * thirdStrataPortion + MIN_THIRD_STRATA_HEIGHT) / SEA_LEVEL;
     }
+    public static final int MAX_STRATA_HEIGHT = (int) (MAX_SECOND_STRATA_HEIGHT / SECOND_STRATA_RATIO);
 
     private static final double STONE_TYPE_WARP_FACTOR = 0.5;
 
@@ -250,6 +251,31 @@ public final class NoiseProvider {
             }
         }
         return curvature / (14 * 14); // Average over interior points
+    }
+
+    public double calculateBlockSlope(int x, int z) {
+        int center = idx(x, z, 16);
+        int right = idx(Math.min(x + 1, 15), z, 16);
+        int down = idx(x, Math.min(z + 1, 15), 16);
+
+        double slopeX;
+        double slopeZ;
+
+        if (x == 15) {
+            int left = idx(x - 1, z, 16);
+            slopeX = Math.abs(this.heightmap[center] - this.heightmap[left]);
+        } else {
+            slopeX = Math.abs(this.heightmap[right] - this.heightmap[center]);
+        }
+
+        if (z == 15) {
+            int up = idx(x, z - 1, 16);
+            slopeZ = Math.abs(this.heightmap[center] - this.heightmap[up]);
+        } else {
+            slopeZ = Math.abs(this.heightmap[down] - this.heightmap[center]);
+        }
+
+        return Math.sqrt(slopeX * slopeX + slopeZ * slopeZ);
     }
 
     private double calculateChunkSlope() {
@@ -624,14 +650,14 @@ public final class NoiseProvider {
                     if (j <= strata3Height) {
                         strata = 2;
 
-                        if (j == strata3Height && this.rand.nextInt(2) == 0) {
+                        if (j == Math.round(strata3Height) && this.rand.nextInt(2) == 0) {
                             strata = 1;
                         }
                     }
                     else if (j <= strata2Height) {
                         strata = 1;
 
-                        if (j == strata2Height && this.rand.nextInt(2) == 0) {
+                        if (j == Math.round(strata2Height) && this.rand.nextInt(2) == 0) {
                             strata = 0;
                         }
                     }
@@ -640,11 +666,14 @@ public final class NoiseProvider {
 
                     double stoneNoise = this.stoneTypes[idx];
 
-                    stoneNoise = clamp(stoneNoise, -1.25, 1.24);
-                    stoneNoise = stoneNoise / 2.5 + 0.5;
-                    int index = (int) Math.floor(stoneNoise * validTypes.size());
+                    double range = 1.0;
+                    stoneNoise = clamp(stoneNoise, -range, range - 0.01);
+                    stoneNoise = (stoneNoise + range) / (2.0 * range);
 
-                    this.finalStoneTypes[idx] = validTypes.get(index);
+                    int index = (int) Math.floor(stoneNoise * validTypes.length);
+                    index = Math.min(index, validTypes.length - 1);
+
+                    this.finalStoneTypes[idx] = validTypes[index];
                 }
             }
         }
@@ -652,7 +681,7 @@ public final class NoiseProvider {
         return this.finalStoneTypes;
     }
 
-    public StoneType[] getStoneTypes(int chunkX, int chunkZ) {
+    public StoneType[] getStoneType(int chunkX, int chunkZ) {
         if (this.finalStoneTypes == null || chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
             return this.generateStoneTypes(chunkX, chunkZ);
         }
@@ -667,7 +696,14 @@ public final class NoiseProvider {
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
                 int idx = idx(i, k, 16);
-                dest[idx] = this.heightmap[idx] * TOTAL_HEIGHT * multiplier;
+
+                double targetHeight = this.heightmap[idx] * TOTAL_HEIGHT;
+
+                if (targetHeight > MAX_STRATA_HEIGHT) {
+                    targetHeight = MAX_STRATA_HEIGHT;
+                }
+
+                dest[idx] = targetHeight * multiplier;
             }
         }
 

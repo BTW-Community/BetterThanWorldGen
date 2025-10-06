@@ -35,7 +35,7 @@ public class WorldProviderMixin {
         int spawnBlockID = this.worldObj.getFirstUncoveredBlock(x, z);
         Block spawnBlock = Block.blocksList[spawnBlockID];
 
-        if (spawnBlock instanceof GrassyRegolithBlock || spawnBlock instanceof RegolithBlock) {
+        if (spawnBlock instanceof GrassyRegolithBlock) {
             cir.setReturnValue(true);
             cir.cancel();
         }

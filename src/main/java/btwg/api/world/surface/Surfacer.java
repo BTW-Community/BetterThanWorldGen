@@ -43,20 +43,13 @@ public class Surfacer {
         int maxSoilDepth = this.getSoilDepth(x, z);
         int maxSandstoneDepth = this.getSandstoneDepth(x, z);
 
-        short topBlock = biome.topBlock;
-        byte topBlockMetadata = biome.topBlockMetadata;
+        StoneType stoneType = noiseProvider.getStoneType(chunkX, chunkZ)[index(i, j, k, height)];
 
-        short fillerBlock = biome.fillerBlock;
-        byte fillerBlockMetadata = biome.fillerBlockMetadata;
+        short topBlock = replaceBlockForStoneType(biome.topBlock, biome.topBlockMetadata, stoneType);
+        byte topBlockMetadata = replaceMetadataForStoneType(biome.topBlock, biome.topBlockMetadata, stoneType);
 
-        StoneType stoneType = noiseProvider.getStoneTypes(chunkX, chunkZ)[index(i, j, k, height)];
-
-        if (biome.topBlock == Block.grass.blockID) {
-            topBlock = (short) stoneType.grassID();
-        }
-        if (biome.fillerBlock == Block.dirt.blockID) {
-            fillerBlock = (short) stoneType.dirtID();
-        }
+        short fillerBlock = replaceBlockForStoneType(biome.fillerBlock, biome.fillerBlockMetadata, stoneType);
+        byte fillerBlockMetadata = replaceMetadataForStoneType(biome.fillerBlock, biome.fillerBlockMetadata, stoneType);
 
         if (depth == 0) {
             if (blockIDs[index(i, j + 1, k, height)] == 0) {
@@ -84,6 +77,47 @@ public class Surfacer {
             blockIDs[index(i, j, k, height)] = blockID;
             metadata[index(i, j, k, height)] = meta;
         }
+    }
+
+    // TODO: replace this with delegation to block
+    protected short replaceBlockForStoneType(short id, byte meta, StoneType stoneType) {
+        if (id == Block.stone.blockID) {
+            return (short) stoneType.stoneID();
+        }
+
+        if (id == Block.grass.blockID) {
+            return (short) stoneType.grassID();
+        }
+
+        if (id == Block.dirt.blockID) {
+            return (short) stoneType.dirtID();
+        }
+
+        if (id == Block.gravel.blockID) {
+            return (short) stoneType.gravelID();
+        }
+
+        return id;
+    }
+
+    protected byte replaceMetadataForStoneType(short id, byte meta, StoneType stoneType) {
+        if (id == Block.stone.blockID) {
+            return (byte) stoneType.stoneMetadata();
+        }
+
+        if (id == Block.grass.blockID) {
+            return (byte) stoneType.grassMetadata();
+        }
+
+        if (id == Block.dirt.blockID) {
+            return (byte) stoneType.dirtMetadata();
+        }
+
+        if (id == Block.gravel.blockID) {
+            return (byte) stoneType.gravelMetadata();
+        }
+
+        return meta;
     }
 
     private void initNoiseDefault(long seed) {

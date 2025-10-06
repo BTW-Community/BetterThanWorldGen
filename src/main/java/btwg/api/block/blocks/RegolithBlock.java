@@ -66,4 +66,8 @@ public class RegolithBlock extends BlockDirt {
 
         return true;
     }
+
+    public StoneType getStoneType() {
+        return this.type;
+    }
 }

@@ -1443,6 +1443,106 @@ public abstract class BTWGBlocks {
         graniteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.GRANITE_GRAVEL_SLAB_ID, StoneType.GRANITE);
         register(new SlabBlockItem(graniteGravelSlab.blockID - 256));
 
+        //------ Kimberlite ------//
+
+        kimberlite = new BTWGStoneBlock(BTWGBlockIDs.KIMBERLITE_ID, StoneType.KIMBERLITE);
+        register(kimberlite);
+
+        roughKimberlite = new BTWGRoughStoneBlock(BTWGBlockIDs.ROUGH_KIMBERLITE_ID, StoneType.KIMBERLITE);
+        register(roughKimberlite);
+
+        kimberliteStairs = new StairsBlock(BTWGBlockIDs.KIMBERLITE_STAIRS_ID, kimberlite, StoneType.KIMBERLITE.stoneMetadata())
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".kimberlite_stairs");
+        register(kimberliteStairs);
+
+        kimberliteDecorative = new StoneDecorativeBlock(BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, StoneType.KIMBERLITE);
+        register(kimberliteDecorative, ((MultiTextureBlock) kimberliteDecorative).getNames());
+
+        kimberliteSlab = new BTWGStoneSlabBlock(BTWGBlockIDs.KIMBERLITE_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabWithMetadataBlockItem(
+                kimberliteSlab.blockID - 256,
+                new String[] {
+                        "raw",
+                        "cobble",
+                        "polished",
+                        "bricks"
+                }
+        ));
+
+        cobbledKimberliteStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.COBBLED_KIMBERLITE_STAIRS_ID, kimberliteDecorative,
+                StoneType.KIMBERLITE.cobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_KIMBERLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".cobbled_kimberlite_stairs");
+        register(cobbledKimberliteStairs);
+
+        kimberliteBrickStairs = new MortaredStairsBlock(
+                BTWGBlockIDs.KIMBERLITE_BRICK_STAIRS_ID, kimberliteDecorative,
+                StoneType.KIMBERLITE.stoneBrickMetadata(),
+                BTWGBlockIDs.LOOSE_COBBLED_KIMBERLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".kimberlite_brick_stairs");
+        register(kimberliteBrickStairs);
+
+        looseKimberlite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_KIMBERLITE_ID, StoneType.KIMBERLITE);
+        register(looseKimberlite, new String[] {
+                "cobble",
+                "brick"
+        });
+
+        looseKimberliteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_KIMBERLITE_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabWithMetadataBlockItem(
+                looseKimberliteSlab.blockID - 256,
+                new String[] {
+                        "cobble",
+                        "brick"
+                }
+        ));
+
+        looseCobbledKimberliteStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_COBBLED_KIMBERLITE_STAIRS_ID,
+                looseKimberlite, StoneType.KIMBERLITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.COBBLED_KIMBERLITE_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_kimberlite_stairs");
+        register(looseCobbledKimberliteStairs);
+
+        looseKimberliteBrickStairs = new LooseMortarableStairsBlock(
+                BTWGBlockIDs.LOOSE_KIMBERLITE_BRICK_STAIRS_ID,
+                looseKimberlite, StoneType.KIMBERLITE.looseCobblestoneMetadata(),
+                BTWGBlockIDs.LOOSE_KIMBERLITE_BRICK_STAIRS_ID)
+                .setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_cobbled_kimberlite_stairs")
+                .setCreativeTab(CreativeTabs.tabMaterials);
+        register(looseKimberliteBrickStairs);
+
+        kimberliteRegolith = new RegolithBlock(BTWGBlockIDs.KIMBERLITE_REGOLITH_ID, StoneType.KIMBERLITE);
+        register(kimberliteRegolith);
+
+        kimberliteRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.KIMBERLITE_REGOLITH_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabBlockItem(kimberliteRegolithSlab.blockID - 256));
+
+        grassyKimberliteRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_KIMBERLITE_REGOLITH_ID, StoneType.KIMBERLITE);
+        register(grassyKimberliteRegolith);
+
+        grassyKimberliteRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_KIMBERLITE_REGOLITH_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabBlockItem(grassyKimberliteRegolithSlab.blockID - 256));
+
+        looseKimberliteRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_KIMBERLITE_REGOLITH_ID, StoneType.KIMBERLITE);
+        register(looseKimberliteRegolith);
+
+        looseKimberliteRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_KIMBERLITE_REGOLITH_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabBlockItem(looseKimberliteRegolithSlab.blockID - 256));
+
+        looseSparseGrassyKimberliteRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_ID, StoneType.KIMBERLITE);
+        register(looseSparseGrassyKimberliteRegolith);
+
+        looseSparseGrassyKimberliteRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabBlockItem(looseSparseGrassyKimberliteRegolithSlab.blockID - 256));
+
+        kimberliteGravel = new BTWGGravelBlock(BTWGBlockIDs.KIMBERLITE_GRAVEL_ID, StoneType.KIMBERLITE);
+        register(kimberliteGravel);
+
+        kimberliteGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.KIMBERLITE_GRAVEL_SLAB_ID, StoneType.KIMBERLITE);
+        register(new SlabBlockItem(kimberliteGravelSlab.blockID - 256));
+
         //------ Phyllite ------//
 
         phyllite = new BTWGStoneBlock(BTWGBlockIDs.PHYLLITE_ID, StoneType.PHYLLITE);
