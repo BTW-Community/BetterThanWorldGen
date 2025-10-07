@@ -7,7 +7,7 @@ tile.btwg.grassy_earthen_clay.name=Grassy Earthen Clay
 tile.btwg.sandy_dirt.name=Sandy Dirt
 tile.btwg.loose_sandy_dirt.name=Loose Sandy Dirt
 
-#Renamed vanilla blocks
+#Renamed vanilla
 tile.grass.name=Grass
 
 #------ Plants ------#
@@ -20,7 +20,7 @@ tile.btwg.bush.name=Bush
 tile.btwg.tall_grass.name=Tall Grass
 tile.btwg.large_fern.name=Large Fern
 
-# Renamed vanilla blocks
+# Renamed vanilla
 tile.tallgrass.grass.name=Short Grass
 
 #------ Wood ------#
@@ -242,3 +242,169 @@ tile.fcWoodJungleSiding.oak.fence.name=Oak Fence
 tile.fcWoodJungleSiding.spruce.fence.name=Spruce Fence
 tile.fcWoodJungleSiding.birch.fence.name=Birch Fence
 tile.fcWoodJungleSiding.jungle.fence.name=Jungle Fence
+
+#------ Stone ------#
+
+
+
+# Renamed BTW
+
+# Rhyolite (vanilla stone)
+tile.stone.stone.name=Stone
+tile.fcBlockStoneRough.name=Rough Stone
+tile.stoneSlab.stone.name=Stone Slab
+tile.fcBlockSmoothstoneStairs.stone.name=Stone Stairs
+
+tile.stonebrick.stone.name=Cobblestone
+tile.stoneMoss.stone.name=Mossy Cobblestone
+tile.cobblestoneSlab.stone.name=Cobblestone Slab
+tile.fcBlockCobblestoneStairs.stone.name=Cobblestone Stairs
+tile.fcBlockCobblestoneLoose.stone.name=Loose Cobblestone
+tile.fcBlockCobblestoneLooseSlab.stone.name=Loose Cobblestone Slab
+tile.fcBlockCobblestoneLooseStairs.stone.name=Loose Cobblestone Stairs
+
+tile.stonebricksmooth.stone.name=Stone Bricks
+tile.stonebricksmooth.stone.mossy.name=Mossy Stone Bricks
+tile.stonebricksmooth.stone.cracked.name=Cracked Stone Bricks
+tile.stonebricksmooth.stone.chiseled.name=Chiseled Stone Bricks
+tile.stoneBrickSlab.stone.name=Stone Brick Slab
+tile.fcBlockStoneBrickStairs.stone.name=Stone Brick Stairs
+tile.fcBlockStoneBrickLoose.stone.name=Loose Stone Bricks
+tile.fcBlockStoneBrickLooseSlab.stone.name=Loose Stone Brick Slab
+tile.fcBlockStoneBrickLooseStairs.stone.name=Loose Stone Brick Stairs
+
+tile.fcBlockSilverfishStone.stone.name=Infested Stone
+tile.fcBlockSilverfishCobblestone.stone.name=Infested Cobblestone
+tile.fcBlockSilverfishStoneBrick.stone.name=Infested Stone Bricks
+tile.fcBlockSilverfishStoneBrickMossy.stone.name=Infested Mossy Stone Bricks
+tile.fcBlockSilverfishStoneCracked.stone.name=Infested Cracked Stone Bricks
+tile.fcBlockSilverfishStoneChiseled.stone.name=Infested Chiseled Stone Bricks
+
+tile.fcStoneBrickSiding.siding.name=Stone Brick Siding
+tile.fcStoneBrickSiding.corner.name=Stone Brick Corner
+tile.fcStoneBrickSiding.bench.name=Stone Brick Bench
+tile.fcStoneBrickSiding.fence.name=Stone Brick Wall
+tile.fcStoneBrickMoulding.name=Moulding And Decorative
+tile.fcStoneBrickMoulding.moulding.name=Stone Brick Moulding
+tile.fcStoneBrickMoulding.column.name=Stone Brick Column
+tile.fcStoneBrickMoulding.pedestal.name=Stone Brick Pedestal
+tile.fcStoneBrickMoulding.table.name=Stone Brick Table
+
+tile.fcStoneSiding.stone.siding.name=Stone Siding
+tile.fcStoneSiding.stone.corner.name=Stone Corner
+tile.fcStoneSiding.stone.bench.name=Stone Bench
+tile.fcStoneSiding.stone.fence.name=Stone Wall
+tile.fcStoneMoulding.stone.name=Moulding And Decorative
+tile.fcStoneMoulding.stone.moulding.name=Stone Moulding
+tile.fcStoneMoulding.stone.column.name=Stone Column
+tile.fcStoneMoulding.stone.pedestal.name=Stone Pedestal
+tile.fcStoneMoulding.stone.table.name=Stone Table
+
+item.fcItemStone.stone.name=Loose Rock
+item.fcItemBrickStone.stone.name=Stone Brick
+
+# Slate (vanilla deepslate)
+tile.stone.deepslate.name=Deepslate
+tile.stoneSlab.deepslate.name=Deepslate Slab
+tile.fcBlockSmoothstoneStairs.deepslate.name=Deepslate Stairs
+
+tile.stonebrick.deepslate.name=Cobbled Deepslate
+tile.stoneMoss.deepslate.name=Mossy Cobbled Deepslate
+tile.cobblestoneSlab.deepslate.name=Cobbled Deepslate Slab
+tile.fcBlockCobblestoneStairs.deepslate.name=Cobbled Deepslate Stairs
+tile.fcBlockCobblestoneLoose.deepslate.name=Loose Cobbled Deepslate
+tile.fcBlockCobblestoneLooseSlab.deepslate.name=Loose Cobbled Deepslate Slab
+tile.fcBlockCobblestoneLooseStairs.deepslate.name=Loose Cobbled Deepslate Stairs
+
+tile.stonebricksmooth.deepslate.name=Deepslate Bricks
+tile.stonebricksmooth.deepslate.mossy.name=Mossy Deepslate Bricks
+tile.stonebricksmooth.deepslate.cracked.name=Cracked Deepslate Bricks
+tile.stonebricksmooth.deepslate.chiseled.name=Chiseled Deepslate Bricks
+tile.stoneBrickSlab.deepslate.name=Deepslate Brick Slab
+tile.fcBlockStoneBrickStairs.deepslate.name=Deepslate Brick Stairs
+tile.fcBlockStoneBrickLoose.deepslate.name=Loose Deepslate Bricks
+tile.fcBlockStoneBrickLooseSlab.deepslate.name=Loose Deepslate Brick Slab
+tile.fcBlockStoneBrickLooseStairs.deepslate.name=Loose Deepslate Brick Stairs
+
+tile.fcBlockSilverfishStone.deepslate.name=Infested Deepslate
+tile.fcBlockSilverfishCobblestone.deepslate.name=Infested Cobbled Deepslate
+tile.fcBlockSilverfishStoneBrick.deepslate.name=Infested Deepslate Bricks
+tile.fcBlockSilverfishStoneBrickMossy.deepslate.name=Infested Mossy Deepslate Bricks
+tile.fcBlockSilverfishStoneCracked.deepslate.name=Infested Cracked Deepslate Bricks
+tile.fcBlockSilverfishStoneChiseled.deepslate.name=Infested Chiseled Deepslate Bricks
+
+tile.fcDeepslateBrickSiding.siding.name=Deepslate Brick Siding
+tile.fcDeepslateBrickSiding.corner.name=Deepslate Brick Corner
+tile.fcDeepslateBrickSiding.bench.name=Deepslate Brick Bench
+tile.fcDeepslateBrickSiding.fence.name=Deepslate Brick Wall
+tile.fcDeepslateBrickMoulding.name=Moulding And Decorative
+tile.fcDeepslateBrickMoulding.moulding.name=Deepslate Brick Moulding
+tile.fcDeepslateBrickMoulding.column.name=Deepslate Brick Column
+tile.fcDeepslateBrickMoulding.pedestal.name=Deepslate Brick Pedestal
+tile.fcDeepslateBrickMoulding.table.name=Deepslate Brick Table
+
+tile.fcStoneSiding.deepslate.siding.name=Deepslate Siding
+tile.fcStoneSiding.deepslate.corner.name=Deepslate Corner
+tile.fcStoneSiding.deepslate.bench.name=Deepslate Bench
+tile.fcStoneSiding.deepslate.fence.name=Deepslate Wall
+tile.fcStoneMoulding.deepslate.name=Moulding And Decorative
+tile.fcStoneMoulding.deepslate.moulding.name=Deepslate Moulding
+tile.fcStoneMoulding.deepslate.column.name=Deepslate Column
+tile.fcStoneMoulding.deepslate.pedestal.name=Deepslate Pedestal
+tile.fcStoneMoulding.deepslate.table.name=Deepslate Table
+
+item.fcItemStone.deepslate.name=Loose Deepslate Rock
+item.fcItemBrickStone.deepslate.name=Deepslate Brick
+
+# Gabbro (vanilla blackstone)
+tile.stone.blackstone.name=Blackstone
+tile.stoneSlab.blackstone.name=Blackstone Slab
+tile.fcBlockSmoothstoneStairs.blackstone.name=Blackstone Stairs
+
+tile.stonebrick.blackstone.name=Cobbled Blackstone
+tile.stoneMoss.blackstone.name=Mossy Cobbled Blackstone
+tile.cobblestoneSlab.blackstone.name=Cobbled Blackstone Slab
+tile.fcBlockCobblestoneStairs.blackstone.name=Cobbled Blackstone Stairs
+tile.fcBlockCobblestoneLoose.blackstone.name=Loose Cobbled Blackstone
+tile.fcBlockCobblestoneLooseSlab.blackstone.name=Loose Cobbled Blackstone Slab
+tile.fcBlockCobblestoneLooseStairs.blackstone.name=Loose Cobbled Blackstone Stairs
+
+tile.stonebricksmooth.blackstone.name=Blackstone Bricks
+tile.stonebricksmooth.blackstone.mossy.name=Mossy Blackstone Bricks
+tile.stonebricksmooth.blackstone.cracked.name=Cracked Blackstone Bricks
+tile.stonebricksmooth.blackstone.chiseled.name=Chiseled Blackstone Bricks
+tile.stoneBrickSlab.blackstone.name=Blackstone Brick Slab
+tile.fcBlockStoneBrickStairs.blackstone.name=Blackstone Brick Stairs
+tile.fcBlockStoneBrickLoose.blackstone.name=Loose Blackstone Bricks
+tile.fcBlockStoneBrickLooseSlab.blackstone.name=Loose Blackstone Brick Slab
+tile.fcBlockStoneBrickLooseStairs.blackstone.name=Loose Blackstone Brick Stairs
+
+tile.fcBlockSilverfishStone.blackstone.name=Infested Blackstone
+tile.fcBlockSilverfishCobblestone.blackstone.name=Infested Cobbled Blackstone
+tile.fcBlockSilverfishStoneBrick.blackstone.name=Infested Blackstone Bricks
+tile.fcBlockSilverfishStoneBrickMossy.blackstone.name=Infested Mossy Blackstone Bricks
+tile.fcBlockSilverfishStoneCracked.blackstone.name=Infested Cracked Blackstone Bricks
+tile.fcBlockSilverfishStoneChiseled.blackstone.name=Infested Chiseled Blackstone Bricks
+
+tile.fcBlackstoneBrickSiding.siding.name=Blackstone Brick Siding
+tile.fcBlackstoneBrickSiding.corner.name=Blackstone Brick Corner
+tile.fcBlackstoneBrickSiding.bench.name=Blackstone Brick Bench
+tile.fcBlackstoneBrickSiding.fence.name=Blackstone Brick Wall
+tile.fcBlackstoneBrickMoulding.name=Moulding And Decorative
+tile.fcBlackstoneBrickMoulding.moulding.name=Blackstone Brick Moulding
+tile.fcBlackstoneBrickMoulding.column.name=Blackstone Brick Column
+tile.fcBlackstoneBrickMoulding.pedestal.name=Blackstone Brick Pedestal
+tile.fcBlackstoneBrickMoulding.table.name=Blackstone Brick Table
+
+tile.fcStoneSiding.blackstone.siding.name=Blackstone Siding
+tile.fcStoneSiding.blackstone.corner.name=Blackstone Corner
+tile.fcStoneSiding.blackstone.bench.name=Blackstone Bench
+tile.fcStoneSiding.blackstone.fence.name=Blackstone Wall
+tile.fcStoneMoulding.blackstone.name=Moulding And Decorative
+tile.fcStoneMoulding.blackstone.moulding.name=Blackstone Moulding
+tile.fcStoneMoulding.blackstone.column.name=Blackstone Column
+tile.fcStoneMoulding.blackstone.pedestal.name=Blackstone Pedestal
+tile.fcStoneMoulding.blackstone.table.name=Blackstone Table
+
+item.fcItemStone.blackstone.name=Loose Blackstone Rock
+item.fcItemBrickStone.blackstone.name=Blackstone Brick
