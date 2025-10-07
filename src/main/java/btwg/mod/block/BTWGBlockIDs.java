@@ -389,10 +389,10 @@ public class BTWGBlockIDs {
     public static final int LOOSE_SANDY_DIRT_ID = 3734;
 
     public static final int DRY_GRASS_ID = 3750;
-    public static final int OVERLAY_GRASS_ID = 3751;
+    public static final int GRASS_WITH_OVERLAY_ID = 3751;
     public static final int TALL_DRY_GRASS_ID = 3752;
     public static final int GRASS_ID = 3753;
     public static final int TALL_GRASS_ID = 3754;
-    public static final int LARGE_FERN_ID = 3755;
+    public static final int TALL_GRASS_WITH_OVERLAY_ID = 3755;
     public static final int GLOW_WORMS_ID = 3756;
 }

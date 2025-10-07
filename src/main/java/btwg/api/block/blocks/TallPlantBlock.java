@@ -2,26 +2,43 @@ package btwg.api.block.blocks;
 
 import btw.block.blocks.FlowerBlock;
 import btw.item.util.ItemUtils;
+import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class TallPlantBlock extends FlowerBlock {
-    private boolean isReplaceable;
-    private boolean canStayOnSand;
-    private boolean needsShears;
-    private final String name;
-    private final String[] types;
+    protected boolean isReplaceable;
+    protected boolean canStayOnSand;
+    protected boolean needsShears;
 
-    public TallPlantBlock(int blockID, String name, String[] names) {
-        super(blockID);
+    protected final String name;
+    protected final String[] types;
+
+    protected final boolean useTypeAsFolder;
+    protected final String prefix;
+
+    public TallPlantBlock(int id, String name) {
+        this(id, name, new String[] {}, false, null);
+    }
+
+    public TallPlantBlock(int blockID, String name, String[] types) {
+        this(blockID, name, types, false, null);
+    }
+
+    public TallPlantBlock(int id, String name, String[] types, boolean useTypeAsFolder, String prefix) {
+        super(id);
+
         this.setUnlocalizedName(name);
         this.name = name;
-        this.types = names;
+        this.types = types;
+        this.useTypeAsFolder = useTypeAsFolder;
+        this.prefix = prefix;
     }
 
     @Override
@@ -206,14 +223,14 @@ public class TallPlantBlock extends FlowerBlock {
     //----------- Client Side Functionality -----------//
 
     @Environment(EnvType.CLIENT)
-    private Icon[] upperIcons;
+    private Icon[] topIcons;
     @Environment(EnvType.CLIENT)
-    private Icon[] lowerIcons;
+    private Icon[] bottomIcons;
 
     @Environment(EnvType.CLIENT)
     @Override
     public Icon getIcon(int side, int metadata) {
-        return upperIcons[metadata & 7];
+        return topIcons[metadata & 7];
     }
 
     @Environment(EnvType.CLIENT)
@@ -222,22 +239,56 @@ public class TallPlantBlock extends FlowerBlock {
         int metadata = blockAccess.getBlockMetadata(x, y, z);
 
         if (isTopBlock(metadata)) {
-            return upperIcons[metadata & 7];
+            return topIcons[metadata & 7];
         }
         else {
-            return lowerIcons[metadata & 7];
+            return bottomIcons[metadata & 7];
         }
     }
 
-    @Environment(EnvType.CLIENT)
     @Override
-    public void registerIcons(IconRegister register) {
-        upperIcons = new Icon[types.length];
-        lowerIcons = new Icon[types.length];
+    @Environment(EnvType.CLIENT)
+    public void registerIcons(IconRegister iconRegister) {
+        if (this.types.length == 0) {
+            this.topIcons = new Icon[1];
+            this.bottomIcons = new Icon[1];
+            this.topIcons[0] = iconRegister.registerIcon(this.getTextureName() + "_top");
+            this.bottomIcons[0] = iconRegister.registerIcon(this.getTextureName() + "_bottom");
+            return;
+        }
+
+        this.topIcons = new Icon[types.length];
+        this.bottomIcons = new Icon[types.length];
+        String[] iconNames;
+
+        String prefix;
+
+        if (this.prefix == null) {
+            prefix = "";
+        }
+        else {
+            prefix = this.prefix + "/";
+        }
+
+        if (useTypeAsFolder) {
+            iconNames = Arrays.stream(this.types)
+                    .map(type -> BetterThanWorldGen.MODID + ":" + prefix + type + "/" + this.name)
+                    .toArray(String[]::new);
+        }
+        else if (this.getTextureName().isEmpty()) {
+            iconNames = Arrays.stream(this.types)
+                    .map(type -> BetterThanWorldGen.MODID + ":" + prefix + type)
+                    .toArray(String[]::new);
+        }
+        else {
+            iconNames = Arrays.stream(this.types)
+                    .map(type -> BetterThanWorldGen.MODID + ":" + prefix + type + "_" + this.name)
+                    .toArray(String[]::new);
+        }
 
         for (int i = 0; i < types.length; i++) {
-            upperIcons[i] = register.registerIcon(name + "_top");
-            lowerIcons[i] = register.registerIcon(name + "_bottom");
+            this.topIcons[i] = iconRegister.registerIcon(iconNames[i] + "_top");
+            this.bottomIcons[i] = iconRegister.registerIcon(iconNames[i] + "_bottom");
         }
     }
 

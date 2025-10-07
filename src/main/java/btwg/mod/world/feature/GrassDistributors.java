@@ -85,7 +85,7 @@ public abstract class GrassDistributors {
             }
             else {
                 if (rand.nextInt(10) == 0) {
-                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallFern.blockID, 0);
+                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 1);
                 }
                 else {
                     this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 2);
