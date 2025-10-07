@@ -22,7 +22,7 @@ public class LooseSparseGrassyRegolithSlabBlock extends LooseSparseGrassSlabBloc
         super(id);
         this.type = type;
 
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/loose_sparse_grass");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name() + "/loose_sparse_grass");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_sparse_grassy_" + type.name()  + "_regolith_slab");
     }
 

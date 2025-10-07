@@ -3,6 +3,7 @@ package btwg.api.block.blocks;
 import btw.block.BTWBlocks;
 import btw.block.blocks.DirtSlabBlock;
 import btwg.api.block.StoneType;
+import btwg.mod.BetterThanWorldGen;
 import com.prupe.mcpatcher.cc.ColorizeBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,8 +21,8 @@ public class RegolithSlabBlock extends DirtSlabBlock {
 
         this.type = type;
 
-        this.setUnlocalizedName("btwg." + type.name() + "_regolith_slab");
-        this.setTextureName("btwg:" + type.name() + "/regolith");
+        this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name() + "_regolith_slab");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name() + "/regolith");
     }
 
     @Override

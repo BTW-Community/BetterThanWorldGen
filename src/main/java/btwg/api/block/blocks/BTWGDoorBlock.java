@@ -17,7 +17,7 @@ public class BTWGDoorBlock extends DoorBlockWood {
         this.woodType = woodType;
 
         this.setUnlocalizedName("btwg." + this.woodType.name() + "_door");
-        this.setTextureName("btwg:" + this.woodType.name() + "_door");
+        this.setTextureName("btwg:wood/" + this.woodType.name() + "_door");
     }
 
     @Override

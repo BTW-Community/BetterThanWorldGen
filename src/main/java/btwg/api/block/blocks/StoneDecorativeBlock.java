@@ -44,7 +44,7 @@ public class StoneDecorativeBlock extends MultiTextureBlock {
         this.setChiselsEffectiveOn();
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name());
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }

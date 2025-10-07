@@ -20,7 +20,7 @@ public class BTWGGravelBlock extends FallingFullBlock {
         this.setShovelsEffectiveOn();
         this.setFilterableProperties(8);
         this.setStepSound(BTWBlocks.dirtStepSound);
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name()  + "/gravel");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name()  + "/gravel");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name()  + "_gravel");
         this.setCreativeTab(CreativeTabs.tabBlock);
     }

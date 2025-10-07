@@ -22,7 +22,7 @@ public class GrassyRegolithSlabBlock extends GrassSlabBlock {
         this.type = type;
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".grassy_" + type.name() + "_regolith_slab");
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/grass");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name() + "/grass");
     }
 
     @Override

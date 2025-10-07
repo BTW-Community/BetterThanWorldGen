@@ -24,7 +24,7 @@ public class LooseStoneSlab extends MortarReceiverSlabBlock {
         this.setChiselsEffectiveOn();
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name() + "_slab");
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }

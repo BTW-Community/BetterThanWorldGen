@@ -13,7 +13,7 @@ public class RegolithBlock extends BlockDirt {
         super(id);
         this.type = type;
 
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name()  + "/regolith");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name()  + "/regolith");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + type.name()  + "_regolith");
     }
 

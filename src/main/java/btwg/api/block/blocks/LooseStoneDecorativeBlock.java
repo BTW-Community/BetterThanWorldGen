@@ -25,7 +25,7 @@ public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
         this.setChiselsEffectiveOn();
 
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name());
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name());
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name());
 
         this.setCreativeTab(CreativeTabs.tabBlock);
     }
@@ -95,8 +95,8 @@ public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
 
         this.lavaOverlayIcons = new Icon[2];
 
-        this.lavaOverlayIcons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "/cobble_lava_overlay");
-        this.lavaOverlayIcons[StoneType.STONE_BRICK_TYPE - TYPE_OFFSET] = iconRegister.registerIcon(BetterThanWorldGen.MODID + ":" + this.type.name() + "/brick_lava_overlay");
+        this.lavaOverlayIcons[StoneType.COBBLESTONE_TYPE] = iconRegister.registerIcon(this.getTextureName() + "/cobble_lava_overlay");
+        this.lavaOverlayIcons[StoneType.STONE_BRICK_TYPE - TYPE_OFFSET] = iconRegister.registerIcon(this.getTextureName() + "/brick_lava_overlay");
     }
 
     @Override

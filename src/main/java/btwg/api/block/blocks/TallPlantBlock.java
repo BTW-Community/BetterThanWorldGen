@@ -14,14 +14,14 @@ public class TallPlantBlock extends FlowerBlock {
     private boolean isReplaceable;
     private boolean canStayOnSand;
     private boolean needsShears;
-    private String baseTexture;
-    private String[] names;
+    private final String name;
+    private final String[] types;
 
-    public TallPlantBlock(int blockID, String baseTexture, String[] names) {
+    public TallPlantBlock(int blockID, String name, String[] names) {
         super(blockID);
-        this.setUnlocalizedName(baseTexture);
-        this.baseTexture = baseTexture;
-        this.names = names;
+        this.setUnlocalizedName(name);
+        this.name = name;
+        this.types = names;
     }
 
     @Override
@@ -107,7 +107,6 @@ public class TallPlantBlock extends FlowerBlock {
 
     @Override
     public boolean canGrowOnBlock(World world, int x, int y, int z) {
-
         if (world.getBlockId(x, y, z) == this.blockID) {
             int metadata = world.getBlockMetadata(x, y, z);
             return !isTopBlock(metadata);
@@ -145,14 +144,14 @@ public class TallPlantBlock extends FlowerBlock {
 
     //------------- Class Specific Methods ------------//
 
-    public String[] getNames() {
-        return names;
+    public String[] getTypes() {
+        return types;
     }
 
     public ArrayList<Integer> getSpawnableList() {
         ArrayList<Integer> spawnableList = new ArrayList<>();
 
-        for (int i = 0; i < this.names.length; i++) {
+        for (int i = 0; i < this.types.length; i++) {
             spawnableList.add(i);
         }
 
@@ -233,19 +232,19 @@ public class TallPlantBlock extends FlowerBlock {
     @Environment(EnvType.CLIENT)
     @Override
     public void registerIcons(IconRegister register) {
-        upperIcons = new Icon[names.length];
-        lowerIcons = new Icon[names.length];
+        upperIcons = new Icon[types.length];
+        lowerIcons = new Icon[types.length];
 
-        for (int i = 0; i < names.length; i++) {
-            upperIcons[i] = register.registerIcon(baseTexture + "_top");
-            lowerIcons[i] = register.registerIcon(baseTexture + "_bottom");
+        for (int i = 0; i < types.length; i++) {
+            upperIcons[i] = register.registerIcon(name + "_top");
+            lowerIcons[i] = register.registerIcon(name + "_bottom");
         }
     }
 
     @Environment(EnvType.CLIENT)
     @Override
     public void getSubBlocks(int blockID, CreativeTabs creativeTabs, List list) {
-        for (int i = 0; i < names.length; i++) {
+        for (int i = 0; i < types.length; i++) {
             list.add(new ItemStack(blockID, 1, i));
         }
     }

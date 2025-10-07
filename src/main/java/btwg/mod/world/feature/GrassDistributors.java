@@ -20,7 +20,7 @@ public abstract class GrassDistributors {
                 this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
             }
             else if (r < 7) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.shortDryGrass.blockID, 0);
+                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
             }
             else {
                 this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
@@ -36,13 +36,13 @@ public abstract class GrassDistributors {
                 this.placeSinglePlant(world, rand, x, y, z, Block.deadBush.blockID, 0);
             }
             else if (r == 1) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.bush.blockID, 0);
+                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.grass.blockID, 0);
             }
             else if (r <= 3) {
                 this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
             }
             else if (r <= 7) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.shortDryGrass.blockID, 0);
+                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
             }
             else {
                 this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
@@ -59,7 +59,7 @@ public abstract class GrassDistributors {
                 this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
             }
             else if (r < 6) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.shortDryGrass.blockID, 0);
+                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
             }
             else {
                 this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
@@ -73,7 +73,7 @@ public abstract class GrassDistributors {
             int r = rand.nextInt(3);
 
             if (r == 0) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.bush.blockID, 0);
+                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.grass.blockID, 0);
             }
             else if (r == 1) {
                 if (rand.nextInt(10) == 0) {

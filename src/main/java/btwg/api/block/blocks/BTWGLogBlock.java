@@ -27,7 +27,7 @@ public class BTWGLogBlock extends BlockRotatedPillar {
         this.setStepSound(soundWoodFootstep);
 
         this.setUnlocalizedName("btwg." + this.woodType.name() + "_log");
-        this.setTextureName("btwg:" + this.woodType.name() + "_log");
+        this.setTextureName("btwg:wood/" + this.woodType.name() + "_log");
     }
 
     @Override

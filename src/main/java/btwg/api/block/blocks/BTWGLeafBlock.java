@@ -25,10 +25,10 @@ public class BTWGLeafBlock extends BlockLeaves {
         this.woodTypes = woodTypes;
         this.textures = new String[2][woodTypes.length];
         this.textures[0] = Arrays.stream(woodTypes)
-                .map(type -> "btwg:" + type.name() + "_leaves")
+                .map(type -> "btwg:wood/" + type.name() + "_leaves")
                 .toArray(String[]::new);
         this.textures[1] = Arrays.stream(woodTypes)
-                .map(type -> "btwg:" + type.name() + "_leaves_opaque")
+                .map(type -> "btwg:wood/" + type.name() + "_leaves_opaque")
                 .toArray(String[]::new);
 
         this.setTickRandomly(true);

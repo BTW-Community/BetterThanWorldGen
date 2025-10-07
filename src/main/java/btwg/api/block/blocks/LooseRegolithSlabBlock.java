@@ -16,7 +16,7 @@ public class LooseRegolithSlabBlock extends LooseDirtSlabBlock {
         super(id);
         this.type = type;
 
-        this.setTextureName(BetterThanWorldGen.MODID + ":" + type.name() + "/loose_regolith");
+        this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name() + "/loose_regolith");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_" + type.name()  + "_regolith_slab");
     }
 

@@ -115,8 +115,8 @@ public class StumpBlock extends Block {
         this.sideIcons = new Icon[this.woodTypes.length];
         this.topIcons = new Icon[this.woodTypes.length];
         for (int i = 0; i < this.sideIcons.length; i++) {
-            this.sideIcons[i] = register.registerIcon("btwg:" + this.woodTypes[i].name() + "_stump_side");
-            this.topIcons[i] = register.registerIcon("btwg:" + this.woodTypes[i].name() + "_stump_top");
+            this.sideIcons[i] = register.registerIcon("btwg:wood/" + this.woodTypes[i].name() + "_stump_side");
+            this.topIcons[i] = register.registerIcon("btwg:wood/" + this.woodTypes[i].name() + "_stump_top");
         }
         this.blockIcon = this.sideIcons[0];
     }

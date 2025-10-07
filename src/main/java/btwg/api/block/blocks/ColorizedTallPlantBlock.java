@@ -8,8 +8,15 @@ import net.minecraft.src.ColorizerGrass;
 import net.minecraft.src.IBlockAccess;
 
 public class ColorizedTallPlantBlock extends TallPlantBlock {
-    public ColorizedTallPlantBlock(int blockID, String baseTexture, String[] names) {
-        super(blockID, baseTexture, names);
+    protected boolean hasOverlays = false;
+
+    public ColorizedTallPlantBlock(int blockID, String name, String[] types) {
+        super(blockID, name, types);
+    }
+
+    public ColorizedTallPlantBlock setHasOverlays() {
+        this.hasOverlays = true;
+        return this;
     }
 
     //----------- Client Side Functionality -----------//

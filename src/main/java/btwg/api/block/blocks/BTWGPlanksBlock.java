@@ -4,6 +4,7 @@ import btw.block.BTWBlocks;
 import btw.block.util.Flammability;
 import btw.item.BTWItems;
 import btwg.api.block.WoodType;
+import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.*;
 
 import java.util.Arrays;
@@ -15,7 +16,9 @@ public class BTWGPlanksBlock extends MultiTextureBlock {
         super(id, BTWBlocks.plankMaterial, "planks",
                 Arrays.stream(woodTypes)
                         .map(WoodType::name)
-                        .toArray(String[]::new)
+                        .toArray(String[]::new),
+                false,
+                "wood"
         );
 
         this.woodTypes = woodTypes;
@@ -28,7 +31,7 @@ public class BTWGPlanksBlock extends MultiTextureBlock {
         this.setBuoyant();
         this.setStepSound(soundWoodFootstep);
 
-        this.setUnlocalizedName("btwg.planks");
+        this.setUnlocalizedName(BetterThanWorldGen.MODID + ".planks");
     }
 
     @Override
