@@ -3,7 +3,6 @@ package btwg.api.block.blocks;
 import btw.block.BTWBlocks;
 import btw.block.blocks.LooseSparseGrassSlabBlock;
 import btw.client.render.util.RenderUtils;
-import btw.item.BTWItems;
 import btw.world.util.BlockPos;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
@@ -24,6 +23,8 @@ public class LooseSparseGrassyRegolithSlabBlock extends LooseSparseGrassSlabBloc
 
         this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name() + "/loose_sparse_grass");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_sparse_grassy_" + type.name()  + "_regolith_slab");
+
+        this.hideFromEMI();
     }
 
     @Override

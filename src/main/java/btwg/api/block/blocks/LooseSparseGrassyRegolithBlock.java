@@ -1,6 +1,5 @@
 package btwg.api.block.blocks;
 
-import btw.block.BTWBlocks;
 import btw.block.blocks.LooseSparseGrassBlock;
 import btw.client.render.util.RenderUtils;
 import btw.item.BTWItems;
@@ -24,6 +23,8 @@ public class LooseSparseGrassyRegolithBlock extends LooseSparseGrassBlock {
 
         this.setTextureName(BetterThanWorldGen.MODID + ":stone/" + type.name()  + "/loose_sparse_grass");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".loose_sparse_grassy_" + type.name()  + "_regolith");
+
+        this.hideFromEMI();
     }
 
     @Override
@@ -69,7 +70,7 @@ public class LooseSparseGrassyRegolithBlock extends LooseSparseGrassBlock {
 
     @Override
     public void onGrazed(World world, int x, int y, int z, EntityAnimal animal) {
-        world.setBlockWithNotify(x, y, z, BTWBlocks.looseDirt.blockID);
+        world.setBlockAndMetadataWithNotify(x, y, z, this.type.looseDirtID(), this.type.looseDirtMetadata());
         if (animal.getDisruptsEarthOnGraze()) {
             this.notifyNeighborsBlockDisrupted(world, x, y, z);
         }

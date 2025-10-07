@@ -9,6 +9,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.src.*;
 
+import java.util.List;
+
 public class BTWGWoodSlabBlock extends SlabBlock {
     private final WoodType[] woodTypes;
 
@@ -30,14 +32,14 @@ public class BTWGWoodSlabBlock extends SlabBlock {
 
     @Override
     public int getCombinedBlockID(int metadata) {
-        metadata = this.setIsUpsideDown(MathHelper.clamp_int(metadata, 0, this.woodTypes.length - 1), false);
-        return this.woodTypes[metadata].plankID();
+        int variant = this.setIsUpsideDown(metadata, false) >> 1;
+        return this.woodTypes[MathHelper.clamp_int(variant, 0, this.woodTypes.length - 1)].plankID();
     }
 
     @Override
     public int getCombinedMetadata(int metadata) {
-        metadata = this.setIsUpsideDown(MathHelper.clamp_int(metadata, 0, this.woodTypes.length - 1), false);
-        return this.woodTypes[metadata].plankMetadata();
+        int variant = this.setIsUpsideDown(metadata, false) >> 1;
+        return this.woodTypes[MathHelper.clamp_int(variant, 0, this.woodTypes.length - 1)].plankMetadata();
     }
 
     @Override
@@ -61,11 +63,19 @@ public class BTWGWoodSlabBlock extends SlabBlock {
     @Override
     @Environment(EnvType.CLIENT)
     public Icon getIcon(int side, int metadata) {
-        metadata = this.setIsUpsideDown(MathHelper.clamp_int(metadata, 0, this.woodTypes.length - 1), false);
-        return Block.blocksList[this.woodTypes[metadata].plankID()].getIcon(side, this.woodTypes[metadata].plankMetadata());
+        int variant = this.setIsUpsideDown(metadata, false) >> 1;
+        return Block.blocksList[this.woodTypes[MathHelper.clamp_int(variant, 0, this.woodTypes.length - 1)].plankID()]
+                .getIcon(side, this.woodTypes[MathHelper.clamp_int(variant, 0, this.woodTypes.length - 1)].plankMetadata());
     }
 
     @Override
     @Environment(EnvType.CLIENT)
     public void registerIcons(IconRegister iconRegister) {}
+
+    @Override
+    public void getSubBlocks(int iBlockID, CreativeTabs creativeTabs, List list) {
+        for (int i = 0; i < this.woodTypes.length; i++) {
+            list.add(new ItemStack(iBlockID, 1, i * 2));
+        }
+    }
 }

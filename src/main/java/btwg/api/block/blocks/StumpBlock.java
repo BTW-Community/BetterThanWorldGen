@@ -26,6 +26,8 @@ public class StumpBlock extends Block {
         this.setBuoyant();
         this.setFireProperties(Flammability.LOGS);
         this.setStepSound(soundWoodFootstep);
+
+        this.hideFromEMI();
     }
 
     @Override

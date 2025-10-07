@@ -1,19 +1,21 @@
 package btwg.mixin;
 
+import btw.block.blocks.AttachedSlabBlock;
+import btw.block.blocks.GrassSlabBlock;
 import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.src.*;
+import net.minecraft.src.Icon;
+import net.minecraft.src.IconRegister;
+import net.minecraft.src.Material;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BlockGrass.class)
-public abstract class BlockGrassMixin extends Block {
+@Mixin(GrassSlabBlock.class)
+public abstract class GrassSlabBlockMixin extends AttachedSlabBlock {
     @Shadow
     @Environment(value=EnvType.CLIENT)
     private Icon iconGrassTop;
@@ -28,20 +30,16 @@ public abstract class BlockGrassMixin extends Block {
     private Icon iconSnowSide;
     @Shadow
     @Environment(value=EnvType.CLIENT)
+    private Icon iconSnowSideHalf;
+    @Shadow
+    @Environment(value=EnvType.CLIENT)
     private Icon iconGrassSideOverlay;
+    @Shadow
+    @Environment(value=EnvType.CLIENT)
+    private Icon iconGrassSideOverlayHalf;
 
-    protected BlockGrassMixin(int id, Material material) {
+    protected GrassSlabBlockMixin(int id, Material material) {
         super(id, material);
-    }
-
-    @ModifyConstant(method = "canGrassSurviveAtLocation(Lnet/minecraft/src/World;III)Z", constant = @Constant(intValue = 9))
-    private static int modifyMinimumLightLevel(int value) {
-        return 4;
-    }
-
-    @ModifyConstant(method = "canGrassSurviveAtLocation(Lnet/minecraft/src/World;III)Z", constant = @Constant(intValue = 2))
-    private static int modifyMinimumOpacity(int value) {
-        return 1;
     }
 
     @Inject(method = "registerIcons(Lnet/minecraft/src/IconRegister;)V", at = @At("TAIL"))
@@ -49,10 +47,12 @@ public abstract class BlockGrassMixin extends Block {
     public void registerIcons(IconRegister register, CallbackInfo ci) {
         this.setTextureName(BetterThanWorldGen.MODID + ":stone/rhyolite/grass");
 
-        this.blockIcon = register.registerIcon(this.getTextureName() + "_side");
+        this.blockIcon = register.registerIcon(this.getTextureName() + "_slab_side");
         this.iconGrassTop = register.registerIcon(this.getTextureName() + "_top");
         this.iconSnowSide = register.registerIcon(this.getTextureName() + "_side_snowed");
+        this.iconSnowSideHalf = register.registerIcon(this.getTextureName() + "_slab_side_snowed");
         this.iconGrassSideOverlay = register.registerIcon(this.getTextureName() + "_side_overlay");
+        this.iconGrassSideOverlayHalf = register.registerIcon(this.getTextureName() + "_slab_side_overlay");
         this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_grass_top_overlay");
         this.iconGrassTopSparseDirt = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_grass_top");
     }

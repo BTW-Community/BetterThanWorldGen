@@ -10,6 +10,8 @@ import net.minecraft.src.*;
 public class WorkStumpBlock extends StumpBlock {
     public WorkStumpBlock(int id, WoodType[] woodTypes) {
         super(id, woodTypes);
+
+        this.hideFromEMI();
     }
 
     @Override

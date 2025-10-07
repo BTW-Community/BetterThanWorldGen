@@ -15,6 +15,8 @@ public class BTWGRoughStoneBlock extends RoughStoneBlock {
         super(id, type.strata());
         this.type = type;
         this.setUnlocalizedName(BetterThanWorldGen.MODID + ".rough_" + type.name());
+
+        this.hideFromEMI();
     }
 
     @Override

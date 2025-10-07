@@ -7,9 +7,6 @@ tile.btwg.grassy_earthen_clay.name=Grassy Earthen Clay
 tile.btwg.sandy_dirt.name=Sandy Dirt
 tile.btwg.loose_sandy_dirt.name=Loose Sandy Dirt
 
-#Renamed vanilla
-tile.grass.name=Grass
-
 #------ Plants ------#
 
 # Shrubs
@@ -784,6 +781,8 @@ tile.dirt.name=Rhyolite Regolith
 tile.fcBlockSlabDirt.name=Rhyolite Regolith Slab
 tile.fcBlockDirtLoose.name=Loose Rhyolite Regolith
 tile.fcBlockDirtLooseSlab.name=Loose Rhyolite Regolith Slab
+tile.grass.name=Grassy Rhyolite Regolith
+tile.fcBlockGrassSlab.name=Grassy Rhyolite Regolith Slab
 
 tile.gravel.name=Rhyolite Gravel
 tile.fcBlockSlabFalling.name=Rhyolite Gravel Slab

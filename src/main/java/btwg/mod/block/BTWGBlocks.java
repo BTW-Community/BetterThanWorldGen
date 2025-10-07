@@ -8,9 +8,9 @@ import btwg.api.block.WoodType;
 import btwg.api.block.blocks.*;
 import btwg.api.block.blocks.WorkStumpBlock;
 import btwg.api.item.ItemInterface;
+import btwg.api.item.items.blockItems.BTWGWoodSlabBlockItem;
 import btwg.mod.BetterThanWorldGen;
 import btwg.mod.block.blocks.*;
-import btwg.api.item.items.blockItems.BTWGSlabBlockItem;
 import btwg.mod.world.feature.tree.BTWGTreeGrowers;
 import net.minecraft.src.*;
 
@@ -427,6 +427,9 @@ public abstract class BTWGBlocks {
         RoughStoneBlock.strataLevelBlockArray[0] = (RoughStoneBlock) BTWBlocks.upperStrataRoughStone;
         RoughStoneBlock.strataLevelBlockArray[1] = (RoughStoneBlock) BTWBlocks.midStrataRoughStone;
         RoughStoneBlock.strataLevelBlockArray[2] = (RoughStoneBlock) BTWBlocks.deepStrataRoughStone;
+
+        Block.dirt.setTextureName(BetterThanWorldGen.MODID + ":stone/rhyolite/regolith");
+        BTWBlocks.looseDirt.setTextureName(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_regolith");
     }
 
     private static void initSoils() {
@@ -600,7 +603,7 @@ public abstract class BTWGBlocks {
                         WoodType.CHERRY,
                         WoodType.PALE_OAK
                 });
-        register(new BTWGSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, "wood_slab", new String[] {
+        register(new BTWGWoodSlabBlockItem(BTWGBlockIDs.WOOD_SLAB_ID - 256, new String[] {
                 "acacia",
                 "dark_oak",
                 "mangrove",
