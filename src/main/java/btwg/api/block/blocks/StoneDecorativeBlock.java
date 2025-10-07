@@ -16,13 +16,13 @@ public class StoneDecorativeBlock extends MultiTextureBlock {
 
     public StoneDecorativeBlock(int id, StoneType type) {
         super(id, Material.rock, type.name(), new String[] {
-                "cobblestone",
+                "cobble",
                 "polished",
                 "bricks",
                 "mossy_bricks",
                 "cracked_bricks",
                 "chiseled_bricks",
-                "mossy_cobblestone",
+                "mossy_cobble",
         });
 
         this.type = type;

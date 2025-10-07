@@ -939,7 +939,7 @@ public abstract class BTWGBlocks {
         looseLimestone = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_LIMESTONE_ID, StoneType.LIMESTONE);
         register(looseLimestone, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseLimestoneSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_LIMESTONE_SLAB_ID, StoneType.LIMESTONE);
@@ -947,7 +947,7 @@ public abstract class BTWGBlocks {
                 looseLimestoneSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1039,7 +1039,7 @@ public abstract class BTWGBlocks {
         looseAndesite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_ANDESITE_ID, StoneType.ANDESITE);
         register(looseAndesite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseAndesiteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_ANDESITE_SLAB_ID, StoneType.ANDESITE);
@@ -1047,7 +1047,7 @@ public abstract class BTWGBlocks {
                 looseAndesiteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1139,7 +1139,7 @@ public abstract class BTWGBlocks {
         looseBasalt = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_BASALT_ID, StoneType.BASALT);
         register(looseBasalt, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseBasaltSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_BASALT_SLAB_ID, StoneType.BASALT);
@@ -1147,7 +1147,7 @@ public abstract class BTWGBlocks {
                 looseBasaltSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1239,7 +1239,7 @@ public abstract class BTWGBlocks {
         looseCalcite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_CALCITE_ID, StoneType.CALCITE);
         register(looseCalcite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseCalciteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_CALCITE_SLAB_ID, StoneType.CALCITE);
@@ -1247,7 +1247,7 @@ public abstract class BTWGBlocks {
                 looseCalciteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1339,7 +1339,7 @@ public abstract class BTWGBlocks {
         looseDiorite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_DIORITE_ID, StoneType.DIORITE);
         register(looseDiorite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseDioriteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_DIORITE_SLAB_ID, StoneType.DIORITE);
@@ -1347,7 +1347,7 @@ public abstract class BTWGBlocks {
                 looseDioriteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1439,7 +1439,7 @@ public abstract class BTWGBlocks {
         looseGranite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_GRANITE_ID, StoneType.GRANITE);
         register(looseGranite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseGraniteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_GRANITE_SLAB_ID, StoneType.GRANITE);
@@ -1447,7 +1447,7 @@ public abstract class BTWGBlocks {
                 looseGraniteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1539,7 +1539,7 @@ public abstract class BTWGBlocks {
         looseKimberlite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_KIMBERLITE_ID, StoneType.KIMBERLITE);
         register(looseKimberlite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseKimberliteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_KIMBERLITE_SLAB_ID, StoneType.KIMBERLITE);
@@ -1547,7 +1547,7 @@ public abstract class BTWGBlocks {
                 looseKimberliteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1639,7 +1639,7 @@ public abstract class BTWGBlocks {
         loosePhyllite = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_PHYLLITE_ID, StoneType.PHYLLITE);
         register(loosePhyllite, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         loosePhylliteSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_PHYLLITE_SLAB_ID, StoneType.PHYLLITE);
@@ -1647,7 +1647,7 @@ public abstract class BTWGBlocks {
                 loosePhylliteSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1739,7 +1739,7 @@ public abstract class BTWGBlocks {
         looseSchist = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_SCHIST_ID, StoneType.SCHIST);
         register(looseSchist, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseSchistSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_SCHIST_SLAB_ID, StoneType.SCHIST);
@@ -1747,7 +1747,7 @@ public abstract class BTWGBlocks {
                 looseSchistSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1839,7 +1839,7 @@ public abstract class BTWGBlocks {
         looseShale = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_SHALE_ID, StoneType.SHALE);
         register(looseShale, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseShaleSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_SHALE_SLAB_ID, StoneType.SHALE);
@@ -1847,7 +1847,7 @@ public abstract class BTWGBlocks {
                 looseShaleSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 
@@ -1939,7 +1939,7 @@ public abstract class BTWGBlocks {
         looseTuff = new LooseStoneDecorativeBlock(BTWGBlockIDs.LOOSE_TUFF_ID, StoneType.TUFF);
         register(looseTuff, new String[] {
                 "cobble",
-                "brick"
+                "bricks"
         });
 
         looseTuffSlab = new LooseStoneSlab(BTWGBlockIDs.LOOSE_TUFF_SLAB_ID, StoneType.TUFF);
@@ -1947,7 +1947,7 @@ public abstract class BTWGBlocks {
                 looseTuffSlab.blockID - 256,
                 new String[] {
                         "cobble",
-                        "brick"
+                        "bricks"
                 }
         ));
 

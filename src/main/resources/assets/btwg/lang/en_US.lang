@@ -252,9 +252,12 @@ tile.btwg.limestone_slab.raw.name=Limestone Slab
 tile.btwg.limestone_stairs.name=Limestone Stairs
 
 tile.btwg.limestone.cobble.name=Cobbled Limestone
+tile.btwg.limestone.mossy_cobble.name=Mossy Cobbled Limestone
 tile.btwg.limestone_slab.cobble.name=Cobbled Limestone Slab
 tile.btwg.cobbled_limestone_stairs.name=Cobbled Limestone Stairs
 tile.btwg.loose_limestone.cobble.name=Loose Cobbled Limestone
+tile.btwg.loose_limestone_slab.cobble.name=Loose Cobbled Limestone Slab
+tile.btwg.loose_cobbled_limestone_stairs.name=Loose Cobbled Limestone Stairs
 
 tile.btwg.limestone.polished.name=Polished Limestone
 tile.btwg.limestone_slab.polished.name=Polished Limestone Slab
@@ -266,6 +269,465 @@ tile.btwg.limestone.chiseled_bricks.name=Chiseled Limestone Bricks
 tile.btwg.limestone_slab.bricks.name=Limestone Brick Slab
 tile.btwg.limestone_brick_stairs.name=Limestone Brick Stairs
 tile.btwg.loose_limestone.bricks.name=Loose Limestone Bricks
+tile.btwg.loose_limestone_slab.bricks.name=Loose Limestone Brick Slab
+tile.btwg.loose_limestone_brick_stairs.name=Loose Limestone Brick Stairs
+
+tile.btwg.limestone_regolith.name=Limestone Regolith
+tile.btwg.limestone_regolith_slab.name=Limestone Regolith Slab
+tile.btwg.grassy_limestone_regolith.name=Grassy Limestone Regolith
+tile.btwg.grassy_limestone_regolith_slab.name=Grassy Limestone Regolith Slab
+tile.btwg.loose_limestone_regolith.name=Loose Limestone Regolith
+tile.btwg.loose_limestone_regolith_slab.name=Loose Limestone Regolith Slab
+tile.btwg.loose_sparse_grassy_limestone_regolith.name=Loose Sparse Grassy Limestone Regolith
+tile.btwg.loose_sparse_grassy_limestone_regolith_slab.name=Loose Sparse Grassy Limestone Regolith Slab
+
+tile.btwg.limestone_gravel.name=Limestone Gravel
+tile.btwg.limestone_gravel_slab.name=Limestone Gravel Slab
+
+item.btwg.rock.limestone.name=Limestone Rock
+item.btwg.brick.limestone.name=Limestone Brick
+item.btwg.regolith_pile.limestone.name=Limestone Regolith Pile
+item.btwg.gravel_pile.limestone.name=Limestone Gravel Pile
+
+# Granite
+tile.btwg.granite.name=Granite
+tile.btwg.rough_granite.name=Rough Granite
+tile.btwg.granite_slab.raw.name=Granite Slab
+tile.btwg.granite_stairs.name=Granite Stairs
+
+tile.btwg.granite.cobble.name=Cobbled Granite
+tile.btwg.granite.mossy_cobble.name=Mossy Cobbled Granite
+tile.btwg.granite_slab.cobble.name=Cobbled Granite Slab
+tile.btwg.cobbled_granite_stairs.name=Cobbled Granite Stairs
+tile.btwg.loose_granite.cobble.name=Loose Cobbled Granite
+tile.btwg.loose_granite_slab.cobble.name=Loose Cobbled Granite Slab
+tile.btwg.loose_cobbled_granite_stairs.name=Loose Cobbled Granite Stairs
+
+tile.btwg.granite.polished.name=Polished Granite
+tile.btwg.granite_slab.polished.name=Polished Granite Slab
+
+tile.btwg.granite.bricks.name=Granite Bricks
+tile.btwg.granite.mossy_bricks.name=Mossy Granite Bricks
+tile.btwg.granite.cracked_bricks.name=Cracked Granite Bricks
+tile.btwg.granite.chiseled_bricks.name=Chiseled Granite Bricks
+tile.btwg.granite_slab.bricks.name=Granite Brick Slab
+tile.btwg.granite_brick_stairs.name=Granite Brick Stairs
+tile.btwg.loose_granite.bricks.name=Loose Granite Bricks
+tile.btwg.loose_granite_slab.bricks.name=Loose Granite Brick Slab
+tile.btwg.loose_granite_brick_stairs.name=Loose Granite Brick Stairs
+
+tile.btwg.granite_regolith.name=Granite Regolith
+tile.btwg.granite_regolith_slab.name=Granite Regolith Slab
+tile.btwg.grassy_granite_regolith.name=Grassy Granite Regolith
+tile.btwg.grassy_granite_regolith_slab.name=Grassy Granite Regolith Slab
+tile.btwg.loose_granite_regolith.name=Loose Granite Regolith
+tile.btwg.loose_granite_regolith_slab.name=Loose Granite Regolith Slab
+tile.btwg.loose_sparse_grassy_granite_regolith.name=Loose Sparse Grassy Granite Regolith
+tile.btwg.loose_sparse_grassy_granite_regolith_slab.name=Loose Sparse Grassy Granite Regolith Slab
+
+tile.btwg.granite_gravel.name=Granite Gravel
+tile.btwg.granite_gravel_slab.name=Granite Gravel Slab
+
+item.btwg.rock.granite.name=Granite Rock
+item.btwg.brick.granite.name=Granite Brick
+item.btwg.regolith_pile.granite.name=Granite Regolith Pile
+item.btwg.gravel_pile.granite.name=Granite Gravel Pile
+
+# Diorite
+tile.btwg.diorite.name=Diorite
+tile.btwg.rough_diorite.name=Rough Diorite
+tile.btwg.diorite_slab.raw.name=Diorite Slab
+tile.btwg.diorite_stairs.name=Diorite Stairs
+
+tile.btwg.diorite.cobble.name=Cobbled Diorite
+tile.btwg.diorite.mossy_cobble.name=Mossy Cobbled Diorite
+tile.btwg.diorite_slab.cobble.name=Cobbled Diorite Slab
+tile.btwg.cobbled_diorite_stairs.name=Cobbled Diorite Stairs
+tile.btwg.loose_diorite.cobble.name=Loose Cobbled Diorite
+tile.btwg.loose_diorite_slab.cobble.name=Loose Cobbled Diorite Slab
+tile.btwg.loose_cobbled_diorite_stairs.name=Loose Cobbled Diorite Stairs
+
+tile.btwg.diorite.polished.name=Polished Diorite
+tile.btwg.diorite_slab.polished.name=Polished Diorite Slab
+
+tile.btwg.diorite.bricks.name=Diorite Bricks
+tile.btwg.diorite.mossy_bricks.name=Mossy Diorite Bricks
+tile.btwg.diorite.cracked_bricks.name=Cracked Diorite Bricks
+tile.btwg.diorite.chiseled_bricks.name=Chiseled Diorite Bricks
+tile.btwg.diorite_slab.bricks.name=Diorite Brick Slab
+tile.btwg.diorite_brick_stairs.name=Diorite Brick Stairs
+tile.btwg.loose_diorite.bricks.name=Loose Diorite Bricks
+tile.btwg.loose_diorite_slab.bricks.name=Loose Diorite Brick Slab
+tile.btwg.loose_diorite_brick_stairs.name=Loose Diorite Brick Stairs
+
+tile.btwg.diorite_regolith.name=Diorite Regolith
+tile.btwg.diorite_regolith_slab.name=Diorite Regolith Slab
+tile.btwg.grassy_diorite_regolith.name=Grassy Diorite Regolith
+tile.btwg.grassy_diorite_regolith_slab.name=Grassy Diorite Regolith Slab
+tile.btwg.loose_diorite_regolith.name=Loose Diorite Regolith
+tile.btwg.loose_diorite_regolith_slab.name=Loose Diorite Regolith Slab
+tile.btwg.loose_sparse_grassy_diorite_regolith.name=Loose Sparse Grassy Diorite Regolith
+tile.btwg.loose_sparse_grassy_diorite_regolith_slab.name=Loose Sparse Grassy Diorite Regolith Slab
+
+tile.btwg.diorite_gravel.name=Diorite Gravel
+tile.btwg.diorite_gravel_slab.name=Diorite Gravel Slab
+
+item.btwg.rock.diorite.name=Diorite Rock
+item.btwg.brick.diorite.name=Diorite Brick
+item.btwg.regolith_pile.diorite.name=Diorite Regolith Pile
+item.btwg.gravel_pile.diorite.name=Diorite Gravel Pile
+
+# Calcite
+tile.btwg.calcite.name=Calcite
+tile.btwg.rough_calcite.name=Rough Calcite
+tile.btwg.calcite_slab.raw.name=Calcite Slab
+tile.btwg.calcite_stairs.name=Calcite Stairs
+
+tile.btwg.calcite.cobble.name=Cobbled Calcite
+tile.btwg.calcite.mossy_cobble.name=Mossy Cobbled Calcite
+tile.btwg.calcite_slab.cobble.name=Cobbled Calcite Slab
+tile.btwg.cobbled_calcite_stairs.name=Cobbled Calcite Stairs
+tile.btwg.loose_calcite.cobble.name=Loose Cobbled Calcite
+tile.btwg.loose_calcite_slab.cobble.name=Loose Cobbled Calcite Slab
+tile.btwg.loose_cobbled_calcite_stairs.name=Loose Cobbled Calcite Stairs
+
+tile.btwg.calcite.polished.name=Polished Calcite
+tile.btwg.calcite_slab.polished.name=Polished Calcite Slab
+
+tile.btwg.calcite.bricks.name=Calcite Bricks
+tile.btwg.calcite.mossy_bricks.name=Mossy Calcite Bricks
+tile.btwg.calcite.cracked_bricks.name=Cracked Calcite Bricks
+tile.btwg.calcite.chiseled_bricks.name=Chiseled Calcite Bricks
+tile.btwg.calcite_slab.bricks.name=Calcite Brick Slab
+tile.btwg.calcite_brick_stairs.name=Calcite Brick Stairs
+tile.btwg.loose_calcite.bricks.name=Loose Calcite Bricks
+tile.btwg.loose_calcite_slab.bricks.name=Loose Calcite Brick Slab
+tile.btwg.loose_calcite_brick_stairs.name=Loose Calcite Brick Stairs
+
+tile.btwg.calcite_regolith.name=Calcite Regolith
+tile.btwg.calcite_regolith_slab.name=Calcite Regolith Slab
+tile.btwg.grassy_calcite_regolith.name=Grassy Calcite Regolith
+tile.btwg.grassy_calcite_regolith_slab.name=Grassy Calcite Regolith Slab
+tile.btwg.loose_calcite_regolith.name=Loose Calcite Regolith
+tile.btwg.loose_calcite_regolith_slab.name=Loose Calcite Regolith Slab
+tile.btwg.loose_sparse_grassy_calcite_regolith.name=Loose Sparse Grassy Calcite Regolith
+tile.btwg.loose_sparse_grassy_calcite_regolith_slab.name=Loose Sparse Grassy Calcite Regolith Slab
+
+tile.btwg.calcite_gravel.name=Calcite Gravel
+tile.btwg.calcite_gravel_slab.name=Calcite Gravel Slab
+
+item.btwg.rock.calcite.name=Calcite Rock
+item.btwg.brick.calcite.name=Calcite Brick
+item.btwg.regolith_pile.calcite.name=Calcite Regolith Pile
+item.btwg.gravel_pile.calcite.name=Calcite Gravel Pile
+
+# Shale
+tile.btwg.shale.name=Shale
+tile.btwg.rough_shale.name=Rough Shale
+tile.btwg.shale_slab.raw.name=Shale Slab
+tile.btwg.shale_stairs.name=Shale Stairs
+
+tile.btwg.shale.cobble.name=Cobbled Shale
+tile.btwg.shale.mossy_cobble.name=Mossy Cobbled Shale
+tile.btwg.shale_slab.cobble.name=Cobbled Shale Slab
+tile.btwg.cobbled_shale_stairs.name=Cobbled Shale Stairs
+tile.btwg.loose_shale.cobble.name=Loose Cobbled Shale
+tile.btwg.loose_shale_slab.cobble.name=Loose Cobbled Shale Slab
+tile.btwg.loose_cobbled_shale_stairs.name=Loose Cobbled Shale Stairs
+
+tile.btwg.shale.polished.name=Polished Shale
+tile.btwg.shale_slab.polished.name=Polished Shale Slab
+
+tile.btwg.shale.bricks.name=Shale Bricks
+tile.btwg.shale.mossy_bricks.name=Mossy Shale Bricks
+tile.btwg.shale.cracked_bricks.name=Cracked Shale Bricks
+tile.btwg.shale.chiseled_bricks.name=Chiseled Shale Bricks
+tile.btwg.shale_slab.bricks.name=Shale Brick Slab
+tile.btwg.shale_brick_stairs.name=Shale Brick Stairs
+tile.btwg.loose_shale.bricks.name=Loose Shale Bricks
+tile.btwg.loose_shale_slab.bricks.name=Loose Shale Brick Slab
+tile.btwg.loose_shale_brick_stairs.name=Loose Shale Brick Stairs
+
+tile.btwg.shale_regolith.name=Shale Regolith
+tile.btwg.shale_regolith_slab.name=Shale Regolith Slab
+tile.btwg.grassy_shale_regolith.name=Grassy Shale Regolith
+tile.btwg.grassy_shale_regolith_slab.name=Grassy Shale Regolith Slab
+tile.btwg.loose_shale_regolith.name=Loose Shale Regolith
+tile.btwg.loose_shale_regolith_slab.name=Loose Shale Regolith Slab
+tile.btwg.loose_sparse_grassy_shale_regolith.name=Loose Sparse Grassy Shale Regolith
+tile.btwg.loose_sparse_grassy_shale_regolith_slab.name=Loose Sparse Grassy Shale Regolith Slab
+
+tile.btwg.shale_gravel.name=Shale Gravel
+tile.btwg.shale_gravel_slab.name=Shale Gravel Slab
+
+item.btwg.rock.shale.name=Shale Rock
+item.btwg.brick.shale.name=Shale Brick
+item.btwg.regolith_pile.shale.name=Shale Regolith Pile
+item.btwg.gravel_pile.shale.name=Shale Gravel Pile
+
+# Andesite
+tile.btwg.andesite.name=Andesite
+tile.btwg.rough_andesite.name=Rough Andesite
+tile.btwg.andesite_slab.raw.name=Andesite Slab
+tile.btwg.andesite_stairs.name=Andesite Stairs
+
+tile.btwg.andesite.cobble.name=Cobbled Andesite
+tile.btwg.andesite.mossy_cobble.name=Mossy Cobbled Andesite
+tile.btwg.andesite_slab.cobble.name=Cobbled Andesite Slab
+tile.btwg.cobbled_andesite_stairs.name=Cobbled Andesite Stairs
+tile.btwg.loose_andesite.cobble.name=Loose Cobbled Andesite
+tile.btwg.loose_andesite_slab.cobble.name=Loose Cobbled Andesite Slab
+tile.btwg.loose_cobbled_andesite_stairs.name=Loose Cobbled Andesite Stairs
+
+tile.btwg.andesite.polished.name=Polished Andesite
+tile.btwg.andesite_slab.polished.name=Polished Andesite Slab
+
+tile.btwg.andesite.bricks.name=Andesite Bricks
+tile.btwg.andesite.mossy_bricks.name=Mossy Andesite Bricks
+tile.btwg.andesite.cracked_bricks.name=Cracked Andesite Bricks
+tile.btwg.andesite.chiseled_bricks.name=Chiseled Andesite Bricks
+tile.btwg.andesite_slab.bricks.name=Andesite Brick Slab
+tile.btwg.andesite_brick_stairs.name=Andesite Brick Stairs
+tile.btwg.loose_andesite.bricks.name=Loose Andesite Bricks
+tile.btwg.loose_andesite_slab.bricks.name=Loose Andesite Brick Slab
+tile.btwg.loose_andesite_brick_stairs.name=Loose Andesite Brick Stairs
+
+tile.btwg.andesite_regolith.name=Andesite Regolith
+tile.btwg.andesite_regolith_slab.name=Andesite Regolith Slab
+tile.btwg.grassy_andesite_regolith.name=Grassy Andesite Regolith
+tile.btwg.grassy_andesite_regolith_slab.name=Grassy Andesite Regolith Slab
+tile.btwg.loose_andesite_regolith.name=Loose Andesite Regolith
+tile.btwg.loose_andesite_regolith_slab.name=Loose Andesite Regolith Slab
+tile.btwg.loose_sparse_grassy_andesite_regolith.name=Loose Sparse Grassy Andesite Regolith
+tile.btwg.loose_sparse_grassy_andesite_regolith_slab.name=Loose Sparse Grassy Andesite Regolith Slab
+
+tile.btwg.andesite_gravel.name=Andesite Gravel
+tile.btwg.andesite_gravel_slab.name=Andesite Gravel Slab
+
+item.btwg.rock.andesite.name=Andesite Rock
+item.btwg.brick.andesite.name=Andesite Brick
+item.btwg.regolith_pile.andesite.name=Andesite Regolith Pile
+item.btwg.gravel_pile.andesite.name=Andesite Gravel Pile
+
+# Tuff
+tile.btwg.tuff.name=Tuff
+tile.btwg.rough_tuff.name=Rough Tuff
+tile.btwg.tuff_slab.raw.name=Tuff Slab
+tile.btwg.tuff_stairs.name=Tuff Stairs
+
+tile.btwg.tuff.cobble.name=Cobbled Tuff
+tile.btwg.tuff.mossy_cobble.name=Mossy Cobbled Tuff
+tile.btwg.tuff_slab.cobble.name=Cobbled Tuff Slab
+tile.btwg.cobbled_tuff_stairs.name=Cobbled Tuff Stairs
+tile.btwg.loose_tuff.cobble.name=Loose Cobbled Tuff
+tile.btwg.loose_tuff_slab.cobble.name=Loose Cobbled Tuff Slab
+tile.btwg.loose_cobbled_tuff_stairs.name=Loose Cobbled Tuff Stairs
+
+tile.btwg.tuff.polished.name=Polished Tuff
+tile.btwg.tuff_slab.polished.name=Polished Tuff Slab
+
+tile.btwg.tuff.bricks.name=Tuff Bricks
+tile.btwg.tuff.mossy_bricks.name=Mossy Tuff Bricks
+tile.btwg.tuff.cracked_bricks.name=Cracked Tuff Bricks
+tile.btwg.tuff.chiseled_bricks.name=Chiseled Tuff Bricks
+tile.btwg.tuff_slab.bricks.name=Tuff Brick Slab
+tile.btwg.tuff_brick_stairs.name=Tuff Brick Stairs
+tile.btwg.loose_tuff.bricks.name=Loose Tuff Bricks
+tile.btwg.loose_tuff_slab.bricks.name=Loose Tuff Brick Slab
+tile.btwg.loose_tuff_brick_stairs.name=Loose Tuff Brick Stairs
+
+tile.btwg.tuff_regolith.name=Tuff Regolith
+tile.btwg.tuff_regolith_slab.name=Tuff Regolith Slab
+tile.btwg.grassy_tuff_regolith.name=Grassy Tuff Regolith
+tile.btwg.grassy_tuff_regolith_slab.name=Grassy Tuff Regolith Slab
+tile.btwg.loose_tuff_regolith.name=Loose Tuff Regolith
+tile.btwg.loose_tuff_regolith_slab.name=Loose Tuff Regolith Slab
+tile.btwg.loose_sparse_grassy_tuff_regolith.name=Loose Sparse Grassy Tuff Regolith
+tile.btwg.loose_sparse_grassy_tuff_regolith_slab.name=Loose Sparse Grassy Tuff Regolith Slab
+
+tile.btwg.tuff_gravel.name=Tuff Gravel
+tile.btwg.tuff_gravel_slab.name=Tuff Gravel Slab
+
+item.btwg.rock.tuff.name=Tuff Rock
+item.btwg.brick.tuff.name=Tuff Brick
+item.btwg.regolith_pile.tuff.name=Tuff Regolith Pile
+item.btwg.gravel_pile.tuff.name=Tuff Gravel Pile
+
+# Phyllite
+tile.btwg.phyllite.name=Phyllite
+tile.btwg.rough_phyllite.name=Rough Phyllite
+tile.btwg.phyllite_slab.raw.name=Phyllite Slab
+tile.btwg.phyllite_stairs.name=Phyllite Stairs
+
+tile.btwg.phyllite.cobble.name=Cobbled Phyllite
+tile.btwg.phyllite.mossy_cobble.name=Mossy Cobbled Phyllite
+tile.btwg.phyllite_slab.cobble.name=Cobbled Phyllite Slab
+tile.btwg.cobbled_phyllite_stairs.name=Cobbled Phyllite Stairs
+tile.btwg.loose_phyllite.cobble.name=Loose Cobbled Phyllite
+tile.btwg.loose_phyllite_slab.cobble.name=Loose Cobbled Phyllite Slab
+tile.btwg.loose_cobbled_phyllite_stairs.name=Loose Cobbled Phyllite Stairs
+
+tile.btwg.phyllite.polished.name=Polished Phyllite
+tile.btwg.phyllite_slab.polished.name=Polished Phyllite Slab
+
+tile.btwg.phyllite.bricks.name=Phyllite Bricks
+tile.btwg.phyllite.mossy_bricks.name=Mossy Phyllite Bricks
+tile.btwg.phyllite.cracked_bricks.name=Cracked Phyllite Bricks
+tile.btwg.phyllite.chiseled_bricks.name=Chiseled Phyllite Bricks
+tile.btwg.phyllite_slab.bricks.name=Phyllite Brick Slab
+tile.btwg.phyllite_brick_stairs.name=Phyllite Brick Stairs
+tile.btwg.loose_phyllite.bricks.name=Loose Phyllite Bricks
+tile.btwg.loose_phyllite_slab.bricks.name=Loose Phyllite Brick Slab
+tile.btwg.loose_phyllite_brick_stairs.name=Loose Phyllite Brick Stairs
+
+tile.btwg.phyllite_regolith.name=Phyllite Regolith
+tile.btwg.phyllite_regolith_slab.name=Phyllite Regolith Slab
+tile.btwg.grassy_phyllite_regolith.name=Grassy Phyllite Regolith
+tile.btwg.grassy_phyllite_regolith_slab.name=Grassy Phyllite Regolith Slab
+tile.btwg.loose_phyllite_regolith.name=Loose Phyllite Regolith
+tile.btwg.loose_phyllite_regolith_slab.name=Loose Phyllite Regolith Slab
+tile.btwg.loose_sparse_grassy_phyllite_regolith.name=Loose Sparse Grassy Phyllite Regolith
+tile.btwg.loose_sparse_grassy_phyllite_regolith_slab.name=Loose Sparse Grassy Phyllite Regolith Slab
+
+tile.btwg.phyllite_gravel.name=Phyllite Gravel
+tile.btwg.phyllite_gravel_slab.name=Phyllite Gravel Slab
+
+item.btwg.rock.phyllite.name=Phyllite Rock
+item.btwg.brick.phyllite.name=Phyllite Brick
+item.btwg.regolith_pile.phyllite.name=Phyllite Regolith Pile
+item.btwg.gravel_pile.phyllite.name=Phyllite Gravel Pile
+
+# Schist
+tile.btwg.schist.name=Schist
+tile.btwg.rough_schist.name=Rough Schist
+tile.btwg.schist_slab.raw.name=Schist Slab
+tile.btwg.schist_stairs.name=Schist Stairs
+
+tile.btwg.schist.cobble.name=Cobbled Schist
+tile.btwg.schist.mossy_cobble.name=Mossy Cobbled Schist
+tile.btwg.schist_slab.cobble.name=Cobbled Schist Slab
+tile.btwg.cobbled_schist_stairs.name=Cobbled Schist Stairs
+tile.btwg.loose_schist.cobble.name=Loose Cobbled Schist
+tile.btwg.loose_schist_slab.cobble.name=Loose Cobbled Schist Slab
+tile.btwg.loose_cobbled_schist_stairs.name=Loose Cobbled Schist Stairs
+
+tile.btwg.schist.polished.name=Polished Schist
+tile.btwg.schist_slab.polished.name=Polished Schist Slab
+
+tile.btwg.schist.bricks.name=Schist Bricks
+tile.btwg.schist.mossy_bricks.name=Mossy Schist Bricks
+tile.btwg.schist.cracked_bricks.name=Cracked Schist Bricks
+tile.btwg.schist.chiseled_bricks.name=Chiseled Schist Bricks
+tile.btwg.schist_slab.bricks.name=Schist Brick Slab
+tile.btwg.schist_brick_stairs.name=Schist Brick Stairs
+tile.btwg.loose_schist.bricks.name=Loose Schist Bricks
+tile.btwg.loose_schist_slab.bricks.name=Loose Schist Brick Slab
+tile.btwg.loose_schist_brick_stairs.name=Loose Schist Brick Stairs
+
+tile.btwg.schist_regolith.name=Schist Regolith
+tile.btwg.schist_regolith_slab.name=Schist Regolith Slab
+tile.btwg.grassy_schist_regolith.name=Grassy Schist Regolith
+tile.btwg.grassy_schist_regolith_slab.name=Grassy Schist Regolith Slab
+tile.btwg.loose_schist_regolith.name=Loose Schist Regolith
+tile.btwg.loose_schist_regolith_slab.name=Loose Schist Regolith Slab
+tile.btwg.loose_sparse_grassy_schist_regolith.name=Loose Sparse Grassy Schist Regolith
+tile.btwg.loose_sparse_grassy_schist_regolith_slab.name=Loose Sparse Grassy Schist Regolith Slab
+
+tile.btwg.schist_gravel.name=Schist Gravel
+tile.btwg.schist_gravel_slab.name=Schist Gravel Slab
+
+item.btwg.rock.schist.name=Schist Rock
+item.btwg.brick.schist.name=Schist Brick
+item.btwg.regolith_pile.schist.name=Schist Regolith Pile
+item.btwg.gravel_pile.schist.name=Schist Gravel Pile
+
+# Basalt
+tile.btwg.basalt.name=Basalt
+tile.btwg.rough_basalt.name=Rough Basalt
+tile.btwg.basalt_slab.raw.name=Basalt Slab
+tile.btwg.basalt_stairs.name=Basalt Stairs
+
+tile.btwg.basalt.cobble.name=Cobbled Basalt
+tile.btwg.basalt.mossy_cobble.name=Mossy Cobbled Basalt
+tile.btwg.basalt_slab.cobble.name=Cobbled Basalt Slab
+tile.btwg.cobbled_basalt_stairs.name=Cobbled Basalt Stairs
+tile.btwg.loose_basalt.cobble.name=Loose Cobbled Basalt
+tile.btwg.loose_basalt_slab.cobble.name=Loose Cobbled Basalt Slab
+tile.btwg.loose_cobbled_basalt_stairs.name=Loose Cobbled Basalt Stairs
+
+tile.btwg.basalt.polished.name=Polished Basalt
+tile.btwg.basalt_slab.polished.name=Polished Basalt Slab
+
+tile.btwg.basalt.bricks.name=Basalt Bricks
+tile.btwg.basalt.mossy_bricks.name=Mossy Basalt Bricks
+tile.btwg.basalt.cracked_bricks.name=Cracked Basalt Bricks
+tile.btwg.basalt.chiseled_bricks.name=Chiseled Basalt Bricks
+tile.btwg.basalt_slab.bricks.name=Basalt Brick Slab
+tile.btwg.basalt_brick_stairs.name=Basalt Brick Stairs
+tile.btwg.loose_basalt.bricks.name=Loose Basalt Bricks
+tile.btwg.loose_basalt_slab.bricks.name=Loose Basalt Brick Slab
+tile.btwg.loose_basalt_brick_stairs.name=Loose Basalt Brick Stairs
+
+tile.btwg.basalt_regolith.name=Basalt Regolith
+tile.btwg.basalt_regolith_slab.name=Basalt Regolith Slab
+tile.btwg.grassy_basalt_regolith.name=Grassy Basalt Regolith
+tile.btwg.grassy_basalt_regolith_slab.name=Grassy Basalt Regolith Slab
+tile.btwg.loose_basalt_regolith.name=Loose Basalt Regolith
+tile.btwg.loose_basalt_regolith_slab.name=Loose Basalt Regolith Slab
+tile.btwg.loose_sparse_grassy_basalt_regolith.name=Loose Sparse Grassy Basalt Regolith
+tile.btwg.loose_sparse_grassy_basalt_regolith_slab.name=Loose Sparse Grassy Basalt Regolith Slab
+
+tile.btwg.basalt_gravel.name=Basalt Gravel
+tile.btwg.basalt_gravel_slab.name=Basalt Gravel Slab
+
+item.btwg.rock.basalt.name=Basalt Rock
+item.btwg.brick.basalt.name=Basalt Brick
+item.btwg.regolith_pile.basalt.name=Basalt Regolith Pile
+item.btwg.gravel_pile.basalt.name=Basalt Gravel Pile
+
+# Kimberlite
+tile.btwg.kimberlite.name=Kimberlite
+tile.btwg.rough_kimberlite.name=Rough Kimberlite
+tile.btwg.kimberlite_slab.raw.name=Kimberlite Slab
+tile.btwg.kimberlite_stairs.name=Kimberlite Stairs
+
+tile.btwg.kimberlite.cobble.name=Cobbled Kimberlite
+tile.btwg.kimberlite.mossy_cobble.name=Mossy Cobbled Kimberlite
+tile.btwg.kimberlite_slab.cobble.name=Cobbled Kimberlite Slab
+tile.btwg.cobbled_kimberlite_stairs.name=Cobbled Kimberlite Stairs
+tile.btwg.loose_kimberlite.cobble.name=Loose Cobbled Kimberlite
+tile.btwg.loose_kimberlite_slab.cobble.name=Loose Cobbled Kimberlite Slab
+tile.btwg.loose_cobbled_kimberlite_stairs.name=Loose Cobbled Kimberlite Stairs
+
+tile.btwg.kimberlite.polished.name=Polished Kimberlite
+tile.btwg.kimberlite_slab.polished.name=Polished Kimberlite Slab
+
+tile.btwg.kimberlite.bricks.name=Kimberlite Bricks
+tile.btwg.kimberlite.mossy_bricks.name=Mossy Kimberlite Bricks
+tile.btwg.kimberlite.cracked_bricks.name=Cracked Kimberlite Bricks
+tile.btwg.kimberlite.chiseled_bricks.name=Chiseled Kimberlite Bricks
+tile.btwg.kimberlite_slab.bricks.name=Kimberlite Brick Slab
+tile.btwg.kimberlite_brick_stairs.name=Kimberlite Brick Stairs
+tile.btwg.loose_kimberlite.bricks.name=Loose Kimberlite Bricks
+tile.btwg.loose_kimberlite_slab.bricks.name=Loose Kimberlite Brick Slab
+tile.btwg.loose_kimberlite_brick_stairs.name=Loose Kimberlite Brick Stairs
+
+tile.btwg.kimberlite_regolith.name=Kimberlite Regolith
+tile.btwg.kimberlite_regolith_slab.name=Kimberlite Regolith Slab
+tile.btwg.grassy_kimberlite_regolith.name=Grassy Kimberlite Regolith
+tile.btwg.grassy_kimberlite_regolith_slab.name=Grassy Kimberlite Regolith Slab
+tile.btwg.loose_kimberlite_regolith.name=Loose Kimberlite Regolith
+tile.btwg.loose_kimberlite_regolith_slab.name=Loose Kimberlite Regolith Slab
+tile.btwg.loose_sparse_grassy_kimberlite_regolith.name=Loose Sparse Grassy Kimberlite Regolith
+tile.btwg.loose_sparse_grassy_kimberlite_regolith_slab.name=Loose Sparse Grassy Kimberlite Regolith Slab
+
+tile.btwg.kimberlite_gravel.name=Kimberlite Gravel
+tile.btwg.kimberlite_gravel_slab.name=Kimberlite Gravel Slab
+
+item.btwg.rock.kimberlite.name=Kimberlite Rock
+item.btwg.brick.kimberlite.name=Kimberlite Brick
+item.btwg.regolith_pile.kimberlite.name=Kimberlite Regolith Pile
+item.btwg.gravel_pile.kimberlite.name=Kimberlite Gravel Pile
 
 # Renamed BTW
 
@@ -318,15 +780,15 @@ tile.fcStoneMoulding.stone.column.name=Rhyolite Column
 tile.fcStoneMoulding.stone.pedestal.name=Rhyolite Pedestal
 tile.fcStoneMoulding.stone.table.name=Rhyolite Table
 
-tile.gravel.name=Rhyolite Gravel
-tile.fcBlockSlabFalling.name=Rhyolite Gravel Slab
-
 tile.dirt.name=Rhyolite Regolith
 tile.fcBlockSlabDirt.name=Rhyolite Regolith Slab
 tile.fcBlockDirtLoose.name=Loose Rhyolite Regolith
 tile.fcBlockDirtLooseSlab.name=Loose Rhyolite Regolith Slab
 
-item.fcItemStone.stone.name=Loose Rhyolite Rock
+tile.gravel.name=Rhyolite Gravel
+tile.fcBlockSlabFalling.name=Rhyolite Gravel Slab
+
+item.fcItemStone.stone.name=Rhyolite Rock
 item.fcItemBrickStone.stone.name=Rhyolite Brick
 item.fcItemPileDirt.name=Rhyolite Regolith Pile
 item.fcItemPileGravel.name=Rhyolite Gravel Pile
@@ -379,7 +841,7 @@ tile.fcStoneMoulding.deepslate.column.name=Slate Column
 tile.fcStoneMoulding.deepslate.pedestal.name=Slate Pedestal
 tile.fcStoneMoulding.deepslate.table.name=Slate Table
 
-item.fcItemStone.deepslate.name=Loose Slate Rock
+item.fcItemStone.deepslate.name=Slate Rock
 item.fcItemBrickStone.deepslate.name=Slate Brick
 
 # Gabbro (vanilla blackstone)
@@ -430,5 +892,5 @@ tile.fcStoneMoulding.blackstone.column.name=Gabbro Column
 tile.fcStoneMoulding.blackstone.pedestal.name=Gabbro Pedestal
 tile.fcStoneMoulding.blackstone.table.name=Gabbro Table
 
-item.fcItemStone.blackstone.name=Loose Gabbro Rock
+item.fcItemStone.blackstone.name=Gabbro Rock
 item.fcItemBrickStone.blackstone.name=Gabbro Brick
