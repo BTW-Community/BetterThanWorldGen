@@ -245,7 +245,27 @@ tile.fcWoodJungleSiding.jungle.fence.name=Jungle Fence
 
 #------ Stone ------#
 
+# Limestone
+tile.btwg.limestone.name=Limestone
+tile.btwg.rough_limestone.name=Rough Limestone
+tile.btwg.limestone_slab.raw.name=Limestone Slab
+tile.btwg.limestone_stairs.name=Limestone Stairs
 
+tile.btwg.limestone.cobble.name=Cobbled Limestone
+tile.btwg.limestone_slab.cobble.name=Cobbled Limestone Slab
+tile.btwg.cobbled_limestone_stairs.name=Cobbled Limestone Stairs
+tile.btwg.loose_limestone.cobble.name=Loose Cobbled Limestone
+
+tile.btwg.limestone.polished.name=Polished Limestone
+tile.btwg.limestone_slab.polished.name=Polished Limestone Slab
+
+tile.btwg.limestone.bricks.name=Limestone Bricks
+tile.btwg.limestone.mossy_bricks.name=Mossy Limestone Bricks
+tile.btwg.limestone.cracked_bricks.name=Cracked Limestone Bricks
+tile.btwg.limestone.chiseled_bricks.name=Chiseled Limestone Bricks
+tile.btwg.limestone_slab.bricks.name=Limestone Brick Slab
+tile.btwg.limestone_brick_stairs.name=Limestone Brick Stairs
+tile.btwg.loose_limestone.bricks.name=Loose Limestone Bricks
 
 # Renamed BTW
 
