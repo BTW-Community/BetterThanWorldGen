@@ -32,7 +32,7 @@ public final class NoiseProvider {
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
     public static final int CHEESE_CAVE_SCALE_Y = 128;
 
-    public static final int SPAGHETTI_CAVE_SCALE_XZ = 240;
+    public static final int SPAGHETTI_CAVE_SCALE_XZ = 256;
     public static final int SPAGHETTI_CAVE_SCALE_Y = 96;
 
     public static final int NOODLE_CAVE_SCALE_XZ = 144;
@@ -40,7 +40,7 @@ public final class NoiseProvider {
 
     public static final int PILLAR_SCALE = 32;
 
-    public static final double SPAGHETTI_CAVE_RADIUS = 0.15;
+    public static final double SPAGHETTI_CAVE_RADIUS = 0.12;
     public static final double NOODLE_CAVE_RADIUS = 0.08;
 
     public static final double CAVE_THRESHOLD = -0.7;
@@ -72,7 +72,7 @@ public final class NoiseProvider {
         int totalDiff = SEA_LEVEL - MIN_THIRD_STRATA_HEIGHT;
 
         double secondStrataPortion = 2/3.;
-        double thirdStrataPortion = 1/3.;
+        double thirdStrataPortion = 1/4.;
 
         SECOND_STRATA_RATIO = (totalDiff * secondStrataPortion + MIN_THIRD_STRATA_HEIGHT) / SEA_LEVEL;
         THIRD_STRATA_RATIO = (totalDiff * thirdStrataPortion + MIN_THIRD_STRATA_HEIGHT) / SEA_LEVEL;
