@@ -7,11 +7,15 @@ import btw.crafting.recipe.RecipeManager;
 import btw.crafting.recipe.types.customcrafting.ConditionalRecipe;
 import btw.inventory.util.InventoryUtils;
 import btw.item.BTWItems;
+import btw.item.tag.BTWTags;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
+import btwg.api.block.StoneType;
 import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.WoodType;
 import net.minecraft.src.*;
+
+import java.util.Arrays;
 
 public class Recipes {
     public static void initRecipes() {
@@ -41,7 +45,7 @@ public class Recipes {
                 'X', Item.stick
         });
 
-        // Readd recipes with higher quanyities
+        // Readd recipes with higher quantities
         RecipeManager.addRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch, 4), new Object[]{
                 "#",
                 "X",
@@ -52,55 +56,53 @@ public class Recipes {
         ShapedRecipes crudeTorchRecipe = CraftingManager.getInstance().createRecipe(new ItemStack(BTWBlocks.finiteUnlitTorch, 4), new Object[]{
                 "#",
                 "X",
-                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                '#', TagInstance.of(BTWTags.coals),
                 'X', Item.stick
         });
 
         ShapedRecipes infiniteTorchFromCoalRecipe = CraftingManager.getInstance().createRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch, 4), new Object[]{
                 "#",
                 "X",
-                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                '#', TagInstance.of(BTWTags.coals),
                 'X', Item.stick
         });
 
         CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(crudeTorchRecipe, world -> !world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
         CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(infiniteTorchFromCoalRecipe, world -> world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
-
-        RecipeManager.addShapelessRecipe(new ItemStack(BTWBlocks.infiniteBurningTorch), new Object[]{new ItemStack(Block.torchWood)});
     }
 
     private static void initSoilRecipes() {
         RecipeManager.addPistonPackingRecipe(BTWGBlocks.earthenClay, new ItemStack(BTWGBlocks.looseEarthenClay));
-        RecipeManager.addPistonPackingRecipe(BTWGBlocks.earthenClay, new TagOrStack[]{
-                new ItemStack(BTWItems.dirtPile, 8),
-                new TagInstance(Tags.CLAY_BALLS, 1),
+        RecipeManager.addPistonPackingRecipe(BTWGBlocks.earthenClay, new TagOrStack[] {
+                new TagInstance(Tags.DIRT_PILES, 4),
+                TagInstance.of(Tags.CLAY_BALLS),
         });
-        RecipeManager.addShapelessRecipe(new ItemStack(BTWGBlocks.looseEarthenClay), new Object[]{
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
+        RecipeManager.addShapelessRecipe(new ItemStack(BTWGBlocks.looseEarthenClay), new Object[] {
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
                 Tags.CLAY_BALLS,
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
+                Tags.DIRT_PILES,
         });
 
         RecipeManager.addPistonPackingRecipe(BTWGBlocks.sandyDirt, new ItemStack(BTWGBlocks.looseSandyDirt));
-        RecipeManager.addPistonPackingRecipe(BTWGBlocks.sandyDirt, new ItemStack[]{
-                new ItemStack(BTWItems.dirtPile, 4),
-                new ItemStack(BTWItems.sandPile, 4)
+        RecipeManager.addPistonPackingRecipe(BTWGBlocks.sandyDirt, new TagOrStack[] {
+                new TagInstance(Tags.DIRT_PILES, 4),
+                new TagInstance(Tags.SAND_PILES, 4),
         });
-        RecipeManager.addShapelessRecipe(new ItemStack(BTWGBlocks.looseSandyDirt), new Object[]{
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.dirtPile),
-                new ItemStack(BTWItems.sandPile),
-                new ItemStack(BTWItems.sandPile),
-                new ItemStack(BTWItems.sandPile),
-                new ItemStack(BTWItems.sandPile),
+        RecipeManager.addShapelessRecipe(new ItemStack(BTWGBlocks.looseSandyDirt), new Object[] {
+                TagInstance.of(Tags.DIRT_PILES),
+                TagInstance.of(Tags.DIRT_PILES),
+                TagInstance.of(Tags.DIRT_PILES),
+                TagInstance.of(Tags.DIRT_PILES),
+                TagInstance.of(Tags.SAND_PILES),
+                TagInstance.of(Tags.SAND_PILES),
+                TagInstance.of(Tags.SAND_PILES),
+                TagInstance.of(Tags.SAND_PILES),
         });
     }
 
@@ -223,7 +225,7 @@ public class Recipes {
         });
 
         // Subblocks
-        addWoodSubBlockRecipesOfType(
+        initWoodSubBlockRecipesOfType(
                 woodType.plankID(),
                 woodType.plankMetadata(),
                 woodType.sidingAndCornerID(),
@@ -278,7 +280,7 @@ public class Recipes {
                 });
     }
 
-    public static void addWoodSubBlockRecipesOfType(int fullBlockID, int fullBlockMetadata, int sidingAndCornerBlockID, int mouldingBlockID) {
+    public static void initWoodSubBlockRecipesOfType(int fullBlockID, int fullBlockMetadata, int sidingAndCornerBlockID, int mouldingBlockID) {
         // Subblock recipes
         RecipeManager.addRecipe(new ItemStack(mouldingBlockID, 6, MouldingAndDecorativeBlock.SUBTYPE_PEDESTAL_UP), new Object[] {
                 " S ",
@@ -329,5 +331,17 @@ public class Recipes {
                 new ItemStack(sidingAndCornerBlockID, 1, 1),
                 new ItemStack(sidingAndCornerBlockID, 1, 1)
         });
+    }
+
+    private static void initStoneRecipes() {
+        Arrays.stream(StoneType.STONE_TYPES)
+                .filter(type -> type != StoneType.RHYOLITE
+                        && type != StoneType.SLATE
+                        && type != StoneType.GABBRO)
+                .forEach(Recipes::initStoneRecipesForType);
+    }
+
+    private static void initStoneRecipesForType(StoneType stoneType) {
+
     }
 }

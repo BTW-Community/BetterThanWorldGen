@@ -893,3 +893,10 @@ tile.fcStoneMoulding.blackstone.table.name=Gabbro Table
 
 item.fcItemStone.blackstone.name=Gabbro Rock
 item.fcItemBrickStone.blackstone.name=Gabbro Brick
+
+#------ Tags ------#
+
+tag.btwg.clay_balls=Clay Balls
+tag.btwg.dirt_piles=Regolith Piles
+tag.btwg.gravel_piles=Gravel Piles
+tag.btwg.sand_piles=Sand Piles

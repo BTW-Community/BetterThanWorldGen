@@ -2167,14 +2167,14 @@ public abstract class BTWGBlocks {
         register(redstoneOre, stoneTypeNames);
 
         lapisOre = new BTWGOreBlock(BTWGBlockIDs.LAPIS_ORE_ID,
-                2,
+                1,
                 Item.dyePowder.itemID, Color.BLUE.colorID,
                 "lapis",
                 stoneTypes)
                 .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreLapis).idDroppedOnConversion(difficulty, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreLapis).damageDroppedOnConversion(metadata))
                 .setQuantityDropped(rand -> Block.oreLapis.quantityDropped(rand));
-        register(redstoneOre, stoneTypeNames);
+        register(lapisOre, stoneTypeNames);
     }
 
     private static void register(Block block, String[] names) {
