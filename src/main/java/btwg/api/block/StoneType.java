@@ -95,7 +95,7 @@ public record StoneType(
     public static final Map<Integer, StoneType[]> STONE_TYPES_BY_STRATA = new HashMap<>();
     public static final int NUM_FIRST_STRATA = 6;
     public static final int NUM_SECOND_STRATA = 5;
-    public static final int NUM_THIRD_STRATA = 3;
+    public static final int NUM_THIRD_STRATA = 2;
 
     public static final StoneType[] STONE_TYPES = new StoneType[NUM_FIRST_STRATA + NUM_SECOND_STRATA + NUM_THIRD_STRATA];
 
@@ -123,7 +123,6 @@ public record StoneType(
     // Third Strata
     public static final int GABBRO_INDEX = 0;
     public static final int BASALT_INDEX = 1;
-    public static final int KIMBERLITE_INDEX = 2;
 
     public static int getTotalIndex(int index, int strata) {
         int idx;
@@ -498,64 +497,6 @@ public record StoneType(
 
             2,
             GABBRO_INDEX
-    );
-
-    public static final StoneType KIMBERLITE = new StoneType(
-            "kimberlite",
-
-            BTWGBlockIDs.KIMBERLITE_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, POLISHED_TYPE,
-            BTWGBlockIDs.KIMBERLITE_SLAB_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_STAIRS_ID,
-
-            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, COBBLESTONE_TYPE,
-            BTWGBlockIDs.KIMBERLITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
-            BTWGBlockIDs.COBBLED_KIMBERLITE_STAIRS_ID,
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, MOSSY_COBBLESTONE_TYPE,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_ID, COBBLESTONE_TYPE,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_SLAB_ID, COBBLESTONE_TYPE,
-            BTWGBlockIDs.LOOSE_COBBLED_KIMBERLITE_STAIRS_ID,
-
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, STONE_BRICK_TYPE,
-            BTWGBlockIDs.KIMBERLITE_SLAB_ID, (STONE_BRICK_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
-            BTWGBlockIDs.KIMBERLITE_BRICK_STAIRS_ID,
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, MOSSY_STONE_BRICK_TYPE,
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, CRACKED_STONE_BRICK_TYPE,
-            BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, CHISELED_STONE_BRICK_TYPE,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_ID, STONE_BRICK_TYPE << 1,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_SLAB_ID, STONE_BRICK_TYPE - LooseStoneDecorativeBlock.TYPE_OFFSET,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_BRICK_STAIRS_ID,
-
-            0, // TODO: Infested Stone
-            BTWGBlockIDs.ROUGH_KIMBERLITE_ID,
-
-            BTWGBlockIDs.KIMBERLITE_GRAVEL_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_GRAVEL_SLAB_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_REGOLITH_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_REGOLITH_SLAB_ID, 0,
-            BTWGBlockIDs.GRASSY_KIMBERLITE_REGOLITH_ID, 0,
-            BTWGBlockIDs.GRASSY_KIMBERLITE_REGOLITH_SLAB_ID, 0,
-            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_ID, 0,
-            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_SLAB_ID, 0,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_REGOLITH_ID, 0,
-            BTWGBlockIDs.LOOSE_KIMBERLITE_REGOLITH_SLAB_ID, 0,
-            BTWGBlockIDs.KIMBERLITE_REGOLITH_FARMLAND_ID, 0,
-
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_BTW_STRATA_3_OFFSET,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
-
-            2,
-            KIMBERLITE_INDEX
     );
 
     //------ Sedimentary ------//

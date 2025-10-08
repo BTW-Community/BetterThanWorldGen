@@ -204,35 +204,6 @@ public class BTWGBlockIDs {
     public static final int DIORITE_BRICK_SIDING_AND_CORNER_ID = 2266;
     public static final int DIORITE_BRICK_MOULDING_ID = 2267;
 
-    public static final int KIMBERLITE_ID = 2280;
-    public static final int ROUGH_KIMBERLITE_ID = 2281;
-    public static final int KIMBERLITE_DECORATIVE_ID = 2282;
-    public static final int KIMBERLITE_SLAB_ID = 2283;
-    public static final int COBBLED_KIMBERLITE_STAIRS_ID = 2284;
-    public static final int KIMBERLITE_BRICK_STAIRS_ID = 2285;
-    public static final int LOOSE_KIMBERLITE_ID = 2286;
-    public static final int LOOSE_KIMBERLITE_SLAB_ID = 2287;
-    public static final int LOOSE_COBBLED_KIMBERLITE_STAIRS_ID = 2288;
-    public static final int LOOSE_KIMBERLITE_BRICK_STAIRS_ID = 2289;
-    public static final int KIMBERLITE_REGOLITH_ID = 2290;
-    public static final int GRASSY_KIMBERLITE_REGOLITH_ID = 2291;
-    public static final int LOOSE_KIMBERLITE_REGOLITH_ID = 2292;
-    public static final int KIMBERLITE_REGOLITH_SLAB_ID = 2293;
-    public static final int GRASSY_KIMBERLITE_REGOLITH_SLAB_ID = 2294;
-    public static final int LOOSE_KIMBERLITE_REGOLITH_SLAB_ID = 2295;
-    public static final int KIMBERLITE_REGOLITH_FARMLAND_ID = 2296;
-    public static final int KIMBERLITE_STAIRS_ID = 2297;
-    public static final int KIMBERLITE_GRAVEL_ID = 2298;
-    public static final int KIMBERLITE_GRAVEL_SLAB_ID = 2299;
-    public static final int LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_ID = 2300;
-    public static final int LOOSE_SPARSE_GRASSY_KIMBERLITE_REGOLITH_SLAB_ID = 2301;
-    public static final int KIMBERLITE_SIDING_AND_CORNER_ID = 2302;
-    public static final int KIMBERLITE_MOULDING_ID = 2303;
-    public static final int COBBLED_KIMBERLITE_SIDING_AND_CORNER_ID = 2304;
-    public static final int COBBLED_KIMBERLITE_MOULDING_ID = 2305;
-    public static final int KIMBERLITE_BRICK_SIDING_AND_CORNER_ID = 2306;
-    public static final int KIMBERLITE_BRICK_MOULDING_ID = 2307;
-
     public static final int SCHIST_ID = 2320;
     public static final int ROUGH_SCHIST_ID = 2321;
     public static final int SCHIST_DECORATIVE_ID = 2322;
