@@ -107,17 +107,17 @@ public record StoneType(
 
     // First Strata
     public static final int RHYOLITE_INDEX = 0;
-    public static final int GRANITE_INDEX = 1;
-    public static final int DIORITE_INDEX = 2;
-    public static final int LIMESTONE_INDEX = 3;
-    public static final int CALCITE_INDEX = 4;
-    public static final int SHALE_INDEX = 5;
+    public static final int SHALE_INDEX = 1;
+    public static final int CALCITE_INDEX = 2;
+    public static final int DIORITE_INDEX = 3;
+    public static final int LIMESTONE_INDEX = 4;
+    public static final int GRANITE_INDEX = 5;
 
     // Second Strata
     public static final int SLATE_INDEX = 0;
-    public static final int TUFF_INDEX = 1;
+    public static final int PHYLLITE_INDEX = 1;
     public static final int ANDESITE_INDEX = 2;
-    public static final int PHYLLITE_INDEX = 3;
+    public static final int TUFF_INDEX = 3;
     public static final int SCHIST_INDEX = 4;
 
     // Third Strata
