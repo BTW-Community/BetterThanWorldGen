@@ -8,9 +8,9 @@ public record BiomeNoiseParameterTarget(
         BiomeNoiseVector target,
         BiPredicate<BiomeNoiseVector, Integer> validator
 ) {
-    private static final double TEMPERATURE_BIAS = 8;
-    private static final double HUMIDITY_BIAS = 2;
-    private static final double SEA_LEVEL_BIAS = 5;
+    private static final double TEMPERATURE_BIAS = 15;
+    private static final double HUMIDITY_BIAS = 3;
+    private static final double SEA_LEVEL_BIAS = 8;
 
     public static final BiPredicate<BiomeNoiseVector, Integer> DEFAULT_PREDICATE = (v, h) -> h >= NoiseProvider.SEA_LEVEL * 0.8;
     public static final BiPredicate<BiomeNoiseVector, Integer> DEFAULT_NON_SNOWY = (v, h) -> DEFAULT_PREDICATE.test(v, h) && v.temperature() > 0.2;

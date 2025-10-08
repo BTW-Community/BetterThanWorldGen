@@ -133,8 +133,8 @@ public class Surfacer {
     }
 
     public final int getSandstoneDepth(int x, int z) {
-        double sandstoneDepthScale = 1/32D;
-        return (int) (this.sandstoneDepthNoise.noise2(x, z, sandstoneDepthScale) * 2.5 + 2.5);
+        double sandstoneDepthScale = 1/256D;
+        return (int) (this.sandstoneDepthNoise.noise2(x, z, sandstoneDepthScale) * 4) + 9;
     }
 
     public static int index(int x, int y, int z, int yHeight) {

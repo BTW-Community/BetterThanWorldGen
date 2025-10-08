@@ -86,13 +86,13 @@ public final class NoiseProvider {
             new Key(-1.00, 50.0 / TOTAL_HEIGHT),
             new Key(-0.40, 85.0 / TOTAL_HEIGHT),
             new Key(-0.10, 95.0 / TOTAL_HEIGHT),
-            new Key(0.00, 105.0 / TOTAL_HEIGHT),
-            new Key(0.40, 110.0 / TOTAL_HEIGHT),
-            new Key(0.60, 130.0 / TOTAL_HEIGHT),
-            new Key(0.70, 140.0 / TOTAL_HEIGHT),
-            new Key(0.85, 160.0 / TOTAL_HEIGHT),
-            new Key(1.00, 190.0 / TOTAL_HEIGHT),
-            new Key(1.20, 220.0 / TOTAL_HEIGHT)
+            new Key(0.00, 100.0 / TOTAL_HEIGHT),
+            new Key(0.40, 105.0 / TOTAL_HEIGHT),
+            new Key(0.60, 115.0 / TOTAL_HEIGHT),
+            new Key(0.80, 125.0 / TOTAL_HEIGHT),
+            new Key(0.95, 140.0 / TOTAL_HEIGHT),
+            new Key(1.10, 160.0 / TOTAL_HEIGHT),
+            new Key(1.50, 210.0 / TOTAL_HEIGHT)
     );
 
     private static final Spline erosionToThickness = Spline.of(
