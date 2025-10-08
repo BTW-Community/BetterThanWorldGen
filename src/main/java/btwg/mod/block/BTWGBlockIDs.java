@@ -387,6 +387,13 @@ public class BTWGBlockIDs {
     public static final int LOOSE_EARTHEN_CLAY_ID = 3732;
     public static final int SANDY_DIRT_ID = 3733;
     public static final int LOOSE_SANDY_DIRT_ID = 3734;
+    public static final int COAL_ORE_ID = 3735;
+    public static final int IRON_ORE_ID = 3736;
+    public static final int GOLD_ORE_ID = 3737;
+    public static final int DIAMOND_ORE_ID = 3738;
+    public static final int EMERALD_ORE_ID = 3739;
+    public static final int REDSTONE_ORE_ID = 3740;
+    public static final int LAPIS_ORE_ID = 3741;
 
     public static final int DRY_GRASS_ID = 3750;
     public static final int GRASS_WITH_OVERLAY_ID = 3751;

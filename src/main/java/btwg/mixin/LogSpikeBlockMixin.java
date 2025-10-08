@@ -14,7 +14,7 @@ public abstract class LogSpikeBlockMixin extends Block {
         super(id, material);
     }
 
-    @Inject(method = "<init>", at = @At("TAIL"))
+    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
     public void modifyBoundingBox(int blockID, String sideTexture, String topTexture, CallbackInfo ci) {
         this.hideFromEMI();
     }

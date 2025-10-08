@@ -36,10 +36,10 @@ public abstract class LooseSparseGrassBlockMixin extends Block {
     @Inject(method = "registerIcons", at = @At("TAIL"))
     @Environment(value=EnvType.CLIENT)
     public void registerIcons(IconRegister register, CallbackInfo ci) {
-        this.blockIcon = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_grass_side");
-        this.iconSnowSide = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_grass_side_snowed");
-        this.iconGrassSideOverlay = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_grass_side_overlay");
-        this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_loose_grass_top_overlay");
-        this.iconDirtTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_loose_grass_top");
+        this.blockIcon = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_sparse_grass_side");
+        this.iconSnowSide = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_sparse_grass_side_snowed");
+        this.iconGrassSideOverlay = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_sparse_grass_side_overlay");
+        this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_sparse_grass_top_overlay");
+        this.iconDirtTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_sparse_grass_top");
     }
 }

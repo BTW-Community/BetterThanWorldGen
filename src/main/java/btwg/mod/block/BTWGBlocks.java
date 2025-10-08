@@ -2,7 +2,9 @@ package btwg.mod.block;
 
 import btw.block.BTWBlocks;
 import btw.block.blocks.*;
+import btw.item.BTWItems;
 import btw.item.blockitems.*;
+import btw.util.color.Color;
 import btwg.api.block.StoneType;
 import btwg.api.block.WoodType;
 import btwg.api.block.blocks.*;
@@ -13,6 +15,8 @@ import btwg.mod.BetterThanWorldGen;
 import btwg.mod.block.blocks.*;
 import btwg.mod.world.feature.tree.BTWGTreeGrowers;
 import net.minecraft.src.*;
+
+import java.util.Arrays;
 
 public abstract class BTWGBlocks {
     public static Block planks;
@@ -415,11 +419,21 @@ public abstract class BTWGBlocks {
     public static Block tuffGravelSlab;
     public static Block tuffRegolithFarmland;
 
+    public static Block coalOre;
+    public static Block ironOre;
+    public static Block goldOre;
+    public static Block diamondOre;
+    public static Block emeraldOre;
+    public static Block redstoneOre;
+    public static Block lapisOre;
+
+
     public static void initBlocks() {
         initSoils();
         initPlants();
         initWood();
         initStone();
+        initOre();
 
         Block.waterMoving.setLightOpacity(2);
         Block.waterStill.setLightOpacity(2);
@@ -463,7 +477,7 @@ public abstract class BTWGBlocks {
 
         tallDryGrass = new TallPlantBlock(BTWGBlockIDs.TALL_DRY_GRASS_ID, "tall_dry_grass",
                 new String[] {
-                        "btwg.tall_dry_grass"
+                        "tall_dry_grass"
                 },
                 false,
                 "plant")
@@ -1998,6 +2012,83 @@ public abstract class BTWGBlocks {
 
         tuffGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.TUFF_GRAVEL_SLAB_ID, StoneType.TUFF);
         register(new SlabBlockItem(tuffGravelSlab.blockID - 256));
+    }
+
+    private static void initOre() {
+        StoneType[] stoneTypes = Arrays.stream(StoneType.STONE_TYPES)
+                .filter(stoneType -> stoneType != StoneType.RHYOLITE
+                                && stoneType != StoneType.SLATE
+                                && stoneType != StoneType.GABBRO)
+                .toArray(StoneType[]::new);
+
+        String[] stoneTypeNames = Arrays.stream(StoneType.STONE_TYPES)
+                .map(StoneType::name)
+                .toArray(String[]::new);
+
+        coalOre = new BTWGOreBlock(BTWGBlockIDs.COAL_ORE_ID,
+                0,
+                Item.coal.itemID, 0,
+                "coal",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreCoal).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreCoal).damageDroppedOnConversion(metadata));
+        register(coalOre, stoneTypeNames);
+
+        ironOre = new BTWGOreBlock(BTWGBlockIDs.IRON_ORE_ID,
+                1,
+                BTWItems.ironOreChunk.itemID, 0,
+                "iron",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreIron).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreIron).damageDroppedOnConversion(metadata));
+        register(ironOre, stoneTypeNames);
+
+        goldOre = new BTWGOreBlock(BTWGBlockIDs.GOLD_ORE_ID,
+                2,
+                BTWItems.goldOreChunk.itemID, 0,
+                "gold",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreGold).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreGold).damageDroppedOnConversion(metadata));
+        register(goldOre, stoneTypeNames);
+
+        diamondOre = new BTWGOreBlock(BTWGBlockIDs.DIAMOND_ORE_ID,
+                2,
+                Item.diamond.itemID, 0,
+                "diamond",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreDiamond).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreDiamond).damageDroppedOnConversion(metadata));
+        register(diamondOre, stoneTypeNames);
+
+        emeraldOre = new BTWGOreBlock(BTWGBlockIDs.EMERALD_ORE_ID,
+                2,
+                Item.emerald.itemID, 0,
+                "emerald",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreEmerald).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreEmerald).damageDroppedOnConversion(metadata));
+        register(emeraldOre, stoneTypeNames);
+
+        redstoneOre = new BTWGOreBlock(BTWGBlockIDs.REDSTONE_ORE_ID,
+                2,
+                Item.redstone.itemID, 0,
+                "redstone",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreRedstone).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreRedstone).damageDroppedOnConversion(metadata))
+                .setQuantityDropped(rand -> Block.oreRedstone.quantityDropped(rand));
+        register(redstoneOre, stoneTypeNames);
+
+        lapisOre = new BTWGOreBlock(BTWGBlockIDs.LAPIS_ORE_ID,
+                2,
+                Item.dyePowder.itemID, Color.BLUE.colorID,
+                "lapis",
+                stoneTypes)
+                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreLapis).idDroppedOnConversion(difficulty, metadata))
+                .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreLapis).damageDroppedOnConversion(metadata))
+                .setQuantityDropped(rand -> Block.oreLapis.quantityDropped(rand));
+        register(redstoneOre, stoneTypeNames);
     }
 
     private static void register(Block block, String[] names) {

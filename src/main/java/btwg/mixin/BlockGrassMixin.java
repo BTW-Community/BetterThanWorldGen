@@ -53,7 +53,7 @@ public abstract class BlockGrassMixin extends Block {
         this.iconGrassTop = register.registerIcon(this.getTextureName() + "_top");
         this.iconSnowSide = register.registerIcon(this.getTextureName() + "_side_snowed");
         this.iconGrassSideOverlay = register.registerIcon(this.getTextureName() + "_side_overlay");
-        this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_grass_top_overlay");
-        this.iconGrassTopSparseDirt = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/sparse_grass_top");
+        this.iconGrassTopSparse = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/grass_sparse_top_overlay");
+        this.iconGrassTopSparseDirt = register.registerIcon(BetterThanWorldGen.MODID + ":stone/rhyolite/grass_sparse_top");
     }
 }

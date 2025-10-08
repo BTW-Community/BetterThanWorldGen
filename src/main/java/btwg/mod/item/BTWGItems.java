@@ -11,6 +11,8 @@ import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 
+import java.util.Arrays;
+
 import static net.minecraft.src.Item.*;
 
 public class BTWGItems {
@@ -58,73 +60,33 @@ public class BTWGItems {
                 }))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME);
 
-        rock = ((ItemInterface) new MultiItem(BTWGItemIDs.ROCK_ID, "rock",
-                new String[] {
-                        StoneType.LIMESTONE.name(),
-                        StoneType.ANDESITE.name(),
-                        StoneType.BASALT.name(),
-                        StoneType.CALCITE.name(),
-                        StoneType.DIORITE.name(),
-                        StoneType.GRANITE.name(),
-                        StoneType.KIMBERLITE.name(),
-                        StoneType.PHYLLITE.name(),
-                        StoneType.SCHIST.name(),
-                        StoneType.SHALE.name(),
-                        StoneType.TUFF.name(),
-                }))
+        String[] rockStoneTypes = Arrays.stream(StoneType.STONE_TYPES)
+                .filter(stoneType -> stoneType != StoneType.RHYOLITE
+                        && stoneType != StoneType.SLATE
+                        && stoneType != StoneType.GABBRO)
+                .map(StoneType::name)
+                .toArray(String[]::new);
+
+        rock = ((ItemInterface) new MultiItem(BTWGItemIDs.ROCK_ID, "rock", rockStoneTypes))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_SMALL)
                 .setCreativeTab(CreativeTabs.tabMaterials);
 
-        stoneBrick = ((ItemInterface) new MultiItem(BTWGItemIDs.STONE_BRICK_ID, "brick",
-                new String[] {
-                        StoneType.LIMESTONE.name(),
-                        StoneType.ANDESITE.name(),
-                        StoneType.BASALT.name(),
-                        StoneType.CALCITE.name(),
-                        StoneType.DIORITE.name(),
-                        StoneType.GRANITE.name(),
-                        StoneType.KIMBERLITE.name(),
-                        StoneType.PHYLLITE.name(),
-                        StoneType.SCHIST.name(),
-                        StoneType.SHALE.name(),
-                        StoneType.TUFF.name(),
-                }))
+        stoneBrick = ((ItemInterface) new MultiItem(BTWGItemIDs.STONE_BRICK_ID, "brick", rockStoneTypes))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setCreativeTab(CreativeTabs.tabMaterials);
 
-        dirtPile = ((ItemInterface) new MultiItem(BTWGItemIDs.DIRT_PILE_ID, "regolith_pile",
-                new String[] {
-                        StoneType.LIMESTONE.name(),
-                        StoneType.ANDESITE.name(),
-                        StoneType.BASALT.name(),
-                        StoneType.CALCITE.name(),
-                        StoneType.DIORITE.name(),
-                        StoneType.GRANITE.name(),
-                        StoneType.KIMBERLITE.name(),
-                        StoneType.PHYLLITE.name(),
-                        StoneType.SCHIST.name(),
-                        StoneType.SHALE.name(),
-                        StoneType.TUFF.name(),
-                }))
+        String[] soilStoneTypes = Arrays.stream(StoneType.STONE_TYPES)
+                .filter(stoneType -> stoneType != StoneType.RHYOLITE)
+                .map(StoneType::name)
+                .toArray(String[]::new);
+
+        dirtPile = ((ItemInterface) new MultiItem(BTWGItemIDs.DIRT_PILE_ID, "regolith_pile", soilStoneTypes))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_FINE)
                 .setCreativeTab(CreativeTabs.tabMaterials);
 
-        gravelPile = ((ItemInterface) new MultiItem(BTWGItemIDs.GRAVEL_PILE_ID, "gravel_pile",
-                new String[] {
-                        StoneType.LIMESTONE.name(),
-                        StoneType.ANDESITE.name(),
-                        StoneType.BASALT.name(),
-                        StoneType.CALCITE.name(),
-                        StoneType.DIORITE.name(),
-                        StoneType.GRANITE.name(),
-                        StoneType.KIMBERLITE.name(),
-                        StoneType.PHYLLITE.name(),
-                        StoneType.SCHIST.name(),
-                        StoneType.SHALE.name(),
-                        StoneType.TUFF.name(),
-                }))
+        gravelPile = ((ItemInterface) new MultiItem(BTWGItemIDs.GRAVEL_PILE_ID, "gravel_pile", soilStoneTypes))
                 .btwg$setModNamespace(BetterThanWorldGen.NAME)
                 .setFilterableProperties(FILTERABLE_FINE)
                 .setCreativeTab(CreativeTabs.tabMaterials);
