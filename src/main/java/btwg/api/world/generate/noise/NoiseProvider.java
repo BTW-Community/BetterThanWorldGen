@@ -169,6 +169,13 @@ public final class NoiseProvider {
 
     private double[] stoneTypes;
 
+    private double[] cheeseNoise;
+    private double[] spaghettiNoise1;
+    private double[] spaghettiNoise2;
+    private double[] noodleNoise1;
+    private double[] noodleNoise2;
+    private double[] pillarNoise;
+
     private double[] finalTerrainNoise;
     private double[] finalCaveNoise;
     private StoneType[] finalStoneTypes;
@@ -392,9 +399,6 @@ public final class NoiseProvider {
             this.finalCaveNoise = new double[16 * 16 * TOTAL_HEIGHT];
         }
 
-        int baseX = chunkX * 16;
-        int baseZ = chunkZ * 16;
-
         for (int i = 0; i < 16; i++) {
             for (int k = 0; k < 16; k++) {
                 int colIdx = idx(i, k, 16);
@@ -402,9 +406,6 @@ public final class NoiseProvider {
 
                 for (int j = 0; j < TOTAL_HEIGHT; j++) {
                     int idx = idx(i, j, k, TOTAL_HEIGHT, 16);
-
-                    int worldX = baseX + i;
-                    int worldZ = baseZ + k;
 
                     // Calculate depth from surface for cave density modulation
                     double depthFromSurface = surfaceHeight - j;
@@ -416,7 +417,7 @@ public final class NoiseProvider {
                     }
 
                     // Calculate cave density
-                    double caveDensity = calculateCaveDensity(worldX, j, worldZ, depthFromSurface);
+                    double caveDensity = calculateCaveDensity(i, j, k, depthFromSurface);
 
                     this.finalCaveNoise[idx] = caveDensity;
                 }
@@ -427,25 +428,24 @@ public final class NoiseProvider {
     }
 
     private double calculateCaveDensity(int x, int y, int z, double depthFromSurface) {
+        int colIdx = idx(x, z, 16);
+        int idx = idx(x, y, z, TOTAL_HEIGHT, 16);
+
         // Cheese caves (large caverns)
-        double cheese = cheeseCaveGenerator.noise3(x, y, z, 1.0 / CHEESE_CAVE_SCALE_XZ, 1.0 / CHEESE_CAVE_SCALE_Y);
+        double cheese = this.cheeseNoise[idx];
 
         // Fade out cheese near surface
         double surfaceFade = smoothstep(8, 20, depthFromSurface);
         cheese = lerp(1.0, cheese, surfaceFade);
 
         // Pillar caves (vertical columns)
-        double pillarNoise = pillarGenerator.noise2(x, z, 1.0 / PILLAR_SCALE);
-        cheese += pillarSpline.eval(pillarNoise);
+        double pillars = this.pillarNoise[colIdx];
+        cheese += pillarSpline.eval(pillars);
 
         // Spaghetti caves (winding tunnels)
         // Use two noise functions to create tubular structures
-        double spaghetti1 = spaghettiCave1Generator.noise3(
-                x, y * 0.75, z, 1.0 / SPAGHETTI_CAVE_SCALE_XZ, 1.0 / SPAGHETTI_CAVE_SCALE_Y
-        );
-        double spaghetti2 = spaghettiCave2Generator.noise3(
-                x, y * 0.75, z, 1.0 / SPAGHETTI_CAVE_SCALE_XZ, 1.0 / SPAGHETTI_CAVE_SCALE_Y
-        );
+        double spaghetti1 = this.spaghettiNoise1[idx];
+        double spaghetti2 = this.spaghettiNoise2[idx];
 
         // Combine to create tubes
         double spaghettiDist = Math.sqrt(spaghetti1 * spaghetti1 + spaghetti2 * spaghetti2);
@@ -456,8 +456,8 @@ public final class NoiseProvider {
         }
 
         // Noodle caves (thin, vertical tunnels)
-        double noodle1 = noodleCave1Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE_XZ, 1.0 / NOODLE_CAVE_SCALE_Y);
-        double noodle2 = noodleCave2Generator.noise3(x, y, z, 1.0 / NOODLE_CAVE_SCALE_XZ, 1.0 / NOODLE_CAVE_SCALE_Y);
+        double noodle1 = this.noodleNoise1[idx];
+        double noodle2 = this.noodleNoise2[idx];
 
         double noodleDist = Math.sqrt(noodle1 * noodle1 + noodle2 * noodle2);
         double noodleDensity = 1.0;
@@ -506,6 +506,13 @@ public final class NoiseProvider {
         this.temperature = getNoise2D(this.temperatureGenerator, this.temperature, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
         this.humidity = getNoise2D(this.humidityGenerator, this.humidity, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
 
+        this.cheeseNoise = this.getNoise3D(this.cheeseCaveGenerator, this.cheeseNoise, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, CHEESE_CAVE_SCALE_XZ, CHEESE_CAVE_SCALE_Y);
+        this.spaghettiNoise1 = this.getNoise3D(this.spaghettiCave1Generator, this.spaghettiNoise1, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, SPAGHETTI_CAVE_SCALE_XZ, SPAGHETTI_CAVE_SCALE_Y);
+        this.spaghettiNoise2 = this.getNoise3D(this.spaghettiCave2Generator, this.spaghettiNoise2, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, SPAGHETTI_CAVE_SCALE_XZ, SPAGHETTI_CAVE_SCALE_Y);
+        this.noodleNoise1 = this.getNoise3D(this.noodleCave1Generator, this.noodleNoise1, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, NOODLE_CAVE_SCALE_XZ, NOODLE_CAVE_SCALE_Y);
+        this.noodleNoise2 = this.getNoise3D(this.noodleCave2Generator, this.noodleNoise2, chunkX, 0, chunkZ, 16, TOTAL_HEIGHT, 16, NOODLE_CAVE_SCALE_XZ, NOODLE_CAVE_SCALE_Y);
+        this.pillarNoise = this.getNoise2D(this.pillarGenerator, this.pillarNoise, chunkX, chunkZ, 16, 16, 1, 1, PILLAR_SCALE);
+
         this.lastChunkX = chunkX;
         this.lastChunkZ = chunkZ;
     }
@@ -540,6 +547,26 @@ public final class NoiseProvider {
             for (int k = 0; k < sizeZ; ++k) {
                 for (int j = 0; j < sizeY; ++j) {
                     double noise = generator.noise3(x + i, y + j, z + k, 1D / scale);
+                    noiseArray[idx(i, j, k, sizeY, sizeZ)] = noise;
+                }
+            }
+        }
+
+        return noiseArray;
+    }
+
+    private double[] getNoise3D(OpenSimplexOctavesFast generator, double[] noiseArray, int chunkX, int y, int chunkZ, int sizeX, int sizeY, int sizeZ, int scaleXZ, int scaleY) {
+        if  (noiseArray == null || noiseArray.length < sizeX * sizeY * sizeZ) {
+            noiseArray = new double[sizeX * sizeY * sizeZ];
+        }
+
+        int x = chunkX * 16;
+        int z = chunkZ * 16;
+
+        for (int i = 0; i < sizeX; ++i) {
+            for (int k = 0; k < sizeZ; ++k) {
+                for (int j = 0; j < sizeY; ++j) {
+                    double noise = generator.noise3(x + i, y + j, z + k, 1D / scaleXZ, 1D / scaleY);
                     noiseArray[idx(i, j, k, sizeY, sizeZ)] = noise;
                 }
             }
