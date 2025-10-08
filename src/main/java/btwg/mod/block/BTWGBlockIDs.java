@@ -319,6 +319,30 @@ public class BTWGBlockIDs {
     public static final int COBBLED_TUFF_MOULDING_ID = 2425;
     public static final int TUFF_BRICK_SIDING_AND_CORNER_ID = 2426;
     public static final int TUFF_BRICK_MOULDING_ID = 2427;
+    
+    public static final int SLATE_REGOLITH_ID = 2440;
+    public static final int SLATE_REGOLITH_SLAB_ID = 2441;
+    public static final int GRASSY_SLATE_REGOLITH_ID = 2442;
+    public static final int GRASSY_SLATE_REGOLITH_SLAB_ID = 2443;
+    public static final int LOOSE_SLATE_REGOLITH_ID = 2444;
+    public static final int LOOSE_SLATE_REGOLITH_SLAB_ID = 2445;
+    public static final int SLATE_REGOLITH_FARMLAND_ID = 2446;
+    public static final int SLATE_GRAVEL_ID = 2447;
+    public static final int SLATE_GRAVEL_SLAB_ID = 2448;
+    public static final int LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_ID = 2449;
+    public static final int LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_SLAB_ID = 2450;
+
+    public static final int GABBRO_REGOLITH_ID = 2460;
+    public static final int GABBRO_REGOLITH_SLAB_ID = 2461;
+    public static final int GRASSY_GABBRO_REGOLITH_ID = 2462;
+    public static final int GRASSY_GABBRO_REGOLITH_SLAB_ID = 2463;
+    public static final int LOOSE_GABBRO_REGOLITH_ID = 2464;
+    public static final int LOOSE_GABBRO_REGOLITH_SLAB_ID = 2465;
+    public static final int GABBRO_REGOLITH_FARMLAND_ID = 2466;
+    public static final int GABBRO_GRAVEL_ID = 2467;
+    public static final int GABBRO_GRAVEL_SLAB_ID = 2468;
+    public static final int LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_ID = 2469;
+    public static final int LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_SLAB_ID = 2470;
 
 
 

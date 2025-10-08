@@ -18,6 +18,14 @@ public record StoneType(
         int polishedID, int polishedMetadata,
         int stoneSlabID, int stoneSlabMetadata,
         int stoneStairsID,
+
+        int coalOreID, int coalOreMetadata,
+        int ironOreID, int ironOreMetadata,
+        int goldOreID, int goldOreMetadata,
+        int diamondOreID, int diamondOreMetadata,
+        int emeraldOreID, int emeraldOreMetadata,
+        int redstoneOreID, int redstoneOreMetadata,
+        int lapisOreID, int lapisOreMetadata,
         
         int cobblestoneID, int cobblestoneMetadata,
         int cobblestoneSlabID, int cobblestoneSlabMetadata,
@@ -63,6 +71,15 @@ public record StoneType(
     public StoneType {
         STONE_TYPES_BY_STRATA.get(strata)[index] = this;
         STONE_TYPES[this.getTotalIndex(index, strata)] = this;
+    }
+
+    public static Optional<StoneType> getStoneType(int stoneID, int stoneMetadata) {
+        for (StoneType stoneType : STONE_TYPES) {
+            if (stoneType.stoneID() == stoneID && stoneType.stoneMetadata() == stoneMetadata) {
+                return Optional.of(stoneType);
+            }
+        }
+        return Optional.empty();
     }
 
     public static final int COBBLESTONE_TYPE = 0;
@@ -122,6 +139,11 @@ public record StoneType(
         return idx;
     }
 
+    public static final int NON_VANILLA_OFFSET = 1;
+    public static final int NON_BTW_STRATA_1_OFFSET = 1;
+    public static final int NON_BTW_STRATA_2_OFFSET = 2;
+    public static final int NON_BTW_STRATA_3_OFFSET = 3;
+
     //------ Igneous Extrusive ------//
 
     // Vanilla stone
@@ -133,6 +155,14 @@ public record StoneType(
             0, 0,
             BTWBlocks.stoneSlab.blockID, 0,
             BTWBlocks.stoneStairs.blockID,
+
+            Block.oreCoal.blockID, 0,
+            Block.oreIron.blockID, 0,
+            Block.oreGold.blockID, 0,
+            Block.oreDiamond.blockID, 0,
+            Block.oreEmerald.blockID, 0,
+            Block.oreRedstone.blockID, 0,
+            Block.oreLapis.blockID, 0,
 
             Block.cobblestone.blockID, 0,
             BTWBlocks.cobblestoneSlab.blockID, 0,
@@ -184,6 +214,14 @@ public record StoneType(
             BTWGBlockIDs.ANDESITE_SLAB_ID, 0,
             BTWGBlockIDs.ANDESITE_STAIRS_ID,
 
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+
             BTWGBlockIDs.ANDESITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.ANDESITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
             BTWGBlockIDs.COBBLED_ANDESITE_STAIRS_ID,
@@ -217,10 +255,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_ANDESITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.ANDESITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - 2,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - 2,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(ANDESITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             1,
             ANDESITE_INDEX
@@ -233,6 +271,14 @@ public record StoneType(
             BTWGBlockIDs.GRANITE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.GRANITE_SLAB_ID, 0,
             BTWGBlockIDs.GRANITE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(GRANITE_INDEX, 0) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.GRANITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.GRANITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -267,10 +313,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_GRANITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.GRANITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - 1,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(GRANITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             0,
             GRANITE_INDEX
@@ -283,6 +329,14 @@ public record StoneType(
             BTWGBlockIDs.BASALT_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.BASALT_SLAB_ID, 0,
             BTWGBlockIDs.BASALT_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(BASALT_INDEX, 2) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.BASALT_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.BASALT_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -317,10 +371,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_BASALT_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.BASALT_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(BASALT_INDEX, 1) - 3,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(BASALT_INDEX, 1) - 3,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(BASALT_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(BASALT_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(BASALT_INDEX, 1) - NON_BTW_STRATA_3_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(BASALT_INDEX, 1) - NON_BTW_STRATA_3_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(BASALT_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(BASALT_INDEX, 1) - NON_VANILLA_OFFSET,
 
             2,
             BASALT_INDEX
@@ -335,6 +389,14 @@ public record StoneType(
             BTWGBlockIDs.DIORITE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.DIORITE_SLAB_ID, 0,
             BTWGBlockIDs.DIORITE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(DIORITE_INDEX, 0) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.DIORITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.DIORITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -369,10 +431,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_DIORITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.DIORITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - 1,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(DIORITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             0,
             DIORITE_INDEX
@@ -387,6 +449,14 @@ public record StoneType(
             0, 0,
             BTWBlocks.stoneSlab.blockID, 2,
             BTWBlocks.deepStrataStoneStairs.blockID,
+
+            Block.oreCoal.blockID, 2,
+            Block.oreIron.blockID, 2,
+            Block.oreGold.blockID, 2,
+            Block.oreDiamond.blockID, 2,
+            Block.oreEmerald.blockID, 2,
+            Block.oreRedstone.blockID, 2,
+            Block.oreLapis.blockID, 2,
 
             Block.cobblestone.blockID, 2,
             BTWBlocks.cobblestoneSlab.blockID, 8,
@@ -409,22 +479,22 @@ public record StoneType(
             BTWBlocks.infestedDeepStrataStone.blockID,
             BTWBlocks.deepStrataRoughStone.blockID,
 
-            Block.gravel.blockID, 0,
-            BTWBlocks.sandAndGravelSlab.blockID, SandAndGravelSlabBlock.SUBTYPE_GRAVEL,
-            Block.dirt.blockID, 0,
-            BTWBlocks.dirtSlab.blockID, 0,
-            Block.grass.blockID, 0,
-            BTWBlocks.grassSlab.blockID, 0,
-            BTWBlocks.looseSparseGrass.blockID, 0,
-            BTWBlocks.looseSparseGrassSlab.blockID, 0,
-            BTWBlocks.looseDirt.blockID, 0,
-            BTWBlocks.looseDirtSlab.blockID, 0,
-            BTWBlocks.farmland.blockID, 0,
+            BTWGBlockIDs.GABBRO_GRAVEL_ID, 0,
+            BTWGBlockIDs.GABBRO_GRAVEL_SLAB_ID, 0,
+            BTWGBlockIDs.GABBRO_REGOLITH_ID, 0,
+            BTWGBlockIDs.GABBRO_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.GRASSY_GABBRO_REGOLITH_ID, 0,
+            BTWGBlockIDs.GRASSY_GABBRO_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_ID, 0,
+            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.LOOSE_GABBRO_REGOLITH_ID, 0,
+            BTWGBlockIDs.LOOSE_GABBRO_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.GABBRO_REGOLITH_FARMLAND_ID, 0,
 
             BTWItems.stone.itemID, 2,
             BTWItems.stoneBrick.itemID, 2,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(GABBRO_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(GABBRO_INDEX, 1) - 1,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(GABBRO_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(GABBRO_INDEX, 1) - NON_VANILLA_OFFSET,
 
             2,
             GABBRO_INDEX
@@ -437,6 +507,14 @@ public record StoneType(
             BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.KIMBERLITE_SLAB_ID, 0,
             BTWGBlockIDs.KIMBERLITE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(KIMBERLITE_INDEX, 2) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.KIMBERLITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.KIMBERLITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -471,10 +549,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_KIMBERLITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.KIMBERLITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - 3,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - 3,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - NON_BTW_STRATA_3_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - NON_BTW_STRATA_3_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(KIMBERLITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             2,
             KIMBERLITE_INDEX
@@ -489,6 +567,14 @@ public record StoneType(
             BTWGBlockIDs.LIMESTONE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.LIMESTONE_SLAB_ID, 0,
             BTWGBlockIDs.LIMESTONE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(LIMESTONE_INDEX, 0) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.LIMESTONE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.LIMESTONE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -523,10 +609,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_LIMESTONE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.LIMESTONE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - 1,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(LIMESTONE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             0,
             LIMESTONE_INDEX
@@ -539,6 +625,14 @@ public record StoneType(
             BTWGBlockIDs.CALCITE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.CALCITE_SLAB_ID, 0,
             BTWGBlockIDs.CALCITE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(CALCITE_INDEX, 0) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.CALCITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.CALCITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -573,10 +667,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_CALCITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.CALCITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - 1,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(CALCITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             0,
             CALCITE_INDEX
@@ -589,6 +683,14 @@ public record StoneType(
             BTWGBlockIDs.TUFF_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.TUFF_SLAB_ID, 0,
             BTWGBlockIDs.TUFF_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.TUFF_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.TUFF_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -623,10 +725,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_TUFF_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.TUFF_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(TUFF_INDEX, 1) - 2,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(TUFF_INDEX, 1) - 2,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(TUFF_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(TUFF_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(TUFF_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(TUFF_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(TUFF_INDEX, 1) - NON_VANILLA_OFFSET,
 
             1,
             TUFF_INDEX
@@ -641,6 +743,14 @@ public record StoneType(
             BTWGBlockIDs.SHALE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.SHALE_SLAB_ID, 0,
             BTWGBlockIDs.SHALE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(SHALE_INDEX, 0) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.SHALE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.SHALE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -675,10 +785,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_SHALE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.SHALE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(SHALE_INDEX, 1) - 1,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(SHALE_INDEX, 1) - 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SHALE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SHALE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(SHALE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(SHALE_INDEX, 1) - NON_BTW_STRATA_1_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SHALE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SHALE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             0,
             SHALE_INDEX
@@ -693,6 +803,14 @@ public record StoneType(
             0, 0,
             BTWBlocks.stoneSlab.blockID, 1,
             BTWBlocks.midStrataStoneStairs.blockID,
+
+            Block.oreCoal.blockID, 1,
+            Block.oreIron.blockID, 1,
+            Block.oreGold.blockID, 1,
+            Block.oreDiamond.blockID, 1,
+            Block.oreEmerald.blockID, 1,
+            Block.oreRedstone.blockID, 1,
+            Block.oreLapis.blockID, 1,
 
             Block.cobblestone.blockID, 1,
             BTWBlocks.cobblestoneSlab.blockID, 4,
@@ -715,22 +833,22 @@ public record StoneType(
             BTWBlocks.infestedMidStrataStone.blockID,
             BTWBlocks.midStrataRoughStone.blockID,
 
-            Block.gravel.blockID, 0,
-            BTWBlocks.sandAndGravelSlab.blockID, SandAndGravelSlabBlock.SUBTYPE_GRAVEL,
-            Block.dirt.blockID, 0,
-            BTWBlocks.dirtSlab.blockID, 0,
-            Block.grass.blockID, 0,
-            BTWBlocks.grassSlab.blockID, 0,
-            BTWBlocks.looseSparseGrass.blockID, 0,
-            BTWBlocks.looseSparseGrassSlab.blockID, 0,
-            BTWBlocks.looseDirt.blockID, 0,
-            BTWBlocks.looseDirtSlab.blockID, 0,
-            BTWBlocks.farmland.blockID, 0,
+            BTWGBlockIDs.SLATE_GRAVEL_ID, 0,
+            BTWGBlockIDs.SLATE_GRAVEL_SLAB_ID, 0,
+            BTWGBlockIDs.SLATE_REGOLITH_ID, 0,
+            BTWGBlockIDs.SLATE_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.GRASSY_SLATE_REGOLITH_ID, 0,
+            BTWGBlockIDs.GRASSY_SLATE_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_ID, 0,
+            BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.LOOSE_SLATE_REGOLITH_ID, 0,
+            BTWGBlockIDs.LOOSE_SLATE_REGOLITH_SLAB_ID, 0,
+            BTWGBlockIDs.SLATE_REGOLITH_FARMLAND_ID, 0,
 
             BTWItems.stone.itemID, 1,
             BTWItems.stoneBrick.itemID, 1,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SLATE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SLATE_INDEX, 1) - 1,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SLATE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SLATE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             1,
             SLATE_INDEX
@@ -743,6 +861,14 @@ public record StoneType(
             BTWGBlockIDs.PHYLLITE_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.PHYLLITE_SLAB_ID, 0,
             BTWGBlockIDs.PHYLLITE_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.PHYLLITE_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.PHYLLITE_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -777,10 +903,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_PHYLLITE_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.PHYLLITE_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - 2,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - 2,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(PHYLLITE_INDEX, 1) - NON_VANILLA_OFFSET,
 
             1,
             PHYLLITE_INDEX
@@ -793,6 +919,14 @@ public record StoneType(
             BTWGBlockIDs.SCHIST_DECORATIVE_ID, POLISHED_TYPE,
             BTWGBlockIDs.SCHIST_SLAB_ID, 0,
             BTWGBlockIDs.SCHIST_STAIRS_ID,
+
+            BTWGBlockIDs.COAL_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.IRON_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.GOLD_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.DIAMOND_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.EMERALD_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.REDSTONE_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGBlockIDs.LAPIS_ORE_ID, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
 
             BTWGBlockIDs.SCHIST_DECORATIVE_ID, COBBLESTONE_TYPE,
             BTWGBlockIDs.SCHIST_SLAB_ID, (COBBLESTONE_TYPE + BTWGStoneSlabBlock.TYPE_OFFSET) << 1,
@@ -827,10 +961,10 @@ public record StoneType(
             BTWGBlockIDs.LOOSE_SCHIST_REGOLITH_SLAB_ID, 0,
             BTWGBlockIDs.SCHIST_REGOLITH_FARMLAND_ID, 0,
 
-            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - 2,
-            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - 2,
-            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - 1,
-            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - 1,
+            BTWGItemIDs.ROCK_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.STONE_BRICK_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - NON_BTW_STRATA_2_OFFSET,
+            BTWGItemIDs.GRAVEL_PILE_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
+            BTWGItemIDs.DIRT_PILE_ID + 256, getTotalIndex(SCHIST_INDEX, 1) - NON_VANILLA_OFFSET,
 
             1,
             SCHIST_INDEX

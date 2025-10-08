@@ -100,6 +100,28 @@ public abstract class BTWGBlocks {
     public static Block tallGrassWithOverlay;
     public static Block glowWorms;
 
+    public static Block slateRegolith;
+    public static Block slateRegolithSlab;
+    public static Block looseSlateRegolith;
+    public static Block looseSlateRegolithSlab;
+    public static Block grassySlateRegolith;
+    public static Block grassySlateRegolithSlab;
+    public static Block looseSparseGrassySlateRegolith;
+    public static Block looseSparseGrassySlateRegolithSlab;
+    public static Block slateGravel;
+    public static Block slateGravelSlab;
+
+    public static Block gabbroRegolith;
+    public static Block gabbroRegolithSlab;
+    public static Block looseGabbroRegolith;
+    public static Block looseGabbroRegolithSlab;
+    public static Block grassyGabbroRegolith;
+    public static Block grassyGabbroRegolithSlab;
+    public static Block looseSparseGrassyGabbroRegolith;
+    public static Block looseSparseGrassyGabbroRegolithSlab;
+    public static Block gabbroGravel;
+    public static Block gabbroGravelSlab;
+
     public static Block limestone;
     public static Block roughLimestone;
     public static Block limestoneStairs;
@@ -912,6 +934,70 @@ public abstract class BTWGBlocks {
     }
 
     private static void initStone() {
+
+        //------ Slate ------//
+        
+        slateRegolith = new RegolithBlock(BTWGBlockIDs.SLATE_REGOLITH_ID, StoneType.SLATE);
+        register(slateRegolith);
+
+        slateRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.SLATE_REGOLITH_SLAB_ID, StoneType.SLATE);
+        register(new SlabBlockItem(slateRegolithSlab.blockID - 256));
+
+        grassySlateRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_SLATE_REGOLITH_ID, StoneType.SLATE);
+        register(grassySlateRegolith);
+
+        grassySlateRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_SLATE_REGOLITH_SLAB_ID, StoneType.SLATE);
+        register(new SlabBlockItem(grassySlateRegolithSlab.blockID - 256));
+
+        looseSlateRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_SLATE_REGOLITH_ID, StoneType.SLATE);
+        register(looseSlateRegolith);
+
+        looseSlateRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_SLATE_REGOLITH_SLAB_ID, StoneType.SLATE);
+        register(new SlabBlockItem(looseSlateRegolithSlab.blockID - 256));
+
+        looseSparseGrassySlateRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_ID, StoneType.SLATE);
+        register(looseSparseGrassySlateRegolith);
+
+        looseSparseGrassySlateRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_SLATE_REGOLITH_SLAB_ID, StoneType.SLATE);
+        register(new SlabBlockItem(looseSparseGrassySlateRegolithSlab.blockID - 256));
+
+        slateGravel = new BTWGGravelBlock(BTWGBlockIDs.SLATE_GRAVEL_ID, StoneType.SLATE);
+        register(slateGravel);
+
+        slateGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.SLATE_GRAVEL_SLAB_ID, StoneType.SLATE);
+        register(new SlabBlockItem(slateGravelSlab.blockID - 256));
+
+        //------ Gabbro ------//
+
+        gabbroRegolith = new RegolithBlock(BTWGBlockIDs.GABBRO_REGOLITH_ID, StoneType.GABBRO);
+        register(gabbroRegolith);
+
+        gabbroRegolithSlab = new RegolithSlabBlock(BTWGBlockIDs.GABBRO_REGOLITH_SLAB_ID, StoneType.GABBRO);
+        register(new SlabBlockItem(gabbroRegolithSlab.blockID - 256));
+
+        grassyGabbroRegolith = new GrassyRegolithBlock(BTWGBlockIDs.GRASSY_GABBRO_REGOLITH_ID, StoneType.GABBRO);
+        register(grassyGabbroRegolith);
+
+        grassyGabbroRegolithSlab = new GrassyRegolithSlabBlock(BTWGBlockIDs.GRASSY_GABBRO_REGOLITH_SLAB_ID, StoneType.GABBRO);
+        register(new SlabBlockItem(grassyGabbroRegolithSlab.blockID - 256));
+
+        looseGabbroRegolith = new LooseRegolithBlock(BTWGBlockIDs.LOOSE_GABBRO_REGOLITH_ID, StoneType.GABBRO);
+        register(looseGabbroRegolith);
+
+        looseGabbroRegolithSlab = new LooseRegolithSlabBlock(BTWGBlockIDs.LOOSE_GABBRO_REGOLITH_SLAB_ID, StoneType.GABBRO);
+        register(new SlabBlockItem(looseGabbroRegolithSlab.blockID - 256));
+
+        looseSparseGrassyGabbroRegolith = new LooseSparseGrassyRegolithBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_ID, StoneType.GABBRO);
+        register(looseSparseGrassyGabbroRegolith);
+
+        looseSparseGrassyGabbroRegolithSlab = new LooseSparseGrassyRegolithSlabBlock(BTWGBlockIDs.LOOSE_SPARSE_GRASSY_GABBRO_REGOLITH_SLAB_ID, StoneType.GABBRO);
+        register(new SlabBlockItem(looseSparseGrassyGabbroRegolithSlab.blockID - 256));
+
+        gabbroGravel = new BTWGGravelBlock(BTWGBlockIDs.GABBRO_GRAVEL_ID, StoneType.GABBRO);
+        register(gabbroGravel);
+
+        gabbroGravelSlab = new BTWGGravelSlabBlock(BTWGBlockIDs.GABBRO_GRAVEL_SLAB_ID, StoneType.GABBRO);
+        register(new SlabBlockItem(gabbroGravelSlab.blockID - 256));
 
         //------ Limestone ------//
 

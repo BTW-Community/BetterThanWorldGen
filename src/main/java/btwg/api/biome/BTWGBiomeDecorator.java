@@ -7,6 +7,8 @@ package btwg.api.biome;
 
 import btw.AddonHandler;
 import btw.util.ForkableRandom;
+import btwg.api.block.StoneType;
+import btwg.api.world.feature.OreGenerator;
 import net.minecraft.src.*;
 
 import java.util.Random;
@@ -18,6 +20,16 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
     public BTWGBiomeDecorator(BTWGBiome biome) {
         super(biome);
         this.biome = biome;
+
+        this.dirtGen = new OreGenerator(StoneType::dirtID, StoneType::dirtMetadata, 32);
+        this.gravelGen = new OreGenerator(StoneType::gravelID, StoneType::gravelMetadata, 32);
+        this.coalGen = new OreGenerator(StoneType::coalOreID, StoneType::coalOreMetadata, 16).setNoAirExposure(0.5F);
+        this.ironGen = new OreGenerator(StoneType::ironOreID, StoneType::ironOreMetadata, 8);
+        this.goldGen = new OreGenerator(StoneType::goldOreID, StoneType::goldOreMetadata, 8);
+        this.redstoneGen = new OreGenerator(StoneType::redstoneOreID, StoneType::redstoneOreMetadata, 7);
+        this.diamondGen = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7);
+        this.diamondGenAirExposed = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7).setNeedsAirExposure();
+        this.lapisGen = new OreGenerator(StoneType::lapisOreID, StoneType::lapisOreMetadata, 6);
     }
 
     @Override
@@ -163,16 +175,14 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
 
     @Override
     protected void generateOres() {
-
         this.genOreLinearDistribution(20, this.dirtGen, 8, 144);
         this.genOreLinearDistribution(15, this.gravelGen, 8, 144);
 
-        ((WorldGenMinable) this.coalGen).setNoAirExposure(0.5F);
         this.genOreLinearDistribution(30, this.coalGen, 8, 256);
 
-        ((WorldGenMinable) this.ironGen).setNoAirExposure(0.5F);
+        ((OreGenerator) this.ironGen).setNoAirExposure(0.5F);
         this.genOreLinearDistribution(20, this.ironGen, 8, 100);
-        ((WorldGenMinable) this.ironGen).setNoAirExposure(1.0F);
+        ((OreGenerator) this.ironGen).setNoAirExposure(1.0F);
         this.genOreTriangleDistribution(10, this.ironGen, 60, 64);
 
         this.genOreLinearDistribution(3, this.goldGen, 8, 48);

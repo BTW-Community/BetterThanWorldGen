@@ -83,11 +83,6 @@ public class BTWGOreBlock extends OreBlockStaged {
     }
 
     @Override
-    public int getMetadataConversionForStrataLevel(int strata, int metadata) {
-        return this.types[MathHelper.clamp_int(metadata, 0, this.types.length - 1)].strata();
-    }
-
-    @Override
     public boolean convertBlock(ItemStack stack, World world, int x, int y, int z, int side) {
         int iLevel;
         int oldMetadata = world.getBlockMetadata(x, y, z);
