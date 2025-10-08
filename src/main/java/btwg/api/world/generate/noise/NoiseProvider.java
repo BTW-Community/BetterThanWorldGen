@@ -15,18 +15,18 @@ import java.util.Random;
 public final class NoiseProvider {
     public final long seed;
 
-    public static final int CONTINENTALNESS_SCALE = 2048;
+    public static final int CONTINENTALNESS_SCALE = 3072;
     public static final int EROSION_SCALE = 1024;
     public static final int RIDGES_SCALE = 512;
     public static final int VALLEY_SCALE = 96;
     public static final int WEIRDNESS_SCALE = 2048;
 
-    public static final int TEMPERATURE_SCALE = 4096;
+    public static final int TEMPERATURE_SCALE = 8192;
     public static final int HUMIDITY_SCALE = 4096;
 
     public static final int TERRAIN_SCALE = 256;
 
-    public static final int STONE_TYPE_SCALE = 512;
+    public static final int STONE_TYPE_SCALE = 2048;
 
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
@@ -45,7 +45,7 @@ public final class NoiseProvider {
 
     public static final double CAVE_THRESHOLD = -0.7;
 
-    private static final int DRIVER_OCTAVES = 6;
+    private static final int DRIVER_OCTAVES = 8;
     private static final int TERRAIN_OCTAVES = 6;
 
     private static final int CHEESE_CAVES_OCTAVES = 4;
@@ -53,7 +53,7 @@ public final class NoiseProvider {
     private static final int NOODLE_CAVES_OCTAVES = 3;
     private static final int CAVE_PILLAR_OCTAVES = 2;
 
-    private static final int STONE_TYPE_OCTAVES = 2;
+    private static final int STONE_TYPE_OCTAVES = 6;
 
     // TODO: fix interpolation
     public static final int NOISE_SUBSCALE = 16;
