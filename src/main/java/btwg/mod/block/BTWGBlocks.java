@@ -2107,7 +2107,7 @@ public abstract class BTWGBlocks {
                                 && stoneType != StoneType.GABBRO)
                 .toArray(StoneType[]::new);
 
-        String[] stoneTypeNames = Arrays.stream(StoneType.STONE_TYPES)
+        String[] stoneTypeNames = Arrays.stream(stoneTypes)
                 .map(StoneType::name)
                 .toArray(String[]::new);
 
