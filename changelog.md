@@ -1,5 +1,8 @@
 # Alpha
 
+## 0.0.5
+- Added recipes to filter new gravel types into sand and flint
+
 ## 0.0.4
 - Added several new stone types
 - Fixed an issue where some wood textures were missing
