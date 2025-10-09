@@ -662,6 +662,11 @@ public class Recipes {
                 "#",
                 '#', new ItemStack(type.gravelSlabID(), 1, type.gravelSlabMetadata())
         });
+
+        RecipeManager.addHopperFilteringRecipe(new ItemStack(Block.sand),
+                new ItemStack(Item.flint),
+                new ItemStack(type.gravelID(), 1, type.gravelMetadata()),
+                new ItemStack(BTWBlocks.wickerPane));
     }
 
     private static void initTempRecipes() {
