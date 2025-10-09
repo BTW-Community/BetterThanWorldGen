@@ -17,6 +17,9 @@
   "entrypoints": {
     "btw:addon": [
       "btwg.mod.BetterThanWorldGen"
+    ],
+    "emi": [
+      "btwg.mod.crafting.BTWGEMIPlugin"
     ]
   },
   "custom": {

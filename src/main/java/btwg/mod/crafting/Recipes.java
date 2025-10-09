@@ -341,6 +341,9 @@ public class Recipes {
                         && type != StoneType.SLATE
                         && type != StoneType.GABBRO)
                 .forEach(Recipes::initStoneRecipesForType);
+
+        initStoneSoilRecipesForType(StoneType.SLATE);
+        initStoneSoilRecipesForType(StoneType.GABBRO);
     }
 
     private static void initStoneRecipesForType(StoneType type) {
@@ -570,6 +573,11 @@ public class Recipes {
                 "####",
                 '#', new ItemStack(type.stoneBrickID(), 1, type.stoneBrickMetadata()),
         });
+
+        initStoneSoilRecipesForType(type);
+    }
+
+    private static void initStoneSoilRecipesForType(StoneType type) {
 
         //------ Regolith ------//
 
