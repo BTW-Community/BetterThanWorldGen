@@ -8,6 +8,7 @@ package btwg.api.biome;
 import btw.AddonHandler;
 import btw.util.ForkableRandom;
 import btwg.api.block.StoneType;
+import btwg.api.world.feature.ClayGenerator;
 import btwg.api.world.feature.OreGenerator;
 import net.minecraft.src.*;
 
@@ -30,6 +31,8 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         this.diamondGen = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7);
         this.diamondGenAirExposed = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7).setNeedsAirExposure();
         this.lapisGen = new OreGenerator(StoneType::lapisOreID, StoneType::lapisOreMetadata, 6);
+
+        this.clayGen = new ClayGenerator(4);
     }
 
     @Override

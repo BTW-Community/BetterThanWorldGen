@@ -3,6 +3,9 @@
 ## 0.0.4
 - Added several new stone types
 - Fixed an issue where some wood textures were missing
+- Adjusted cave parameters
+- Changed terrain shape to have more plains
+- Changed biome weighting to place more importance on temperature
 
 ## 0.0.3
 - Modified ore generation to be slightly less plentiful in caves
