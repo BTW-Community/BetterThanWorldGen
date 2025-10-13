@@ -98,6 +98,9 @@ public abstract class BTWGBlocks {
     public static Block grassWithOverlay;
     public static Block tallGrass;
     public static Block tallGrassWithOverlay;
+    public static Block flower;
+    public static Block flower2;
+    public static Block tallFlower;
     public static Block glowWorms;
 
     public static Block slateRegolith;
@@ -462,7 +465,8 @@ public abstract class BTWGBlocks {
                 false,
                 "plant")
                 .setCanStayOnSand()
-                .setReplaceable();
+                .setReplaceable()
+                .setNeedsShears();
         register(dryGrass, new String[] {
                 "medium",
                 "short",
@@ -483,17 +487,22 @@ public abstract class BTWGBlocks {
         grass = new ColorizedShrubBlock(BTWGBlockIDs.GRASS_ID, "grass",
                 new String[] {
                         "bush",
+                        "scutch_grass",
+                        "timothy_grass",
                 },
                 false,
                 "plant")
                 .setReplaceable()
+                .setNeedsShears()
                 .setTextureName("");
         register(new ItemColored(grass.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "bush",
+                        "scutch_grass",
+                        "timothy_grass",
                 }));
 
-        grassWithOverlay = new ColorizedShrubBlock(BTWGBlockIDs.GRASS_WITH_OVERLAY_ID, "grass2",
+        grassWithOverlay = new ColorizedShrubBlock(BTWGBlockIDs.GRASS_WITH_OVERLAY_ID, "grass",
                 new String[] {
                         "bluegrass",
                         "bromegrass",
@@ -503,6 +512,7 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setHasOverlays()
                 .setReplaceable()
+                .setNeedsShears()
                 .setTextureName("");
         register(new ItemColored(grassWithOverlay.blockID - 256, true)
                 .setBlockNames(new String[] {
@@ -527,10 +537,9 @@ public abstract class BTWGBlocks {
                         "large_fern",
                 }));
 
-        tallGrassWithOverlay = new ColorizedTallPlantBlock(BTWGBlockIDs.TALL_GRASS_WITH_OVERLAY_ID, "tall_grass2",
+        tallGrassWithOverlay = new ColorizedTallPlantBlock(BTWGBlockIDs.TALL_GRASS_WITH_OVERLAY_ID, "tall_grass",
                 new String[] {
                         "phragmite",
-                        "cattail",
                 },
                 false,
                 "plant")
@@ -541,8 +550,86 @@ public abstract class BTWGBlocks {
         register(new ItemColored(tallGrassWithOverlay.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "phragmite",
-                        "cattail",
                 }));
+
+        flower = new ShrubBlock(BTWGBlockIDs.FLOWER_ID, "flower",
+                new String[] {
+                        "allium",
+                        "azure_bluet",
+                        "blue_ginger",
+                        "blue_orchid",
+                        "cornflower",
+                        "goldenrod",
+                        "guzmania",
+                        "heliconia",
+                        "hyacinth",
+                        "lily_of_the_valley",
+                        "nasturtium",
+                        "oxeye_daisy",
+                        "primrose",
+                        "torchflower",
+                },
+                false,
+                "plant")
+                .setTextureName("");
+        register(flower, new String[] {
+                "allium",
+                "azure_bluet",
+                "blue_ginger",
+                "blue_orchid",
+                "cornflower",
+                "goldenrod",
+                "guzmania",
+                "heliconia",
+                "hyacinth",
+                "lily_of_the_valley",
+                "nasturtium",
+                "oxeye_daisy",
+                "primrose",
+                "torchflower",
+        });
+
+        flower2 = new ShrubBlock(BTWGBlockIDs.FLOWER_2_ID, "flower",
+                new String[] {
+                        "orange_tulip",
+                        "pink_snapdragon",
+                        "pink_tulip",
+                        "red_snapdragon",
+                        "red_tulip",
+                        "white_snapdragon",
+                        "white_tulip",
+                        "yellow_snapdragon",
+                },
+                false,
+                "plant")
+                .setTextureName("");
+        register(flower2, new String[] {
+                "orange_tulip",
+                "pink_snapdragon",
+                "pink_tulip",
+                "red_snapdragon",
+                "red_tulip",
+                "white_snapdragon",
+                "white_tulip",
+                "yellow_snapdragon",
+        });
+
+        tallFlower = new TallPlantBlock(BTWGBlockIDs.TALL_FLOWER_ID, "tall_flower",
+                new String[] {
+                        "foxglove",
+                        "lilac",
+                        "peony",
+                        "rose_bush",
+                },
+                false,
+                "plant")
+                .setTextureName("");
+        register(tallFlower, new String[] {
+                "foxglove",
+                "lilac",
+                "peony",
+                "rose_bush",
+        });
 
         glowWorms = new HangingVineBlock(BTWGBlockIDs.GLOW_WORMS_ID)
                 .setReplaceable(false)

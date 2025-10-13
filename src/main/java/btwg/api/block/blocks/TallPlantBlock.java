@@ -229,10 +229,41 @@ public class TallPlantBlock extends FlowerBlock {
     @Environment(EnvType.CLIENT)
     private Icon[] bottomIcons;
 
+    @Override
+    @Environment(EnvType.CLIENT)
+    public boolean renderBlock(RenderBlocks renderBlocks, int x, int y, int z) {
+        Tessellator var5 = Tessellator.instance;
+        var5.setBrightness(this.getMixedBrightnessForBlock(renderBlocks.blockAccess, x, y, z));
+        float var6 = 1.0F;
+        int var7 = this.colorMultiplier(renderBlocks.blockAccess, x, y, z);
+        float var8 = (float)(var7 >> 16 & 255) / 255.0F;
+        float var9 = (float)(var7 >> 8 & 255) / 255.0F;
+        float var10 = (float)(var7 & 255) / 255.0F;
+        var5.setColorOpaque_F(var6 * var8, var6 * var9, var6 * var10);
+        double renderX = x;
+        double renderY = y;
+        double renderZ = z;
+
+        int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
+
+        if (this.isTopBlock(metadata)) {
+            y -= 1;
+        }
+
+        long offset = (x * 3129871L) ^ z * 116129781L ^ y;
+        offset = offset * offset * 42317861L + offset * 11L;
+        renderX += ((double)((float)(offset >> 16 & 15L) / 15.0F) - (double)0.5F) * (double)0.5F;
+        renderY += ((double)((float)(offset >> 20 & 15L) / 15.0F) - (double)1.0F) * 0.2;
+        renderZ += ((double)((float)(offset >> 24 & 15L) / 15.0F) - (double)0.5F) * (double)0.5F;
+
+        renderBlocks.drawCrossedSquares(this, metadata, renderX, renderY, renderZ, 1.0F);
+        return true;
+    }
+
     @Environment(EnvType.CLIENT)
     @Override
     public Icon getIcon(int side, int metadata) {
-        return topIcons[metadata & 7];
+        return topIcons[MathHelper.clamp_int(metadata & 7, 0, topIcons.length - 1)];
     }
 
     @Environment(EnvType.CLIENT)
@@ -241,10 +272,10 @@ public class TallPlantBlock extends FlowerBlock {
         int metadata = blockAccess.getBlockMetadata(x, y, z);
 
         if (isTopBlock(metadata)) {
-            return topIcons[metadata & 7];
+            return topIcons[MathHelper.clamp_int(metadata & 7, 0, topIcons.length - 1)];
         }
         else {
-            return bottomIcons[metadata & 7];
+            return bottomIcons[MathHelper.clamp_int(metadata & 7, 0, bottomIcons.length - 1)];
         }
     }
 

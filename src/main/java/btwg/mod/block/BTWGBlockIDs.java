@@ -397,4 +397,7 @@ public class BTWGBlockIDs {
     public static final int TALL_GRASS_ID = 3754;
     public static final int TALL_GRASS_WITH_OVERLAY_ID = 3755;
     public static final int GLOW_WORMS_ID = 3756;
+    public static final int FLOWER_ID = 3757;
+    public static final int FLOWER_2_ID = 3758;
+    public static final int TALL_FLOWER_ID = 3759;
 }

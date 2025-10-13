@@ -46,51 +46,25 @@ public class ColorizedTallPlantBlock extends TallPlantBlock {
         }
 
         secondPass = true;
+        this.renderBlock(render, x, y, z);
+        secondPass = false;
+    }
 
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
+    @Environment(EnvType.CLIENT)
+    @Override
+    public Icon getBlockTexture(IBlockAccess blockAccess, int x, int y, int z, int side) {
+        if (!secondPass) {
+            return super.getBlockTexture(blockAccess, x, y, z, side);
+        }
 
-        int metadata = render.blockAccess.getBlockMetadata(x, y, z);
-        int variant = this.setTopBlock(metadata, false);
-        boolean isTop = this.isTopBlock(metadata);
+        int metadata = blockAccess.getBlockMetadata(x, y, z);
 
-        Icon icon;
-
-        if (isTop) {
-            icon = this.topOverlays[MathHelper.clamp_int(variant, 0, this.topOverlays.length - 1)];
+        if (isTopBlock(metadata)) {
+            return topOverlays[MathHelper.clamp_int(metadata & 7, 0, topOverlays.length - 1)];
         }
         else {
-            icon = this.bottomOverlays[MathHelper.clamp_int(variant, 0, this.bottomOverlays.length - 1)];
+            return bottomOverlays[MathHelper.clamp_int(metadata & 7, 0, bottomOverlays.length - 1)];
         }
-
-        double minU = icon.getMinU();
-        double minV = icon.getMinV();
-        double maxU = icon.getMaxU();
-        double maxV = icon.getMaxV();
-        double width = 0.45;
-        double minX = x + 0.5 - width;
-        double maxX = x + 0.5 + width;
-        double minZ = z + 0.5 - width;
-        double maxZ = z + 0.5 + width;
-
-        tessellator.addVertexWithUV(minX, y + 1, minZ, minU, minV);
-        tessellator.addVertexWithUV(minX, y + 0.0, minZ, minU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 1, maxZ, maxU, minV);
-        tessellator.addVertexWithUV(maxX, y + 1, maxZ, minU, minV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, maxZ, minU, maxV);
-        tessellator.addVertexWithUV(minX, y + 0.0, minZ, maxU, maxV);
-        tessellator.addVertexWithUV(minX, y + 1, minZ, maxU, minV);
-        tessellator.addVertexWithUV(minX, y + 1, maxZ, minU, minV);
-        tessellator.addVertexWithUV(minX, y + 0.0, maxZ, minU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, minZ, maxU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 1, minZ, maxU, minV);
-        tessellator.addVertexWithUV(maxX, y + 1, minZ, minU, minV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, minZ, minU, maxV);
-        tessellator.addVertexWithUV(minX, y + 0.0, maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(minX, y + 1, maxZ, maxU, minV);
-
-        secondPass = false;
     }
 
     @Override
@@ -160,23 +134,28 @@ public class ColorizedTallPlantBlock extends TallPlantBlock {
 
     @Environment(EnvType.CLIENT)
     @Override
+    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
+        if (secondPass) {
+            return 0xFFFFFF;
+        }
+        else {
+            if (ColorizeBlock.colorizeBlock(this, blockAccess, x, y, z)) {
+                return ColorizeBlock.blockColor;
+            }
+            else {
+                return blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor();
+            }
+        }
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
     public int getRenderColor(int metadata) {
         if (ColorizeBlock.colorizeBlock(this, metadata)) {
             return ColorizeBlock.blockColor;
         }
         else {
             return ColorizerFoliage.getFoliageColorBasic();
-        }
-    }
-
-    @Environment(EnvType.CLIENT)
-    @Override
-    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
-        if (ColorizeBlock.colorizeBlock(this, blockAccess, x, y, z)) {
-            return ColorizeBlock.blockColor;
-        }
-        else {
-            return blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor();
         }
     }
 }

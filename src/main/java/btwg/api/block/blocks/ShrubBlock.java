@@ -14,6 +14,7 @@ import java.util.Random;
 public class ShrubBlock extends BlockFlower {
     private boolean isReplaceable;
     private boolean canStayOnSand;
+    private boolean needsShears;
 
     protected final String name;
     protected final String[] types;
@@ -62,7 +63,7 @@ public class ShrubBlock extends BlockFlower {
 
     @Override
     public void harvestBlock(World world, EntityPlayer player, int x, int y, int z, int par6) {
-        if (!world.isRemote && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemShears) {
+        if (!world.isRemote && (!needsShears || (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof ItemShears))) {
             player.addStat(StatList.mineBlockStatArray[this.blockID], 1);
             this.dropBlockAsItem_do(world, x, y, z, new ItemStack(this, 1, par6));
         } else {
@@ -87,6 +88,7 @@ public class ShrubBlock extends BlockFlower {
 
     public ShrubBlock setReplaceable() {
         this.isReplaceable = true;
+        this.blockMaterial = Material.vine;
         return this;
     }
 
@@ -95,10 +97,21 @@ public class ShrubBlock extends BlockFlower {
         return this;
     }
 
+    public ShrubBlock setNeedsShears() {
+        this.needsShears = true;
+        return this;
+    }
+
     //------ Client Side Functionality ------//
 
     @Environment(EnvType.CLIENT)
     protected Icon[] icons;
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public boolean renderBlock(RenderBlocks renderBlocks, int x, int y, int z) {
+        return renderBlocks.renderCrossedSquares(this, x, y, z, true);
+    }
 
     @Override
     @Environment(EnvType.CLIENT)

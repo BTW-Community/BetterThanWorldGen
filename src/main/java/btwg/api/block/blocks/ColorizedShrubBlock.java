@@ -45,41 +45,19 @@ public class ColorizedShrubBlock extends ShrubBlock {
         }
 
         secondPass = true;
-
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
-
-        int metadata = render.blockAccess.getBlockMetadata(x, y, z);
-        Icon icon = this.overlays[MathHelper.clamp_int(metadata, 0, this.overlays.length - 1)];
-
-        double minU = icon.getMinU();
-        double minV = icon.getMinV();
-        double maxU = icon.getMaxU();
-        double maxV = icon.getMaxV();
-        double width = 0.45;
-        double minX = x + 0.5 - width;
-        double maxX = x + 0.5 + width;
-        double minZ = z + 0.5 - width;
-        double maxZ = z + 0.5 + width;
-
-        tessellator.addVertexWithUV(minX, y + 1, minZ, minU, minV);
-        tessellator.addVertexWithUV(minX, y + 0.0, minZ, minU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 1, maxZ, maxU, minV);
-        tessellator.addVertexWithUV(maxX, y + 1, maxZ, minU, minV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, maxZ, minU, maxV);
-        tessellator.addVertexWithUV(minX, y + 0.0, minZ, maxU, maxV);
-        tessellator.addVertexWithUV(minX, y + 1, minZ, maxU, minV);
-        tessellator.addVertexWithUV(minX, y + 1, maxZ, minU, minV);
-        tessellator.addVertexWithUV(minX, y + 0.0, maxZ, minU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, minZ, maxU, maxV);
-        tessellator.addVertexWithUV(maxX, y + 1, minZ, maxU, minV);
-        tessellator.addVertexWithUV(maxX, y + 1, minZ, minU, minV);
-        tessellator.addVertexWithUV(maxX, y + 0.0, minZ, minU, maxV);
-        tessellator.addVertexWithUV(minX, y + 0.0, maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(minX, y + 1, maxZ, maxU, minV);
-
+        this.renderBlock(render, x, y, z);
         secondPass = false;
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Override
+    public Icon getIcon(int side, int metadata) {
+        if (secondPass) {
+            return this.overlays[metadata];
+        }
+        else {
+            return super.getIcon(side, metadata);
+        }
     }
 
     @Override
@@ -167,12 +145,13 @@ public class ColorizedShrubBlock extends ShrubBlock {
         if (secondPass) {
             return 0xFFFFFF;
         }
-
-        if (ColorizeBlock.colorizeBlock(this, blockAccess, x, y, z)) {
-            return ColorizeBlock.blockColor;
-        }
         else {
-            return blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor();
+            if (ColorizeBlock.colorizeBlock(this, blockAccess, x, y, z)) {
+                return ColorizeBlock.blockColor;
+            }
+            else {
+                return blockAccess.getBiomeGenForCoords(x, z).getBiomeGrassColor();
+            }
         }
     }
 }
