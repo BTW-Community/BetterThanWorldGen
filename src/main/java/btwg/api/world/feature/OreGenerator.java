@@ -25,6 +25,8 @@ public class OreGenerator extends WorldGenerator {
 
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z) {
+        if (y <= 0 || y >= 256) return false;
+
         float var6 = rand.nextFloat() * (float)Math.PI;
 
         double var7 = (x + 8) + MathHelper.sin(var6) * this.size / 8.0f;

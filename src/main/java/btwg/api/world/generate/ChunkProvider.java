@@ -99,7 +99,8 @@ public final class ChunkProvider implements IChunkProvider {
                             && !isAdjacentToWater(chunkX, chunkZ, i, j, k, height, blockIDs))
                     {
                         if (j < 16) {
-                            blockIDs[index] = (short) Block.lavaStill.blockID;
+                            blockIDs[index] = (short) Block.lavaMoving.blockID;
+                            metadata[index] = 0;
                         }
                         else {
                             blockIDs[index] = 0;
@@ -107,6 +108,7 @@ public final class ChunkProvider implements IChunkProvider {
 
                         if (j < height - 1 && blockIDs[index + 1] == Block.sand.blockID) {
                             blockIDs[index + 1] = (short) Block.sandStone.blockID;
+                            metadata[index] = 0;
                         }
 
 

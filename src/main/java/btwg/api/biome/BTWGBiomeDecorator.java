@@ -29,7 +29,6 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         this.goldGen = new OreGenerator(StoneType::goldOreID, StoneType::goldOreMetadata, 8);
         this.redstoneGen = new OreGenerator(StoneType::redstoneOreID, StoneType::redstoneOreMetadata, 7);
         this.diamondGen = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7);
-        this.diamondGenAirExposed = new OreGenerator(StoneType::diamondOreID, StoneType::diamondOreMetadata, 7).setNeedsAirExposure();
         this.lapisGen = new OreGenerator(StoneType::lapisOreID, StoneType::lapisOreMetadata, 6);
 
         this.clayGen = new ClayGenerator(4);
@@ -172,8 +171,40 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         this.genStandardOre1(count, worldGen, minHeight, maxHeight);
     }
 
-    private void genOreTriangleDistribution(int count, WorldGenerator worldGen, int radius, int center) {
-        this.genStandardOre1(count, worldGen, radius, center);
+    private void genOreLinearDistributionNeedsAirExposure(int count, WorldGenerator worldGen, int minHeight, int maxHeight, float airExposureRatio) {
+        if (worldGen instanceof OreGenerator oreGenerator) {
+            oreGenerator.setNeedsAirExposure(airExposureRatio);
+            this.genStandardOre1(count, worldGen, minHeight, maxHeight);
+            oreGenerator.setNeedsAirExposure(0.0F);
+        }
+    }
+
+    private void genOreLinearDistributionReducedAirExposure(int count, WorldGenerator worldGen, int minHeight, int maxHeight, float airExposureRatio) {
+        if (worldGen instanceof OreGenerator oreGenerator) {
+            oreGenerator.setNoAirExposure(airExposureRatio);
+            this.genStandardOre1(count, worldGen, minHeight, maxHeight);
+            oreGenerator.setNoAirExposure(1.0F);
+        }
+    }
+
+    private void genOreTriangleDistribution(int count, WorldGenerator worldGen, int center, int radius) {
+        this.genStandardOre2(count, worldGen, center, radius);
+    }
+
+    private void genOreTriangleDistributionNeedsAirExposure(int count, WorldGenerator worldGen, int center, int radius, float airExposureRatio) {
+        if (worldGen instanceof OreGenerator oreGenerator) {
+            oreGenerator.setNeedsAirExposure(airExposureRatio);
+            this.genStandardOre2(count, worldGen, center, radius);
+            oreGenerator.setNeedsAirExposure(0.0F);
+        }
+    }
+
+    private void genOreTriangleDistributionReducedAirExposure(int count, WorldGenerator worldGen, int center, int radius, float airExposureRatio) {
+        if (worldGen instanceof OreGenerator oreGenerator) {
+            oreGenerator.setNoAirExposure(airExposureRatio);
+            this.genStandardOre2(count, worldGen, center, radius);
+            oreGenerator.setNoAirExposure(1.0F);
+        }
     }
 
     @Override
@@ -181,20 +212,17 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
         this.genOreLinearDistribution(20, this.dirtGen, 8, 144);
         this.genOreLinearDistribution(15, this.gravelGen, 8, 144);
 
-        this.genOreLinearDistribution(30, this.coalGen, 8, 256);
+        this.genOreLinearDistributionReducedAirExposure(30, this.coalGen, 8, 256, 0.75F);
 
-        ((OreGenerator) this.ironGen).setNoAirExposure(0.5F);
-        this.genOreLinearDistribution(20, this.ironGen, 8, 100);
-        ((OreGenerator) this.ironGen).setNoAirExposure(1.0F);
-        this.genOreTriangleDistribution(10, this.ironGen, 60, 64);
+        this.genOreLinearDistributionReducedAirExposure(20, this.ironGen, 8, 100, 0.5F);
+        this.genOreTriangleDistribution(15, this.ironGen, 64, 64);
 
         this.genOreLinearDistribution(3, this.goldGen, 8, 48);
 
-        this.genOreTriangleDistribution(8, this.redstoneGen, 12, 20);
+        this.genOreTriangleDistribution(12, this.redstoneGen, 0, 30);
 
-        this.genOreTriangleDistribution(1, this.diamondGen, 12, 20);
-        this.genOreLinearDistribution(1, this.diamondGenAirExposed, 16, 24);
+        this.genOreTriangleDistribution(4, this.diamondGen, 0, 30);
 
-        this.genOreTriangleDistribution(1, this.lapisGen, 16, 24);
+        this.genOreTriangleDistribution(1, this.lapisGen, 24, 16);
     }
 }
