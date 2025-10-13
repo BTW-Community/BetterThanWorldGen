@@ -2,6 +2,7 @@ package btwg.mod;
 
 import btw.AddonHandler;
 import btw.BTWAddon;
+import btwg.api.client.DebugRegistry;
 import btwg.api.configuration.Version;
 import btwg.api.configuration.WorldData;
 import btwg.mod.block.BTWGBlocks;
@@ -45,6 +46,12 @@ public class BetterThanWorldGen extends BTWAddon {
 
         WorldData.initData();
         BiomeConfiguration.initBiomes();
+
+        DebugRegistry.init();
+    }
+
+    @Override
+    public void postInitialize() {
     }
     
     public static Version getCurrentVersion() {
