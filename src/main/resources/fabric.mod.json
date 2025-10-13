@@ -23,7 +23,7 @@
     ]
   },
   "custom": {
-    "btw:addon_prefix": "EX"
+    "btw:addon_prefix": "BTWG"
   },
   "mixins": [
     "btwg.mixins.json"
