@@ -26,7 +26,7 @@ public final class NoiseProvider {
 
     public static final int TERRAIN_SCALE = 256;
 
-    public static final int STONE_TYPE_SCALE = 2048;
+    public static final int STONE_TYPE_SCALE = 4096;
 
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
