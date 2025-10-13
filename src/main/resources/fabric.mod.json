@@ -3,15 +3,15 @@
   "id": "btwg",
   "version": "${version}",
   "name": "Better than World Gen",
-  "description": "Better world generation for Better than Wolves",
+  "description": "A world generation overhaul mod for Better than Wolves: CE",
   "authors": [
-    "Me!"
+    "The Lady Dawn / Dawnraider00"
   ],
   "contact": {
     "homepage": "https://github.com/BTW-Community/BetterThanWorldGen",
     "sources": "https://github.com/BTW-Community/BetterThanWorldGen"
   },
-  "license": "CC0-1.0",
+  "license": "MPL v2.0",
   "icon": "assets/btwg/icon.png",
   "environment": "*",
   "entrypoints": {
