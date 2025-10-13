@@ -47,6 +47,8 @@ public class ColorizedShrubBlock extends ShrubBlock {
         secondPass = true;
 
         Tessellator tessellator = Tessellator.instance;
+        tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
+
         int metadata = render.blockAccess.getBlockMetadata(x, y, z);
         Icon icon = this.overlays[MathHelper.clamp_int(metadata, 0, this.overlays.length - 1)];
 

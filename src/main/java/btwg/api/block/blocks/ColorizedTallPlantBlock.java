@@ -48,6 +48,7 @@ public class ColorizedTallPlantBlock extends TallPlantBlock {
         secondPass = true;
 
         Tessellator tessellator = Tessellator.instance;
+        tessellator.setColorRGBA_F(1.0F, 1.0F, 1.0F, 1.0F);
 
         int metadata = render.blockAccess.getBlockMetadata(x, y, z);
         int variant = this.setTopBlock(metadata, false);
