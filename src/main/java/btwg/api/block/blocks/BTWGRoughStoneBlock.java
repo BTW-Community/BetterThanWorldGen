@@ -1,6 +1,7 @@
 package btwg.api.block.blocks;
 
 import btw.block.blocks.RoughStoneBlock;
+import btw.item.BTWItems;
 import btw.item.util.ItemUtils;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
@@ -38,7 +39,7 @@ public class BTWGRoughStoneBlock extends RoughStoneBlock {
                         metadata += 3;
                         world.playAuxSFX(2269, x, y, z, 0);
                         soundPlayed = true;
-                        ItemUtils.ejectStackFromBlockTowardsFacing(world, x, y, z, new ItemStack(this.type.rockItemID(), 1, this.type.rockItemMetadata()), side);
+                        ItemUtils.ejectStackFromBlockTowardsFacing(world, x, y, z, new ItemStack(this.type.stoneBrickItemID(), 1, this.type.stoneBrickItemMetadata()), side);
                     }
                 }
                 else if (metadata == 12) {
@@ -70,19 +71,50 @@ public class BTWGRoughStoneBlock extends RoughStoneBlock {
             int iItemIDDropped = this.type.rockItemID();
             int iNumDropped = 1;
             int metadataDropped = this.type.rockItemMetadata();
+
             if (iMetadata < 8) {
                 iNumDropped = 8 - iMetadata / 2;
-            } else {
+            }
+            else {
                 iItemIDDropped = this.type.gravelPileID();
                 metadataDropped = this.type.gravelPileMetadata();
                 if (iMetadata < 12) {
                     iNumDropped = 2;
                 }
             }
+
             for (int iTempCount = 0; iTempCount < iNumDropped; ++iTempCount) {
                 this.dropBlockAsItem_do(world, i, j, k, new ItemStack(iItemIDDropped, 1, metadataDropped));
             }
         }
+    }
+
+    @Override
+    public void onBlockDestroyedWithImproperTool(World world, EntityPlayer player, int i, int j, int k, int iMetadata) {
+        world.playAuxSFX(2270, i, j, k, 0);
+        this.dropComponentItemsWithChance(world, i, j, k, iMetadata, 1.0f);
+    }
+
+    @Override
+    public void onBlockDestroyedByExplosion(World world, int i, int j, int k, Explosion explosion) {
+        int iMetadata = world.getBlockMetadata(i, j, k);
+        float fChanceOfPileDrop = 1.0f;
+        if (explosion != null) {
+            fChanceOfPileDrop = 1.0f / explosion.explosionSize;
+        }
+        this.dropComponentItemsWithChance(world, i, j, k, iMetadata, fChanceOfPileDrop);
+    }
+
+    private void dropComponentItemsWithChance(World world, int i, int j, int k, int iMetadata, float fChanceOfItemDrop) {
+        if (iMetadata < 8) {
+            int iNumStoneDropped = 4 - iMetadata / 2;
+            this.dropItemsIndividually(world, i, j, k, this.type.rockItemID(), iNumStoneDropped, this.type.rockItemMetadata(), fChanceOfItemDrop);
+        }
+        int iNumGravelDropped = 1;
+        if (iMetadata < 12) {
+            iNumGravelDropped = 2;
+        }
+        this.dropItemsIndividually(world, i, j, k, this.type.gravelPileID(), iNumGravelDropped, this.type.gravelPileMetadata(), fChanceOfItemDrop);
     }
 
     //------ Client Side Functionality ------//

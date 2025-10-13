@@ -1,10 +1,12 @@
 package btwg.api.block.blocks;
 
+import btw.block.BTWBlocks;
 import btw.block.blocks.OreBlockStaged;
 import btw.item.items.ChiselItem;
 import btw.item.items.PickaxeItem;
 import btw.item.items.ToolItem;
 import btw.world.util.difficulty.Difficulty;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
@@ -29,7 +31,7 @@ public class BTWGOreBlock extends OreBlockStaged {
 
     protected Function<Random, Integer> quantityDroppedFn = rand -> 1;
 
-    protected Optional<BiFunction<Difficulty, Integer, Integer>> idDroppedOnConversionFn = Optional.empty();
+    protected Optional<BiFunction<Boolean, Integer, Integer>> idDroppedOnConversionFn = Optional.empty();
     protected Optional<Function<Integer, Integer>> metadataDroppedOnConversionFn = Optional.empty();
     protected Optional<Function<Random, Integer>> quantityDroppedOnConversionFn = Optional.empty();
 
@@ -47,6 +49,11 @@ public class BTWGOreBlock extends OreBlockStaged {
         this.toolLevel = toolLevel;
 
         this.name = name;
+
+        this.setHardness(3.0f);
+        this.setResistance(5.0f);
+        this.setStepSound(BTWBlocks.oreStepSound);
+        this.setCreativeTab(CreativeTabs.tabBlock);
 
         this.setTextureName(BetterThanWorldGen.MODID + ":stone/");
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + name + "_ore");
@@ -68,8 +75,8 @@ public class BTWGOreBlock extends OreBlockStaged {
     }
 
     @Override
-    public int idDroppedOnConversion(Difficulty difficulty, int metadata) {
-        return this.idDroppedOnConversionFn.orElse((d, m) -> this.idDropped).apply(difficulty, metadata);
+    public int idDroppedOnConversion(boolean dropPiles, int metadata) {
+        return this.idDroppedOnConversionFn.orElse((d, m) -> this.idDropped).apply(dropPiles, metadata);
     }
 
     @Override
@@ -107,7 +114,7 @@ public class BTWGOreBlock extends OreBlockStaged {
 
     @Override
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float chance, int fortuneModifier) {
-        super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortuneModifier);
+        this.blockDropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortuneModifier);
 
         StoneType type = this.types[MathHelper.clamp_int(metadata, 0, this.types.length - 1)];
 
@@ -128,6 +135,18 @@ public class BTWGOreBlock extends OreBlockStaged {
 
     //------ Class Specific Functionality  ------//
 
+    // Duplicated from Block.class to bypass double rock drops
+    protected void blockDropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7) {
+        if (!par1World.isRemote) {
+            int var8 = this.quantityDroppedWithBonus(par7, par1World.rand);
+            for (int var9 = 0; var9 < var8; ++var9) {
+                int var10;
+                if (!(par1World.rand.nextFloat() <= par6) || (var10 = this.idDropped(par5, par1World.rand, par7)) <= 0) continue;
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var10, 1, this.damageDropped(par5)));
+            }
+        }
+    }
+
     public BTWGOreBlock setQuantityDropped(int quantityDropped) {
         this.quantityDroppedFn = rand -> quantityDropped;
         return this;
@@ -143,7 +162,7 @@ public class BTWGOreBlock extends OreBlockStaged {
         return this;
     }
 
-    public BTWGOreBlock setIDDroppedOnConversion(BiFunction<Difficulty, Integer, Integer> idDroppedOnConversionFn) {
+    public BTWGOreBlock setIDDroppedOnConversion(BiFunction<Boolean, Integer, Integer> idDroppedOnConversionFn) {
         this.idDroppedOnConversionFn = Optional.of(idDroppedOnConversionFn);
         return this;
     }
@@ -164,7 +183,7 @@ public class BTWGOreBlock extends OreBlockStaged {
                 int toolLevel = ((ToolItem) stack.getItem()).toolMaterial.getHarvestLevel();
 
                 if (toolLevel >= this.getRequiredToolLevelForOre(world, i, j, k)) {
-                    if (toolLevel > 1 || world.getDifficulty().doesStonePickBreakStone()) {
+                    if (toolLevel > 1 || world.getDifficultyParameter(DifficultyParam.DoesStonePickBreakStone.class)) {
                         return 3;
                     }
 

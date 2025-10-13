@@ -1,6 +1,7 @@
 package btwg.api.block.blocks;
 
 import btw.block.blocks.LavaReceiverBlock;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
@@ -69,7 +70,7 @@ public class LooseStoneDecorativeBlock extends LavaReceiverBlock {
 
     @Override
     public boolean isBreakableBarricade(World world, int i, int j, int k) {
-        return world.getDifficulty().canZombiesBreakBlocks();
+        return world.getDifficultyParameter(DifficultyParam.CanZombiesBreakBlocks.class);
     }
 
     //------ Class Specific Functionality ------//

@@ -11,6 +11,7 @@ import btw.item.BTWItems;
 import btw.item.tag.BTWTags;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.api.block.StoneType;
 import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.WoodType;
@@ -24,8 +25,6 @@ public class Recipes {
         initSoilRecipes();
         initWoodRecipes();
         initStoneRecipes();
-
-        initTempRecipes();
     }
 
     private static void initTorchRecipes() {
@@ -39,13 +38,13 @@ public class Recipes {
         RecipeManager.removeVanillaRecipe(new ItemStack(BTWBlocks.finiteUnlitTorch), new Object[]{
                 "#",
                 "X",
-                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                '#', TagInstance.of(BTWTags.coals),
                 'X', Item.stick
         });
         RecipeManager.removeVanillaRecipe(new ItemStack(BTWBlocks.infiniteUnlitTorch), new Object[]{
                 "#",
                 "X",
-                '#', new ItemStack(Item.coal, 1, Short.MAX_VALUE),
+                '#', TagInstance.of(BTWTags.coals),
                 'X', Item.stick
         });
 
@@ -71,8 +70,8 @@ public class Recipes {
                 'X', Item.stick
         });
 
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(crudeTorchRecipe, world -> !world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(infiniteTorchFromCoalRecipe, world -> world.getDifficulty().canCraftInfiniteTorchesFromCoal()));
+        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(crudeTorchRecipe, world -> !world.getDifficultyParameter(DifficultyParam.CanCraftTorchesFromCoal.class)));
+        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(infiniteTorchFromCoalRecipe, world -> world.getDifficultyParameter(DifficultyParam.CanCraftTorchesFromCoal.class)));
     }
 
     private static void initSoilRecipes() {
@@ -667,88 +666,5 @@ public class Recipes {
                 new ItemStack(Item.flint),
                 new ItemStack(type.gravelID(), 1, type.gravelMetadata()),
                 new ItemStack(BTWBlocks.wickerPane));
-    }
-
-    private static void initTempRecipes() {
-        RecipeManager.addShapelessRecipe(new ItemStack(BTWItems.sharpStone), new Object[] {
-                BTWTags.looseRocks
-        });
-
-        // Normal Recipes
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createRecipe(new ItemStack(Item.hoeStone), new Object[] {
-                        "X#",
-                        "S#",
-                        " #",
-                        '#', Item.stick,
-                        'X', TagInstance.of(BTWTags.looseRocks),
-                        'S', TagInstance.of(BTWTags.stringsWithHemp),
-                }),
-                world -> !world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createRecipe(new ItemStack(Item.pickaxeStone), new Object[] {
-                        "XXX",
-                        "S# ",
-                        " # ",
-                        '#', Item.stick,
-                        'X', TagInstance.of(BTWTags.looseRocks),
-                }),
-                world -> !world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createShapelessRecipe(new ItemStack(Item.axeStone), new Object[] {
-                        Item.stick,
-                        TagInstance.of(BTWTags.looseRocks),
-                        TagInstance.of(BTWTags.looseRocks),
-                        TagInstance.of(BTWTags.stringsWithHemp),
-                }),
-                world -> !world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createShapelessRecipe(new ItemStack(Item.shovelStone), new Object[] {
-                        Item.stick,
-                        TagInstance.of(BTWTags.looseRocks),
-                        TagInstance.of(BTWTags.stringsWithHemp),
-                }),
-                world -> !world.getDifficulty().canMakeEasierStoneTools()));
-
-        // Classic Recipes
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createRecipe(new ItemStack(Item.hoeStone), new Object[] {
-                        "X#",
-                        " #",
-                        " #",
-                        '#', Item.stick,
-                        'X', TagInstance.of(BTWTags.looseRocks),
-                }),
-                world -> world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createRecipe(new ItemStack(Item.pickaxeStone), new Object[] {
-                        "XXX",
-                        " # ",
-                        " # ",
-                        '#', Item.stick,
-                        'X', TagInstance.of(BTWTags.looseRocks),
-                }),
-                world -> world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createShapelessRecipe(new ItemStack(Item.axeStone), new Object[] {
-                        Item.stick,
-                        TagInstance.of(BTWTags.looseRocks),
-                        TagInstance.of(BTWTags.looseRocks),
-                }),
-                world -> world.getDifficulty().canMakeEasierStoneTools()));
-
-        CraftingManager.getInstance().getRecipeList().add(new ConditionalRecipe(
-                CraftingManager.getInstance().createShapelessRecipe(new ItemStack(Item.shovelStone), new Object[] {
-                        Item.stick,
-                        TagInstance.of(BTWTags.looseRocks),
-                }),
-                world -> world.getDifficulty().canMakeEasierStoneTools()));
     }
 }

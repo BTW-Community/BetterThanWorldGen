@@ -5,6 +5,7 @@ import btw.item.items.ChiselItem;
 import btw.item.items.PickaxeItem;
 import btw.item.items.ToolItem;
 import btw.item.util.ItemUtils;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.mod.BetterThanWorldGen;
 import btwg.api.block.StoneType;
 import net.fabricmc.api.EnvType;
@@ -36,17 +37,18 @@ public class BTWGStoneBlock extends BlockStone {
     
     @Override
     public int idDropped(int iMetaData, Random random, int iFortuneModifier) {
-        return this.type.cobblestoneID();
+        return this.type.looseCobblestoneID();
     }
     
     @Override
     public int damageDropped(int metadata) {
-        return this.type.cobblestoneMetadata();
+        return this.type.looseCobblestoneMetadata();
     }
     
     @Override
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int metadata, float chance, int fortuneModifier) {
-        super.dropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortuneModifier);
+        this.blockDropBlockAsItemWithChance(world, x, y, z, metadata, chance, fortuneModifier);
+
         if (!world.isRemote) {
             this.dropBlockAsItem_do(world, x, y, z, new ItemStack(this.type.rockItemID(), 1, this.type.rockItemMetadata()));
             if (!this.getIsCracked(metadata)) {
@@ -78,7 +80,7 @@ public class BTWGStoneBlock extends BlockStone {
             }
         }
         else if (toolLevel == 2) {
-            if (world.getDifficulty().doesStonePickBreakStone()) {
+            if (world.getDifficultyParameter(DifficultyParam.DoesStonePickBreakStone.class)) {
                 if (!world.isRemote) {
                     world.playAuxSFX(2001, x, y, z, this.blockID);
                 }
@@ -142,6 +144,20 @@ public class BTWGStoneBlock extends BlockStone {
         }
         
         return 0;
+    }
+
+    //------ Class Specific Functionality ------//
+
+    // Duplicated from Block.class to bypass double rock drops
+    protected void blockDropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7) {
+        if (!par1World.isRemote) {
+            int var8 = this.quantityDroppedWithBonus(par7, par1World.rand);
+            for (int var9 = 0; var9 < var8; ++var9) {
+                int var10;
+                if (!(par1World.rand.nextFloat() <= par6) || (var10 = this.idDropped(par5, par1World.rand, par7)) <= 0) continue;
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var10, 1, this.damageDropped(par5)));
+            }
+        }
     }
     
     //------ Client Only Functionality ------//

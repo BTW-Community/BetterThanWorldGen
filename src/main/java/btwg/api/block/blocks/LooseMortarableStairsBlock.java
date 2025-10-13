@@ -1,6 +1,7 @@
 package btwg.api.block.blocks;
 
 import btw.block.blocks.MortarReceiverStairsBlock;
+import btw.world.util.difficulty.DifficultyParam;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
@@ -20,6 +21,6 @@ public class LooseMortarableStairsBlock extends MortarReceiverStairsBlock {
 
     @Override
     public boolean isBreakableBarricade(World world, int i, int j, int k) {
-        return world.getDifficulty().canZombiesBreakBlocks();
+        return world.getDifficultyParameter(DifficultyParam.CanZombiesBreakBlocks.class);
     }
 }

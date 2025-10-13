@@ -3,6 +3,7 @@ package btwg.mod.block.blocks;
 import btw.block.BTWBlocks;
 import btw.block.blocks.FallingFullBlock;
 import btw.item.BTWItems;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.mod.block.BTWGBlocks;
 import net.minecraft.src.*;
 
@@ -70,6 +71,6 @@ public class LooseSandyDirtBlock extends FallingFullBlock {
 
     @Override
     public boolean isBreakableBarricade(World world, int i, int j, int k) {
-        return world.getDifficulty().canZombiesBreakBlocks();
+        return world.getDifficultyParameter(DifficultyParam.CanZombiesBreakBlocks.class);
     }
 }

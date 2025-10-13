@@ -6,9 +6,7 @@ import btw.item.BTWItems;
 import btw.item.items.HoeItem;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
+import net.minecraft.src.*;
 
 public class LooseRegolithBlock extends LooseDirtBlock {
     protected final StoneType type;
@@ -30,18 +28,12 @@ public class LooseRegolithBlock extends LooseDirtBlock {
 
     @Override
     public boolean spreadGrassToBlock(World world, int x, int y, int z) {
-        world.setBlockAndMetadataWithNotify(x, y, z, this.type.grassID(), this.type.grassMetadata());
+        world.setBlockAndMetadataWithNotify(x, y, z, this.type.looseSparseGrassID(), this.type.looseSparseGrassMetadata());
         return true;
     }
 
     @Override
     public boolean getCanMyceliumSpreadToBlock(World world, int i, int j, int k) {
-        return false;
-    }
-
-    @Override
-    public boolean canConvertBlock(ItemStack stack, World world, int i, int j, int k) {
-        // TODO: fix
         return false;
     }
 

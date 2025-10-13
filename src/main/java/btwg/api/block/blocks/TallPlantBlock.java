@@ -1,5 +1,6 @@
 package btwg.api.block.blocks;
 
+import btw.block.BTWBlocks;
 import btw.block.blocks.FlowerBlock;
 import btw.item.util.ItemUtils;
 import btwg.mod.BetterThanWorldGen;
@@ -35,6 +36,7 @@ public class TallPlantBlock extends FlowerBlock {
         super(id);
 
         this.setUnlocalizedName(name);
+        this.setStepSound(BTWBlocks.plantsStepSound);
         this.name = name;
         this.types = types;
         this.useTypeAsFolder = useTypeAsFolder;

@@ -89,7 +89,7 @@ public class LooseSparseGrassyRegolithBlock extends LooseSparseGrassBlock {
         world.setBlockAndMetadataWithNotify(x, y, z, this.type.looseDirtID(), this.type.looseDirtMetadata());
         if (!world.isRemote) {
             world.playAuxSFX(2291, x, y, z, 0);
-            if (world.rand.nextInt(25) == 0) {
+            if (world.rand.nextInt(10) == 0) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, x, y, z, new ItemStack(BTWItems.hempSeeds), fromSide);
             }
         }

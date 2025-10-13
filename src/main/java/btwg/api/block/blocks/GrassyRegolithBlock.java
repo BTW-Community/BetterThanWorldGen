@@ -1,7 +1,9 @@
 package btwg.api.block.blocks;
 
+import btw.block.BTWBlocks;
 import btw.item.BTWItems;
 import btw.item.util.ItemUtils;
+import btw.world.util.difficulty.DifficultyParam;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
 import com.prupe.mcpatcher.cc.ColorizeBlock;
@@ -81,12 +83,25 @@ public class GrassyRegolithBlock extends BlockGrass {
         if (!world.isRemote) {
             world.playAuxSFX(2291, x, y, z, 0);
 
-            if (world.rand.nextInt(25) == 0) {
+            if (world.rand.nextInt(10) == 0) {
                 ItemUtils.ejectStackFromBlockTowardsFacing(world, x, y, z, new ItemStack(BTWItems.hempSeeds), fromSide);
             }
         }
 
         return true;
+    }
+
+    @Override
+    public boolean dropComponentItemsOnBadBreak(World world, int x, int y, int z, int metadata, float chanceOfDrop) {
+        this.dropItemsIndividually(world, x, y, z, this.type.dirtPileID(), 6, this.type.dirtPileMetadata(), chanceOfDrop);
+        return true;
+    }
+
+    @Override
+    protected void onNeighborDirtDugWithImproperTool(World world, int x, int y, int z, int toFacing) {
+        if (world.getDifficultyParameter(DifficultyParam.ShouldGrassLoosenWhenDigging.class) && toFacing == 0) {
+            world.setBlockAndMetadataWithNotify(x, y, z, this.type.looseDirtID(), this.type.looseDirtMetadata());
+        }
     }
 
     //------ Client Side Functionality ------//

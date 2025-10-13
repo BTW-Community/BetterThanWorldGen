@@ -1,7 +1,12 @@
 # Alpha
 
+## 0.0.6
+- Fixed several issues related to drops for regolith and stone blocks
+
 ## 0.0.5
+- Updated to BTW CE 3.0 Snapshot 7 RC 1
 - Added recipes to filter new gravel types into sand and flint
+- Fixed an issue where ore blocks could be mined instantly with chisels and picks
 
 ## 0.0.4
 - Added several new stone types

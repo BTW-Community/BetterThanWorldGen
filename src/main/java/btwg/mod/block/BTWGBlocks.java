@@ -1987,7 +1987,7 @@ public abstract class BTWGBlocks {
                 Item.coal.itemID, 0,
                 "coal",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreCoal).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreCoal).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreCoal).damageDroppedOnConversion(metadata));
         register(coalOre, stoneTypeNames);
 
@@ -1996,7 +1996,7 @@ public abstract class BTWGBlocks {
                 BTWItems.ironOreChunk.itemID, 0,
                 "iron",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreIron).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreIron).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreIron).damageDroppedOnConversion(metadata));
         register(ironOre, stoneTypeNames);
 
@@ -2005,7 +2005,7 @@ public abstract class BTWGBlocks {
                 BTWItems.goldOreChunk.itemID, 0,
                 "gold",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreGold).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreGold).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreGold).damageDroppedOnConversion(metadata));
         register(goldOre, stoneTypeNames);
 
@@ -2014,7 +2014,7 @@ public abstract class BTWGBlocks {
                 Item.diamond.itemID, 0,
                 "diamond",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreDiamond).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreDiamond).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreDiamond).damageDroppedOnConversion(metadata));
         register(diamondOre, stoneTypeNames);
 
@@ -2023,7 +2023,7 @@ public abstract class BTWGBlocks {
                 Item.emerald.itemID, 0,
                 "emerald",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreEmerald).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreEmerald).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreEmerald).damageDroppedOnConversion(metadata));
         register(emeraldOre, stoneTypeNames);
 
@@ -2032,7 +2032,7 @@ public abstract class BTWGBlocks {
                 Item.redstone.itemID, 0,
                 "redstone",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreRedstone).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreRedstone).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreRedstone).damageDroppedOnConversion(metadata))
                 .setQuantityDropped(rand -> Block.oreRedstone.quantityDropped(rand));
         register(redstoneOre, stoneTypeNames);
@@ -2042,7 +2042,7 @@ public abstract class BTWGBlocks {
                 Item.dyePowder.itemID, Color.BLUE.colorID,
                 "lapis",
                 stoneTypes)
-                .setIDDroppedOnConversion((difficulty, metadata) -> ((OreBlockStaged) Block.oreLapis).idDroppedOnConversion(difficulty, metadata))
+                .setIDDroppedOnConversion((dropPiles, metadata) -> ((OreBlockStaged) Block.oreLapis).idDroppedOnConversion(dropPiles, metadata))
                 .setMetadataDroppedOnConversion(metadata -> ((OreBlockStaged) Block.oreLapis).damageDroppedOnConversion(metadata))
                 .setQuantityDropped(rand -> Block.oreLapis.quantityDropped(rand));
         register(lapisOre, stoneTypeNames);

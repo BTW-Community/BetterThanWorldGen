@@ -1,13 +1,12 @@
 package btwg.api.block.blocks;
 
+import btw.block.blocks.GrassSlabBlock;
 import btw.block.blocks.LooseDirtSlabBlock;
 import btwg.api.block.StoneType;
 import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.src.EntityFallingSand;
-import net.minecraft.src.IconRegister;
-import net.minecraft.src.World;
+import net.minecraft.src.*;
 
 public class LooseRegolithSlabBlock extends LooseDirtSlabBlock {
     private final StoneType type;

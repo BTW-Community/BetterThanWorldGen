@@ -40,6 +40,7 @@ public class RegolithBlock extends BlockDirt {
     @Override
     public boolean spreadGrassToBlock(World world, int x, int y, int z) {
         world.setBlockAndMetadataWithNotify(x, y, z, this.type.grassID(), this.type.grassMetadata());
+        ((BlockGrass) Block.blocksList[this.type.grassID()]).setSparse(world, x, y, z);
         return true;
     }
 
@@ -69,5 +70,11 @@ public class RegolithBlock extends BlockDirt {
 
     public StoneType getStoneType() {
         return this.type;
+    }
+
+    @Override
+    public boolean dropComponentItemsOnBadBreak(World world, int x, int y, int z, int metadata, float chanceOfDrop) {
+        this.dropItemsIndividually(world, x, y, z, this.type.dirtPileID(), 6, this.type.dirtPileMetadata(), chanceOfDrop);
+        return true;
     }
 }
