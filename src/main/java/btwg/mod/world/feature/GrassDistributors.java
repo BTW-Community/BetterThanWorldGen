@@ -1,5 +1,6 @@
 package btwg.mod.world.feature;
 
+import btwg.api.block.PlantType;
 import btwg.api.world.feature.PlantDistributor;
 import btwg.mod.block.BTWGBlocks;
 import net.minecraft.src.Block;
@@ -8,89 +9,28 @@ import net.minecraft.src.World;
 import java.util.Random;
 
 public abstract class GrassDistributors {
-    public static final PlantDistributor SCRUBLAND_GRASS = new PlantDistributor(2, 32, 8) {
-        @Override
-        public void setPlant(World world, Random rand, int x, int y, int z) {
-            int r = rand.nextInt(8);
+    public static final PlantDistributor SCRUBLAND_GRASS = new PlantDistributor(2, 32, 8)
+            .addPlant(PlantType.DEAD_BUSH, 1)
+            .addPlant(PlantType.SHORT_DRY_GRASS, 2)
+            .addPlant(PlantType.DRY_GRASS, 4)
+            .addPlant(PlantType.TALL_DRY_GRASS, 4);
 
-            if (r == 0) {
-                this.placeSinglePlant(world, rand, x, y, z, Block.deadBush.blockID, 0);
-            }
-            else if (r <= 2) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
-            }
-            else if (r < 7) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
-            }
-            else {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
-            }
-        }
-    };
-    public static final PlantDistributor OUTBACK = new PlantDistributor(2, 32, 8) {
-        @Override
-        public void setPlant(World world, Random rand, int x, int y, int z) {
-            int r = rand.nextInt(10);
+    public static final PlantDistributor OUTBACK = new PlantDistributor(2, 32, 8)
+            .addPlant(PlantType.DEAD_BUSH, 1)
+            .addPlant(PlantType.BUSH, 1)
+            .addPlant(PlantType.SHORT_DRY_GRASS, 2)
+            .addPlant(PlantType.DRY_GRASS, 4)
+            .addPlant(PlantType.TALL_DRY_GRASS, 4);
 
-            if (r == 0) {
-                this.placeSinglePlant(world, rand, x, y, z, Block.deadBush.blockID, 0);
-            }
-            else if (r == 1) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.grass.blockID, 0);
-            }
-            else if (r <= 3) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
-            }
-            else if (r <= 7) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
-            }
-            else {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
-            }
-        }
-    };
+    public static final PlantDistributor DESERT_GRASS = new PlantDistributor(3, 32, 8)
+            .addPlant(PlantType.SHORT_DRY_GRASS, 5)
+            .addPlant(PlantType.DRY_GRASS, 2)
+            .addPlant(PlantType.TALL_DRY_GRASS, 1);
 
-    public static final PlantDistributor DESERT_GRASS = new PlantDistributor(3, 32, 8) {
-        @Override
-        public void setPlant(World world, Random rand, int x, int y, int z) {
-            int r = rand.nextInt(7);
-
-            if (r <= 1) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 0);
-            }
-            else if (r < 6) {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.dryGrass.blockID, 1);
-            }
-            else {
-                this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallDryGrass.blockID, 0);
-            }
-        }
-    };
-
-    public static final PlantDistributor TROPICAL_GRASS = new PlantDistributor(10) {
-        @Override
-        public void setPlant(World world, Random rand, int x, int y, int z) {
-            int r = rand.nextInt(3);
-
-            if (r == 0) {
-                this.placeSinglePlant(world, rand, x, y, z, BTWGBlocks.grass.blockID, 0);
-            }
-            else if (r == 1) {
-                if (rand.nextInt(10) == 0) {
-                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 0);
-                }
-                else {
-                    this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 1);
-                }
-            }
-            else {
-                if (rand.nextInt(10) == 0) {
-                    this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 1);
-                }
-                else {
-                    this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 2);
-                }
-            }
-        }
-    };
+    public static final PlantDistributor TROPICAL_GRASS = new PlantDistributor(10)
+            .addPlant(PlantType.BUSH, 10)
+            .addPlant(PlantType.SHORT_GRASS, 10)
+            .addPlant(PlantType.FERN, 10)
+            .addPlant(PlantType.TALL_GRASS, 1)
+            .addPlant(PlantType.LARGE_FERN, 1);
 }

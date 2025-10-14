@@ -592,12 +592,12 @@ public abstract class BTWGBlocks {
         flower2 = new ShrubBlock(BTWGBlockIDs.FLOWER_2_ID, "flower",
                 new String[] {
                         "orange_tulip",
-                        "pink_snapdragon",
                         "pink_tulip",
-                        "red_snapdragon",
                         "red_tulip",
-                        "white_snapdragon",
                         "white_tulip",
+                        "pink_snapdragon",
+                        "red_snapdragon",
+                        "white_snapdragon",
                         "yellow_snapdragon",
                 },
                 false,
@@ -605,12 +605,12 @@ public abstract class BTWGBlocks {
                 .setTextureName("");
         register(flower2, new String[] {
                 "orange_tulip",
-                "pink_snapdragon",
                 "pink_tulip",
-                "red_snapdragon",
                 "red_tulip",
-                "white_snapdragon",
                 "white_tulip",
+                "pink_snapdragon",
+                "red_snapdragon",
+                "white_snapdragon",
                 "yellow_snapdragon",
         });
 

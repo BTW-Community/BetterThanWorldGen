@@ -1,11 +1,17 @@
 package btwg.api.world.feature;
 
+import btw.entity.mob.villager.trade.VillagerTrade;
+import btw.util.RandomSelector;
+import btwg.api.block.PlantType;
 import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.blocks.TallPlantBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
+import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.ToDoubleFunction;
 
 public class PlantDistributor {
     protected int patchesPerChunk;
@@ -14,6 +20,14 @@ public class PlantDistributor {
 
     private boolean hasInitNoise;
     private World lastWorld;
+
+    protected ArrayList<Pair<PlantType, Double>> plants = new ArrayList<>();
+
+    private static final ArrayList<Pair<PlantType, Double>> defaultPlants = new ArrayList<>();
+    static {
+        defaultPlants.add(Pair.of(PlantType.SHORT_GRASS, 1.0));
+        defaultPlants.add(Pair.of(PlantType.TALL_GRASS, 0.1));
+    }
 
     public PlantDistributor(int patchesPerChunk, int patchQuantity, int patchSize) {
         this.patchesPerChunk = patchesPerChunk;
@@ -29,22 +43,37 @@ public class PlantDistributor {
         this(1);
     }
 
-    public void setPlant(World world, Random rand, int x, int y, int z) {
-        if (rand.nextInt(10) == 0) {
-            this.placeDoublePlant(world, rand, x, y, z, BTWGBlocks.tallGrass.blockID, 0);
+    public PlantDistributor addPlant(PlantType plantType, double weight) {
+        this.plants.add(Pair.of(plantType, weight));
+        return this;
+    }
+
+    protected void placePlant(World world, Random rand, int x, int y, int z) {
+        var plants = this.plants;
+
+        if (this.plants.isEmpty()) {
+            plants = defaultPlants;
+        }
+
+        ToDoubleFunction<Pair<PlantType, Double>> weightFunction = Pair::getRight;
+        var selector = RandomSelector.weighted(plants, weightFunction);
+        var plantType = selector.next(rand).getLeft();
+
+        if (plantType.isTall()) {
+            this.placeDoublePlant(world, x, y, z, plantType.id(), plantType.metadata());
         }
         else {
-            this.placeSinglePlant(world, rand, x, y, z, Block.tallGrass.blockID, 1);
+            this.placeSinglePlant(world, x, y, z, plantType.id(), plantType.metadata());
         }
     }
 
-    protected void placeSinglePlant(World world, Random rand, int x, int y, int z, int blockID, int metadata) {
+    protected void placeSinglePlant(World world, int x, int y, int z, int blockID, int metadata) {
         if (world.isAirBlock(x, y, z) && Block.blocksList[blockID].canBlockStay(world, x, y, z)) {
             world.setBlockAndMetadata(x, y, z, blockID, metadata);
         }
     }
 
-    protected void placeDoublePlant(World world, Random rand, int x, int y, int z, int blockID, int metadata) {
+    protected void placeDoublePlant(World world, int x, int y, int z, int blockID, int metadata) {
         if (Block.blocksList[blockID] instanceof TallPlantBlock tallPlantBlock) {
             if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z)
                     && tallPlantBlock.canGrowOnBlock(world, x, y - 1, z))
@@ -86,7 +115,7 @@ public class PlantDistributor {
             int k = patchZ + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
             int j = patchY + rand.nextInt(this.patchSize / 2) - rand.nextInt(this.patchSize / 2);
 
-            this.setPlant(world, rand, i, j, k);
+            this.placePlant(world, rand, i, j, k);
         }
     }
 
