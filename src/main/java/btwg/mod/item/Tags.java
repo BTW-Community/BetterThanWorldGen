@@ -21,12 +21,12 @@ public abstract class Tags {
     public static final Tag FLOWERS = Tag.of(loc("flowers"))
             .add(Block.plantYellow)
             .add(Block.plantRed)
-            .addUntilDamage(12, BTWGBlocks.flower.blockID)
-            .addUntilDamage(7, BTWGBlocks.flower2.blockID)
+            .addUntilDamage(12, BTWGBlocks.flower)
+            .addUntilDamage(7, BTWGBlocks.flower2)
             .add(BTWGBlocks.torchflower)
-            .add(BTWGBlocks.eyeblossom);
+            .addUntilDamage(1, BTWGBlocks.eyeblossom);
     public static final Tag TALL_FLOWERS = Tag.of(loc("tall_flowers"))
-            .addUntilDamage(7, BTWGBlocks.tallFlower.blockID);
+            .addUntilDamage(7, BTWGBlocks.tallFlower);
     public static final Tag FLOWERS_BOTH = Tag.of(loc("flowers_both"), FLOWERS, TALL_FLOWERS);
 
     public static final Tag[] FLOWERS_BY_COLOR = new Tag[16];
@@ -70,12 +70,12 @@ public abstract class Tags {
         addPlantTypeColor.accept(PlantType.EYEBLOSSOM, Color.GRAY);
 
         addPlantTypeColor.accept(PlantType.PINK_TULIP, Color.PINK);
-        addPlantTypeColor.accept(PlantType.PINK_SNAPDRAGON, Color.RED);
+        addPlantTypeColor.accept(PlantType.PINK_SNAPDRAGON, Color.PINK);
         addPlantTypeColor.accept(PlantType.PEONY, Color.PINK);
 
         addPlantTypeColor.accept(PlantType.GOLDENROD, Color.YELLOW);
         addPlantTypeColor.accept(PlantType.DANDELION, Color.YELLOW);
-        addPlantTypeColor.accept(PlantType.YELLOW_SNAPDRAGON, Color.RED);
+        addPlantTypeColor.accept(PlantType.YELLOW_SNAPDRAGON, Color.YELLOW);
 
         addPlantTypeColor.accept(PlantType.HYACINTH, Color.LIGHT_BLUE);
         addPlantTypeColor.accept(PlantType.BLUE_ORCHID, Color.LIGHT_BLUE);

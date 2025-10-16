@@ -572,6 +572,7 @@ public abstract class BTWGBlocks {
                 false,
                 "plant")
                 .setNoRenderOffset();
+        flower.initBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
         register(flower, new String[] {
                 "allium",
                 "azure_bluet",
@@ -602,6 +603,7 @@ public abstract class BTWGBlocks {
                 false,
                 "plant")
                 .setNoRenderOffset();
+        flower2.initBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
         register(flower2, new String[] {
                 "orange_tulip",
                 "pink_tulip",
@@ -621,6 +623,7 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setNoRenderOffset()
                 .setCanStayOnSand();
+        sandFlower.initBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
         register(sandFlower, new String[] {
                 "desert_flame",
         });
@@ -651,9 +654,11 @@ public abstract class BTWGBlocks {
         });
 
         torchflower = new TorchflowerBlock(BTWGBlockIDs.TORCHFLOWER_ID);
+        torchflower.initBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
         register(torchflower);
 
         eyeblossom = new EyeBlossomBlock(BTWGBlockIDs.EYEBLOSSOM_ID);
+        eyeblossom.initBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 0.8F, 0.7F);
         register(eyeblossom, new String[] {
                 "eyeblossom",
                 "open_eyeblossom",

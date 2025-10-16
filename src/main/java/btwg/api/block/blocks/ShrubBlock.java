@@ -2,6 +2,7 @@ package btwg.api.block.blocks;
 
 import btw.block.BTWBlocks;
 import btw.block.util.Flammability;
+import btw.crafting.util.FurnaceBurnTime;
 import btwg.mod.BetterThanWorldGen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -44,6 +45,7 @@ public class ShrubBlock extends BlockFlower {
         this.setHardness(0.0f);
         this.setBuoyant();
         this.setFireProperties(Flammability.GRASS);
+        this.setFurnaceBurnTime(FurnaceBurnTime.DAMP_VEGETATION);
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + name);
         this.setTextureName("");
     }
