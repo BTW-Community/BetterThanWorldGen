@@ -26,7 +26,7 @@ public final class NoiseProvider {
 
     public static final int TERRAIN_SCALE = 256;
 
-    public static final int STONE_TYPE_SCALE = 4096;
+    public static final int STONE_TYPE_SCALE = 3072;
 
     // Cave generation scales
     public static final int CHEESE_CAVE_SCALE_XZ = 320;
@@ -46,7 +46,7 @@ public final class NoiseProvider {
     public static final double CAVE_THRESHOLD = -0.7;
 
     private static final int DRIVER_OCTAVES = 8;
-    private static final int TERRAIN_OCTAVES = 6;
+    private static final int TERRAIN_OCTAVES = 5;
 
     private static final int CHEESE_CAVES_OCTAVES = 4;
     private static final int SPAGHETTI_CAVES_OCTAVES = 3;
@@ -90,8 +90,8 @@ public final class NoiseProvider {
             new Key(0.40, 105.0 / TOTAL_HEIGHT),
             new Key(0.60, 115.0 / TOTAL_HEIGHT),
             new Key(0.80, 125.0 / TOTAL_HEIGHT),
-            new Key(0.95, 140.0 / TOTAL_HEIGHT),
-            new Key(1.10, 160.0 / TOTAL_HEIGHT),
+            new Key(0.95, 160.0 / TOTAL_HEIGHT),
+            new Key(1.10, 180.0 / TOTAL_HEIGHT),
             new Key(1.50, 210.0 / TOTAL_HEIGHT)
     );
 
@@ -695,7 +695,7 @@ public final class NoiseProvider {
 
                     double stoneNoise = this.stoneTypes[idx];
 
-                    double range = 1.0;
+                    double range = 0.8;
                     stoneNoise = clamp(stoneNoise, -range, range - 0.01);
                     stoneNoise = (stoneNoise + range) / (2.0 * range);
 

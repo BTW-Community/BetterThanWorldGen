@@ -40,16 +40,17 @@ public abstract class BiomeConfiguration {
     public static final int SANDSTONE_PEAKS_ID = 118;
     public static final int JAGGED_PEAKS_ID = 119;
     public static final int OLD_GROWTH_TAIGA_ID = 120;
-    public static final int OLD_GROWTH_SNOWY_TAIGA_ID = 120;
-    public static final int JUNGLE_ID = 121;
-    public static final int SWAMP_ID = 122;
-    public static final int BIRCH_FOREST_ID = 123;
-    public static final int WETLAND_ID = 124;
-    public static final int ARID_WOODLAND_ID = 125;
-    public static final int LUSH_DESERT_ID = 126;
-    public static final int OUTBACK_ID = 127;
-    public static final int FLOWER_FOREST_ID = 128;
-    public static final int SNOWBLOSSOM_GROVE_ID = 129;
+    public static final int OLD_GROWTH_SNOWY_TAIGA_ID = 121;
+    public static final int JUNGLE_ID = 122;
+    public static final int SWAMP_ID = 123;
+    public static final int BIRCH_FOREST_ID = 124;
+    public static final int WETLAND_ID = 125;
+    public static final int ARID_WOODLAND_ID = 126;
+    public static final int LUSH_DESERT_ID = 127;
+    public static final int OUTBACK_ID = 128;
+    public static final int FLOWER_FOREST_ID = 129;
+    public static final int SNOWBLOSSOM_GROVE_ID = 130;
+    public static final int TUNDRA_ID = 131;
 
     public static final int TROPICAL_RIVER_ID = 202;
     public static final int SCRUBLAND_RIVER_ID = 204;
@@ -79,9 +80,9 @@ public abstract class BiomeConfiguration {
 
     // Temperature constants
     public static final double FROZEN = 0.1;
-    public static final double COLD = 0.4;
-    public static final double TEMPERATE = 0.6;
-    public static final double HOT = 0.9;
+    public static final double COLD = 0.3;
+    public static final double TEMPERATE = 0.5;
+    public static final double HOT = 0.8;
 
     // Humidity constants
     public static final double ARID = 0.1;
