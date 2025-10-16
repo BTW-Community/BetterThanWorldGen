@@ -15,6 +15,15 @@ import net.minecraft.src.ResourceLocation;
 import java.util.Arrays;
 
 public abstract class Tags {
+    public static final Tag FLOWERS = Tag.of(loc("flowers"))
+            .addUntilDamage(12, BTWGBlocks.flower.blockID)
+            .addUntilDamage(7, BTWGBlocks.flower2.blockID)
+            .add(BTWGBlocks.torchflower)
+            .add(BTWGBlocks.eyeblossom);
+    public static final Tag TALL_FLOWERS = Tag.of(loc("tall_flowers"))
+            .addUntilDamage(7, BTWGBlocks.tallFlower.blockID);
+    public static final Tag FLOWERS_BOTH = Tag.of(loc("flowers_both"), FLOWERS, TALL_FLOWERS);
+
     public static final Tag CLAY_BALLS = Tag.of(loc("clay_balls"), Item.clay, BTWItems.netherSludge);
     public static final Tag DIRT_PILES = Tag.of(loc("dirt_piles"), BTWItems.dirtPile);
     public static final Tag GRAVEL_PILES = Tag.of(loc("gravel_piles"), BTWItems.gravelPile);
