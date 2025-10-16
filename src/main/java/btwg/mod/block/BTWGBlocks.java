@@ -9,7 +9,6 @@ import btwg.api.block.StoneType;
 import btwg.api.block.WoodType;
 import btwg.api.block.blocks.*;
 import btwg.api.block.blocks.WorkStumpBlock;
-import btwg.api.item.ItemInterface;
 import btwg.api.item.items.blockItems.BTWGWoodSlabBlockItem;
 import btwg.mod.BetterThanWorldGen;
 import btwg.mod.block.blocks.*;
@@ -100,7 +99,10 @@ public abstract class BTWGBlocks {
     public static Block tallGrassWithOverlay;
     public static Block flower;
     public static Block flower2;
+    public static Block sandFlower;
     public static Block tallFlower;
+    public static Block torchflower;
+    public static Block eyeblossom;
     public static Block glowWorms;
 
     public static Block slateRegolith;
@@ -440,6 +442,9 @@ public abstract class BTWGBlocks {
 
         Block.dirt.setTextureName(BetterThanWorldGen.MODID + ":stone/rhyolite/regolith");
         BTWBlocks.looseDirt.setTextureName(BetterThanWorldGen.MODID + ":stone/rhyolite/loose_regolith");
+
+        Block.plantRed.setStepSound(BTWBlocks.plantsStepSound);
+        Block.plantYellow.setStepSound(BTWBlocks.plantsStepSound);
     }
 
     private static void initSoils() {
@@ -466,7 +471,8 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setCanStayOnSand()
                 .setReplaceable()
-                .setNeedsShears();
+                .setNeedsShears()
+                .setTextureName("dry_grass");
         register(dryGrass, new String[] {
                 "medium",
                 "short",
@@ -480,8 +486,7 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setCanStayOnSand()
                 .setReplaceable()
-                .setNeedsShears()
-                .setTextureName("");
+                .setNeedsShears();
         register(tallDryGrass);
 
         grass = new ColorizedShrubBlock(BTWGBlockIDs.GRASS_ID, "grass",
@@ -493,8 +498,7 @@ public abstract class BTWGBlocks {
                 false,
                 "plant")
                 .setReplaceable()
-                .setNeedsShears()
-                .setTextureName("");
+                .setNeedsShears();
         register(new ItemColored(grass.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "bush",
@@ -512,8 +516,7 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setHasOverlays()
                 .setReplaceable()
-                .setNeedsShears()
-                .setTextureName("");
+                .setNeedsShears();
         register(new ItemColored(grassWithOverlay.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "bluegrass",
@@ -529,8 +532,7 @@ public abstract class BTWGBlocks {
                 false,
                 "plant")
                 .setReplaceable()
-                .setNeedsShears()
-                .setTextureName("");
+                .setNeedsShears();
         register(new ItemColored(tallGrass.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "tall_grass",
@@ -545,8 +547,7 @@ public abstract class BTWGBlocks {
                 "plant")
                 .setHasOverlays()
                 .setReplaceable()
-                .setNeedsShears()
-                .setTextureName("");
+                .setNeedsShears();
         register(new ItemColored(tallGrassWithOverlay.blockID - 256, true)
                 .setBlockNames(new String[] {
                         "phragmite",
@@ -567,11 +568,10 @@ public abstract class BTWGBlocks {
                         "nasturtium",
                         "oxeye_daisy",
                         "primrose",
-                        "torchflower",
                 },
                 false,
                 "plant")
-                .setTextureName("");
+                .setNoRenderOffset();
         register(flower, new String[] {
                 "allium",
                 "azure_bluet",
@@ -586,7 +586,6 @@ public abstract class BTWGBlocks {
                 "nasturtium",
                 "oxeye_daisy",
                 "primrose",
-                "torchflower",
         });
 
         flower2 = new ShrubBlock(BTWGBlockIDs.FLOWER_2_ID, "flower",
@@ -602,7 +601,7 @@ public abstract class BTWGBlocks {
                 },
                 false,
                 "plant")
-                .setTextureName("");
+                .setNoRenderOffset();
         register(flower2, new String[] {
                 "orange_tulip",
                 "pink_tulip",
@@ -614,21 +613,50 @@ public abstract class BTWGBlocks {
                 "yellow_snapdragon",
         });
 
+        sandFlower = new ShrubBlock(BTWGBlockIDs.SAND_FLOWER_ID, "flower",
+                new String[] {
+                        "desert_flame",
+                },
+                false,
+                "plant")
+                .setNoRenderOffset()
+                .setCanStayOnSand();
+        register(sandFlower, new String[] {
+                "desert_flame",
+        });
+
         tallFlower = new TallPlantBlock(BTWGBlockIDs.TALL_FLOWER_ID, "tall_flower",
                 new String[] {
                         "foxglove",
                         "lilac",
                         "peony",
                         "rose_bush",
+                        "swamp_azalea",
+                        "marigold",
+                        "black_thistle",
+                        "pitcher_plant",
                 },
                 false,
                 "plant")
-                .setTextureName("");
+                .setNoRenderOffset();
         register(tallFlower, new String[] {
                 "foxglove",
                 "lilac",
                 "peony",
                 "rose_bush",
+                "swamp_azalea",
+                "marigold",
+                "black_thistle",
+                "pitcher_plant",
+        });
+
+        torchflower = new TorchflowerBlock(BTWGBlockIDs.TORCHFLOWER_ID);
+        register(torchflower);
+
+        eyeblossom = new EyeBlossomBlock(BTWGBlockIDs.EYEBLOSSOM_ID);
+        register(eyeblossom, new String[] {
+                "eyeblossom",
+                "open_eyeblossom",
         });
 
         glowWorms = new HangingVineBlock(BTWGBlockIDs.GLOW_WORMS_ID)
@@ -2136,14 +2164,14 @@ public abstract class BTWGBlocks {
     }
 
     private static void register(Block block, String[] names) {
-        Item.itemsList[block.blockID] = ((ItemInterface) new ItemMultiTextureTile(block.blockID - 256, block, names)).btwg$setModNamespace(BetterThanWorldGen.NAME);
+        Item.itemsList[block.blockID] = new ItemMultiTextureTile(block.blockID - 256, block, names);
     }
 
     private static void register(ItemBlock blockItem) {
-        Item.itemsList[blockItem.itemID] = ((ItemInterface) blockItem).btwg$setModNamespace(BetterThanWorldGen.NAME);
+        Item.itemsList[blockItem.itemID] = blockItem;
     }
 
     private static void register(Block block) {
-        Item.itemsList[block.blockID] = ((ItemInterface) new ItemBlock(block.blockID - 256)).btwg$setModNamespace(BetterThanWorldGen.NAME);
+        Item.itemsList[block.blockID] = new ItemBlock(block.blockID - 256);
     }
 }

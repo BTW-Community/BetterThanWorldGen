@@ -15,6 +15,7 @@ public class BTWGBiome extends BiomeGenBase {
 
     private TreeDistributor treeDistributor = new TreeDistributor() {};
     private PlantDistributor grassDistributor = new PlantDistributor() {};
+    private PlantDistributor flowerDistributor = new PlantDistributor(0) {};
 
     public final BiomeNoiseParameterTarget noiseTarget;
 
@@ -51,6 +52,16 @@ public class BTWGBiome extends BiomeGenBase {
         this.grassDistributor = grassDistributor;
         return this;
     }
+
+    public PlantDistributor getFlowerDistributor() {
+        return this.flowerDistributor;
+    }
+
+    public BTWGBiome setFlowerDistributor(PlantDistributor flowerDistributor) {
+        this.flowerDistributor = flowerDistributor;
+        return this;
+    }
+
 
     public TreeDistributor getTreeDistributor() {
         return this.treeDistributor;

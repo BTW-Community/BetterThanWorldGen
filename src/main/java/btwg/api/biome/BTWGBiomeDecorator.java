@@ -66,23 +66,12 @@ public class BTWGBiomeDecorator extends BiomeDecorator {
             var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             this.bigMushroomGen.generate(this.currentWorld, this.randomGenerator, var3, this.currentWorld.getHeightValue(var3, var4), var4);
         }
-        
-        int var7;
-        for(var2 = 0; var2 < this.flowersPerChunk; ++var2) {
-            var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            var4 = this.randomGenerator.nextInt(128) + 100;
-            var7 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.plantYellowGen.generate(this.currentWorld, this.randomGenerator, var3, var4, var7);
-            if (this.randomGenerator.nextInt(4) == 0) {
-                var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                var4 = this.randomGenerator.nextInt(128) + 100;
-                var7 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                this.plantRedGen.generate(this.currentWorld, this.randomGenerator, var3, var4, var7);
-            }
-        }
 
         this.biome.getGrassDistributor().generatePlantsForChunk(this.currentWorld, this.randomGenerator, this.chunk_X, this.chunk_Z);
-        
+        this.biome.getFlowerDistributor().generatePlantsForChunk(this.currentWorld, this.randomGenerator, this.chunk_X, this.chunk_Z);
+
+        int var7;
+
         for(var2 = 0; var2 < this.waterlilyPerChunk; ++var2) {
             var3 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;

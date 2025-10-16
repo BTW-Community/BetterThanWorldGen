@@ -15,6 +15,7 @@ public class ShrubBlock extends BlockFlower {
     private boolean isReplaceable;
     private boolean canStayOnSand;
     private boolean needsShears;
+    protected boolean shouldRenderWithOffset = true;
 
     protected final String name;
     protected final String[] types;
@@ -44,6 +45,7 @@ public class ShrubBlock extends BlockFlower {
         this.setBuoyant();
         this.setFireProperties(Flammability.GRASS);
         this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + name);
+        this.setTextureName("");
     }
 
     protected boolean canGrowOnBlock(World world, int x, int y, int z) {
@@ -102,6 +104,11 @@ public class ShrubBlock extends BlockFlower {
         return this;
     }
 
+    public ShrubBlock setNoRenderOffset() {
+        this.shouldRenderWithOffset = false;
+        return this;
+    }
+
     //------ Client Side Functionality ------//
 
     @Environment(EnvType.CLIENT)
@@ -110,7 +117,7 @@ public class ShrubBlock extends BlockFlower {
     @Override
     @Environment(EnvType.CLIENT)
     public boolean renderBlock(RenderBlocks renderBlocks, int x, int y, int z) {
-        return renderBlocks.renderCrossedSquares(this, x, y, z, true);
+        return renderBlocks.renderCrossedSquares(this, x, y, z, this.shouldRenderWithOffset);
     }
 
     @Override
@@ -158,7 +165,7 @@ public class ShrubBlock extends BlockFlower {
     @Override
     @Environment(EnvType.CLIENT)
     public Icon getIcon(int side, int metadata) {
-        return this.icons[metadata];
+        return this.icons[MathHelper.clamp_int(metadata, 0, this.icons.length - 1)];
     }
 
     @Override
@@ -167,5 +174,11 @@ public class ShrubBlock extends BlockFlower {
         for (int i = 0; i < types.length; i++) {
             list.add(new ItemStack(id, 1, i));
         }
+    }
+
+    @Override
+    @Environment(value=EnvType.CLIENT)
+    public int getDamageValue(World world, int x, int y, int z) {
+        return world.getBlockMetadata(x, y, z);
     }
 }

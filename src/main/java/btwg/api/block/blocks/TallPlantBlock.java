@@ -17,6 +17,7 @@ public class TallPlantBlock extends FlowerBlock {
     protected boolean isReplaceable;
     protected boolean canStayOnSand;
     protected boolean needsShears;
+    private boolean shouldRenderWithOffset = true;
 
     protected final String name;
     protected final String[] types;
@@ -35,7 +36,9 @@ public class TallPlantBlock extends FlowerBlock {
     public TallPlantBlock(int id, String name, String[] types, boolean useTypeAsFolder, String prefix) {
         super(id);
 
-        this.setUnlocalizedName(name);
+        this.setUnlocalizedName(BetterThanWorldGen.MODID + "." + name);
+        this.setTextureName("");
+
         this.setStepSound(BTWBlocks.plantsStepSound);
         this.name = name;
         this.types = types;
@@ -222,6 +225,11 @@ public class TallPlantBlock extends FlowerBlock {
         return this;
     }
 
+    public TallPlantBlock setNoRenderOffset() {
+        this.shouldRenderWithOffset = false;
+        return this;
+    }
+
     //----------- Client Side Functionality -----------//
 
     @Environment(EnvType.CLIENT)
@@ -250,11 +258,13 @@ public class TallPlantBlock extends FlowerBlock {
             y -= 1;
         }
 
-        long offset = (x * 3129871L) ^ z * 116129781L ^ y;
-        offset = offset * offset * 42317861L + offset * 11L;
-        renderX += ((double)((float)(offset >> 16 & 15L) / 15.0F) - (double)0.5F) * (double)0.5F;
-        renderY += ((double)((float)(offset >> 20 & 15L) / 15.0F) - (double)1.0F) * 0.2;
-        renderZ += ((double)((float)(offset >> 24 & 15L) / 15.0F) - (double)0.5F) * (double)0.5F;
+        if (this.shouldRenderWithOffset) {
+            long offset = (x * 3129871L) ^ z * 116129781L ^ y;
+            offset = offset * offset * 42317861L + offset * 11L;
+            renderX += ((double) ((float) (offset >> 16 & 15L) / 15.0F) - (double) 0.5F) * (double) 0.5F;
+            renderY += ((double) ((float) (offset >> 20 & 15L) / 15.0F) - (double) 1.0F) * 0.2;
+            renderZ += ((double) ((float) (offset >> 24 & 15L) / 15.0F) - (double) 0.5F) * (double) 0.5F;
+        }
 
         renderBlocks.drawCrossedSquares(this, metadata, renderX, renderY, renderZ, 1.0F);
         return true;
@@ -331,5 +341,11 @@ public class TallPlantBlock extends FlowerBlock {
         for (int i = 0; i < types.length; i++) {
             list.add(new ItemStack(blockID, 1, i));
         }
+    }
+
+    @Override
+    @Environment(value=EnvType.CLIENT)
+    public int getDamageValue(World world, int x, int y, int z) {
+        return this.setTopBlock(world.getBlockMetadata(x, y, z), false);
     }
 }

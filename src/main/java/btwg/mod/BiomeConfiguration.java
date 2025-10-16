@@ -6,6 +6,7 @@ import btwg.api.world.feature.TreeDistributor;
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.surface.SandySurfacer;
 import btwg.mod.block.BTWGBlocks;
+import btwg.mod.world.feature.FlowerDistributors;
 import btwg.mod.world.feature.GrassDistributors;
 import btwg.mod.world.feature.TreeDistributors;
 import btwg.mod.world.surface.OutbackSurfacer;
@@ -47,6 +48,8 @@ public abstract class BiomeConfiguration {
     public static final int ARID_WOODLAND_ID = 125;
     public static final int LUSH_DESERT_ID = 126;
     public static final int OUTBACK_ID = 127;
+    public static final int FLOWER_FOREST_ID = 128;
+    public static final int SNOWBLOSSOM_GROVE_ID = 129;
 
     public static final int TROPICAL_RIVER_ID = 202;
     public static final int SCRUBLAND_RIVER_ID = 204;
@@ -155,8 +158,9 @@ public abstract class BiomeConfiguration {
                     )
             )))
             .setSurfacer(new SandySurfacer()))
-            .setTreeDistributor(TreeDistributors.RAINFOREST)
-            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TROPICAL_FLOWERS)
+            .setTreeDistributor(TreeDistributors.RAINFOREST);
     
     public static final BTWGBiome PLAINS = new BTWGBiome(
             PLAINS_ID,
@@ -170,8 +174,9 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
+            .setGrassDistributor(GrassDistributors.MEADOW_GRASS)
+            .setFlowerDistributor(FlowerDistributors.PLAINS_FLOWERS)
             .setTreeDistributor(new TreeDistributor(0) {})
-            .setGrassDistributor(new PlantDistributor(10))
             .setHasHorses();
 
     public static final BTWGBiome SCRUBLAND = ((BTWGBiome) ((BiomeInterface) new BTWGBiome(
@@ -187,8 +192,8 @@ public abstract class BiomeConfiguration {
                     )
             )))
             .setSurfacer(new ScrublandSurfacer()))
-            .setTreeDistributor(TreeDistributors.SCRUBLAND)
             .setGrassDistributor(GrassDistributors.SCRUBLAND_GRASS)
+            .setTreeDistributor(TreeDistributors.SCRUBLAND)
             .setNoLakes()
             .setNoAnimals()
             .setTopBlock(Block.sand.blockID)
@@ -208,8 +213,8 @@ public abstract class BiomeConfiguration {
                     )
             )))
             .setSurfacer(new ScrublandSurfacer()))
-            .setTreeDistributor(TreeDistributors.SAVANNA)
-            .setGrassDistributor(new PlantDistributor(10));
+            .setGrassDistributor(GrassDistributors.SAVANNA_GRASS)
+            .setTreeDistributor(TreeDistributors.SAVANNA);
 
     public static final BTWGBiome DUNES = new BTWGBiome(
             DUNES_ID,
@@ -243,7 +248,8 @@ public abstract class BiomeConfiguration {
                     )
             ))
             .setHasWolves()
-            .setGrassDistributor(new PlantDistributor(10))
+            .setGrassDistributor(GrassDistributors.MOUNTAIN_GRASS)
+            .setFlowerDistributor(FlowerDistributors.PLAINS_FLOWERS)
             .setTreeDistributor(TreeDistributors.HIGHLANDS);
 
     public static final BTWGBiome FOREST = new BTWGBiome(
@@ -259,7 +265,25 @@ public abstract class BiomeConfiguration {
                     )
             ))
             .setHasWolves()
-            .setGrassDistributor(new PlantDistributor(5))
+            .setGrassDistributor(GrassDistributors.FOREST_GRASS)
+            .setFlowerDistributor(FlowerDistributors.FOREST_FLOWERS)
+            .setTreeDistributor(TreeDistributors.FOREST);
+
+    public static final BTWGBiome FLOWER_FOREST = new BTWGBiome(
+            FLOWER_FOREST_ID,
+            loc("flower_forest"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            TEMPERATE,
+                            HUMID,
+                            MID_CONTINENT,
+                            LOW_EROSION,
+                            HIGH_WEIRDNESS
+                    )
+            ))
+            .setHasWolves()
+            .setGrassDistributor(GrassDistributors.MEADOW_GRASS)
+            .setFlowerDistributor(FlowerDistributors.FLOWER_FOREST_FLOWERS)
             .setTreeDistributor(TreeDistributors.FOREST);
 
     public static final BTWGBiome TAIGA = new BTWGBiome(
@@ -276,6 +300,7 @@ public abstract class BiomeConfiguration {
             ))
             .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
     public static final BTWGBiome OLD_GROWTH_TAIGA = new BTWGBiome(
@@ -292,6 +317,7 @@ public abstract class BiomeConfiguration {
             ))
             .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
             .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
     public static final BTWGBiome SNOWY_TAIGA = new BTWGBiome(
@@ -309,6 +335,7 @@ public abstract class BiomeConfiguration {
             ))
             .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
     public static final BTWGBiome OLD_GROWTH_SNOWY_TAIGA = new BTWGBiome(
@@ -326,6 +353,7 @@ public abstract class BiomeConfiguration {
             ))
             .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
             .setTreeDistributor(TreeDistributors.OLD_GROWTH_TAIGA);
 
     public static final BTWGBiome STONY_PEAKS = new BTWGBiome(
@@ -359,6 +387,7 @@ public abstract class BiomeConfiguration {
                     IS_MOUNTAIN_PEAK
             ))
             .setNoAnimals()
+            .setGrassDistributor(new PlantDistributor(0))
             .setTopBlock(Block.stone.blockID)
             .setFillerBlock(Block.stone.blockID);
 
@@ -391,8 +420,9 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
-            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS)
-            .setGrassDistributor(new PlantDistributor(10));
+            .setGrassDistributor(GrassDistributors.MOUNTAIN_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
+            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS);
 
     public static final BTWGBiome WINDSWEPT_FOREST = new BTWGBiome(
             WINDSWEPT_FOREST_ID,
@@ -408,6 +438,7 @@ public abstract class BiomeConfiguration {
             ))
             .setHasWolves()
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TAIGA_FLOWERS)
             .setTreeDistributor(TreeDistributors.TAIGA);
 
     public static final BTWGBiome FROZEN_PEAKS = new BTWGBiome(
@@ -424,6 +455,7 @@ public abstract class BiomeConfiguration {
                     (v, h) -> IS_MOUNTAIN_PEAK.test(v, h) && IS_SNOWY.test(v, h)
             ))
             .setNoAnimals()
+            .setGrassDistributor(new PlantDistributor(0))
             .setTopBlock(Block.blockSnow.blockID)
             .setFillerBlock(Block.blockSnow.blockID);
 
@@ -439,7 +471,9 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     ),
                     (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
-            ));
+            ))
+            .setGrassDistributor(GrassDistributors.MOUNTAIN_GRASS)
+            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS);
 
     public static final BTWGBiome DARK_FOREST = new BTWGBiome(
             DARK_FOREST_ID,
@@ -453,7 +487,8 @@ public abstract class BiomeConfiguration {
                             MEDIUM_WEIRDNESS
                     )
             ))
-            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setGrassDistributor(GrassDistributors.FOREST_GRASS)
+            .setFlowerDistributor(FlowerDistributors.DARK_FOREST_FLOWERS)
             .setTreeDistributor(TreeDistributors.DARK_FOREST)
             .setGrassColor(0x507A32)
             .setFoliageColor(0x59AE30);
@@ -470,7 +505,8 @@ public abstract class BiomeConfiguration {
                             HIGH_WEIRDNESS
                     )
             ))
-            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setGrassDistributor(GrassDistributors.FOREST_GRASS)
+            .setFlowerDistributor(FlowerDistributors.PALE_GARDEN_FLOWERS)
             .setTreeDistributor(TreeDistributors.PALE_GARDEN)
             .setGrassColor(0x778272)
             .setFoliageColor(0x878D76)
@@ -488,10 +524,27 @@ public abstract class BiomeConfiguration {
                             HIGH_WEIRDNESS
                     )
             ))
-            .setGrassDistributor(new PlantDistributor(6))
+            .setGrassDistributor(GrassDistributors.FOREST_GRASS)
             .setTreeDistributor(TreeDistributors.CHERRY)
             .setGrassColor(0xB6DB61)
             .setFoliageColor(0xB6DB62)
+            .setWaterColor(0x5DB7EF);
+
+    public static final BTWGBiome SNOWBLOSSOM_GROVE = new BTWGBiome(
+            SNOWBLOSSOM_GROVE_ID,
+            loc("snowblossom_grove"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            SEMI_ARID,
+                            HIGHLANDS,
+                            MEDIUM_EROSION,
+                            HIGH_WEIRDNESS
+                    ),
+                    (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
+            ))
+            .setGrassDistributor(GrassDistributors.FOREST_GRASS)
+            .setTreeDistributor(TreeDistributors.CHERRY)
             .setWaterColor(0x5DB7EF);
 
     public static final BTWGBiome MEADOW = new BTWGBiome(
@@ -506,7 +559,8 @@ public abstract class BiomeConfiguration {
                             LOW_WEIRDNESS
                     )
             ))
-            .setGrassDistributor(new PlantDistributor(10))
+            .setGrassDistributor(GrassDistributors.MEADOW_GRASS)
+            .setFlowerDistributor(FlowerDistributors.MEADOW_FLOWERS)
             .setTreeDistributor(TreeDistributors.MEADOW);
 
     public static final BTWGBiome JUNGLE = new BTWGBiome(
@@ -523,8 +577,9 @@ public abstract class BiomeConfiguration {
             ))
             .setHasJungleSpiders()
             .setNoLargeAnimals()
-            .setTreeDistributor(TreeDistributors.JUNGLE)
-            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS);
+            .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.TROPICAL_FLOWERS)
+            .setTreeDistributor(TreeDistributors.JUNGLE);
 
     public static final BTWGBiome SWAMP = new BTWGBiome(
             SWAMP_ID,
@@ -542,8 +597,9 @@ public abstract class BiomeConfiguration {
             .setNoLargeAnimals()
             .setHasSlimes()
             .setHasWitches()
-            .setTreeDistributor(TreeDistributors.SWAMP)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.SWAMP_FLOWERS)
+            .setTreeDistributor(TreeDistributors.SWAMP)
             .setGrassColor(0x4C763C)
             .setFoliageColor(0x6A7039)
             .setWaterColor(0x617B64);
@@ -561,8 +617,9 @@ public abstract class BiomeConfiguration {
                     )
             ))
             .setHasWolves()
-            .setTreeDistributor(TreeDistributors.BIRCH)
-            .setGrassDistributor(new PlantDistributor(6));
+            .setGrassDistributor(GrassDistributors.MEADOW_GRASS)
+            .setFlowerDistributor(FlowerDistributors.BIRCH_FOREST_FLOWERS)
+            .setTreeDistributor(TreeDistributors.BIRCH);
 
     public static final BTWGBiome WETLAND = new BTWGBiome(
             WETLAND_ID,
@@ -572,15 +629,16 @@ public abstract class BiomeConfiguration {
                             TEMPERATE,
                             VERY_HUMID,
                             MID_CONTINENT,
-                            1.0,
+                            HIGH_EROSION,
                             HIGH_WEIRDNESS
                     ),
                     (v, h) -> h < NoiseProvider.SEA_LEVEL * 1.05 && DEFAULT_PREDICATE.test(v, h)
             ))
             .setHasSlimes()
             .setHasWitches()
-            .setTreeDistributor(TreeDistributors.WETLAND)
             .setGrassDistributor(GrassDistributors.TROPICAL_GRASS)
+            .setFlowerDistributor(FlowerDistributors.SWAMP_FLOWERS)
+            .setTreeDistributor(TreeDistributors.WETLAND)
             .setGrassColor(0x4C903C)
             .setFoliageColor(0x5A6029);
 
@@ -597,8 +655,8 @@ public abstract class BiomeConfiguration {
                     )
             )))
             .setSurfacer(new OutbackSurfacer()))
-            .setTreeDistributor(TreeDistributors.SCRUBLAND)
             .setGrassDistributor(GrassDistributors.OUTBACK)
+            .setTreeDistributor(TreeDistributors.SCRUBLAND)
             .setNoLakes()
             .setNoAnimals()
             .setTopBlock(BTWGBlocks.sandyDirt.blockID)

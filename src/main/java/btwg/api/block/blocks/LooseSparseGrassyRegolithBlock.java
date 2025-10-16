@@ -234,6 +234,12 @@ public class LooseSparseGrassyRegolithBlock extends LooseSparseGrassBlock {
     @Override
     @Environment(value=EnvType.CLIENT)
     public int idPicked(World world, int x, int y, int z) {
-        return Block.grass.blockID;
+        return this.type.grassID();
+    }
+
+    @Override
+    @Environment(value=EnvType.CLIENT)
+    public int getDamageValue(World world, int x, int y, int z) {
+        return this.type.grassMetadata();
     }
 }

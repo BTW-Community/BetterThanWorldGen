@@ -53,7 +53,7 @@ public class ColorizedShrubBlock extends ShrubBlock {
     @Override
     public Icon getIcon(int side, int metadata) {
         if (secondPass) {
-            return this.overlays[metadata];
+            return this.overlays[MathHelper.clamp_int(metadata, 0, this.icons.length - 1)];
         }
         else {
             return super.getIcon(side, metadata);

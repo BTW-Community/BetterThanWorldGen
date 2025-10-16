@@ -1,9 +1,7 @@
 package btwg.api.world.feature;
 
-import btw.entity.mob.villager.trade.VillagerTrade;
 import btw.util.RandomSelector;
 import btwg.api.block.PlantType;
-import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.blocks.TallPlantBlock;
 import net.minecraft.src.Block;
 import net.minecraft.src.World;
@@ -17,6 +15,8 @@ public class PlantDistributor {
     protected int patchesPerChunk;
     protected int patchQuantity;
     protected int patchSize;
+
+    protected boolean selectPerPatch = false;
 
     private boolean hasInitNoise;
     private World lastWorld;
@@ -48,7 +48,7 @@ public class PlantDistributor {
         return this;
     }
 
-    protected void placePlant(World world, Random rand, int x, int y, int z) {
+    protected void placeRandomPlant(World world, Random rand, int x, int y, int z) {
         var plants = this.plants;
 
         if (this.plants.isEmpty()) {
@@ -110,12 +110,38 @@ public class PlantDistributor {
         int patchZ = z + rand.nextInt(16) + 8;
         int patchY = world.getHeightValue(patchX, patchZ);
 
-        for (int count = 0; count < this.patchQuantity; count++) {
-            int i = patchX + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
-            int k = patchZ + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
-            int j = patchY + rand.nextInt(this.patchSize / 2) - rand.nextInt(this.patchSize / 2);
+        if (this.selectPerPatch) {
+            var plants = this.plants;
 
-            this.placePlant(world, rand, i, j, k);
+            if (this.plants.isEmpty()) {
+                plants = defaultPlants;
+            }
+
+            ToDoubleFunction<Pair<PlantType, Double>> weightFunction = Pair::getRight;
+            var selector = RandomSelector.weighted(plants, weightFunction);
+            var plantType = selector.next(rand).getLeft();
+
+            for (int count = 0; count < this.patchQuantity; count++) {
+                int i = patchX + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
+                int k = patchZ + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
+                int j = patchY + rand.nextInt(this.patchSize / 2) - rand.nextInt(this.patchSize / 2);
+
+                if (plantType.isTall()) {
+                    this.placeDoublePlant(world, i, j, k, plantType.id(), plantType.metadata());
+                }
+                else {
+                    this.placeSinglePlant(world, i, j, k, plantType.id(), plantType.metadata());
+                }
+            }
+        }
+        else {
+            for (int count = 0; count < this.patchQuantity; count++) {
+                int i = patchX + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
+                int k = patchZ + rand.nextInt(this.patchSize) - rand.nextInt(this.patchSize);
+                int j = patchY + rand.nextInt(this.patchSize / 2) - rand.nextInt(this.patchSize / 2);
+
+                this.placeRandomPlant(world, rand, i, j, k);
+            }
         }
     }
 
@@ -127,4 +153,9 @@ public class PlantDistributor {
     }
 
     protected void initNoise(World world, Random rand) {}
+
+    public PlantDistributor selectPerPatch() {
+        this.selectPerPatch = true;
+        return this;
+    }
 }

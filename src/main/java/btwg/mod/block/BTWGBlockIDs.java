@@ -400,4 +400,7 @@ public class BTWGBlockIDs {
     public static final int FLOWER_ID = 3757;
     public static final int FLOWER_2_ID = 3758;
     public static final int TALL_FLOWER_ID = 3759;
+    public static final int TORCHFLOWER_ID = 3760;
+    public static final int EYEBLOSSOM_ID = 3761;
+    public static final int SAND_FLOWER_ID = 3762;
 }

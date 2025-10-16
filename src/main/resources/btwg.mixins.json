@@ -15,7 +15,6 @@
     "DirtSlabMixin",
     "EntityPlayerMixin",
     "GrassSlabBlockMixin",
-    "ItemMixin",
     "LogSpikeBlockMixin",
     "LooseDirtSlabBlockMixin",
     "LooseSparseGrassBlockMixin",
@@ -26,7 +25,6 @@
   ],
   "client": [
     "BlockFluidMixin",
-    //"GuiInGameMixin",
     "RenderGlobalMixin"
   ],
   "injectors": {

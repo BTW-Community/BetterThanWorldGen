@@ -630,6 +630,8 @@ public final class NoiseProvider {
                 double targetHeight = this.heightmap[idx] * TOTAL_HEIGHT;
 
                 for (BTWGBiome biome : BTWGBiome.biomeList) {
+                    if (biome == DefaultBiomes.OCEAN) continue;
+
                     if (biome.noiseTarget.distanceSqFromTarget(biomeVector) < closestDistance) {
                         if (biome.noiseTarget.validator().test(biomeVector, (int) targetHeight)) {
                             closestDistance = biome.noiseTarget.distanceSqFromTarget(biomeVector);
