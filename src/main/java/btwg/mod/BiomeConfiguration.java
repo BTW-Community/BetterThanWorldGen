@@ -476,6 +476,22 @@ public abstract class BiomeConfiguration {
             .setGrassDistributor(GrassDistributors.MOUNTAIN_GRASS)
             .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS);
 
+    public static final BTWGBiome TUNDRA = new BTWGBiome(
+            TUNDRA_ID,
+            loc("tundra"),
+            new BiomeNoiseParameterTarget(
+                    new BiomeNoiseVector(
+                            FROZEN,
+                            SEMI_HUMID,
+                            LOWLANDS,
+                            LOW_EROSION,
+                            LOW_WEIRDNESS
+                    ),
+                    (v, h) -> DEFAULT_PREDICATE.test(v, h) && IS_SNOWY.test(v, h)
+            ))
+            .setGrassDistributor(GrassDistributors.MOUNTAIN_GRASS)
+            .setTreeDistributor(TreeDistributors.WINDSWEPT_HILLS);
+
     public static final BTWGBiome DARK_FOREST = new BTWGBiome(
             DARK_FOREST_ID,
             loc("dark_forest"),
