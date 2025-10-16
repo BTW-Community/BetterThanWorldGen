@@ -1,20 +1,23 @@
 package btwg.mod.crafting;
 
 import btw.block.BTWBlocks;
-import btw.block.blocks.AestheticOpaqueEarthBlock;
 import btw.block.blocks.MouldingAndDecorativeBlock;
 import btw.block.blocks.SidingAndCornerAndDecorativeBlock;
+import btw.crafting.manager.MillStoneCraftingManager;
 import btw.crafting.recipe.RecipeManager;
 import btw.crafting.recipe.types.customcrafting.ConditionalRecipe;
 import btw.inventory.util.InventoryUtils;
 import btw.item.BTWItems;
 import btw.item.tag.BTWTags;
+import btw.item.tag.Tag;
 import btw.item.tag.TagInstance;
 import btw.item.tag.TagOrStack;
+import btw.util.color.Color;
 import btw.world.util.difficulty.DifficultyParam;
 import btwg.api.block.StoneType;
 import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.WoodType;
+import btwg.mod.item.Tags;
 import net.minecraft.src.*;
 
 import java.util.Arrays;
@@ -23,6 +26,7 @@ public class Recipes {
     public static void initRecipes() {
         initTorchRecipes();
         initSoilRecipes();
+        initDyeRecipes();
         initWoodRecipes();
         initStoneRecipes();
     }
@@ -106,6 +110,28 @@ public class Recipes {
                 TagInstance.of(Tags.SAND_PILES),
                 TagInstance.of(Tags.SAND_PILES),
                 TagInstance.of(Tags.SAND_PILES),
+        });
+    }
+
+    private static void initDyeRecipes() {
+        MillStoneCraftingManager.getInstance().removeRecipe(new ItemStack(Item.dyePowder, 2, Color.RED.colorID), new ItemStack(Block.plantRed));
+        MillStoneCraftingManager.getInstance().removeRecipe(new ItemStack(Item.dyePowder, 2, Color.YELLOW.colorID), new ItemStack(Block.plantYellow));
+
+        // TODO: Split white, black, and blue dye from their functional items
+        Arrays.stream(Color.values()).forEach(color -> {
+            Item output = Item.dyePowder;
+
+            Tag flowerTag = Tags.FLOWERS_BY_COLOR[color.colorID];
+            if (!flowerTag.getItems().isEmpty()) {
+                RecipeManager.addMillStoneRecipe(new ItemStack(output, 2, color.colorID),
+                        TagInstance.of(flowerTag));
+            }
+
+            Tag tallFlowerTag = Tags.TALL_FLOWERS_BY_COLOR[color.colorID];
+            if (!tallFlowerTag.getItems().isEmpty()) {
+                RecipeManager.addMillStoneRecipe(new ItemStack(output, 3, color.colorID),
+                        TagInstance.of(tallFlowerTag));
+            }
         });
     }
 

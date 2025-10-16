@@ -65,6 +65,7 @@ public record PlantType(int id, int metadata, boolean isTall) {
     public static final PlantType TORCHFLOWER = new PlantType(BTWGBlockIDs.TORCHFLOWER_ID, 0);
 
     public static final PlantType EYEBLOSSOM = new PlantType(BTWGBlockIDs.EYEBLOSSOM_ID, 0);
+    public static final PlantType OPEN_EYEBLOSSOM = new PlantType(BTWGBlockIDs.EYEBLOSSOM_ID, 1);
 
     public static final PlantType FOXGLOVE = new PlantType(BTWGBlockIDs.TALL_FLOWER_ID, 0, true);
     public static final PlantType LILAC = new PlantType(BTWGBlockIDs.TALL_FLOWER_ID, 1, true);

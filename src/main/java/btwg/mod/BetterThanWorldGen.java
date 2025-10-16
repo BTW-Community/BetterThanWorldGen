@@ -8,7 +8,7 @@ import btwg.api.configuration.Version;
 import btwg.api.configuration.WorldData;
 import btwg.mod.block.BTWGBlocks;
 import btwg.mod.crafting.Recipes;
-import btwg.mod.crafting.Tags;
+import btwg.mod.item.Tags;
 import btwg.mod.item.BTWGItems;
 
 public class BetterThanWorldGen extends BTWAddon {
