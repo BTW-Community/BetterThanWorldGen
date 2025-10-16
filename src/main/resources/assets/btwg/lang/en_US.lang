@@ -9,16 +9,67 @@ tile.btwg.loose_sandy_dirt.name=Loose Sandy Dirt
 
 #------ Plants ------#
 
-# Shrubs
-tile.btwg.dry_grass.name=Dry Grass
-tile.btwg.short_dry_grass.name=Short Dry Grass
+# Shrubs and Grasses
+tile.btwg.dry_grass.medium.name=Dry Grass
+tile.btwg.dry_grass.short.name=Short Dry Grass
+
 tile.btwg.tall_dry_grass.name=Tall Dry Grass
-tile.btwg.bush.name=Bush
-tile.btwg.tall_grass.name=Tall Grass
-tile.btwg.large_fern.name=Large Fern
+
+tile.btwg.grass.bluegrass.name=Bluegrass
+tile.btwg.grass.bromegrass.name=Bromegrass
+tile.btwg.grass.fountain_grass.name=Fountain Grass
+tile.btwg.grass.bush.name=Bush
+tile.btwg.grass.scutch_grass.name=Scutch Grass
+tile.btwg.grass.timothy_grass.name=Timothy Grass
+
+tile.btwg.tall_grass.tall_grass.name=Tall Grass
+tile.btwg.tall_grass.large_fern.name=Large Fern
+tile.btwg.tall_grass.phragmite.name=Phragmite
+
+# Flowers
+tile.btwg.flower.allium.name=Allium
+tile.btwg.flower.azure_bluet.name=Azure Bluet
+tile.btwg.flower.blue_ginger.name=Blue Ginger
+tile.btwg.flower.blue_orchid.name=Blue Orchid
+tile.btwg.flower.cornflower.name=Cornflower
+tile.btwg.flower.goldenrod.name=Goldenrod
+tile.btwg.flower.guzmania.name=Guzmania
+tile.btwg.flower.heliconia.name=Heliconia
+tile.btwg.flower.hyacinth.name=Hyacinth
+tile.btwg.flower.lily_of_the_valley.name=Lily of the Valley
+tile.btwg.flower.nasturtium.name=Nasturtium
+tile.btwg.flower.oxeye_daisy.name=Oxeye Daisy
+tile.btwg.flower.primrose.name=Primrose
+tile.btwg.flower.orange_tulip.name=Orange Tulip
+tile.btwg.flower.pink_tulip.name=Pink Tulip
+tile.btwg.flower.red_tulip.name=Red Tulip
+tile.btwg.flower.white_tulip.name=White Tulip
+tile.btwg.flower.pink_snapdragon.name=Pink Snapdragon
+tile.btwg.flower.red_snapdragon.name=Red Snapdragon
+tile.btwg.flower.white_snapdragon.name=White Snapdragon
+tile.btwg.flower.yellow_snapdragon.name=Yellow Snapdragon
+tile.btwg.flower.desert_flame.name=Desert Flame
+
+tile.btwg.tall_flower.foxglove.name=Foxglove
+tile.btwg.tall_flower.lilac.name=Lilac
+tile.btwg.tall_flower.peony.name=Peony
+tile.btwg.tall_flower.rose_bush.name=Rose Bush
+tile.btwg.tall_flower.swamp_azalea.name=Swamp Azalea
+tile.btwg.tall_flower.marigold.name=Marigol
+tile.btwg.tall_flower.black_thistle.name=Black Thistle
+tile.btwg.tall_flower.pitcher_plant.name=Pitcher Plant
+
+tile.btwg.torchflower.name=Torchflower
+
+tile.btwg.eyeblossom.eyeblossom.name=Eyeblossom
+tile.btwg.eyeblossom.open_eyeblossom.name=Open Eyeblossom
 
 # Renamed vanilla
 tile.tallgrass.grass.name=Short Grass
+
+#------ Other Organics ------#
+
+tile.btwg.glow_worms.name=Glow Worms
 
 #------ Wood ------#
 
@@ -199,6 +250,13 @@ tile.woodSlab.spruce.name=Spruce Slab
 tile.woodSlab.birch.name=Birch Slab
 tile.woodSlab.jungle.name=Jungle Slab
 
+tile.stairsWood.name=Oak Stairs
+tile.stairsWoodSpruce.name=Spruce Stairs
+tile.stairsWoodBirch.name=Birch Stairs
+tile.stairsWoodJungle.name=Jungle Stairs
+
+tile.fenceGate.name=Oak Fence Gate
+
 #Renamed BTW blocks
 tile.fcWoodSpruceSiding.oak.name=Oak Siding
 tile.fcWoodSpruceSiding.spruce.name=Spruce Siding
@@ -248,6 +306,14 @@ tile.btwg.rough_limestone.name=Rough Limestone
 tile.btwg.limestone_slab.raw.name=Limestone Slab
 tile.btwg.limestone_stairs.name=Limestone Stairs
 
+tile.btwg.coal_ore.limestone.name=Limestone Coal Ore
+tile.btwg.iron_ore.limestone.name=Limestone Iron Ore
+tile.btwg.gold_ore.limestone.name=Limestone Gold Ore
+tile.btwg.diamond_ore.limestone.name=Limestone Diamond Ore
+tile.btwg.emerald_ore.limestone.name=Limestone Emerald Ore
+tile.btwg.redstone_ore.limestone.name=Limestone Redstone Ore
+tile.btwg.lapis_ore.limestone.name=Limestone Lapis Lazuli Ore
+
 tile.btwg.limestone.cobble.name=Cobbled Limestone
 tile.btwg.limestone.mossy_cobble.name=Mossy Cobbled Limestone
 tile.btwg.limestone_slab.cobble.name=Cobbled Limestone Slab
@@ -291,6 +357,14 @@ tile.btwg.granite.name=Granite
 tile.btwg.rough_granite.name=Rough Granite
 tile.btwg.granite_slab.raw.name=Granite Slab
 tile.btwg.granite_stairs.name=Granite Stairs
+
+tile.btwg.coal_ore.granite.name=Granite Coal Ore
+tile.btwg.iron_ore.granite.name=Granite Iron Ore
+tile.btwg.gold_ore.granite.name=Granite Gold Ore
+tile.btwg.diamond_ore.granite.name=Granite Diamond Ore
+tile.btwg.emerald_ore.granite.name=Granite Emerald Ore
+tile.btwg.redstone_ore.granite.name=Granite Redstone Ore
+tile.btwg.lapis_ore.granite.name=Granite Lapis Lazuli Ore
 
 tile.btwg.granite.cobble.name=Cobbled Granite
 tile.btwg.granite.mossy_cobble.name=Mossy Cobbled Granite
@@ -336,6 +410,14 @@ tile.btwg.rough_diorite.name=Rough Diorite
 tile.btwg.diorite_slab.raw.name=Diorite Slab
 tile.btwg.diorite_stairs.name=Diorite Stairs
 
+tile.btwg.coal_ore.diorite.name=Diorite Coal Ore
+tile.btwg.iron_ore.diorite.name=Diorite Iron Ore
+tile.btwg.gold_ore.diorite.name=Diorite Gold Ore
+tile.btwg.diamond_ore.diorite.name=Diorite Diamond Ore
+tile.btwg.emerald_ore.diorite.name=Diorite Emerald Ore
+tile.btwg.redstone_ore.diorite.name=Diorite Redstone Ore
+tile.btwg.lapis_ore.diorite.name=Diorite Lapis Lazuli Ore
+
 tile.btwg.diorite.cobble.name=Cobbled Diorite
 tile.btwg.diorite.mossy_cobble.name=Mossy Cobbled Diorite
 tile.btwg.diorite_slab.cobble.name=Cobbled Diorite Slab
@@ -379,6 +461,14 @@ tile.btwg.calcite.name=Calcite
 tile.btwg.rough_calcite.name=Rough Calcite
 tile.btwg.calcite_slab.raw.name=Calcite Slab
 tile.btwg.calcite_stairs.name=Calcite Stairs
+
+tile.btwg.coal_ore.calcite.name=Calcite Coal Ore
+tile.btwg.iron_ore.calcite.name=Calcite Iron Ore
+tile.btwg.gold_ore.calcite.name=Calcite Gold Ore
+tile.btwg.diamond_ore.calcite.name=Calcite Diamond Ore
+tile.btwg.emerald_ore.calcite.name=Calcite Emerald Ore
+tile.btwg.redstone_ore.calcite.name=Calcite Redstone Ore
+tile.btwg.lapis_ore.calcite.name=Calcite Lapis Lazuli Ore
 
 tile.btwg.calcite.cobble.name=Cobbled Calcite
 tile.btwg.calcite.mossy_cobble.name=Mossy Cobbled Calcite
@@ -424,6 +514,14 @@ tile.btwg.rough_shale.name=Rough Shale
 tile.btwg.shale_slab.raw.name=Shale Slab
 tile.btwg.shale_stairs.name=Shale Stairs
 
+tile.btwg.coal_ore.shale.name=Shale Coal Ore
+tile.btwg.iron_ore.shale.name=Shale Iron Ore
+tile.btwg.gold_ore.shale.name=Shale Gold Ore
+tile.btwg.diamond_ore.shale.name=Shale Diamond Ore
+tile.btwg.emerald_ore.shale.name=Shale Emerald Ore
+tile.btwg.redstone_ore.shale.name=Shale Redstone Ore
+tile.btwg.lapis_ore.shale.name=Shale Lapis Lazuli Ore
+
 tile.btwg.shale.cobble.name=Cobbled Shale
 tile.btwg.shale.mossy_cobble.name=Mossy Cobbled Shale
 tile.btwg.shale_slab.cobble.name=Cobbled Shale Slab
@@ -467,6 +565,14 @@ tile.btwg.andesite.name=Andesite
 tile.btwg.rough_andesite.name=Rough Andesite
 tile.btwg.andesite_slab.raw.name=Andesite Slab
 tile.btwg.andesite_stairs.name=Andesite Stairs
+
+tile.btwg.coal_ore.andesite.name=Andesite Coal Ore
+tile.btwg.iron_ore.andesite.name=Andesite Iron Ore
+tile.btwg.gold_ore.andesite.name=Andesite Gold Ore
+tile.btwg.diamond_ore.andesite.name=Andesite Diamond Ore
+tile.btwg.emerald_ore.andesite.name=Andesite Emerald Ore
+tile.btwg.redstone_ore.andesite.name=Andesite Redstone Ore
+tile.btwg.lapis_ore.andesite.name=Andesite Lapis Lazuli Ore
 
 tile.btwg.andesite.cobble.name=Cobbled Andesite
 tile.btwg.andesite.mossy_cobble.name=Mossy Cobbled Andesite
@@ -512,6 +618,14 @@ tile.btwg.rough_tuff.name=Rough Tuff
 tile.btwg.tuff_slab.raw.name=Tuff Slab
 tile.btwg.tuff_stairs.name=Tuff Stairs
 
+tile.btwg.coal_ore.tuff.name=Tuff Coal Ore
+tile.btwg.iron_ore.tuff.name=Tuff Iron Ore
+tile.btwg.gold_ore.tuff.name=Tuff Gold Ore
+tile.btwg.diamond_ore.tuff.name=Tuff Diamond Ore
+tile.btwg.emerald_ore.tuff.name=Tuff Emerald Ore
+tile.btwg.redstone_ore.tuff.name=Tuff Redstone Ore
+tile.btwg.lapis_ore.tuff.name=Tuff Lapis Lazuli Ore
+
 tile.btwg.tuff.cobble.name=Cobbled Tuff
 tile.btwg.tuff.mossy_cobble.name=Mossy Cobbled Tuff
 tile.btwg.tuff_slab.cobble.name=Cobbled Tuff Slab
@@ -555,6 +669,14 @@ tile.btwg.phyllite.name=Phyllite
 tile.btwg.rough_phyllite.name=Rough Phyllite
 tile.btwg.phyllite_slab.raw.name=Phyllite Slab
 tile.btwg.phyllite_stairs.name=Phyllite Stairs
+
+tile.btwg.coal_ore.phyllite.name=Phyllite Coal Ore
+tile.btwg.iron_ore.phyllite.name=Phyllite Iron Ore
+tile.btwg.gold_ore.phyllite.name=Phyllite Gold Ore
+tile.btwg.diamond_ore.phyllite.name=Phyllite Diamond Ore
+tile.btwg.emerald_ore.phyllite.name=Phyllite Emerald Ore
+tile.btwg.redstone_ore.phyllite.name=Phyllite Redstone Ore
+tile.btwg.lapis_ore.phyllite.name=Phyllite Lapis Lazuli Ore
 
 tile.btwg.phyllite.cobble.name=Cobbled Phyllite
 tile.btwg.phyllite.mossy_cobble.name=Mossy Cobbled Phyllite
@@ -600,6 +722,14 @@ tile.btwg.rough_schist.name=Rough Schist
 tile.btwg.schist_slab.raw.name=Schist Slab
 tile.btwg.schist_stairs.name=Schist Stairs
 
+tile.btwg.coal_ore.schist.name=Schist Coal Ore
+tile.btwg.iron_ore.schist.name=Schist Iron Ore
+tile.btwg.gold_ore.schist.name=Schist Gold Ore
+tile.btwg.diamond_ore.schist.name=Schist Diamond Ore
+tile.btwg.emerald_ore.schist.name=Schist Emerald Ore
+tile.btwg.redstone_ore.schist.name=Schist Redstone Ore
+tile.btwg.lapis_ore.schist.name=Schist Lapis Lazuli Ore
+
 tile.btwg.schist.cobble.name=Cobbled Schist
 tile.btwg.schist.mossy_cobble.name=Mossy Cobbled Schist
 tile.btwg.schist_slab.cobble.name=Cobbled Schist Slab
@@ -644,6 +774,14 @@ tile.btwg.rough_basalt.name=Rough Basalt
 tile.btwg.basalt_slab.raw.name=Basalt Slab
 tile.btwg.basalt_stairs.name=Basalt Stairs
 
+tile.btwg.coal_ore.basalt.name=Basalt Coal Ore
+tile.btwg.iron_ore.basalt.name=Basalt Iron Ore
+tile.btwg.gold_ore.basalt.name=Basalt Gold Ore
+tile.btwg.diamond_ore.basalt.name=Basalt Diamond Ore
+tile.btwg.emerald_ore.basalt.name=Basalt Emerald Ore
+tile.btwg.redstone_ore.basalt.name=Basalt Redstone Ore
+tile.btwg.lapis_ore.basalt.name=Basalt Lapis Lazuli Ore
+
 tile.btwg.basalt.cobble.name=Cobbled Basalt
 tile.btwg.basalt.mossy_cobble.name=Mossy Cobbled Basalt
 tile.btwg.basalt_slab.cobble.name=Cobbled Basalt Slab
@@ -681,52 +819,6 @@ item.btwg.rock.basalt.name=Basalt Rock
 item.btwg.brick.basalt.name=Basalt Brick
 item.btwg.regolith_pile.basalt.name=Basalt Regolith Pile
 item.btwg.gravel_pile.basalt.name=Basalt Gravel Pile
-
-# Kimberlite
-tile.btwg.kimberlite.name=Kimberlite
-tile.btwg.rough_kimberlite.name=Rough Kimberlite
-tile.btwg.kimberlite_slab.raw.name=Kimberlite Slab
-tile.btwg.kimberlite_stairs.name=Kimberlite Stairs
-
-tile.btwg.kimberlite.cobble.name=Cobbled Kimberlite
-tile.btwg.kimberlite.mossy_cobble.name=Mossy Cobbled Kimberlite
-tile.btwg.kimberlite_slab.cobble.name=Cobbled Kimberlite Slab
-tile.btwg.cobbled_kimberlite_stairs.name=Cobbled Kimberlite Stairs
-tile.btwg.loose_kimberlite.cobble.name=Loose Cobbled Kimberlite
-tile.btwg.loose_kimberlite_slab.cobble.name=Loose Cobbled Kimberlite Slab
-tile.btwg.loose_cobbled_kimberlite_stairs.name=Loose Cobbled Kimberlite Stairs
-
-tile.btwg.kimberlite.polished.name=Polished Kimberlite
-tile.btwg.kimberlite_slab.polished.name=Polished Kimberlite Slab
-
-tile.btwg.kimberlite.bricks.name=Kimberlite Bricks
-tile.btwg.kimberlite.mossy_bricks.name=Mossy Kimberlite Bricks
-tile.btwg.kimberlite.cracked_bricks.name=Cracked Kimberlite Bricks
-tile.btwg.kimberlite.chiseled_bricks.name=Chiseled Kimberlite Bricks
-tile.btwg.kimberlite_slab.bricks.name=Kimberlite Brick Slab
-tile.btwg.kimberlite_brick_stairs.name=Kimberlite Brick Stairs
-tile.btwg.loose_kimberlite.bricks.name=Loose Kimberlite Bricks
-tile.btwg.loose_kimberlite_slab.bricks.name=Loose Kimberlite Brick Slab
-tile.btwg.loose_kimberlite_brick_stairs.name=Loose Kimberlite Brick Stairs
-
-tile.btwg.kimberlite_regolith.name=Kimberlite Regolith
-tile.btwg.kimberlite_regolith_slab.name=Kimberlite Regolith Slab
-tile.btwg.grassy_kimberlite_regolith.name=Grassy Kimberlite Regolith
-tile.btwg.grassy_kimberlite_regolith_slab.name=Grassy Kimberlite Regolith Slab
-tile.btwg.loose_kimberlite_regolith.name=Loose Kimberlite Regolith
-tile.btwg.loose_kimberlite_regolith_slab.name=Loose Kimberlite Regolith Slab
-tile.btwg.loose_sparse_grassy_kimberlite_regolith.name=Loose Sparse Grassy Kimberlite Regolith
-tile.btwg.loose_sparse_grassy_kimberlite_regolith_slab.name=Loose Sparse Grassy Kimberlite Regolith Slab
-
-tile.btwg.kimberlite_gravel.name=Kimberlite Gravel
-tile.btwg.kimberlite_gravel_slab.name=Kimberlite Gravel Slab
-
-item.btwg.rock.kimberlite.name=Kimberlite Rock
-item.btwg.brick.kimberlite.name=Kimberlite Brick
-item.btwg.regolith_pile.kimberlite.name=Kimberlite Regolith Pile
-item.btwg.gravel_pile.kimberlite.name=Kimberlite Gravel Pile
-
-# Renamed BTW
 
 # Rhyolite (vanilla stone)
 tile.stone.stone.name=Rhyolite
@@ -840,6 +932,18 @@ tile.fcStoneMoulding.deepslate.column.name=Slate Column
 tile.fcStoneMoulding.deepslate.pedestal.name=Slate Pedestal
 tile.fcStoneMoulding.deepslate.table.name=Slate Table
 
+tile.btwg.slate_regolith.name=Slate Regolith
+tile.btwg.slate_regolith_slab.name=Slate Regolith Slab
+tile.btwg.grassy_slate_regolith.name=Grassy Slate Regolith
+tile.btwg.grassy_slate_regolith_slab.name=Grassy Slate Regolith Slab
+tile.btwg.loose_slate_regolith.name=Loose Slate Regolith
+tile.btwg.loose_slate_regolith_slab.name=Loose Slate Regolith Slab
+tile.btwg.loose_sparse_grassy_slate_regolith.name=Loose Sparse Grassy Slate Regolith
+tile.btwg.loose_sparse_grassy_slate_regolith_slab.name=Loose Sparse Grassy Slate Regolith Slab
+
+tile.btwg.slate_gravel.name=Slate Gravel
+tile.btwg.slate_gravel_slab.name=Slate Gravel Slab
+
 item.fcItemStone.deepslate.name=Slate Rock
 item.fcItemBrickStone.deepslate.name=Slate Brick
 
@@ -891,10 +995,26 @@ tile.fcStoneMoulding.blackstone.column.name=Gabbro Column
 tile.fcStoneMoulding.blackstone.pedestal.name=Gabbro Pedestal
 tile.fcStoneMoulding.blackstone.table.name=Gabbro Table
 
+tile.btwg.gabbro_regolith.name=Gabbro Regolith
+tile.btwg.gabbro_regolith_slab.name=Gabbro Regolith Slab
+tile.btwg.grassy_gabbro_regolith.name=Grassy Gabbro Regolith
+tile.btwg.grassy_gabbro_regolith_slab.name=Grassy Gabbro Regolith Slab
+tile.btwg.loose_gabbro_regolith.name=Loose Gabbro Regolith
+tile.btwg.loose_gabbro_regolith_slab.name=Loose Gabbro Regolith Slab
+tile.btwg.loose_sparse_grassy_gabbro_regolith.name=Loose Sparse Grassy Gabbro Regolith
+tile.btwg.loose_sparse_grassy_gabbro_regolith_slab.name=Loose Sparse Grassy Gabbro Regolith Slab
+
+tile.btwg.gabbro_gravel.name=Gabbro Gravel
+tile.btwg.gabbro_gravel_slab.name=Gabbro Gravel Slab
+
 item.fcItemStone.blackstone.name=Gabbro Rock
 item.fcItemBrickStone.blackstone.name=Gabbro Brick
 
 #------ Tags ------#
+
+tag.btwg.flowers=Flowers
+tag.btwg.tall_flowers=Tall Flowers
+tag.btwg.flowers_both=All Flowers
 
 tag.btwg.clay_balls=Clay Balls
 tag.btwg.dirt_piles=Regolith Piles

@@ -8,6 +8,7 @@ import btwg.mod.block.BTWGBlocks;
 import btwg.api.block.blocks.MultiTextureBlock;
 import btwg.mod.item.BTWGItems;
 import btwg.api.item.items.MultiItem;
+import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ResourceLocation;
@@ -16,6 +17,8 @@ import java.util.Arrays;
 
 public abstract class Tags {
     public static final Tag FLOWERS = Tag.of(loc("flowers"))
+            .add(Block.plantYellow)
+            .add(Block.plantRed)
             .addUntilDamage(12, BTWGBlocks.flower.blockID)
             .addUntilDamage(7, BTWGBlocks.flower2.blockID)
             .add(BTWGBlocks.torchflower)
