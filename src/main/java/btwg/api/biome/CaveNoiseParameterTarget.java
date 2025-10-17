@@ -11,6 +11,10 @@ public record CaveNoiseParameterTarget(
     private static final double HUMIDITY_BIAS = 1;
 
     public double distanceSqFromTarget(CaveNoiseVector vector) {
+        if (vector.isDeep() != this.target.isDeep()) {
+            return Double.POSITIVE_INFINITY;
+        }
+
         return Math.pow(target.temperature() - vector.temperature(), 2) * TEMPERATURE_BIAS +
                 Math.pow(target.humidity() - vector.humidity(), 2) * HUMIDITY_BIAS;
     }

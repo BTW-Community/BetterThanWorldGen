@@ -1,8 +1,8 @@
-package btwg.mod.world.surface;
+package btwg.mod.world.surfacer;
 
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
-import btwg.api.world.surface.Surfacer;
+import btwg.api.world.surfacer.Surfacer;
 import btwg.mod.block.BTWGBlocks;
 import net.minecraft.src.BiomeGenBase;
 

@@ -4,13 +4,13 @@ import btwg.api.biome.*;
 import btwg.api.world.feature.PlantDistributor;
 import btwg.api.world.feature.TreeDistributor;
 import btwg.api.world.generate.noise.NoiseProvider;
-import btwg.api.world.surface.SandySurfacer;
+import btwg.api.world.surfacer.SandySurfacer;
 import btwg.mod.block.BTWGBlocks;
 import btwg.mod.world.feature.FlowerDistributors;
 import btwg.mod.world.feature.GrassDistributors;
 import btwg.mod.world.feature.TreeDistributors;
-import btwg.mod.world.surface.OutbackSurfacer;
-import btwg.mod.world.surface.ScrublandSurfacer;
+import btwg.mod.world.surfacer.OutbackSurfacer;
+import btwg.mod.world.surfacer.ScrublandSurfacer;
 import net.minecraft.src.*;
 
 import java.util.ArrayList;

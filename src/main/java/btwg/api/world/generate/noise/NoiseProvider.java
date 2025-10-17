@@ -1,13 +1,12 @@
 package btwg.api.world.generate.noise;
 
-import btwg.api.biome.BTWGBiome;
-import btwg.api.biome.BiomeNoiseVector;
-import btwg.api.biome.DefaultBiomes;
+import btwg.api.biome.*;
 import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
 import btwg.api.world.generate.noise.spline.Key;
 import btwg.api.world.generate.noise.spline.Spline;
 import net.minecraft.src.BiomeGenBase;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -653,6 +652,64 @@ public final class NoiseProvider {
         return biomes;
     }
 
+    public CaveBiome[][] generateCaveBiomes(int chunkX, int chunkZ) {
+        if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            this.initNoiseFields(chunkX, chunkZ);
+        }
+
+        CaveBiome[][] caveBiomes = new CaveBiome[16 * 16][2];
+
+        for (int i = 0; i < 16; i++) {
+            for (int k = 0; k < 16; k++) {
+                int idx = idx(i, k, 16);
+
+                // Normalize temperature and humidity to [0, 1]
+                double temperature = this.temperature[idx] * 0.5 + 0.5;
+                double humidity = this.humidity[idx] * 0.5 + 0.5;
+
+                // Shallow caves
+                var caveVector = new CaveNoiseVector(
+                        temperature,
+                        humidity,
+                        true
+                );
+
+                double closestDistance = Double.MAX_VALUE;
+                CaveBiome closestBiome = null;
+
+                for (CaveBiome caveBiome : CaveBiome.caveBiomeList) {
+                    if (caveBiome.noiseTarget.distanceSqFromTarget(caveVector) < closestDistance) {
+                        closestDistance = caveBiome.noiseTarget.distanceSqFromTarget(caveVector);
+                        closestBiome = caveBiome;
+                    }
+                }
+
+                // Deep caves
+                caveBiomes[idx][0] = closestBiome;
+
+                caveVector = new CaveNoiseVector(
+                        temperature,
+                        humidity,
+                        false
+                );
+
+                closestDistance = Double.MAX_VALUE;
+                closestBiome = null;
+
+                for (CaveBiome caveBiome : CaveBiome.caveBiomeList) {
+                    if (caveBiome.noiseTarget.distanceSqFromTarget(caveVector) < closestDistance) {
+                        closestDistance = caveBiome.noiseTarget.distanceSqFromTarget(caveVector);
+                        closestBiome = caveBiome;
+                    }
+                }
+
+                caveBiomes[idx][1] = closestBiome;
+            }
+        }
+
+        return caveBiomes;
+    }
+
     public StoneType[] generateStoneTypes(int chunkX, int chunkZ) {
         if (this.finalStoneTypes == null) {
             this.finalStoneTypes = new StoneType[16 * 16 * TOTAL_HEIGHT];
@@ -772,7 +829,45 @@ public final class NoiseProvider {
         );
     }
 
+    public CaveNoiseVector getCaveVector(int x, int z) {
+        int chunkX = x >> 4;
+        int chunkZ = z >> 4;
+
+        int idx = idx(x & 15, z & 15, 16);
+
+        double[] array = new double[256];
+
+        array = this.getNoise2D(this.temperatureGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, TEMPERATURE_SCALE);
+        double temperature = array[idx] * 0.5 + 0.5;
+
+        array = this.getNoise2D(this.humidityGenerator, array, chunkX, chunkZ, 16, 16, 1, 1, HUMIDITY_SCALE);
+        double humidity = array[idx] * 0.5 + 0.5;
+
+        return new CaveNoiseVector(
+                temperature,
+                humidity,
+                false
+        );
+    }
+
+    public Pair<CaveBiome, CaveBiome> getCaveBiomes(int x, int z) {
+        int chunkX = x >> 4;
+        int chunkZ = z >> 4;
+
+        int idx = idx(x & 15, z & 15, 16);
+
+        CaveBiome[][] caveBiomes = this.generateCaveBiomes(chunkX, chunkZ);
+        return Pair.of(caveBiomes[idx][0], caveBiomes[idx][1]);
+    }
+
     public byte getSeaLevel() {
         return SEA_LEVEL;
+    }
+
+    public double[] getHeightmap(int chunkX, int chunkZ) {
+        if (chunkX != this.lastChunkX || chunkZ != this.lastChunkZ) {
+            this.initNoiseFields(chunkX, chunkZ);
+        }
+        return this.heightmap;
     }
 }

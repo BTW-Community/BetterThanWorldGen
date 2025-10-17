@@ -1,11 +1,13 @@
 package btwg.api.world.generate;
 
 import btwg.api.biome.BiomeInterface;
+import btwg.api.biome.CaveBiome;
 import btwg.api.biome.data.BiomeData;
 import btwg.api.block.StoneType;
 import btwg.api.block.blocks.RegolithBlock;
 import btwg.api.world.generate.noise.NoiseProvider;
-import btwg.api.world.surface.Surfacer;
+import btwg.api.world.surfacer.Surfacer;
+import btwg.api.world.surfacer.cave.CaveSurfacer;
 import btwg.mod.BetterThanWorldGen;
 import net.minecraft.src.*;
 
@@ -129,6 +131,9 @@ public final class ChunkProvider implements IChunkProvider {
                 }
             }
         }
+
+        CaveBiome[][] caveBiomes = this.noiseProvider.generateCaveBiomes(chunkX, chunkZ);
+        this.replaceBlocksForCaveBiome(chunkX, chunkZ, blockIDs, metadata, caveBiomes);
         
         if (this.mapFeaturesEnabled) {
             this.mineshaftGenerator.generate(this, this.world, chunkX, chunkZ, blockIDs, metadata);
@@ -152,104 +157,98 @@ public final class ChunkProvider implements IChunkProvider {
     }
 
     private void replaceBlocksForBiome(int chunkX, int chunkZ, short[] blockIDs, byte[] metadata, BiomeGenBase[] biomes) {
-        byte seaLevel = this.noiseProvider.getSeaLevel();
-        double var6 = 0.03125F;
-        this.legacySoilDepthNoise = this.legacySoilDepthNoiseGenerator.generateNoiseOctaves(this.legacySoilDepthNoise, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, var6 * (double)2.0F, var6 * (double)2.0F, var6 * (double)2.0F);
-
         var defaultSurfacer = new BiomeData<>(Surfacer.DEFAULT);
-
         int height = blockIDs.length / 256;
 
         for(int k = 0; k < 16; ++k) {
             for(int i = 0; i < 16; ++i) {
                 BiomeGenBase biome = biomes[i * 16 + k];
 
-                if (!((BiomeInterface) biome).isVanilla()) {
-                    int depth = -1;
-                    int lastSurface = -1;
+                int depth = -1;
+                int lastSurface = -1;
 
-                    for (int j = height - 1; j >= 0; --j) {
-                        int index = (i * 16 + k) * height + j;
-                        if (j <= 0 + this.rand.nextInt(5)) {
-                            blockIDs[index] = (short) Block.bedrock.blockID;
-                        }
-
-                        int blockID = blockIDs[index];
-
-                        if (depth == 0) {
-                            lastSurface = j;
-                        }
-
-                        if (blockID == 0 || blockID == Block.waterStill.blockID || blockID == Block.waterMoving.blockID || blockID == Block.ice.blockID) {
-                            depth = -1;
-                        }
-
-                        var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(defaultSurfacer);
-
-                        // TODO: Update with real version handling
-                        surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, this.noiseProvider);
-
-                        depth++;
+                for (int j = height - 1; j >= 0; --j) {
+                    int index = (i * 16 + k) * height + j;
+                    if (j <= 0 + this.rand.nextInt(5)) {
+                        blockIDs[index] = (short) Block.bedrock.blockID;
                     }
-                }
-                else {
-                    float temperature = biome.getFloatTemperature();
-                    int soilDepth = (int) (this.legacySoilDepthNoise[k + i * 16] / (double) 3.0F + (double) 3.0F + this.rand.nextDouble() * (double) 0.25F);
-                    int var13 = -1;
-                    short topBlock = biome.topBlock;
-                    byte topBlockMetadata = biome.topBlockMetadata;
-                    short fillerBlock = biome.fillerBlock;
-                    byte fillerBlockMetadata = biome.fillerBlockMetadata;
 
-                    for (int j = height - 1; j >= 0; --j) {
-                        int index = (i * 16 + k) * height + j;
-                        if (j <= this.rand.nextInt(5)) {
-                            blockIDs[index] = (short) Block.bedrock.blockID;
-                        } else {
-                            short currentBlockID = blockIDs[index];
-                            if (currentBlockID == 0) {
-                                var13 = -1;
-                            } else if (currentBlockID == Block.stone.blockID) {
-                                if (var13 == -1) {
-                                    if (soilDepth <= 0) {
-                                        topBlock = 0;
-                                        fillerBlock = (short) Block.stone.blockID;
-                                    } else if (j >= seaLevel - 4 && j <= seaLevel + 1) {
-                                        topBlock = biome.topBlock;
-                                        fillerBlock = biome.fillerBlock;
-                                    }
+                    int blockID = blockIDs[index];
 
-                                    if (j < seaLevel && topBlock == 0) {
-                                        if (temperature < 0.15F) {
-                                            topBlock = (short) Block.ice.blockID;
-                                        } else {
-                                            topBlock = (short) Block.waterStill.blockID;
-                                        }
-                                    }
-
-                                    var13 = soilDepth;
-                                    if (j >= seaLevel - 1) {
-                                        blockIDs[index] = topBlock;
-                                        metadata[index] = topBlockMetadata;
-                                    } else {
-                                        blockIDs[index] = fillerBlock;
-                                        metadata[index] = fillerBlockMetadata;
-                                    }
-                                } else if (var13 > 0) {
-                                    --var13;
-                                    blockIDs[index] = fillerBlock;
-                                    metadata[index] = fillerBlockMetadata;
-                                    if (var13 == 0 && fillerBlock == Block.sand.blockID && fillerBlockMetadata == 0) {
-                                        var13 = this.rand.nextInt(4);
-                                        fillerBlock = (short) Block.sandStone.blockID;
-                                    }
-                                }
-                            }
-                        }
+                    if (depth == 0) {
+                        lastSurface = j;
                     }
+
+                    if (blockID == 0 || blockID == Block.waterStill.blockID || blockID == Block.waterMoving.blockID || blockID == Block.ice.blockID) {
+                        depth = -1;
+                    }
+
+                    var surfacer = ((BiomeInterface) biome).getSurfacer().orElse(defaultSurfacer);
+
+                    // TODO: Update with real version handling
+                    surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, biome, blockIDs, metadata, this.noiseProvider);
+
+                    depth++;
                 }
             }
         }
+    }
+
+    private void replaceBlocksForCaveBiome(int chunkX, int chunkZ, short[] blockIDs, byte[] metadata, CaveBiome[][] biomes) {
+        double[] heightmap = this.noiseProvider.getHeightmap(chunkX, chunkZ);
+
+        for(int k = 0; k < 16; ++k) {
+            for(int i = 0; i < 16; ++i) {
+                CaveBiome shallowCaveBiome = biomes[i * 16 + k][0];
+                CaveBiome deepCaveBiome = biomes[i * 16 + k][1];
+
+                double surfaceHeight = heightmap[i * 16 + k] * NoiseProvider.TERRAIN_SCALE;
+                double deepCaveThreshold = surfaceHeight / 2;
+
+                this.replaceCaveBiomeBlocksForColumn(world, chunkX, chunkZ, i, k, CaveSurfacer.Direction.DOWN, shallowCaveBiome, deepCaveBiome, deepCaveThreshold, blockIDs, metadata);
+                this.replaceCaveBiomeBlocksForColumn(world, chunkX, chunkZ, i, k, CaveSurfacer.Direction.UP, shallowCaveBiome, deepCaveBiome, deepCaveThreshold, blockIDs, metadata);
+            }
+        }
+    }
+
+    private void replaceCaveBiomeBlocksForColumn(
+            World world,
+            int chunkX, int chunkZ,
+            int i, int k,
+            CaveSurfacer.Direction direction,
+            CaveBiome shallowCaveBiome, CaveBiome deepCaveBiome,
+            double deepCaveThreshold,
+            short[] blockIDs, byte[] metadata
+    ) {
+        var defaultSurfacer = new BiomeData<>(CaveSurfacer.DEFAULT);
+        int maxHeight = blockIDs.length / 256;
+
+        int depth = -1;
+        int lastSurface = -1;
+
+        for (int j = maxHeight - 1; j >= 0; --j) {
+            int index = (i * 16 + k) * maxHeight + j;
+
+            int blockID = blockIDs[index];
+
+            if (depth == 0) {
+                lastSurface = j;
+            }
+
+            if (blockID == 0 || blockID == Block.waterStill.blockID || blockID == Block.waterMoving.blockID || blockID == Block.ice.blockID) {
+                depth = -1;
+            }
+
+            CaveBiome caveBiome = j < deepCaveThreshold ? shallowCaveBiome : deepCaveBiome;
+
+            var surfacer = caveBiome.getSurfacer().orElse(defaultSurfacer);
+
+            // TODO: Update with real version handling
+            surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, direction, caveBiome, blockIDs, metadata, this.noiseProvider);
+
+            depth++;
+        }
+
     }
 
     private boolean isAdjacentToWater(int chunkX, int chunkZ, int i, int j, int k, int height, short[] blockIDs) {

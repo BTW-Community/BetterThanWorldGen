@@ -46,8 +46,10 @@ public class BetterThanWorldGen extends BTWAddon {
         Recipes.initRecipes();
 
         WorldData.initData();
+
         DefaultBiomes.initBiomes();
         BiomeConfiguration.initBiomes();
+        CaveBiomeConfiguration.initCaveBiomes();
 
         DebugRegistry.init();
     }

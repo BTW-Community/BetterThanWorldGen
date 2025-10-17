@@ -2,6 +2,7 @@ package btwg.mod;
 
 import btwg.api.biome.CaveBiome;
 import btwg.api.biome.CaveNoiseVector;
+import net.minecraft.src.Block;
 import net.minecraft.src.ResourceLocation;
 
 public abstract class CaveBiomeConfiguration {
@@ -54,7 +55,9 @@ public abstract class CaveBiomeConfiguration {
                     HOT,
                     ARID,
                     false
-            ));
+            ))
+            .setTopBlockID((short) Block.sandStone.blockID)
+            .setFillerBlockID((short) Block.sandStone.blockID);
 
     public static final CaveBiome INFESTED_DEPTHS = new CaveBiome(loc("infested_depths"),
             new CaveNoiseVector(
@@ -94,6 +97,8 @@ public abstract class CaveBiomeConfiguration {
                     ARID,
                     true
             ));
+
+    public static void initCaveBiomes() {}
 
     public static ResourceLocation loc(String name) {
         return new ResourceLocation(BetterThanWorldGen.MODID, name);

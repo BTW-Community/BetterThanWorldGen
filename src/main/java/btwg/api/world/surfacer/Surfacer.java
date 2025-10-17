@@ -1,4 +1,4 @@
-package btwg.api.world.surface;
+package btwg.api.world.surfacer;
 
 import btwg.api.block.StoneType;
 import btwg.api.world.generate.noise.NoiseProvider;

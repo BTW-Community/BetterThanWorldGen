@@ -1,4 +1,4 @@
-package btwg.api.world.surface;
+package btwg.api.world.surfacer;
 
 import btwg.api.world.generate.noise.NoiseProvider;
 import btwg.api.world.generate.noise.function.OpenSimplexOctavesFast;
