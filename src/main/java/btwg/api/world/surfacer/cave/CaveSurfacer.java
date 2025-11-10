@@ -2,6 +2,7 @@ package btwg.api.world.surfacer.cave;
 
 import btwg.api.biome.CaveBiome;
 import btwg.api.world.generate.noise.NoiseProvider;
+import net.minecraft.src.Block;
 import net.minecraft.src.World;
 
 public class CaveSurfacer {
@@ -25,13 +26,52 @@ public class CaveSurfacer {
     }
 
     public void replaceBlock(int chunkX, int chunkZ, int i, int j, int k, int depth, int lastSurface,  Direction direction, CaveBiome biome, short[] blockIDs, byte[] metadata, NoiseProvider noiseProvider) {
-        int x = chunkX * 16 + i;
-        int z = chunkZ * 16 + k;
+        int height = blockIDs.length / 256;
+
+        short blockID = blockIDs[index(i, j, k, height)];
+        byte meta = metadata[index(i, j, k, height)];
+
+        short topBlock = biome.topBlockID;
+        byte topBlockMetadata = biome.topBlockMetadata;
+
+        short fillerBlock = biome.fillerBlockID;
+        byte fillerBlockMetadata = biome.fillerBlockMetadata;
+        
+        if (topBlock == 0) return;
+
+        int maxSoilDepth = 10;
+
+        if (j < noiseProvider.getHeightmap(chunkX, chunkZ)[i * 16 + k] * NoiseProvider.TOTAL_HEIGHT - 15) {
+            if (depth == 0 && direction == Direction.DOWN) {
+                if (blockIDs[index(i, j + 1, k, height)] == 0) {
+                    blockID = topBlock;
+                    meta = topBlockMetadata;
+                } else {
+                    blockID = fillerBlock;
+                    meta = fillerBlockMetadata;
+                }
+
+                blockIDs[index(i, j, k, height)] = blockID;
+                metadata[index(i, j, k, height)] = meta;
+            } else if (depth > 0) {
+                if (depth < maxSoilDepth) {
+                    blockID = fillerBlock;
+                    meta = fillerBlockMetadata;
+
+                    blockIDs[index(i, j, k, height)] = blockID;
+                    metadata[index(i, j, k, height)] = meta;
+                }
+            }
+        }
     }
 
     protected void initNoise(long seed) {}
 
     public enum Direction {
         UP, DOWN
+    }
+
+    public static int index(int x, int y, int z, int yHeight) {
+        return y + yHeight * (z + 16 * x);
     }
 }

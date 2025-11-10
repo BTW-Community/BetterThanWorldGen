@@ -68,14 +68,14 @@ public abstract class CaveBiomeConfiguration {
 
     //------ Low Temperature, High Humidity ------//
 
-    public static final CaveBiome TIMELESS_GROTTO = new CaveBiome(loc("timeless_grotto"),
+    public static final CaveBiome FUNGAL_GROTTO = new CaveBiome(loc("fungal_grotto"),
             new CaveNoiseVector(
                     COLD,
                     VERY_HUMID,
                     false
             ));
 
-    public static final CaveBiome FUNGAL_GROTTO = new CaveBiome(loc("fungal_grotto"),
+    public static final CaveBiome TIMELESS_GROTTO = new CaveBiome(loc("timeless_grotto"),
             new CaveNoiseVector(
                     COLD,
                     VERY_HUMID,
@@ -98,7 +98,11 @@ public abstract class CaveBiomeConfiguration {
                     true
             ));
 
-    public static void initCaveBiomes() {}
+    public static void initCaveBiomes() {
+        //CaveBiome.caveBiomeList.clear();
+        //CaveBiome.caveBiomeList.add(SANDSTORM_CAVES);
+        //CaveBiome.caveBiomeList.add(INFESTED_DEPTHS);
+    }
 
     public static ResourceLocation loc(String name) {
         return new ResourceLocation(BetterThanWorldGen.MODID, name);

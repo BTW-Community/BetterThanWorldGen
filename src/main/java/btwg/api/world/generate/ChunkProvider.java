@@ -205,8 +205,7 @@ public final class ChunkProvider implements IChunkProvider {
                 double surfaceHeight = heightmap[i * 16 + k] * NoiseProvider.TERRAIN_SCALE;
                 double deepCaveThreshold = surfaceHeight / 2;
 
-                this.replaceCaveBiomeBlocksForColumn(world, chunkX, chunkZ, i, k, CaveSurfacer.Direction.DOWN, shallowCaveBiome, deepCaveBiome, deepCaveThreshold, blockIDs, metadata);
-                this.replaceCaveBiomeBlocksForColumn(world, chunkX, chunkZ, i, k, CaveSurfacer.Direction.UP, shallowCaveBiome, deepCaveBiome, deepCaveThreshold, blockIDs, metadata);
+                this.replaceCaveBiomeBlocksForColumn(world, chunkX, chunkZ, i, k, shallowCaveBiome, deepCaveBiome, deepCaveThreshold, blockIDs, metadata);
             }
         }
     }
@@ -215,7 +214,6 @@ public final class ChunkProvider implements IChunkProvider {
             World world,
             int chunkX, int chunkZ,
             int i, int k,
-            CaveSurfacer.Direction direction,
             CaveBiome shallowCaveBiome, CaveBiome deepCaveBiome,
             double deepCaveThreshold,
             short[] blockIDs, byte[] metadata
@@ -240,15 +238,38 @@ public final class ChunkProvider implements IChunkProvider {
             }
 
             CaveBiome caveBiome = j < deepCaveThreshold ? shallowCaveBiome : deepCaveBiome;
-
             var surfacer = caveBiome.getSurfacer().orElse(defaultSurfacer);
 
             // TODO: Update with real version handling
-            surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, direction, caveBiome, blockIDs, metadata, this.noiseProvider);
+            surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, CaveSurfacer.Direction.DOWN, caveBiome, blockIDs, metadata, this.noiseProvider);
 
             depth++;
         }
 
+        depth = -1;
+        lastSurface = -1;
+
+        for (int j = 0; j <= maxHeight - 1; ++j) {
+            int index = (i * 16 + k) * maxHeight + j;
+
+            int blockID = blockIDs[index];
+
+            if (depth == 0) {
+                lastSurface = j;
+            }
+
+            if (blockID == 0 || blockID == Block.waterStill.blockID || blockID == Block.waterMoving.blockID || blockID == Block.ice.blockID) {
+                depth = -1;
+            }
+
+            CaveBiome caveBiome = j < deepCaveThreshold ? shallowCaveBiome : deepCaveBiome;
+            var surfacer = caveBiome.getSurfacer().orElse(defaultSurfacer);
+
+            // TODO: Update with real version handling
+            surfacer.get(BetterThanWorldGen.V1_0_0).replaceBlockForLocation(this.world, chunkX, chunkZ, i, j, k, depth, lastSurface, CaveSurfacer.Direction.UP, caveBiome, blockIDs, metadata, this.noiseProvider);
+
+            depth++;
+        }
     }
 
     private boolean isAdjacentToWater(int chunkX, int chunkZ, int i, int j, int k, int height, short[] blockIDs) {
